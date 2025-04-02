@@ -4,6 +4,7 @@ import os
 import json
 from enum import Enum
 from pathlib import Path
+import random
 from typing import NamedTuple, Optional, Any
 from PyQt5.QtCore import QObject, pyqtSignal
 
@@ -238,7 +239,7 @@ class Settings(QObject):
     )
 
     show_builtin_styles: bool
-    _show_builtin_styles = Setting(_("Show pre-installed styles"), True)
+    _show_builtin_styles = Setting(_("Show pre-installed styles"), False)
 
     history_size: int
     _history_size = Setting(
@@ -375,6 +376,19 @@ class Settings(QObject):
         path = self.default_path or path
         with open(path, "w") as file:
             file.write(json.dumps(self._values, default=encode_json, indent=4))
+
+    def pre_load_server(self):
+        # TODO 从这边读取服务器配置
+        # 1、从接口获取服务器url
+        # TODO 先写死在代码里边(和从配置文件里边读是一样的)
+        server_url_list = [
+            "http://10.235.28.32:32009/",
+        ]
+        server_url = random.choice(server_url_list)
+        # 2、保存服务器配置
+        self.server_mode = ServerMode.external
+        self.server_url = server_url
+        self.save()
 
     def load(self, path: Optional[Path] = None):
         path = self.default_path or path
