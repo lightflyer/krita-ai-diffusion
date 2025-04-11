@@ -1262,6 +1262,11 @@ def expand_custom(
                 outputs[node.output(6)] = sampling.scheduler
                 outputs[node.output(7)] = sampling.total_steps
                 outputs[node.output(8)] = sampling.cfg_scale
+            case "easy seed":
+                mapped_inputs = {k: map_input(v) for k, v in node.inputs.items()}
+                mapped_inputs["seed"] = seed
+                mapped = ComfyNode(node.id, node.type, mapped_inputs)
+                nodes[node.id] = w.copy(mapped).node
             case _:
                 mapped_inputs = {k: map_input(v) for k, v in node.inputs.items()}
                 mapped = ComfyNode(node.id, node.type, mapped_inputs)
