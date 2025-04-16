@@ -28,7 +28,7 @@ from .layer import Layer, LayerType, RestoreActiveLayer
 from .pose import Pose
 from .style import Style, Styles, Arch
 from .files import FileLibrary
-from .connection import Connection
+from .connection import Connection, ConnectionState
 from .properties import Property, ObservableProperties
 from .jobs import Job, JobKind, JobParams, JobQueue, JobState, JobRegion
 from .control import ControlLayer
@@ -89,6 +89,7 @@ class Model(QObject, ObservableProperties):
     progress_kind = Property(ProgressKind.generation)
     progress = Property(0.0)
     error = Property(no_error)
+    queue_info = Property("0", persist=True)
 
     workspace_changed = pyqtSignal(Workspace)
     style_changed = pyqtSignal(Style)
@@ -104,6 +105,7 @@ class Model(QObject, ObservableProperties):
     progress_changed = pyqtSignal(float)
     error_changed = pyqtSignal(Error)
     modified = pyqtSignal(QObject, str)
+    queue_info_changed = pyqtSignal(str)
 
     def __init__(self, document: Document, connection: Connection, workflows: WorkflowCollection):
         super().__init__()
@@ -124,6 +126,42 @@ class Model(QObject, ObservableProperties):
         connection.error_changed.connect(self._forward_error)
         Styles.list().changed.connect(self._init_on_connect)
         self._init_on_connect()
+
+    async def _get_queue_info(self):
+        # 1、如果当前工作空间是自定义工作空间，则获取队列信息
+        if self.workspace == Workspace.custom:
+            # 2、判断是否当前连接状态是连接状态，且自定义comfyui 客户端
+            if self._connection.state == ConnectionState.connected and (
+                client := self._connection.client_if_connected):
+                # 3、获取队列信息
+                resp = await client._get("queue")
+                # 4、解析队列信息(item[1]是remote_id, item[3]是client_id, 用来与当前job的队列进行匹配)
+                running_queue = resp.get("queue_running", [])
+                pending_queue = resp.get("queue_pending", [])
+                # running_list = [(item[1], item[3].get("client_id", "")) for item in running_queue if 
+                #                 (len(item) > 3 and isinstance(item[3], dict))]
+                # pending_list = [(item[1], item[3].get("client_id", "")) for item in pending_queue if 
+                #                 (len(item) > 3 and isinstance(item[3], dict))]
+                # 5、解析本地的job队列
+                local_remote_jobs_ids = [
+                    job.remote_id._result if isinstance(job.remote_id, eventloop.asyncio.Future) else job.remote_id
+                    for job in client._jobs
+                ]
+                # 6、计算第一个本地job在队列中的位置
+                ahead_job_index = 0
+                for current_idx, data in enumerate([*pending_queue]):
+                    ahead_job_index = current_idx + 1
+                    if (len(data) > 3 and isinstance(data[3], dict) and 
+                        data[3].get("client_id") == client._id and 
+                        data[1] in local_remote_jobs_ids):
+                        break
+                queue_info = f"{ahead_job_index}/{len(pending_queue)}"
+                # 7、更新队列信息
+                self.queue_info = queue_info
+                self.queue_info_changed.emit(queue_info)
+
+    def update_queue_info(self):
+        return eventloop.run(self._get_queue_info())
 
     def _init_on_connect(self):
         if client := self._connection.client_if_connected:
