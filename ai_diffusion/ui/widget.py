@@ -34,7 +34,7 @@ from PyQt5.QtGui import (
     QPaintEvent,
     QKeySequence,
 )
-from PyQt5.QtCore import Qt, QMetaObject, QSize, pyqtSignal, QEvent, QUrl
+from PyQt5.QtCore import Qt, QMetaObject, QSize, pyqtSignal, QEvent, QUrl, QTimer
 from krita import Krita
 
 from ..style import Style, Styles
@@ -220,6 +220,10 @@ class QueueButton(QToolButton):
         self.setPopupMode(QToolButton.ToolButtonPopupMode.InstantPopup)
         self._update()
 
+        self._queue_timer: QTimer | None = QTimer()
+        self._queue_timer.timeout.connect(self._update_from_queue_info)
+        self._queue_timer.start(10000)
+
     @property
     def model(self):
         return self._model
@@ -234,12 +238,32 @@ class QueueButton(QToolButton):
 
     def _connect_model(self):
         self._connections = [
-            self._model.jobs.count_changed.connect(self._update),
-            self._model.progress_kind_changed.connect(self._update),
+            self._model.jobs.count_changed.connect(self._update_from_queue_info),
+            self._model.progress_kind_changed.connect(self._update_from_queue_info),
         ]
 
+    def _update_from_queue_info(self):
+        if self.model.workspace == Workspace.custom:
+            task = self.model.update_queue_info()
+            task.add_done_callback(lambda _: self._update())
+        else:
+            self._update()
+
     def _update(self):
-        count = self._model.jobs.count(JobState.queued)
+        count = self.model.jobs.count(JobState.queued)
+
+        if count == 0:
+            button_text = f"0 "
+        else:
+            button_text = f"1/{count} "
+        
+
+        if self.model.workspace == Workspace.custom:
+            if self.model.queue_info is not '0':
+                button_text = f"{self.model.queue_info} "
+                count = int(self.model.queue_info.split("/")[-1])
+
+
         queued_msg = _("{count} jobs queued.", count=count)
         cancel_msg = _("Click to cancel.")
 
@@ -254,10 +278,14 @@ class QueueButton(QToolButton):
             else:
                 self.setToolTip(_("Generating image.") + f" {cancel_msg}")
             count += 1
+        elif self.model.workspace == Workspace.custom and (self.model.queue_info is not '0' or self.model.queue_info is not '0/0'):
+            self.setIcon(theme.icon("queue-active"))
+            self.setToolTip(_("Generating image.") + f" {queued_msg} {cancel_msg}")
+            
         else:
             self.setIcon(theme.icon("queue-inactive"))
             self.setToolTip(_("Idle."))
-        self.setText(f"{count} ")
+        self.setText(button_text)
 
     def sizeHint(self) -> QSize:
         original = super().sizeHint()
