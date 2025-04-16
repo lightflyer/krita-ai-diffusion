@@ -30,24 +30,31 @@ plugin_dir = dir = Path(__file__).parent
 
 
 def _get_user_data_dir():
-    if importlib.util.find_spec("krita") is None:
-        dir = plugin_dir.parent / ".appdata"
-        dir.mkdir(exist_ok=True)
-        return dir
-    try:
-        dir = Path(QStandardPaths.writableLocation(QStandardPaths.AppDataLocation))
-        if dir.exists() and "krita" in dir.name.lower():
-            dir = dir / "ai_diffusion"
-        else:
-            dir = Path(QStandardPaths.writableLocation(QStandardPaths.GenericDataLocation))
-            dir = dir / "krita-ai-diffusion"
-        dir.mkdir(exist_ok=True)
-        return dir
-    except Exception:
-        return Path(__file__).parent
+    dir = plugin_dir / ".appdata"
+    dir.mkdir(exist_ok=True)
+    return dir
+
+    # if importlib.util.find_spec("krita") is None:
+    #     dir = plugin_dir.parent / ".appdata"
+    #     dir.mkdir(exist_ok=True)
+    #     return dir
+    # try:
+    #     dir = Path(QStandardPaths.writableLocation(QStandardPaths.AppDataLocation))
+    #     if dir.exists() and "krita" in dir.name.lower():
+    #         dir = dir / "ai_diffusion"
+    #     else:
+    #         dir = Path(QStandardPaths.writableLocation(QStandardPaths.GenericDataLocation))
+    #         dir = dir / "krita-ai-diffusion"
+    #     dir.mkdir(exist_ok=True)
+    #     return dir
+    # except Exception:
+    #     return Path(__file__).parent
 
 
 user_data_dir = _get_user_data_dir()
+
+if __name__ == "__main__":
+    print(user_data_dir)
 
 
 def _get_log_dir():

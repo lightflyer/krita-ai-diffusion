@@ -59,7 +59,8 @@ class WorkflowCollection(QAbstractListModel):
         self._pending_workflows: list[tuple[str, WorkflowSource, dict]] = []
 
         self._connection.state_changed.connect(self._handle_connection)
-        self._connection.workflow_published.connect(self._process_remote_workflow)
+        # 取消comfyui自定义连接
+        # self._connection.workflow_published.connect(self._process_remote_workflow)
         self._handle_connection(self._connection.state)
 
     def _handle_connection(self, state: ConnectionState):
@@ -429,7 +430,6 @@ class CustomWorkspace(QObject, ObservableProperties):
         self.workflow_id = id
 
     def import_file(self, filepath: Path):
-        # TODO 自定义从这边读取工作流
         self.workflow_id = self._workflows.import_file(filepath)
 
     def save_as(self, id: str):
