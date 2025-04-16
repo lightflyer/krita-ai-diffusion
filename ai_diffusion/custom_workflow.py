@@ -429,6 +429,7 @@ class CustomWorkspace(QObject, ObservableProperties):
         self.workflow_id = id
 
     def import_file(self, filepath: Path):
+        # TODO 自定义从这边读取工作流
         self.workflow_id = self._workflows.import_file(filepath)
 
     def save_as(self, id: str):

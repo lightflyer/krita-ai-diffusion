@@ -284,6 +284,8 @@ class ConnectionSettings(SettingsTab):
         root.connection.error_changed.connect(self.update_server_status)
         self.update_server_status()
 
+        self._connection_widget.setVisible(False)
+        
     @property
     def server_mode(self):
         if self._server_cloud.isChecked():
@@ -864,8 +866,8 @@ class SettingsDialog(QDialog):
             item.setSizeHint(QSize(112, 24))
             self._stack.addWidget(widget)
 
-        create_list_item(_("Connection"), self.connection)
-        create_list_item(_("Styles"), self.styles)
+        # create_list_item(_("Connection"), self.connection)
+        # create_list_item(_("Styles"), self.styles)
         create_list_item(_("Diffusion"), self.diffusion)
         create_list_item(_("Interface"), self.interface)
         create_list_item(_("Performance"), self.performance)
@@ -883,7 +885,7 @@ class SettingsDialog(QDialog):
         self._restore_button = QPushButton(_("Restore Defaults"), self)
         self._restore_button.clicked.connect(self.restore_defaults)
 
-        version_label = QLabel(_("Plugin version") + f": {__version__}", self)
+        version_label = QLabel(_("Plugin version") + f": {__version__} hello world", self)
         version_label.setStyleSheet(f"font-style:italic; color: {grey};")
 
         anchor = _("Open Settings folder")
@@ -906,7 +908,7 @@ class SettingsDialog(QDialog):
 
         root.connection.state_changed.connect(self._update_connection)
         root.connection.models_changed.connect(self.styles.update_model_lists)
-
+        
     def read(self):
         self.connection.read()
         self.styles.read()
