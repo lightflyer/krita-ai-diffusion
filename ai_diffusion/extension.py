@@ -35,6 +35,7 @@ class AIToolsExtension(Extension):
 
         eventloop.setup()
         settings.load()
+        settings.pre_load_server()
         root.init()
         self._settings_dialog = SettingsDialog(root.server)
 
