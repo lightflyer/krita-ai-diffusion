@@ -258,11 +258,28 @@ class CustomParam(NamedTuple):
     def group(self):
         _, group_name = self._split_order(self._split_name()[0])
         return group_name
+    
+    @property
+    def tips(self):
+        _, tips = self._split_tips()
+        return tips
+    
+    @property
+    def main_name(self):
+        name, _ = self._split_tips()
+        return name
+    
+    def _split_tips(self):
+        re_pattern = r"^(.*?) ?[\(（]tips: ?(.*?)[\)）]$"
+        re_match = re.match(re_pattern, self.name)
+        if re_match:
+            return re_match.group(1).strip(), re_match.group(2).strip()
+        return self.name.strip(), ""
 
     def _split_name(self):
-        if "/" in self.name:
-            return self.name.rsplit("/", 1)
-        return "", self.name
+        if "/" in self.main_name:
+            return self.main_name.rsplit("/", 1)
+        return "", self.main_name
 
     @staticmethod
     def _split_order(s: str):

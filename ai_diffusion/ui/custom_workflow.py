@@ -455,11 +455,17 @@ class WorkflowParamsWidget(QWidget):
                 current_group = (p.group, expander, group_widgets)
                 layout.addWidget(expander, layout.rowCount(), 0, 1, 4)
             label = QLabel(p.display_name, self)
+            help_button = QToolButton(self)
+            help_button.setIcon(theme.icon("help"))
+            if p.tips:
+                help_button.setToolTip(p.tips)
+            help_button.setAutoRaise(True)
             widget = _create_param_widget(p, self)
             widget.value_changed.connect(self._notify)
             row = layout.rowCount()
             col, col_span = (0, 2) if p.group == "" else (1, 1)
             layout.addWidget(label, row, col, 1, col_span, Qt.AlignmentFlag.AlignBaseline)
+            layout.addWidget(help_button, row, col + col_span, 1, 1, Qt.AlignmentFlag.AlignBaseline)
             layout.addWidget(widget, row, 3)
             self._widgets[p.name] = widget
             group_widgets.extend((label, widget))
