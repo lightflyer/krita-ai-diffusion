@@ -8,7 +8,7 @@ from .client import ClientMessage
 from .custom_workflow import WorkflowCollection
 from .server import Server, ServerState
 from .document import Document, KritaDocument
-from .model import Model
+from .model import Model, Workspace
 from .files import FileFormat, FileLibrary, File, FileSource
 from .persistence import ModelSync, RecentlyUsedSync, import_prompt_from_file
 from .updates import AutoUpdate
@@ -57,6 +57,8 @@ class Root(QObject):
     def create_model(self, doc: KritaDocument):
         model = Model(doc, self._connection, self._workflows)
         model_entry = Root.PerDocument(model)
+        # 设定为自定义工作流
+        model.workspace = Workspace.custom
         self._models.append(model_entry)
         self._recent.track(model)
         model_entry.sync = ModelSync(model)

@@ -103,6 +103,7 @@ class Setting:
 
 class Settings(QObject):
     default_path = user_data_dir / "settings.json"
+    headers: dict = {}
 
     language: str
     _language = Setting(
@@ -381,13 +382,47 @@ class Settings(QObject):
         # TODO 从这边读取服务器配置
         # 1、从接口获取服务器url
         # TODO 先写死在代码里边(和从配置文件里边读是一样的)
-        server_url_list = [
-            "http://10.235.28.32:32009/",
+        server_list = [
+            # {
+            #     "url": "http://10.235.28.32:32009/",
+            #     "access_token": "",
+            # },
+            # {
+            #     "url": "http://comfyui-antaai-2.1835654106092022.cn-hangzhou.pai-eas.aliyuncs.com",
+            #     "access_token": "MmVmMmQ5NDk1MTNjNjNlMmEwMTc4MGFjNjE2Mjc0ZDM3YTlkOTY5Mg==",
+            # },
+            # {
+            #     "url": "http://comfyui-antaai-krita.1835654106092022.cn-hangzhou.pai-eas.aliyuncs.com/",
+            #     "access_token": "MDZiYjU4ZTNhNTA2N2Q5NzAyNTNkNTY4YWM5ZGIzZTBiNWY2YTk5OA==",
+            # },
+            # {
+            #     "url": "http://comfyui-antaai-cluster-1.1835654106092022.cn-hangzhou.pai-eas.aliyuncs.com/",
+            #     "access_token": "ZmE2Njk4NmNmMjQxZGM2ZjdmNzljNWM2ZGY2YmJmMTc4YjVmZWFiNw==",
+            #     "headers": {
+            #         "x-eas-uid": "test"
+            #     }
+            # },
+            {
+                "url": "http://comfyui-antaai-krita-chuangliu.1835654106092022.cn-hangzhou.pai-eas.aliyuncs.com/",
+                "access_token": "ZDIwZmVmOGNkY2ZhZWNhZTdhYTI0ZDI1ZmZmMjdjODA0MzI3NWIxMg==",
+            },
+            # {
+            #     "url": "https://comfyui-antaai-krita-1835654106092022.console.cn-hangzhou.eas.pai-ml.com/?expire=1745335600&signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NDUzMzU2MDAsImlhdCI6MTc0NTMwNjgwMCwibmJmIjoxNzQ1MzA2ODAwLCJTZXJ2aWNlTmFtZSI6ImNvbWZ5dWlfYW50YWFpX2tyaXRhIiwiU2VydmljZVVpZCI6ImVhcy1tLXRkZDBwY2l6bHkzaTljaTByNiIsIkFjdG9yIjoiMjA4MDk5MDM3NDQ1Nzc1MzAzLjE4MzU2NTQxMDYwOTIwMjIifQ.tWzeT2OjJENcSACpJubv-kGoJqMxE0mndfNoNqLfF5Q",
+            #     "access_token": "",
+            # },
+            # {
+            #     "url": "http://comfyui-antaai-krita.1835654106092022.cn-hangzhou.pai-eas.aliyuncs.com/",
+            #     "access_token": "MDZiYjU4ZTNhNTA2N2Q5NzAyNTNkNTY4YWM5ZGIzZTBiNWY2YTk5OA==",
+                
+            # }
+            
         ]
-        server_url = random.choice(server_url_list)
+        server_config = random.choice(server_list)
         # 2、保存服务器配置
         self.server_mode = ServerMode.external
-        self.server_url = server_url
+        self.server_url = server_config.get("url", "")
+        self.access_token = server_config.get("access_token", "")
+        self.headers = server_config.get("headers", {})
         self.save()
 
     def load(self, path: Optional[Path] = None):

@@ -131,14 +131,14 @@ class RequestManager:
         self._requests[reply] = Request(url, future)
         return future
 
-    def get(self, url: str, bearer="", timeout: float | None = None):
-        return self.http("GET", url, bearer=bearer, timeout=timeout)
+    def get(self, url: str, bearer="", timeout: float | None = None, headers: Headers | None = None):
+        return self.http("GET", url, bearer=bearer, timeout=timeout, headers=headers)
 
-    def post(self, url: str, data: dict, bearer=""):
-        return self.http("POST", url, data, bearer=bearer)
+    def post(self, url: str, data: dict, bearer="", headers: Headers | None = None):
+        return self.http("POST", url, data, bearer=bearer, headers=headers)
 
-    def put(self, url: str, data: QByteArray | bytes):
-        return self.http("PUT", url, data)
+    def put(self, url: str, data: QByteArray | bytes, headers: Headers | None = None):
+        return self.http("PUT", url, data, headers=headers)
 
     async def upload(self, url: str, data: QByteArray | bytes, sha256: str | None = None):
         self._cleanup()

@@ -111,7 +111,9 @@ class ComfyClient(Client):
         # Try to establish websockets connection
         wsurl = websocket_url(client.url)
         try:
-            async with websockets.connect(f"{wsurl}/ws?clientId={client._id}"):
+            headers = client._get_headers(is_http=False)
+                
+            async with websockets.connect(f"{wsurl}/ws?clientId={client._id}", additional_headers=headers):
                 pass
         except Exception as e:
             msg = _("Could not establish websocket connection at") + f" {wsurl}: {str(e)}"
@@ -189,12 +191,31 @@ class ComfyClient(Client):
 
         _ensure_supported_style(client)
         return client
+    
+    def _get_headers(self, new_headers: dict|None = None, is_http: bool = True) -> dict| list[tuple[str, str]]:
+        header_dict = settings.headers or {}
+        header_dict.update({
+            "Authorization": f"{settings.access_token}",
+        })
+        if new_headers:
+            header_dict.update(new_headers)
+        if is_http:
+            header_dict.update({
+                "Content-Type": "application/json",
+            })
+            return [
+                (key, value) for key, value in header_dict.items()
+            ]
+        else:
+            return header_dict
 
     async def _get(self, op: str, timeout: float | None = 30):
-        return await self._requests.get(f"{self.url}/{op}", timeout=timeout)
+        headers = self._get_headers(is_http=True)
+        return await self._requests.get(f"{self.url}/{op}", timeout=timeout, headers=headers)
 
     async def _post(self, op: str, data: dict):
-        return await self._requests.post(f"{self.url}/{op}", data)
+        headers = self._get_headers(is_http=True)
+        return await self._requests.post(f"{self.url}/{op}", data, headers=headers)
 
     async def enqueue(self, work: WorkflowInput, front: bool = False):
         job = JobInfo.create(work, front=front)
@@ -239,8 +260,9 @@ class ComfyClient(Client):
 
     async def _listen(self):
         url = websocket_url(self.url)
+        headers = self._get_headers(is_http=False)
         async for websocket in websockets.connect(
-            f"{url}/ws?clientId={self._id}", max_size=2**30, ping_timeout=60
+            f"{url}/ws?clientId={self._id}", max_size=2**30, ping_timeout=60, additional_headers=headers
         ):
             try:
                 await self._subscribe_workflows()
@@ -380,7 +402,8 @@ class ComfyClient(Client):
 
     async def try_inspect(self, folder_name: str) -> dict[str, Any]:
         try:
-            return await self._get(f"api/etn/model_info/{folder_name}", timeout=90)
+            return {}
+            # return await self._get(f"api/etn/model_info/{folder_name}", timeout=90)
         except NetworkError as e:
             log.error(f"Error while inspecting models in {folder_name}: {str(e)}")
             return {}

@@ -259,7 +259,7 @@ class QueueButton(QToolButton):
         
 
         if self.model.workspace == Workspace.custom:
-            if self.model.queue_info is not '0':
+            if self.model.queue_info != '0':
                 button_text = f"{self.model.queue_info} "
                 count = int(self.model.queue_info.split("/")[-1])
 
@@ -278,7 +278,7 @@ class QueueButton(QToolButton):
             else:
                 self.setToolTip(_("Generating image.") + f" {cancel_msg}")
             count += 1
-        elif self.model.workspace == Workspace.custom and (self.model.queue_info is not '0' or self.model.queue_info is not '0/0'):
+        elif self.model.workspace == Workspace.custom and (self.model.queue_info != '0' or self.model.queue_info != '0/0'):
             self.setIcon(theme.icon("queue-active"))
             self.setToolTip(_("Generating image.") + f" {queued_msg} {cancel_msg}")
             
@@ -728,10 +728,10 @@ class WorkspaceSelectWidget(QToolButton):
         super().__init__(parent)
 
         menu = QMenu(self)
-        menu.addAction(self._create_action(_("Generate"), Workspace.generation))
-        menu.addAction(self._create_action(_("Upscale"), Workspace.upscaling))
-        menu.addAction(self._create_action(_("Live"), Workspace.live))
-        menu.addAction(self._create_action(_("Animation"), Workspace.animation))
+        # menu.addAction(self._create_action(_("Generate"), Workspace.generation))
+        # menu.addAction(self._create_action(_("Upscale"), Workspace.upscaling))
+        # menu.addAction(self._create_action(_("Live"), Workspace.live))
+        # menu.addAction(self._create_action(_("Animation"), Workspace.animation))
         menu.addAction(self._create_action(_("Graph"), Workspace.custom))
 
         self.setToolButtonStyle(Qt.ToolButtonStyle.ToolButtonIconOnly)
