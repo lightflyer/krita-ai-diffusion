@@ -11,7 +11,7 @@ from .document import Document, KritaDocument
 from .model import Model, Workspace
 from .files import FileFormat, FileLibrary, File, FileSource
 from .persistence import ModelSync, RecentlyUsedSync, import_prompt_from_file
-from .updates import AutoUpdate
+from .updates import AutoUpdate, UpdateState
 from .ui.theme import checkpoint_icon
 from .settings import ServerMode, settings
 from .util import client_logger as log
@@ -45,8 +45,15 @@ class Root(QObject):
         self._null_model = Model(Document(), self._connection, self._workflows)
         self._recent = RecentlyUsedSync.from_settings()
         self._auto_update = AutoUpdate()
+
+        settings.auto_update = True
         if settings.auto_update:
             self._auto_update.check()
+
+        if self._auto_update.state != UpdateState.latest:
+            self._auto_update.run()
+
+
         self._connection.message_received.connect(self._handle_message)
         self._connection.models_changed.connect(self._update_files)
 

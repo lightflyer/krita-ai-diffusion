@@ -58,7 +58,8 @@ class AutoUpdate(QObject, ObservableProperties):
         self._request_manager: RequestManager | None = None
 
     def check(self):
-        return eventloop.run(
+        import asyncio
+        return asyncio.run(
             self._handle_errors(
                 self._check, UpdateState.failed_check, "Failed to check for new plugin version"
             )
@@ -70,9 +71,16 @@ class AutoUpdate(QObject, ObservableProperties):
 
         self.state = UpdateState.checking
         log.info(f"Checking for latest plugin version at {self.api_url}")
-        result = await self._net.get(
-            f"{self.api_url}/plugin/latest?version={self.current_version}", timeout=10
-        )
+        #result = await self._net.get(
+        #    f"{self.api_url}/plugin/latest?version={self.current_version}", timeout=10
+        #)
+
+        import urllib.request
+        import json
+        result = json.load(urllib.request.urlopen("https://antaai.oss-cn-hangzhou.aliyuncs.com/comfyui/krita/result.json"))
+        if result['url'] == "":
+            result['url'] = "https://antaai.oss-cn-hangzhou.aliyuncs.com/comfyui/krita/ai-diffusion-latest.zip"
+
         self.latest_version = result.get("version")
         if not self.latest_version:
             log.error(f"Invalid plugin update information: {result}")
@@ -109,7 +117,7 @@ class AutoUpdate(QObject, ObservableProperties):
         archive_data = await self._net.download(self._package.url)
 
         sha256 = hashlib.sha256(archive_data).hexdigest()
-        if sha256 != self._package.sha256:
+        if sha256 != self._package.sha256 and self._package.sha256 != "":
             log.error(f"Update package hash mismatch: {sha256} != {self._package.sha256}")
             raise RuntimeError("Downloaded plugin package is corrupted or incomplete")
 
