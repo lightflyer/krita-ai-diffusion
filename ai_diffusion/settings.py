@@ -350,6 +350,8 @@ class Settings(QObject):
         super().__init__()
         self.restore(init=True)
 
+        self.auto_update = True
+
     def __getattr__(self, name: str):
         if name in self._values:
             return self._values[name]
