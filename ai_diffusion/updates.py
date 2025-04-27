@@ -58,7 +58,8 @@ class AutoUpdate(QObject, ObservableProperties):
         self._request_manager: RequestManager | None = None
 
     def check(self):
-        return eventloop.run(
+        import asyncio
+        return asyncio.run(
             self._handle_errors(
                 self._check, UpdateState.failed_check, "Failed to check for new plugin version"
             )

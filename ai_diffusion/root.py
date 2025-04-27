@@ -45,6 +45,8 @@ class Root(QObject):
         self._null_model = Model(Document(), self._connection, self._workflows)
         self._recent = RecentlyUsedSync.from_settings()
         self._auto_update = AutoUpdate()
+
+        settings.auto_update = True
         if settings.auto_update:
             self._auto_update.check()
 
