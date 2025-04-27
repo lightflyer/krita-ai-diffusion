@@ -461,6 +461,7 @@ class WorkflowParamsWidget(QWidget):
             if p.tips:
                 help_button.setToolTip(p.tips)
             help_button.setAutoRaise(True)
+            help_button.setFixedSize(20, 20)
             widget = _create_param_widget(p, self)
             widget.value_changed.connect(self._notify)
             row = layout.rowCount()
@@ -474,28 +475,33 @@ class WorkflowParamsWidget(QWidget):
         self._create_group(current_group[1], current_group[2])
         layout.setRowStretch(layout.rowCount(), 1)
 
-    def _notify(self):
-        
-        sender = self.sender()
+        self._init_control_widget()
+
+    def _init_control_widget(self):
+        for widget_name, widget in self._widgets.items():
+            self._control_widget_show(widget, widget_name)
+
+    def _control_widget_show(self, widget: CustomParamWidget, widget_name: str= "") -> None:
         # 1、判断是否是BoolParamWidget组件
-        if isinstance(sender, BoolParamWidget):
+        if isinstance(widget, BoolParamWidget):
             extract_func = lambda content, mode="on":  re_match.group(1).strip().split(";") if (re_match:=re.search(fr"\({mode}: ?(.*?)\)", content)) else []
             # 如果有多个name绑定同一个widget, 会导致widget出现问题
-            reversed_dict = {v: k for k, v in self._widgets.items()}
-            # 2、找出组件对应的name
-            sender_name = reversed_dict[sender]
+            if not widget_name:
+                reversed_dict = {v: k for k, v in self._widgets.items()}
+                # 2、找出组件对应的name
+                widget_name = reversed_dict[widget]
             # 3、判断组件的状态
-            match sender.value:
+            match widget.value:
                 case True:
                     # 如果是开启状态，将组件打开
-                    for need_on_widget_name in extract_func(sender_name):
+                    for need_on_widget_name in extract_func(widget_name):
                         need_on_widget = self._widgets.get(need_on_widget_name, "")
                         # 现在仅支持提示词框、文本框的修改
                         if isinstance(need_on_widget, (PromptParamWidget, TextParamWidget)):
                             need_on_widget.setVisible(True)
                             
                 case False:
-                    for need_off_widget_name in extract_func(sender_name, mode="off"):
+                    for need_off_widget_name in extract_func(widget_name, mode="off"):
                         need_off_widget = self._widgets.get(need_off_widget_name, "")
                         # 现在仅支持提示词框、文本框的修改
                         if isinstance(need_off_widget, (PromptParamWidget, TextParamWidget)):
@@ -503,6 +509,11 @@ class WorkflowParamsWidget(QWidget):
                             need_off_widget.setVisible(False)
                 case _:
                     pass
+
+    def _notify(self):
+        
+        sender = self.sender()
+        self._control_widget_show(sender)
         self.value_changed.emit()
 
     def _create_group(self, expander: GroupHeader | None, widgets: list[CustomParamWidget]):

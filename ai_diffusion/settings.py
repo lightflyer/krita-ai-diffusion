@@ -8,7 +8,7 @@ import random
 from typing import NamedTuple, Optional, Any
 from PyQt5.QtCore import QObject, pyqtSignal
 
-from .util import is_macos, is_windows, user_data_dir, client_logger as log
+from .util import is_macos, is_windows, user_data_dir, anta_data_dir, client_logger as log
 from .util import encode_json, read_json_with_comments
 from .localization import translate as _
 
@@ -103,6 +103,7 @@ class Setting:
 
 class Settings(QObject):
     default_path = user_data_dir / "settings.json"
+    default_server_path = anta_data_dir / "server.json"
     headers: dict = {}
 
     language: str
@@ -379,48 +380,8 @@ class Settings(QObject):
             file.write(json.dumps(self._values, default=encode_json, indent=4))
 
     def pre_load_server(self):
-        # TODO 从这边读取服务器配置
         # 1、从接口获取服务器url
-        # TODO 先写死在代码里边(和从配置文件里边读是一样的)
-        server_list = [
-            # {
-            #     "url": "http://10.235.28.32:32009/",
-            #     "access_token": "",
-            # },
-            # {
-            #     "url": "http://comfyui-antaai-2.1835654106092022.cn-hangzhou.pai-eas.aliyuncs.com",
-            #     "access_token": "MmVmMmQ5NDk1MTNjNjNlMmEwMTc4MGFjNjE2Mjc0ZDM3YTlkOTY5Mg==",
-            # },
-            # {
-            #     "url": "http://comfyui-antaai-krita.1835654106092022.cn-hangzhou.pai-eas.aliyuncs.com/",
-            #     "access_token": "MDZiYjU4ZTNhNTA2N2Q5NzAyNTNkNTY4YWM5ZGIzZTBiNWY2YTk5OA==",
-            # },
-            # {
-            #     "url": "http://comfyui-antaai-cluster-1.1835654106092022.cn-hangzhou.pai-eas.aliyuncs.com/",
-            #     "access_token": "ZmE2Njk4NmNmMjQxZGM2ZjdmNzljNWM2ZGY2YmJmMTc4YjVmZWFiNw==",
-            #     "headers": {
-            #         "x-eas-uid": "test"
-            #     }
-            # },
-            {
-                "url": "http://comfyui-antaai-krita-chuangliu.1835654106092022.cn-hangzhou.pai-eas.aliyuncs.com/",
-                "access_token": "ZDIwZmVmOGNkY2ZhZWNhZTdhYTI0ZDI1ZmZmMjdjODA0MzI3NWIxMg==",
-            },
-            # {
-            #     "url": "https://comfyui-antaai-krita-1835654106092022.console.cn-hangzhou.eas.pai-ml.com/?expire=1745335600&signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NDUzMzU2MDAsImlhdCI6MTc0NTMwNjgwMCwibmJmIjoxNzQ1MzA2ODAwLCJTZXJ2aWNlTmFtZSI6ImNvbWZ5dWlfYW50YWFpX2tyaXRhIiwiU2VydmljZVVpZCI6ImVhcy1tLXRkZDBwY2l6bHkzaTljaTByNiIsIkFjdG9yIjoiMjA4MDk5MDM3NDQ1Nzc1MzAzLjE4MzU2NTQxMDYwOTIwMjIifQ.tWzeT2OjJENcSACpJubv-kGoJqMxE0mndfNoNqLfF5Q",
-            #     "access_token": "",
-            # },
-            # {
-            #     "url": "http://comfyui-antaai-krita.1835654106092022.cn-hangzhou.pai-eas.aliyuncs.com/",
-            #     "access_token": "MDZiYjU4ZTNhNTA2N2Q5NzAyNTNkNTY4YWM5ZGIzZTBiNWY2YTk5OA==",
-                
-            # },
-            # {
-            #     "url": "http://comfyui-antaai-krita-chuangliu.1835654106092022.vpc.cn-hangzhou.pai-eas.aliyuncs.com/",
-            #     "access_token": "ZDIwZmVmOGNkY2ZhZWNhZTdhYTI0ZDI1ZmZmMjdjODA0MzI3NWIxMg=="
-            # }
-            
-        ]
+        server_list = json.load(open(f"{self.default_server_path}", "r"))
         server_config = random.choice(server_list)
         # 2、保存服务器配置
         self.server_mode = ServerMode.external

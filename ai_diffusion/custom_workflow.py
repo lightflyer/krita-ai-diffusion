@@ -18,7 +18,7 @@ from .image import Bounds, Image
 from .jobs import Job, JobParams, JobQueue, JobKind
 from .properties import Property, ObservableProperties
 from .style import Styles
-from .util import base_type_match, user_data_dir, client_logger as log
+from .util import base_type_match, anta_data_dir, client_logger as log
 from .ui import theme
 from . import eventloop
 
@@ -54,7 +54,7 @@ class WorkflowCollection(QAbstractListModel):
     def __init__(self, connection: Connection, folder: Path | None = None):
         super().__init__()
         self._connection = connection
-        self._folder = folder or user_data_dir / "workflows"
+        self._folder = folder or anta_data_dir / "workflows"
         self._workflows: list[CustomWorkflow] = []
         self._pending_workflows: list[tuple[str, WorkflowSource, dict]] = []
 
@@ -270,7 +270,7 @@ class CustomParam(NamedTuple):
         return name
     
     def _split_tips(self):
-        re_pattern = r"^(.*?) ?[\(（]tips: ?(.*?)[\)）]$"
+        re_pattern = r"^(.*?) ?[\(（]tips: ?(.*?)[\)）]"
         re_match = re.match(re_pattern, self.name)
         if re_match:
             return re_match.group(1).strip(), re_match.group(2).strip()
