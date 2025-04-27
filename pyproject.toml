@@ -1,0 +1,36 @@
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+preview = true
+extend-exclude = [
+    "ai_diffusion/websockets",
+    "ai_diffusion/debugpy",
+    "krita.pyi",
+]
+
+[tool.ruff.lint]
+ignore = ["E741"]
+
+[tool.black]
+line-length = 100
+preview = true
+include = '(ai_diffusion|scripts|tests)/.*\.pyi?$'
+extend-exclude = 'websockets|krita\.pyi$'
+
+[tool.pyright]
+include = ["ai_diffusion", "scripts/*.py", "tests"]
+exclude = [
+    "**/__pycache__",
+    "**/.pytest_cache",
+    "**/.server",
+    "tests/server",
+    "tests/test_image_transfer.py",
+    "ai_diffusion/websockets",
+    "ai_diffusion/debugpy",
+]
+ignore = ["ai_diffusion/websockets", "ai_diffusion/debugpy", "krita.pyi"]
+extraPaths = ["scripts/typeshed"]
+reportMissingModuleSource = false
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
