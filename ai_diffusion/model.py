@@ -134,7 +134,7 @@ class Model(QObject, ObservableProperties):
             if self._connection.state == ConnectionState.connected and (
                 client := self._connection.client_if_connected):
                 # 3、获取队列信息
-                resp = await client._get("queue")
+                resp = await client._get("queue_less")
                 # 4、解析队列信息(item[1]是remote_id, item[3]是client_id, 用来与当前job的队列进行匹配)
                 running_queue = resp.get("queue_running", [])
                 pending_queue = resp.get("queue_pending", [])
@@ -421,9 +421,7 @@ class Model(QObject, ObservableProperties):
             wf = ensure(self.custom.graph)
             bounds = Bounds(0, 0, *self._doc.extent)
             img_input = ImageInput.from_extent(bounds.extent)
-            # image_format = ImageFileFormat.from_extension(self._doc.filename)
             img_input.initial_image = self._get_current_image(bounds)
-            # img_input.initial_image.image_format = image_format
             is_live = self.custom.mode is CustomGenerationMode.live
             is_anim = self.custom.mode is CustomGenerationMode.animation
             seed = self.seed if is_live or self.fixed_seed else workflow.generate_seed()
@@ -434,7 +432,6 @@ class Model(QObject, ObservableProperties):
                     img_input.hires_mask = mask.to_image(bounds.extent)
                 else:
                     img_input.hires_mask = Mask.transparent(bounds).to_image()
-                # img_input.hires_image.image_format = image_format
 
             params = self.custom.collect_parameters(self.layers, bounds, is_anim)
             input = WorkflowInput(

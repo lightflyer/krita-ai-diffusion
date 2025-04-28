@@ -484,7 +484,7 @@ class WorkflowParamsWidget(QWidget):
     def _control_widget_show(self, widget: CustomParamWidget, widget_name: str= "") -> None:
         # 1、判断是否是BoolParamWidget组件
         if isinstance(widget, BoolParamWidget):
-            extract_func = lambda content, mode="on":  re_match.group(1).strip().split(";") if (re_match:=re.search(fr"\({mode}: ?(.*?)\)", content)) else []
+            extract_func = lambda content, mode="on":  CustomParam.extract_info(content, mode).split(";")
             # 如果有多个name绑定同一个widget, 会导致widget出现问题
             if not widget_name:
                 reversed_dict = {v: k for k, v in self._widgets.items()}

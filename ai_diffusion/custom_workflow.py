@@ -261,20 +261,36 @@ class CustomParam(NamedTuple):
     
     @property
     def tips(self):
-        _, tips = self._split_tips()
+        tips = self.extract_info(self.name, "tips")
         return tips
     
     @property
-    def main_name(self):
-        name, _ = self._split_tips()
-        return name
+    def main_name(self) -> str:
+        _main_name, *_ = self.name.split("(")
+        return _main_name
     
-    def _split_tips(self):
-        re_pattern = r"^(.*?) ?[\(（]tips: ?(.*?)[\)）]"
-        re_match = re.match(re_pattern, self.name)
-        if re_match:
-            return re_match.group(1).strip(), re_match.group(2).strip()
-        return self.name.strip(), ""
+    @staticmethod
+    def extract_info(content: str, keyword: str="") -> str:
+        keyword_len = len(keyword)
+        start = 0
+        for i in range(len(content) - keyword_len):
+            if content[i:keyword_len+i+2] == f"({keyword}:":
+                start = i+ keyword_len + 2
+                break
+        if start == 0:
+            return ""
+        brackets_stack = ["("]
+        cursor = 0
+        for idx, i in enumerate(content[start:]):
+            if brackets_stack == []:
+                break
+            cursor = idx
+            if i == ")":
+                brackets_stack.pop()
+            if i == "(":
+                brackets_stack.append("(")
+            
+        return content[start:start + cursor].strip()
 
     def _split_name(self):
         if "/" in self.main_name:
@@ -510,7 +526,7 @@ class CustomWorkspace(QObject, ObservableProperties):
                 if animation:
                     params[md.name] = layer.get_pixel_frames(bounds)
                 else:
-                    params[md.name] = layer.get_pixels(bounds)
+                    params[md.name] = layer.get_pixels(layer.bounds)
             elif md.kind is ParamKind.mask_layer:
                 if param is None and len(layers.masks) > 0:
                     param = layers.masks[0].id
