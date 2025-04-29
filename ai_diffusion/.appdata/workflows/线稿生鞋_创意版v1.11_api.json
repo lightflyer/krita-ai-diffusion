@@ -1,0 +1,871 @@
+{
+  "1": {
+    "inputs": {
+      "ckpt_name": "Juggernaut-XL_v9_RunDiffusionPhoto_v2.safetensors"
+    },
+    "class_type": "CheckpointLoaderSimple",
+    "_meta": {
+      "title": "Checkpoint\u52a0\u8f7d\u5668(\u7b80\u6613)"
+    }
+  },
+  "2": {
+    "inputs": {
+      "seed": [
+        "181",
+        0
+      ],
+      "steps": 20,
+      "cfg": 2.5,
+      "sampler_name": "euler",
+      "scheduler": "karras",
+      "denoise": 1,
+      "model": [
+        "43",
+        0
+      ],
+      "positive": [
+        "67",
+        0
+      ],
+      "negative": [
+        "67",
+        1
+      ],
+      "latent_image": [
+        "17",
+        0
+      ]
+    },
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "K\u91c7\u6837\u5668"
+    }
+  },
+  "3": {
+    "inputs": {
+      "text": [
+        "170",
+        0
+      ],
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "clip": [
+        "1",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP\u6587\u672c\u7f16\u7801\u5668"
+    }
+  },
+  "7": {
+    "inputs": {
+      "text": [
+        "173",
+        0
+      ],
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "clip": [
+        "1",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP\u6587\u672c\u7f16\u7801\u5668"
+    }
+  },
+  "15": {
+    "inputs": {
+      "samples": [
+        "2",
+        0
+      ],
+      "vae": [
+        "1",
+        2
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE\u89e3\u7801"
+    }
+  },
+  "17": {
+    "inputs": {
+      "width": [
+        "21",
+        0
+      ],
+      "height": [
+        "21",
+        1
+      ],
+      "batch_size": 1
+    },
+    "class_type": "EmptyLatentImage",
+    "_meta": {
+      "title": "\u7a7aLatent"
+    }
+  },
+  "21": {
+    "inputs": {
+      "image": [
+        "27",
+        0
+      ]
+    },
+    "class_type": "GetImageSize+",
+    "_meta": {
+      "title": "\u83b7\u53d6\u56fe\u50cf\u5c3a\u5bf8"
+    }
+  },
+  "27": {
+    "inputs": {
+      "max_width": 1280,
+      "max_height": 1280,
+      "min_width": 0,
+      "min_height": 0,
+      "crop_if_required": "no",
+      "images": [
+        "112",
+        0
+      ]
+    },
+    "class_type": "ConstrainImage|pysssss",
+    "_meta": {
+      "title": "\u9650\u5236\u56fe\u50cf\u533a\u57df"
+    }
+  },
+  "43": {
+    "inputs": {
+      "weight": [
+        "195",
+        0
+      ],
+      "weight_type": "strong style transfer",
+      "combine_embeds": "concat",
+      "start_at": 0,
+      "end_at": 0.5000000000000001,
+      "embeds_scaling": "V only",
+      "model": [
+        "44",
+        0
+      ],
+      "ipadapter": [
+        "44",
+        1
+      ],
+      "image": [
+        "190",
+        0
+      ],
+      "image_negative": [
+        "112",
+        0
+      ]
+    },
+    "class_type": "IPAdapterAdvanced",
+    "_meta": {
+      "title": "\u5e94\u7528IPAdapter\uff08\u9ad8\u7ea7\uff09"
+    }
+  },
+  "44": {
+    "inputs": {
+      "preset": "PLUS (high strength)",
+      "model": [
+        "110",
+        0
+      ]
+    },
+    "class_type": "IPAdapterUnifiedLoader",
+    "_meta": {
+      "title": "IPAdapter\u52a0\u8f7d\u5668"
+    }
+  },
+  "67": {
+    "inputs": {
+      "strength": 0.9000000000000001,
+      "start_percent": 0,
+      "end_percent": 1,
+      "positive": [
+        "3",
+        0
+      ],
+      "negative": [
+        "7",
+        0
+      ],
+      "control_net": [
+        "68",
+        0
+      ],
+      "image": [
+        "73",
+        0
+      ],
+      "vae": [
+        "1",
+        2
+      ]
+    },
+    "class_type": "ControlNetApplyAdvanced",
+    "_meta": {
+      "title": "ControlNet\u5e94\u7528\uff08\u65e7\u7248\u9ad8\u7ea7\uff09"
+    }
+  },
+  "68": {
+    "inputs": {
+      "control_net_name": "sdxl/diffusion_pytorch_model.safetensors"
+    },
+    "class_type": "ControlNetLoader",
+    "_meta": {
+      "title": "ControlNet\u52a0\u8f7d\u5668"
+    }
+  },
+  "73": {
+    "inputs": {
+      "preprocessor": "TEEDPreprocessor",
+      "resolution": 512,
+      "image": [
+        "27",
+        0
+      ]
+    },
+    "class_type": "AIO_Preprocessor",
+    "_meta": {
+      "title": "Aux\u96c6\u6210\u9884\u5904\u7406\u5668"
+    }
+  },
+  "110": {
+    "inputs": {
+      "lora_name": "\u7ec7\u7269\u7f51\u9762\u978b XL-000016.safetensors",
+      "strength_model": 1.0000000000000002,
+      "model": [
+        "1",
+        0
+      ]
+    },
+    "class_type": "LoraLoaderModelOnly",
+    "_meta": {
+      "title": "LoRA\u52a0\u8f7d\u5668(\u4ec5\u6a21\u578b)"
+    }
+  },
+  "112": {
+    "inputs": {
+      "aspect_ratio": "original",
+      "proportional_width": 1,
+      "proportional_height": 1,
+      "fit": "letterbox",
+      "method": "lanczos",
+      "round_to_multiple": "8",
+      "scale_to_side": "width",
+      "scale_to_length": 1024,
+      "background_color": "#ffffff",
+      "image": [
+        "189",
+        0
+      ]
+    },
+    "class_type": "LayerUtility: ImageScaleByAspectRatio V2",
+    "_meta": {
+      "title": "\u6309\u5bbd\u9ad8\u6bd4\u7f29\u653e_V2"
+    }
+  },
+  "138": {
+    "inputs": {
+      "style_model_name": "flux1-redux-dev.safetensors"
+    },
+    "class_type": "StyleModelLoader",
+    "_meta": {
+      "title": "\u98ce\u683c\u6a21\u578b\u52a0\u8f7d\u5668"
+    }
+  },
+  "139": {
+    "inputs": {
+      "clip_name": "sigclip_vision_patch14_384.safetensors"
+    },
+    "class_type": "CLIPVisionLoader",
+    "_meta": {
+      "title": "CLIP\u89c6\u89c9\u52a0\u8f7d\u5668"
+    }
+  },
+  "140": {
+    "inputs": {
+      "clip_name1": "clip_l.safetensors",
+      "clip_name2": "t5xxl_fp16.safetensors",
+      "type": "flux",
+      "device": "default"
+    },
+    "class_type": "DualCLIPLoader",
+    "_meta": {
+      "title": "\u53ccCLIP\u52a0\u8f7d\u5668"
+    }
+  },
+  "141": {
+    "inputs": {
+      "lora_stack": [
+        "174",
+        0
+      ],
+      "model": [
+        "152",
+        0
+      ],
+      "optional_clip": [
+        "140",
+        0
+      ]
+    },
+    "class_type": "easy loraStackApply",
+    "_meta": {
+      "title": "\u5e94\u7528 LoRA \u5806"
+    }
+  },
+  "142": {
+    "inputs": {
+      "model_name": "OmniSR_X2_DIV2K.safetensors"
+    },
+    "class_type": "UpscaleModelLoader",
+    "_meta": {
+      "title": "\u653e\u5927\u6a21\u578b\u52a0\u8f7d\u5668"
+    }
+  },
+  "143": {
+    "inputs": {
+      "text": [
+        "170",
+        0
+      ],
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "clip": [
+        "140",
+        0
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP\u6587\u672c\u7f16\u7801\u5668"
+    }
+  },
+  "144": {
+    "inputs": {
+      "downsampling_factor": 1,
+      "downsampling_function": "bicubic",
+      "mode": "keep aspect ratio",
+      "weight": 1,
+      "autocrop_margin": 0.10000000000000002,
+      "conditioning": [
+        "143",
+        0
+      ],
+      "style_model": [
+        "138",
+        0
+      ],
+      "clip_vision": [
+        "139",
+        0
+      ],
+      "image": [
+        "15",
+        0
+      ]
+    },
+    "class_type": "ReduxAdvanced",
+    "_meta": {
+      "title": "ReduxAdvanced"
+    }
+  },
+  "147": {
+    "inputs": {
+      "samples": [
+        "158",
+        0
+      ],
+      "vae": [
+        "157",
+        0
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE\u89e3\u7801"
+    }
+  },
+  "148": {
+    "inputs": {
+      "images": [
+        "147",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "\u9884\u89c8\u56fe\u50cf"
+    }
+  },
+  "152": {
+    "inputs": {
+      "unet_name": "SuperMerged2.6.safetensors",
+      "weight_dtype": "fp8_e4m3fn"
+    },
+    "class_type": "UNETLoader",
+    "_meta": {
+      "title": "UNET\u52a0\u8f7d\u5668"
+    }
+  },
+  "153": {
+    "inputs": {
+      "conditioning": [
+        "144",
+        0
+      ]
+    },
+    "class_type": "ConditioningZeroOut",
+    "_meta": {
+      "title": "\u6761\u4ef6\u96f6\u5316"
+    }
+  },
+  "154": {
+    "inputs": {
+      "guidance": 3.5,
+      "conditioning": [
+        "144",
+        0
+      ]
+    },
+    "class_type": "FluxGuidance",
+    "_meta": {
+      "title": "Flux\u5f15\u5bfc"
+    }
+  },
+  "157": {
+    "inputs": {
+      "vae_name": "ae.safetensors"
+    },
+    "class_type": "VAELoader",
+    "_meta": {
+      "title": "VAE\u52a0\u8f7d\u5668"
+    }
+  },
+  "158": {
+    "inputs": {
+      "seed": 1040180462665087,
+      "steps": 25,
+      "cfg": 1,
+      "sampler_name": "uni_pc_bh2",
+      "scheduler": "sgm_uniform",
+      "denoise": 0.7000000000000002,
+      "model": [
+        "141",
+        0
+      ],
+      "positive": [
+        "176",
+        0
+      ],
+      "negative": [
+        "176",
+        1
+      ],
+      "latent_image": [
+        "161",
+        0
+      ]
+    },
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "K\u91c7\u6837\u5668"
+    }
+  },
+  "161": {
+    "inputs": {
+      "pixels": [
+        "167",
+        0
+      ],
+      "vae": [
+        "157",
+        0
+      ]
+    },
+    "class_type": "VAEEncode",
+    "_meta": {
+      "title": "VAE\u7f16\u7801"
+    }
+  },
+  "166": {
+    "inputs": {
+      "upscale_method": "lanczos",
+      "scale_by": 0.7500000000000001,
+      "image": [
+        "15",
+        0
+      ]
+    },
+    "class_type": "ImageScaleBy",
+    "_meta": {
+      "title": "\u56fe\u50cf\u6309\u7cfb\u6570\u7f29\u653e"
+    }
+  },
+  "167": {
+    "inputs": {
+      "upscale_model": [
+        "142",
+        0
+      ],
+      "image": [
+        "166",
+        0
+      ]
+    },
+    "class_type": "ImageUpscaleWithModel",
+    "_meta": {
+      "title": "\u56fe\u50cf\u901a\u8fc7\u6a21\u578b\u653e\u5927"
+    }
+  },
+  "170": {
+    "inputs": {
+      "action": "append",
+      "tidy_tags": "yes",
+      "text_a": "",
+      "text_b": "(Pure background:1.5)",
+      "text_c": [
+        "191",
+        0
+      ],
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      }
+    },
+    "class_type": "StringFunction|pysssss",
+    "_meta": {
+      "title": "\u5b57\u7b26\u4e32\u64cd\u4f5c"
+    }
+  },
+  "173": {
+    "inputs": {
+      "String": "reflect light\uff0ctext, watermark,ng_deepnegative_v1_75t,(badhandv4:1.2),EasyNegative,(worst quality:2),Avoid images that are blurry,poorly lit,or lack details. No other objects or distractions in the frame. Avoid low-quality textures,dull colors,and flat lighting,, (EasyNegative:1.2),badhandv4,NSFW, (worst quality:2), (low quality:2), (normal quality:2), lowres, normal quality, ((monochrome)), ((grayscale)), skin spots, acnes, skin blemishes, age spot, (ugly:1.331), (duplicate:1.331), (morbid:1.21), (mutilated:1.21), (tranny:1.331), mutated hands, (poorly drawn hands:1.5), blurry, (bad anatomy:1.21), (bad proportions:1.331), extra limbs, (disfigured:1.331), (missing arms:1.331), (extra legs:1.331), (fused fingers:1.61051), (too many fingers:1.61051), (unclear eyes:1.331), lowers, bad hands, missing fingers, extra digit,bad hands, missing fingers, (((extra arms and legs))),lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry,",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      }
+    },
+    "class_type": "String",
+    "_meta": {
+      "title": "\u5b57\u7b26\u4e32"
+    }
+  },
+  "174": {
+    "inputs": {
+      "toggle": false,
+      "mode": "simple",
+      "num_loras": 2,
+      "lora_1_name": "flux_loras/external_paoxie_sole.safetensors",
+      "lora_1_strength": 0.30000000000000004,
+      "lora_1_model_strength": 1.0000000000000002,
+      "lora_1_clip_strength": 1.0000000000000002,
+      "lora_2_name": "flux/\u7ec7\u7269\u7eb9\u7406flux v1000028.safetensors",
+      "lora_2_strength": 0.5000000000000001,
+      "lora_2_model_strength": 1.0000000000000002,
+      "lora_2_clip_strength": 1.0000000000000002,
+      "lora_3_name": "None",
+      "lora_3_strength": 1.0000000000000002,
+      "lora_3_model_strength": 1.0000000000000002,
+      "lora_3_clip_strength": 1.0000000000000002,
+      "lora_4_name": "None",
+      "lora_4_strength": 1.0000000000000002,
+      "lora_4_model_strength": 1.0000000000000002,
+      "lora_4_clip_strength": 1.0000000000000002,
+      "lora_5_name": "None",
+      "lora_5_strength": 1.0000000000000002,
+      "lora_5_model_strength": 1.0000000000000002,
+      "lora_5_clip_strength": 1.0000000000000002,
+      "lora_6_name": "None",
+      "lora_6_strength": 1.0000000000000002,
+      "lora_6_model_strength": 1.0000000000000002,
+      "lora_6_clip_strength": 1.0000000000000002,
+      "lora_7_name": "None",
+      "lora_7_strength": 1.0000000000000002,
+      "lora_7_model_strength": 1.0000000000000002,
+      "lora_7_clip_strength": 1.0000000000000002,
+      "lora_8_name": "None",
+      "lora_8_strength": 1.0000000000000002,
+      "lora_8_model_strength": 1.0000000000000002,
+      "lora_8_clip_strength": 1.0000000000000002,
+      "lora_9_name": "None",
+      "lora_9_strength": 1.0000000000000002,
+      "lora_9_model_strength": 1.0000000000000002,
+      "lora_9_clip_strength": 1.0000000000000002,
+      "lora_10_name": "None",
+      "lora_10_strength": 1.0000000000000002,
+      "lora_10_model_strength": 1.0000000000000002,
+      "lora_10_clip_strength": 1.0000000000000002
+    },
+    "class_type": "easy loraStack",
+    "_meta": {
+      "title": "\u7b80\u6613Lora\u5806"
+    }
+  },
+  "176": {
+    "inputs": {
+      "strength": 0.45000000000000007,
+      "start_percent": 0,
+      "end_percent": 0.4500000000000001,
+      "positive": [
+        "154",
+        0
+      ],
+      "negative": [
+        "153",
+        0
+      ],
+      "control_net": [
+        "177",
+        0
+      ],
+      "image": [
+        "178",
+        0
+      ],
+      "vae": [
+        "157",
+        0
+      ]
+    },
+    "class_type": "ControlNetApplyAdvanced",
+    "_meta": {
+      "title": "ControlNet\u5e94\u7528\uff08\u65e7\u7248\u9ad8\u7ea7\uff09"
+    }
+  },
+  "177": {
+    "inputs": {
+      "control_net_name": "cannys/controlnet_canny_external_paoxie_sole/diffusion_pytorch_model.safetensors"
+    },
+    "class_type": "ControlNetLoader",
+    "_meta": {
+      "title": "ControlNet\u52a0\u8f7d\u5668"
+    }
+  },
+  "178": {
+    "inputs": {
+      "preprocessor": "PyraCannyPreprocessor",
+      "resolution": 512,
+      "image": [
+        "167",
+        0
+      ]
+    },
+    "class_type": "AIO_Preprocessor",
+    "_meta": {
+      "title": "Aux\u96c6\u6210\u9884\u5904\u7406\u5668"
+    }
+  },
+  "181": {
+    "inputs": {
+      "seed": 728940021698944
+    },
+    "class_type": "easy seed",
+    "_meta": {
+      "title": "\u968f\u673a\u79cd"
+    }
+  },
+  "189": {
+    "inputs": {},
+    "class_type": "ETN_KritaCanvas",
+    "_meta": {
+      "title": "Krita Canvas"
+    }
+  },
+  "190": {
+    "inputs": {
+      "name": "1. \u53c2\u8003\u56fe\uff08Reference image\uff09(tips: \u9009\u62e9\u9700\u8981\u53c2\u8003\u7684\u56fe\u7684\u56fe\u5c42)"
+    },
+    "class_type": "ETN_KritaImageLayer",
+    "_meta": {
+      "title": "Krita Image Layer"
+    }
+  },
+  "191": {
+    "inputs": {
+      "boolean": [
+        "194",
+        0
+      ],
+      "on_true": [
+        "204",
+        0
+      ],
+      "on_false": [
+        "192",
+        0
+      ]
+    },
+    "class_type": "Switch any [Crystools]",
+    "_meta": {
+      "title": "\u5207\u6362\u4efb\u610f"
+    }
+  },
+  "192": {
+    "inputs": {
+      "String": [
+        "193",
+        0
+      ],
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      }
+    },
+    "class_type": "String",
+    "_meta": {
+      "title": "\u5b57\u7b26\u4e32"
+    }
+  },
+  "193": {
+    "inputs": {
+      "name": "3. \u63d0\u793a\u8bcd\uff08prompt\uff09(tips: \u8f93\u5165\u63d0\u793a\u8bcd\uff0c\u5982\uff1a\u9ec4\u8272\u978b\u8eab\uff0c\u767d\u8272\u978b\u5e95)",
+      "type": "text",
+      "default": "",
+      "min": 0,
+      "max": 0
+    },
+    "class_type": "ETN_Parameter",
+    "_meta": {
+      "title": "Parameter"
+    }
+  },
+  "194": {
+    "inputs": {
+      "name": "2. \u8fdb\u884c\u53cd\u63a8\u63d0\u793a\u8bcd\uff08Perform reverse inference prompt words\uff09(tips: \u6253\u5f00\u4e3a\u53cd\u63a8\uff0c\u5173\u95ed\u4e3a\u624b\u52a8\u8f93\u5165)",
+      "type": "toggle",
+      "default": true,
+      "min": 0,
+      "max": 0
+    },
+    "class_type": "ETN_Parameter",
+    "_meta": {
+      "title": "Parameter"
+    }
+  },
+  "195": {
+    "inputs": {
+      "boolean": [
+        "194",
+        0
+      ],
+      "on_true": [
+        "196",
+        0
+      ],
+      "on_false": [
+        "197",
+        0
+      ]
+    },
+    "class_type": "Switch any [Crystools]",
+    "_meta": {
+      "title": "\u5207\u6362\u4efb\u610f"
+    }
+  },
+  "196": {
+    "inputs": {
+      "Number": "0.5"
+    },
+    "class_type": "Float",
+    "_meta": {
+      "title": "\u6d6e\u70b9"
+    }
+  },
+  "197": {
+    "inputs": {
+      "Number": "0"
+    },
+    "class_type": "Float",
+    "_meta": {
+      "title": "\u6d6e\u70b9"
+    }
+  },
+  "198": {
+    "inputs": {
+      "images": [
+        "147",
+        0
+      ]
+    },
+    "class_type": "ETN_KritaOutput",
+    "_meta": {
+      "title": "Krita Output"
+    }
+  },
+  "199": {
+    "inputs": {
+      "width": [
+        "189",
+        1
+      ],
+      "height": [
+        "189",
+        2
+      ],
+      "crop": "disabled",
+      "upscale_method": "nearest-exact",
+      "lock_aspect_ratio": true,
+      "image": [
+        "147",
+        0
+      ]
+    },
+    "class_type": "EG_TX_SFBLS",
+    "_meta": {
+      "title": "2\ud83d\udc15Image scaling lock"
+    }
+  },
+  "204": {
+    "inputs": {
+      "model": "qwen2-vl-72b-instruct",
+      "system_prompt": "You are an AI assistant capable of analyzing images. Please carefully observe the image and provide a detailed and accurate description based on the user's question.",
+      "user_prompt": "1. Extract design elements from images and convert them into shoe designs, and describe them.\n2. The material and texture of shoes can only be woven mesh texture.\n3. No need to explain or describe anything else, no output of your thought process, no output of character description, only describe the appearance of the final designed shoe, and only appear text that matches the appearance of the shoe.\n",
+      "max_tokens": 1024,
+      "temperature": 0.7000000000000002,
+      "detail": "auto",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "images": [
+        "190",
+        0
+      ]
+    },
+    "class_type": "BizyAirSiliconCloudVLMAPI",
+    "_meta": {
+      "title": "\u2601\ufe0fBizyAir SiliconCloud VLM API"
+    }
+  }
+}

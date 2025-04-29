@@ -1,0 +1,1083 @@
+{
+  "543": {
+    "inputs": {
+      "ckpt_name": "depth_anything_v2_vitl.pth",
+      "resolution": 1408,
+      "image": [
+        "690",
+        0
+      ]
+    },
+    "class_type": "DepthAnythingV2Preprocessor",
+    "_meta": {
+      "title": "DepthAnythingV2\u6df1\u5ea6\u9884\u5904\u7406\u5668"
+    }
+  },
+  "545": {
+    "inputs": {
+      "brightness": 0.6000000000000001,
+      "contrast": 3,
+      "saturation": 1.0000000000000002,
+      "image": [
+        "543",
+        0
+      ]
+    },
+    "class_type": "LayerColor: Brightness & Contrast",
+    "_meta": {
+      "title": "\u4eae\u5ea6/\u5bf9\u6bd4\u5ea6"
+    }
+  },
+  "546": {
+    "inputs": {
+      "brightness": 0.6000000000000001,
+      "contrast": 3,
+      "saturation": 1.0000000000000002,
+      "image": [
+        "545",
+        0
+      ]
+    },
+    "class_type": "LayerColor: Brightness & Contrast",
+    "_meta": {
+      "title": "\u4eae\u5ea6/\u5bf9\u6bd4\u5ea6"
+    }
+  },
+  "549": {
+    "inputs": {
+      "channel": "red",
+      "image": [
+        "546",
+        0
+      ]
+    },
+    "class_type": "ImageToMask",
+    "_meta": {
+      "title": "\u56fe\u50cf\u5230\u906e\u7f69"
+    }
+  },
+  "563": {
+    "inputs": {
+      "ckpt_name": "SDXL/juggernautXL_v9Rdphoto2Lightning.safetensors"
+    },
+    "class_type": "CheckpointLoaderSimple",
+    "_meta": {
+      "title": "Checkpoint\u52a0\u8f7d\u5668(\u7b80\u6613)"
+    }
+  },
+  "564": {
+    "inputs": {
+      "seed": 1019735343588172,
+      "steps": 20,
+      "cfg": 3.5,
+      "sampler_name": "euler",
+      "scheduler": "karras",
+      "denoise": 1,
+      "model": [
+        "730",
+        0
+      ],
+      "positive": [
+        "810",
+        0
+      ],
+      "negative": [
+        "810",
+        1
+      ],
+      "latent_image": [
+        "664",
+        0
+      ]
+    },
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "K\u91c7\u6837\u5668"
+    }
+  },
+  "565": {
+    "inputs": {
+      "text": [
+        "808",
+        0
+      ],
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "clip": [
+        "563",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP\u6587\u672c\u7f16\u7801\u5668"
+    }
+  },
+  "567": {
+    "inputs": {
+      "weight": 0.6000000000000001,
+      "start_at": 0,
+      "end_at": 1,
+      "weight_type": "standard",
+      "model": [
+        "568",
+        0
+      ],
+      "ipadapter": [
+        "568",
+        1
+      ],
+      "image": [
+        "767",
+        0
+      ],
+      "attn_mask": [
+        "549",
+        0
+      ]
+    },
+    "class_type": "IPAdapter",
+    "_meta": {
+      "title": "\u5e94\u7528IPAdapter"
+    }
+  },
+  "568": {
+    "inputs": {
+      "preset": "PLUS (high strength)",
+      "model": [
+        "563",
+        0
+      ]
+    },
+    "class_type": "IPAdapterUnifiedLoader",
+    "_meta": {
+      "title": "IPAdapter\u52a0\u8f7d\u5668"
+    }
+  },
+  "570": {
+    "inputs": {
+      "samples": [
+        "564",
+        0
+      ],
+      "vae": [
+        "563",
+        2
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE\u89e3\u7801"
+    }
+  },
+  "575": {
+    "inputs": {
+      "strength": 0.8500000000000002,
+      "start_percent": 0.07000000000000002,
+      "end_percent": 1,
+      "positive": [
+        "565",
+        0
+      ],
+      "negative": [
+        "755",
+        0
+      ],
+      "control_net": [
+        "576",
+        0
+      ],
+      "image": [
+        "766",
+        0
+      ],
+      "vae": [
+        "563",
+        2
+      ]
+    },
+    "class_type": "ControlNetApplyAdvanced",
+    "_meta": {
+      "title": "ControlNet\u5e94\u7528\uff08\u65e7\u7248\u9ad8\u7ea7\uff09"
+    }
+  },
+  "576": {
+    "inputs": {
+      "control_net_name": "sdxl_cn/controlnet-union-promax-sdxl-1.0.safetensors"
+    },
+    "class_type": "ControlNetLoader",
+    "_meta": {
+      "title": "ControlNet\u52a0\u8f7d\u5668"
+    }
+  },
+  "580": {
+    "inputs": {
+      "clip_l": [
+        "807",
+        0
+      ],
+      "t5xxl": [
+        "807",
+        0
+      ],
+      "guidance": 3.5,
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "clip": [
+        "582",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncodeFlux",
+    "_meta": {
+      "title": "CLIP\u6587\u672c\u7f16\u7801Flux"
+    }
+  },
+  "581": {
+    "inputs": {
+      "width": 1280,
+      "height": 1280,
+      "upscale_method": "lanczos",
+      "keep_proportion": true,
+      "divisible_by": 2,
+      "crop": "disabled",
+      "image": [
+        "690",
+        0
+      ]
+    },
+    "class_type": "ImageResizeKJ",
+    "_meta": {
+      "title": "\u56fe\u50cf\u7f29\u653e\uff08KJ\uff09"
+    }
+  },
+  "582": {
+    "inputs": {
+      "ckpt_name": "flux/flux1-schnell-fp8.safetensors"
+    },
+    "class_type": "CheckpointLoaderSimple",
+    "_meta": {
+      "title": "Checkpoint\u52a0\u8f7d\u5668(\u7b80\u6613)"
+    }
+  },
+  "583": {
+    "inputs": {
+      "conditioning": [
+        "580",
+        0
+      ]
+    },
+    "class_type": "ConditioningZeroOut",
+    "_meta": {
+      "title": "\u6761\u4ef6\u96f6\u5316"
+    }
+  },
+  "584": {
+    "inputs": {
+      "samples": [
+        "585",
+        0
+      ],
+      "vae": [
+        "582",
+        2
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE\u89e3\u7801"
+    }
+  },
+  "585": {
+    "inputs": {
+      "seed": 531246181341751,
+      "steps": 4,
+      "cfg": 1,
+      "sampler_name": "euler",
+      "scheduler": "beta",
+      "denoise": 1,
+      "model": [
+        "582",
+        0
+      ],
+      "positive": [
+        "580",
+        0
+      ],
+      "negative": [
+        "583",
+        0
+      ],
+      "latent_image": [
+        "797",
+        0
+      ]
+    },
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "K\u91c7\u6837\u5668"
+    }
+  },
+  "586": {
+    "inputs": {
+      "images": [
+        "584",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "\u9884\u89c8\u56fe\u50cf"
+    }
+  },
+  "664": {
+    "inputs": {
+      "width": [
+        "690",
+        1
+      ],
+      "height": [
+        "690",
+        2
+      ],
+      "batch_size": 1
+    },
+    "class_type": "EmptyLatentImage",
+    "_meta": {
+      "title": "\u7a7aLatent"
+    }
+  },
+  "666": {
+    "inputs": {
+      "mask": [
+        "549",
+        0
+      ]
+    },
+    "class_type": "MaskToImage",
+    "_meta": {
+      "title": "\u906e\u7f69\u5230\u56fe\u50cf"
+    }
+  },
+  "667": {
+    "inputs": {
+      "images": [
+        "666",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "\u9884\u89c8\u56fe\u50cf"
+    }
+  },
+  "669": {
+    "inputs": {
+      "samples": [
+        "673",
+        0
+      ],
+      "vae": [
+        "582",
+        2
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE\u89e3\u7801"
+    }
+  },
+  "673": {
+    "inputs": {
+      "seed": [
+        "822",
+        0
+      ],
+      "steps": 10,
+      "cfg": 1,
+      "sampler_name": "euler",
+      "scheduler": "beta",
+      "denoise": 0.5500000000000002,
+      "model": [
+        "582",
+        0
+      ],
+      "positive": [
+        "580",
+        0
+      ],
+      "negative": [
+        "583",
+        0
+      ],
+      "latent_image": [
+        "675",
+        0
+      ]
+    },
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "K\u91c7\u6837\u5668"
+    }
+  },
+  "675": {
+    "inputs": {
+      "pixels": [
+        "570",
+        0
+      ],
+      "vae": [
+        "582",
+        2
+      ]
+    },
+    "class_type": "VAEEncode",
+    "_meta": {
+      "title": "VAE\u7f16\u7801"
+    }
+  },
+  "684": {
+    "inputs": {
+      "amount": 0.30000000000000004,
+      "image": [
+        "669",
+        0
+      ]
+    },
+    "class_type": "ImageCASharpening+",
+    "_meta": {
+      "title": "\u56fe\u50cf\u5bf9\u6bd4\u5ea6\u81ea\u9002\u5e94\u9510\u5316"
+    }
+  },
+  "685": {
+    "inputs": {
+      "width": 1024,
+      "height": 1024,
+      "upscale_method": "lanczos",
+      "keep_proportion": true,
+      "divisible_by": 2,
+      "crop": "disabled",
+      "image": [
+        "684",
+        0
+      ]
+    },
+    "class_type": "ImageResizeKJ",
+    "_meta": {
+      "title": "\u56fe\u50cf\u7f29\u653e\uff08KJ\uff09"
+    }
+  },
+  "690": {
+    "inputs": {
+      "width": 1408,
+      "height": 1408,
+      "upscale_method": "lanczos",
+      "keep_proportion": true,
+      "divisible_by": 2,
+      "crop": "disabled",
+      "image": [
+        "817",
+        0
+      ]
+    },
+    "class_type": "ImageResizeKJ",
+    "_meta": {
+      "title": "\u56fe\u50cf\u7f29\u653e\uff08KJ\uff09"
+    }
+  },
+  "693": {
+    "inputs": {
+      "negative": "Black stroke, (nsfw:1.5)\uff0c(more arm:1.2)\uff0c(more leg:1.2)\uff0c(look forward the camera:1.4),(glove:1.7),(cartoon:1.4), Leather material,hair, fur, false, dark, (overexposed: 1.2), distorted, low quality, (high contrast: 1.2), (wrinkled:1.2), (hanging: 1.3),(floating: 1.3), complex background, mottled background, (high reflection material: 1.1)\uff0c(high contrast:1.3), (dark skin:1.2)",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      }
+    },
+    "class_type": "easy negative",
+    "_meta": {
+      "title": "\u8d1f\u9762\u63d0\u793a\u8bcd"
+    }
+  },
+  "730": {
+    "inputs": {
+      "weight": 0.3500000000000001,
+      "start_at": 0,
+      "end_at": 1,
+      "weight_type": "standard",
+      "model": [
+        "567",
+        0
+      ],
+      "ipadapter": [
+        "568",
+        1
+      ],
+      "image": [
+        "732",
+        0
+      ],
+      "attn_mask": [
+        "731",
+        0
+      ]
+    },
+    "class_type": "IPAdapter",
+    "_meta": {
+      "title": "\u5e94\u7528IPAdapter"
+    }
+  },
+  "731": {
+    "inputs": {
+      "mask": [
+        "549",
+        0
+      ]
+    },
+    "class_type": "InvertMask (segment anything)",
+    "_meta": {
+      "title": "\u53cd\u8f6c\u906e\u7f69"
+    }
+  },
+  "732": {
+    "inputs": {
+      "size": "custom",
+      "custom_width": 1408,
+      "custom_height": 1408,
+      "color": "#E6E6E6",
+      "size_as": [
+        "584",
+        0
+      ]
+    },
+    "class_type": "LayerUtility: ColorImage V2",
+    "_meta": {
+      "title": "\u7eaf\u8272\u56fe\u50cf_V2"
+    }
+  },
+  "750": {
+    "inputs": {
+      "coarse": "disable",
+      "resolution": 1408,
+      "image": [
+        "817",
+        0
+      ]
+    },
+    "class_type": "LineArtPreprocessor",
+    "_meta": {
+      "title": "LineArt\u827a\u672f\u7ebf\u9884\u5904\u7406\u5668"
+    }
+  },
+  "751": {
+    "inputs": {
+      "images": [
+        "766",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "\u9884\u89c8\u56fe\u50cf"
+    }
+  },
+  "752": {
+    "inputs": {
+      "prompt": [
+        "815",
+        0
+      ],
+      "system_instruction": [
+        "802",
+        0
+      ],
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "model": [
+        "753",
+        0
+      ],
+      "tokenizer": [
+        "753",
+        1
+      ]
+    },
+    "class_type": "Qwen2_Zho",
+    "_meta": {
+      "title": "\u26f1\ufe0fQwen2"
+    }
+  },
+  "753": {
+    "inputs": {
+      "model_name": "Qwen/Qwen2-7B-Instruct"
+    },
+    "class_type": "Qwen2_ModelLoader_Zho",
+    "_meta": {
+      "title": "\u26f1\ufe0fQwen2 ModelLoader"
+    }
+  },
+  "754": {
+    "inputs": {
+      "anything": [
+        "807",
+        0
+      ]
+    },
+    "class_type": "easy showAnything",
+    "_meta": {
+      "title": "\u5c55\u793a\u4efb\u4f55"
+    }
+  },
+  "755": {
+    "inputs": {
+      "text": [
+        "693",
+        0
+      ],
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "clip": [
+        "563",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP\u6587\u672c\u7f16\u7801\u5668"
+    }
+  },
+  "766": {
+    "inputs": {
+      "brightness": 3,
+      "contrast": 1.0000000000000002,
+      "saturation": 1.0000000000000002,
+      "image": [
+        "750",
+        0
+      ]
+    },
+    "class_type": "LayerColor: Brightness & Contrast",
+    "_meta": {
+      "title": "\u4eae\u5ea6/\u5bf9\u6bd4\u5ea6"
+    }
+  },
+  "767": {
+    "inputs": {
+      "boolean": [
+        "818",
+        0
+      ],
+      "on_true": [
+        "819",
+        0
+      ],
+      "on_false": [
+        "584",
+        0
+      ]
+    },
+    "class_type": "Switch any [Crystools]",
+    "_meta": {
+      "title": "\u5207\u6362\u4efb\u610f"
+    }
+  },
+  "787": {
+    "inputs": {
+      "prompt": [
+        "807",
+        0
+      ],
+      "system_instruction": "\u628a\u8fd9\u6bb5\u63cf\u8ff0\u8f6c\u4e3a\u9002\u914dsdxl\u5927\u6a21\u578b\u7684prompt\uff0c\u5168\u82f1\u6587\uff0c\u53ea\u8f93\u51fa\u7ed3\u679c\uff0c\u7981\u6b62\u6709\u6807\u9898\u548c\u7279\u6b8a\u7b26\u53f7\n\n\u8981\u6c42\uff1a\n1\uff0c\u53ea\u8f93\u51fa\u82f1\u6587prompt\u3002\n2\uff0c\u7981\u6b62\u6807\u9898\u548c\u7279\u6b8a\u7b26\u53f7\u548c\u53cc\u5f15\u53f7\u3002\n3\uff0c\u5f3a\u8c03\u8d85\u903c\u771f\u56fe\u7247\uff0c\u8d85\u5199\u5b9e\u98ce\u3002\n4\uff0c\u79ef\u6781\u9633\u5149\uff0c\u5065\u5eb7\u5411\u4e0a\n5\uff0c100\u5b57\u7b26\u4ee5\u5185",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "model": [
+        "753",
+        0
+      ],
+      "tokenizer": [
+        "753",
+        1
+      ]
+    },
+    "class_type": "Qwen2_Zho",
+    "_meta": {
+      "title": "\u26f1\ufe0fQwen2"
+    }
+  },
+  "788": {
+    "inputs": {
+      "text": [
+        "787",
+        0
+      ]
+    },
+    "class_type": "ShowText|pysssss",
+    "_meta": {
+      "title": "\u5c55\u793a\u6587\u672c"
+    }
+  },
+  "791": {
+    "inputs": {
+      "text": "\u53bb\u6389\u63d2\u753b\u548c\u9ed1\u767d\u56fe\u76f8\u5173\u7684\u63cf\u8ff0\uff0c\u628a\u63cf\u8ff0\u6539\u4e3a\u8d85\u5199\u5b9e\u98ce\u683c\u63cf\u8ff0\uff0c\u6dfb\u52a0\u6e05\u6670\u7684\u7ec7\u7269\u7eb9\u7406\u3001\u5e06\u5e03\u6750\u8d28\uff0c\u91d1\u5c5e\u88c5\u9970\u3001\u6e05\u6670\u7684\u6587\u5b57\u3001\u65f6\u5c1a\u7684\u989c\u8272\uff0c\u6d45\u8272\u80cc\u666f\u7b49\u76f8\u5173\u63cf\u5199\uff0c\u7ad9\u7acb\u5728\u5730\u677f\u4e0a\u3002\n\n\u8981\u6c42\uff1a\n1\uff0c\u5f3a\u8c03\u6216\u8865\u5145\uff1a",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      }
+    },
+    "class_type": "CR Text",
+    "_meta": {
+      "title": "\u6587\u672c"
+    }
+  },
+  "797": {
+    "inputs": {
+      "width": [
+        "581",
+        1
+      ],
+      "height": [
+        "581",
+        2
+      ],
+      "batch_size": 1
+    },
+    "class_type": "EmptyLatentImage",
+    "_meta": {
+      "title": "\u7a7aLatent"
+    }
+  },
+  "799": {
+    "inputs": {
+      "text": "hyper-realistic photograph\uff0c\u903c\u771f\u7684\u7167\u7247\uff0c\u6e05\u6670\u7684\u7eb9\u7406\uff0c\u68da\u5185\u5c04\u5f71\u3002\n2\uff0c\u7b80\u6d01\u660e\u4e86\uff0c\u53ea\u8f93\u51fa\u7b54\u6848\uff0c\u7eaf\u82f1\u6587\u3002\n3\uff0c\u7981\u6b62\u51fa\u73b0\uff1a\u63d2\u753b\u3001illustration\u3001\u9ed1\u767d\u56fe\u3001black and white\u2026\u2026\u7b49\u6709\u5173\u5361\u901a\u63d2\u753b\u6216\u7ebf\u7a3f\u7684\u753b\u9762\u63cf\u8ff0\u3002\n4\uff0c\u4ee5\u9ad8\u7ea7\u7684\u65f6\u5c1a\u524d\u536b\u7684\u5e06\u5e03\u8fd0\u52a8\u80cc\u5305\u5546\u54c1\u4e3a\u4e3b\u9898\u3002\n5\uff0c\u5f3a\u8c03\u903c\u771f\u7684\u7167\u7247\uff0c\u8d85\u5199\u5b9e\u98ce\u683c\uff0c\u5e72\u51c0\u6574\u6d01\uff0c\u8d85\u9ad8\u8d28\u91cf\u3002\n6\uff0c\u7981\u6b62\u5305\u542b\u6807\u9898\u548c\u7279\u6b8a\u7b26\u53f7\u3002\n7\uff0c\u683c\u5f0f\u4e3a\u9002\u914dflux\u5927\u6a21\u578b\u7684prompt\u3002",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      }
+    },
+    "class_type": "CR Text",
+    "_meta": {
+      "title": "\u6587\u672c"
+    }
+  },
+  "800": {
+    "inputs": {
+      "text": [
+        "820",
+        0
+      ],
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      }
+    },
+    "class_type": "CR Text",
+    "_meta": {
+      "title": "\u6587\u672c"
+    }
+  },
+  "801": {
+    "inputs": {
+      "text1": [
+        "791",
+        0
+      ],
+      "text2": [
+        "800",
+        0
+      ],
+      "separator": ""
+    },
+    "class_type": "CR Text Concatenate",
+    "_meta": {
+      "title": "\u6587\u672c\u8054\u7ed3"
+    }
+  },
+  "802": {
+    "inputs": {
+      "text1": [
+        "801",
+        0
+      ],
+      "text2": [
+        "799",
+        0
+      ],
+      "separator": "\uff0c"
+    },
+    "class_type": "CR Text Concatenate",
+    "_meta": {
+      "title": "\u6587\u672c\u8054\u7ed3"
+    }
+  },
+  "805": {
+    "inputs": {
+      "prompt": [
+        "800",
+        0
+      ],
+      "system_instruction": [
+        "806",
+        0
+      ],
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "model": [
+        "753",
+        0
+      ],
+      "tokenizer": [
+        "753",
+        1
+      ]
+    },
+    "class_type": "Qwen2_Zho",
+    "_meta": {
+      "title": "\u26f1\ufe0fQwen2"
+    }
+  },
+  "806": {
+    "inputs": {
+      "text": "\u628a\u4e2d\u6587\u7ffb\u8bd1\u6210\uff0cflux\u5927\u6a21\u578b\u7684prompt\u3002\n\u8981\u6c42\uff1a\n1\uff0c\u53ea\u8f93\u51fa\u82f1\u6587prompt\uff0c\u53ea\u8f93\u51fa\u7ed3\u679c\u3002\n2\uff0c\u7981\u6b62\u51fa\u73b0\u6807\u9898\u548c\u7279\u6b8a\u7b26\u53f7\uff0c\u7981\u6b62\u51fa\u73b0\u53cc\u5f15\u53f7\u3002",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      }
+    },
+    "class_type": "CR Text",
+    "_meta": {
+      "title": "\u6587\u672c"
+    }
+  },
+  "807": {
+    "inputs": {
+      "text1": [
+        "805",
+        0
+      ],
+      "text2": [
+        "752",
+        0
+      ],
+      "separator": ","
+    },
+    "class_type": "CR Text Concatenate",
+    "_meta": {
+      "title": "\u6587\u672c\u8054\u7ed3"
+    }
+  },
+  "808": {
+    "inputs": {
+      "text1": [
+        "805",
+        0
+      ],
+      "text2": [
+        "787",
+        0
+      ],
+      "separator": ","
+    },
+    "class_type": "CR Text Concatenate",
+    "_meta": {
+      "title": "\u6587\u672c\u8054\u7ed3"
+    }
+  },
+  "810": {
+    "inputs": {
+      "strength": 0.20000000000000004,
+      "start_percent": 0.10000000000000002,
+      "end_percent": 1,
+      "positive": [
+        "575",
+        0
+      ],
+      "negative": [
+        "575",
+        1
+      ],
+      "control_net": [
+        "576",
+        0
+      ],
+      "image": [
+        "666",
+        0
+      ],
+      "vae": [
+        "563",
+        2
+      ]
+    },
+    "class_type": "ControlNetApplyAdvanced",
+    "_meta": {
+      "title": "ControlNet\u5e94\u7528\uff08\u65e7\u7248\u9ad8\u7ea7\uff09"
+    }
+  },
+  "811": {
+    "inputs": {
+      "prompt": "Please provide a detailed description of this image and output it in natural language",
+      "model": "qwen-vl-max",
+      "system_message": "You are a helpful assistant.",
+      "temperature": 0.7000000000000001,
+      "max_tokens": 1024,
+      "detail": "auto",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "image": [
+        "690",
+        0
+      ]
+    },
+    "class_type": "LLMNodeFull",
+    "_meta": {
+      "title": "LLM\u9ad8\u7ea7\u8282\u70b9"
+    }
+  },
+  "815": {
+    "inputs": {
+      "text": [
+        "811",
+        0
+      ]
+    },
+    "class_type": "ShowText|pysssss",
+    "_meta": {
+      "title": "\u5c55\u793a\u6587\u672c"
+    }
+  },
+  "816": {
+    "inputs": {
+      "images": [
+        "821",
+        0
+      ]
+    },
+    "class_type": "ETN_KritaOutput",
+    "_meta": {
+      "title": "Krita Output"
+    }
+  },
+  "817": {
+    "inputs": {},
+    "class_type": "ETN_KritaCanvas",
+    "_meta": {
+      "title": "Krita Canvas"
+    }
+  },
+  "818": {
+    "inputs": {
+      "name": "1. \u5f00\u542f\u53c2\u8003\u56fe\u53c2\u8003\uff08Open reference image reference\uff09(tips: \u6253\u5f00\u4f1a\u53c2\u8003\u53c2\u8003\u56fe\u7684\u914d\u8272\u548c\u56fe\u6848)",
+      "type": "toggle",
+      "default": true,
+      "min": 0,
+      "max": 0
+    },
+    "class_type": "ETN_Parameter",
+    "_meta": {
+      "title": "Parameter"
+    }
+  },
+  "819": {
+    "inputs": {
+      "name": "2. \u53c2\u8003\u56fe\uff08reference image\uff09(tips: \u9009\u62e9\u9700\u8981\u53c2\u8003\u7684\u56fe\u7247\u56fe\u5c42)"
+    },
+    "class_type": "ETN_KritaImageLayer",
+    "_meta": {
+      "title": "Krita Image Layer"
+    }
+  },
+  "820": {
+    "inputs": {
+      "name": "3. \u63d0\u793a\u8bcd\uff08prompt\uff09(tips: \u8f93\u5165\u63d0\u793a\u8bcd\uff0c\u5982\uff1a\u7ea2\u8272\u7684\u80cc\u5305\uff0c\u80cc\u5305\u4e0a\u6709\u4e2a\u767d\u8272\u73a9\u5076)",
+      "type": "text",
+      "default": "\u7ea2\u8272\u7684\u80cc\u5305\uff0c\u4e00\u4e2a\u767d\u8272\u7684\u73a9\u5076",
+      "min": 0,
+      "max": 0
+    },
+    "class_type": "ETN_Parameter",
+    "_meta": {
+      "title": "Parameter"
+    }
+  },
+  "821": {
+    "inputs": {
+      "width": [
+        "817",
+        1
+      ],
+      "height": [
+        "817",
+        2
+      ],
+      "crop": "disabled",
+      "upscale_method": "nearest-exact",
+      "lock_aspect_ratio": true,
+      "image": [
+        "685",
+        0
+      ]
+    },
+    "class_type": "EG_TX_SFBLS",
+    "_meta": {
+      "title": "2\ud83d\udc15Image scaling lock"
+    }
+  },
+  "822": {
+    "inputs": {
+      "seed": 245960911712694
+    },
+    "class_type": "easy seed",
+    "_meta": {
+      "title": "\u968f\u673a\u79cd"
+    }
+  },
+  "824": {
+    "inputs": {
+      "images": [
+        "817",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "\u9884\u89c8\u56fe\u50cf"
+    }
+  }
+}

@@ -1,0 +1,1330 @@
+{
+  "543": {
+    "inputs": {
+      "ckpt_name": "depth_anything_v2_vitl.pth",
+      "resolution": 1408,
+      "image": [
+        "690",
+        0
+      ]
+    },
+    "class_type": "DepthAnythingV2Preprocessor",
+    "_meta": {
+      "title": "DepthAnythingV2\u6df1\u5ea6\u9884\u5904\u7406\u5668"
+    }
+  },
+  "545": {
+    "inputs": {
+      "brightness": 0.6000000000000001,
+      "contrast": 3,
+      "saturation": 1.0000000000000002,
+      "image": [
+        "543",
+        0
+      ]
+    },
+    "class_type": "LayerColor: Brightness & Contrast",
+    "_meta": {
+      "title": "\u4eae\u5ea6/\u5bf9\u6bd4\u5ea6"
+    }
+  },
+  "546": {
+    "inputs": {
+      "brightness": 0.6000000000000001,
+      "contrast": 3,
+      "saturation": 1.0000000000000002,
+      "image": [
+        "545",
+        0
+      ]
+    },
+    "class_type": "LayerColor: Brightness & Contrast",
+    "_meta": {
+      "title": "\u4eae\u5ea6/\u5bf9\u6bd4\u5ea6"
+    }
+  },
+  "549": {
+    "inputs": {
+      "channel": "red",
+      "image": [
+        "546",
+        0
+      ]
+    },
+    "class_type": "ImageToMask",
+    "_meta": {
+      "title": "\u56fe\u50cf\u5230\u906e\u7f69"
+    }
+  },
+  "563": {
+    "inputs": {
+      "ckpt_name": "SDXL/juggernautXL_v9Rdphoto2Lightning.safetensors"
+    },
+    "class_type": "CheckpointLoaderSimple",
+    "_meta": {
+      "title": "Checkpoint\u52a0\u8f7d\u5668(\u7b80\u6613)"
+    }
+  },
+  "564": {
+    "inputs": {
+      "seed": [
+        "886",
+        0
+      ],
+      "steps": 20,
+      "cfg": 3.5,
+      "sampler_name": "euler",
+      "scheduler": "karras",
+      "denoise": 1,
+      "model": [
+        "730",
+        0
+      ],
+      "positive": [
+        "860",
+        0
+      ],
+      "negative": [
+        "860",
+        1
+      ],
+      "latent_image": [
+        "664",
+        0
+      ]
+    },
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "K\u91c7\u6837\u5668"
+    }
+  },
+  "565": {
+    "inputs": {
+      "text": [
+        "857",
+        0
+      ],
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "clip": [
+        "563",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP\u6587\u672c\u7f16\u7801\u5668"
+    }
+  },
+  "567": {
+    "inputs": {
+      "weight": 0.6000000000000001,
+      "start_at": 0,
+      "end_at": 1,
+      "weight_type": "prompt is more important",
+      "model": [
+        "568",
+        0
+      ],
+      "ipadapter": [
+        "568",
+        1
+      ],
+      "image": [
+        "767",
+        0
+      ],
+      "attn_mask": [
+        "549",
+        0
+      ]
+    },
+    "class_type": "IPAdapter",
+    "_meta": {
+      "title": "\u5e94\u7528IPAdapter"
+    }
+  },
+  "568": {
+    "inputs": {
+      "preset": "PLUS (high strength)",
+      "model": [
+        "563",
+        0
+      ]
+    },
+    "class_type": "IPAdapterUnifiedLoader",
+    "_meta": {
+      "title": "IPAdapter\u52a0\u8f7d\u5668"
+    }
+  },
+  "570": {
+    "inputs": {
+      "samples": [
+        "564",
+        0
+      ],
+      "vae": [
+        "563",
+        2
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE\u89e3\u7801"
+    }
+  },
+  "575": {
+    "inputs": {
+      "strength": 0.6500000000000001,
+      "start_percent": 0.07000000000000002,
+      "end_percent": 1,
+      "positive": [
+        "565",
+        0
+      ],
+      "negative": [
+        "755",
+        0
+      ],
+      "control_net": [
+        "576",
+        0
+      ],
+      "image": [
+        "766",
+        0
+      ],
+      "vae": [
+        "563",
+        2
+      ]
+    },
+    "class_type": "ControlNetApplyAdvanced",
+    "_meta": {
+      "title": "ControlNet\u5e94\u7528\uff08\u65e7\u7248\u9ad8\u7ea7\uff09"
+    }
+  },
+  "576": {
+    "inputs": {
+      "control_net_name": "sdxl_cn/controlnet-union-promax-sdxl-1.0.safetensors"
+    },
+    "class_type": "ControlNetLoader",
+    "_meta": {
+      "title": "ControlNet\u52a0\u8f7d\u5668"
+    }
+  },
+  "580": {
+    "inputs": {
+      "clip_l": [
+        "861",
+        0
+      ],
+      "t5xxl": [
+        "861",
+        0
+      ],
+      "guidance": 4.5,
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "clip": [
+        "803",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncodeFlux",
+    "_meta": {
+      "title": "CLIP\u6587\u672c\u7f16\u7801Flux"
+    }
+  },
+  "581": {
+    "inputs": {
+      "width": 1280,
+      "height": 1280,
+      "upscale_method": "lanczos",
+      "keep_proportion": true,
+      "divisible_by": 2,
+      "crop": "disabled",
+      "image": [
+        "690",
+        0
+      ]
+    },
+    "class_type": "ImageResizeKJ",
+    "_meta": {
+      "title": "\u56fe\u50cf\u7f29\u653e\uff08KJ\uff09"
+    }
+  },
+  "582": {
+    "inputs": {
+      "ckpt_name": "flux/flux1-schnell-fp8.safetensors"
+    },
+    "class_type": "CheckpointLoaderSimple",
+    "_meta": {
+      "title": "Checkpoint\u52a0\u8f7d\u5668(\u7b80\u6613)"
+    }
+  },
+  "583": {
+    "inputs": {
+      "conditioning": [
+        "580",
+        0
+      ]
+    },
+    "class_type": "ConditioningZeroOut",
+    "_meta": {
+      "title": "\u6761\u4ef6\u96f6\u5316"
+    }
+  },
+  "584": {
+    "inputs": {
+      "samples": [
+        "585",
+        0
+      ],
+      "vae": [
+        "582",
+        2
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE\u89e3\u7801"
+    }
+  },
+  "585": {
+    "inputs": {
+      "seed": [
+        "886",
+        0
+      ],
+      "steps": 6,
+      "cfg": 1,
+      "sampler_name": "euler",
+      "scheduler": "beta",
+      "denoise": 1,
+      "model": [
+        "803",
+        0
+      ],
+      "positive": [
+        "580",
+        0
+      ],
+      "negative": [
+        "583",
+        0
+      ],
+      "latent_image": [
+        "797",
+        0
+      ]
+    },
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "K\u91c7\u6837\u5668"
+    }
+  },
+  "586": {
+    "inputs": {
+      "images": [
+        "584",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "\u9884\u89c8\u56fe\u50cf"
+    }
+  },
+  "664": {
+    "inputs": {
+      "width": [
+        "690",
+        1
+      ],
+      "height": [
+        "690",
+        2
+      ],
+      "batch_size": 1
+    },
+    "class_type": "EmptyLatentImage",
+    "_meta": {
+      "title": "\u7a7aLatent"
+    }
+  },
+  "666": {
+    "inputs": {
+      "mask": [
+        "549",
+        0
+      ]
+    },
+    "class_type": "MaskToImage",
+    "_meta": {
+      "title": "\u906e\u7f69\u5230\u56fe\u50cf"
+    }
+  },
+  "667": {
+    "inputs": {
+      "images": [
+        "666",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "\u9884\u89c8\u56fe\u50cf"
+    }
+  },
+  "669": {
+    "inputs": {
+      "samples": [
+        "673",
+        0
+      ],
+      "vae": [
+        "582",
+        2
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE\u89e3\u7801"
+    }
+  },
+  "673": {
+    "inputs": {
+      "seed": 1087306609276177,
+      "steps": 6,
+      "cfg": 1,
+      "sampler_name": "euler",
+      "scheduler": "beta",
+      "denoise": 0.5500000000000002,
+      "model": [
+        "803",
+        0
+      ],
+      "positive": [
+        "580",
+        0
+      ],
+      "negative": [
+        "583",
+        0
+      ],
+      "latent_image": [
+        "675",
+        0
+      ]
+    },
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "K\u91c7\u6837\u5668"
+    }
+  },
+  "675": {
+    "inputs": {
+      "pixels": [
+        "570",
+        0
+      ],
+      "vae": [
+        "582",
+        2
+      ]
+    },
+    "class_type": "VAEEncode",
+    "_meta": {
+      "title": "VAE\u7f16\u7801"
+    }
+  },
+  "685": {
+    "inputs": {
+      "width": 1024,
+      "height": 1024,
+      "upscale_method": "lanczos",
+      "keep_proportion": true,
+      "divisible_by": 2,
+      "crop": "disabled",
+      "image": [
+        "669",
+        0
+      ]
+    },
+    "class_type": "ImageResizeKJ",
+    "_meta": {
+      "title": "\u56fe\u50cf\u7f29\u653e\uff08KJ\uff09"
+    }
+  },
+  "690": {
+    "inputs": {
+      "width": 1408,
+      "height": 1408,
+      "upscale_method": "lanczos",
+      "keep_proportion": true,
+      "divisible_by": 2,
+      "crop": "disabled",
+      "image": [
+        "872",
+        0
+      ]
+    },
+    "class_type": "ImageResizeKJ",
+    "_meta": {
+      "title": "\u56fe\u50cf\u7f29\u653e\uff08KJ\uff09"
+    }
+  },
+  "693": {
+    "inputs": {
+      "negative": "Black stroke, (nsfw:1.5)\uff0c(more arm:1.2)\uff0c(more leg:1.2)\uff0c(look forward the camera:1.4),(glove:1.7),(cartoon:1.4), Leather material,hair, fur, false, dark, (overexposed: 1.2), distorted, low quality, (high contrast: 1.2), (wrinkled:1.2), (hanging: 1.3),(floating: 1.3), complex background, mottled background, (high reflection material: 1.1)\uff0c(high contrast:1.3), (dark skin:1.2)",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      }
+    },
+    "class_type": "easy negative",
+    "_meta": {
+      "title": "\u8d1f\u9762\u63d0\u793a\u8bcd"
+    }
+  },
+  "730": {
+    "inputs": {
+      "weight": 0.5000000000000001,
+      "start_at": 0,
+      "end_at": 1,
+      "weight_type": "standard",
+      "model": [
+        "567",
+        0
+      ],
+      "ipadapter": [
+        "568",
+        1
+      ],
+      "image": [
+        "732",
+        0
+      ],
+      "attn_mask": [
+        "731",
+        0
+      ]
+    },
+    "class_type": "IPAdapter",
+    "_meta": {
+      "title": "\u5e94\u7528IPAdapter"
+    }
+  },
+  "731": {
+    "inputs": {
+      "mask": [
+        "549",
+        0
+      ]
+    },
+    "class_type": "InvertMask (segment anything)",
+    "_meta": {
+      "title": "\u53cd\u8f6c\u906e\u7f69"
+    }
+  },
+  "732": {
+    "inputs": {
+      "size": "custom",
+      "custom_width": 1408,
+      "custom_height": 1408,
+      "color": "#ffffff",
+      "size_as": [
+        "584",
+        0
+      ]
+    },
+    "class_type": "LayerUtility: ColorImage V2",
+    "_meta": {
+      "title": "\u7eaf\u8272\u56fe\u50cf_V2"
+    }
+  },
+  "750": {
+    "inputs": {
+      "coarse": "disable",
+      "resolution": 1408,
+      "image": [
+        "872",
+        0
+      ]
+    },
+    "class_type": "LineArtPreprocessor",
+    "_meta": {
+      "title": "LineArt\u827a\u672f\u7ebf\u9884\u5904\u7406\u5668"
+    }
+  },
+  "751": {
+    "inputs": {
+      "images": [
+        "766",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "\u9884\u89c8\u56fe\u50cf"
+    }
+  },
+  "752": {
+    "inputs": {
+      "prompt": [
+        "867",
+        0
+      ],
+      "system_instruction": [
+        "855",
+        0
+      ],
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "model": [
+        "753",
+        0
+      ],
+      "tokenizer": [
+        "753",
+        1
+      ]
+    },
+    "class_type": "Qwen2_Zho",
+    "_meta": {
+      "title": "\u26f1\ufe0fQwen2"
+    }
+  },
+  "753": {
+    "inputs": {
+      "model_name": "Qwen/Qwen2-7B-Instruct"
+    },
+    "class_type": "Qwen2_ModelLoader_Zho",
+    "_meta": {
+      "title": "\u26f1\ufe0fQwen2 ModelLoader"
+    }
+  },
+  "754": {
+    "inputs": {
+      "text": "Hyper-realistic photograph captures a young, poised model against a clean, studio-lit backdrop. She sports a sleek, fitted yellow dress that highlights her elegant silhouette, adorned with delicate black accents for a contemporary, refined aesthetic. Accompanied by sharp black heels, her ensemble exudes sophistication and elegance. Her long, flowing black hair adds to her allure, while her radiant smile completes her chic appearance. The image boasts a high-quality, low-contrast clarity, showcasing the natural texture of her flawless skin and her vibrant, unposed expression.",
+      "anything": [
+        "752",
+        0
+      ]
+    },
+    "class_type": "easy showAnything",
+    "_meta": {
+      "title": "\u5c55\u793a\u4efb\u4f55"
+    }
+  },
+  "755": {
+    "inputs": {
+      "text": [
+        "693",
+        0
+      ],
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "clip": [
+        "563",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP\u6587\u672c\u7f16\u7801\u5668"
+    }
+  },
+  "766": {
+    "inputs": {
+      "brightness": 3,
+      "contrast": 1.0000000000000002,
+      "saturation": 1.0000000000000002,
+      "image": [
+        "750",
+        0
+      ]
+    },
+    "class_type": "LayerColor: Brightness & Contrast",
+    "_meta": {
+      "title": "\u4eae\u5ea6/\u5bf9\u6bd4\u5ea6"
+    }
+  },
+  "767": {
+    "inputs": {
+      "boolean": [
+        "878",
+        0
+      ],
+      "on_true": [
+        "874",
+        0
+      ],
+      "on_false": [
+        "584",
+        0
+      ]
+    },
+    "class_type": "Switch any [Crystools]",
+    "_meta": {
+      "title": "\u5207\u6362\u4efb\u610f"
+    }
+  },
+  "787": {
+    "inputs": {
+      "prompt": [
+        "752",
+        0
+      ],
+      "system_instruction": "\u628a\u8fd9\u6bb5\u63cf\u8ff0\u8f6c\u4e3a\u9002\u914dsdxl\u5927\u6a21\u578b\u7684prompt\uff0c\u5168\u82f1\u6587\uff0c\u53ea\u8f93\u51fa\u7ed3\u679c\uff0c\u7981\u6b62\u6709\u6807\u9898\u548c\u7279\u6b8a\u7b26\u53f7\n\n\u8981\u6c42\uff1a\n1\uff0c\u53ea\u8f93\u51fa\u7ed3\u679c\uff0c\u82f1\u6587\uff0c\u82f1\u6587\u7b26\u53f7\u3002\n2\uff0c\u7981\u6b62\u6807\u9898\u548c\u7279\u6b8a\u7b26\u53f7\u548c\u53cc\u5f15\u53f7\u3002\n3\uff0c\u5f3a\u8c03\u8d85\u903c\u771f\u56fe\u7247\uff0c\u8d85\u5199\u5b9e\u98ce\u3002\n4\uff0c100\u5b57\u7b26\u4ee5\u5185",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "model": [
+        "753",
+        0
+      ],
+      "tokenizer": [
+        "753",
+        1
+      ]
+    },
+    "class_type": "Qwen2_Zho",
+    "_meta": {
+      "title": "\u26f1\ufe0fQwen2"
+    }
+  },
+  "788": {
+    "inputs": {
+      "text": [
+        "857",
+        0
+      ],
+      "text2": "A young, elegant, and confident model with long, flowing black hair and a radiant smile is portrayed. She is adorned in a sleek, form-fitting yellow dress that highlights her graceful figure. The dress incorporates subtle black accents, enhancing its modern and sophisticated design. Her ensemble is perfected with stylish black heels, contributing to her chic and polished appearance.,Create an incredibly realistic, hyper-detailed photo of a poised model in a sleek yellow dress with black accents, against a clean studio backdrop. Add sophistication with sharp black heels and flowing black hair, finishing with a radiant smile. Ensure high quality, low contrast for natural skin texture and vibrant expression."
+    },
+    "class_type": "ShowText|pysssss",
+    "_meta": {
+      "title": "\u5c55\u793a\u6587\u672c"
+    }
+  },
+  "790": {
+    "inputs": {
+      "text": "\u53bb\u6389\u63d2\u753b\u548c\u9ed1\u767d\u56fe\u76f8\u5173\u7684\u63cf\u8ff0\uff0c\u628a\u63cf\u8ff0\u6539\u4e3a\u65f6\u5c1a\u7684\u670d\u9970\u3002\u589e\u52a0\u98ce\u683c\u63cf\u8ff0\uff1a\u8d85\u5199\u5b9e\u98ce\u683c\uff0c\u6e05\u6670\u7684\u5e03\u6599\u7eb9\u7406\u3002\n\n\u8981\u6c42\uff1a\n1\uff0c\u7b80\u6d01\u660e\u4e86\uff0c\u53ea\u8f93\u51fa\u7b54\u6848\uff0c\u7eaf\u82f1\u6587\u3002\n2\uff0c\u53bb\u6389\u63d2\u753b\u3001illustration\u3001\u9ed1\u767d\u56fe\u7b49\u6709\u5173\u5361\u901a\u63d2\u753b\u7684\u753b\u9762\u63cf\u8ff0\u3002\n3\uff0c\u53bb\u6389\u6240\u6709\u989c\u8272\u63cf\u8ff0\uff0c\u5f3a\u5316\u8863\u670d\u4e0a\u7684\u56fe\u6848\u63cf\u8ff0\u3002\n4\uff0c\u589e\u52a0\u6216\u5f3a\u5316\u63cf\u8ff0\uff1a",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      }
+    },
+    "class_type": "CR Text",
+    "_meta": {
+      "title": "\u6587\u672c"
+    }
+  },
+  "797": {
+    "inputs": {
+      "width": [
+        "581",
+        1
+      ],
+      "height": [
+        "581",
+        2
+      ],
+      "batch_size": 1
+    },
+    "class_type": "EmptyLatentImage",
+    "_meta": {
+      "title": "\u7a7aLatent"
+    }
+  },
+  "803": {
+    "inputs": {
+      "lora_name": "flux/portrait-photography.safetensors",
+      "strength_model": 0.9500000000000002,
+      "strength_clip": 1.0000000000000002,
+      "model": [
+        "582",
+        0
+      ],
+      "clip": [
+        "582",
+        1
+      ]
+    },
+    "class_type": "LoraLoader",
+    "_meta": {
+      "title": "LoRA\u52a0\u8f7d\u5668"
+    }
+  },
+  "828": {
+    "inputs": {
+      "guide_size": 512,
+      "guide_size_for": true,
+      "max_size": 1024,
+      "seed": 31448630879588,
+      "steps": 20,
+      "cfg": 1,
+      "sampler_name": "euler",
+      "scheduler": "simple",
+      "denoise": 0.6500000000000001,
+      "feather": 5,
+      "noise_mask": true,
+      "force_inpaint": true,
+      "bbox_threshold": 0.5000000000000001,
+      "bbox_dilation": 10,
+      "bbox_crop_factor": 3,
+      "sam_detection_hint": "center-1",
+      "sam_dilation": 0,
+      "sam_threshold": 0.9300000000000002,
+      "sam_bbox_expansion": 0,
+      "sam_mask_hint_threshold": 0.7000000000000002,
+      "sam_mask_hint_use_negative": "False",
+      "drop_size": 10,
+      "wildcard": [
+        "851",
+        0
+      ],
+      "cycle": 1,
+      "inpaint_model": false,
+      "noise_mask_feather": 20,
+      "tiled_encode": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "tiled_decode": false,
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "image": [
+        "685",
+        0
+      ],
+      "model": [
+        "862",
+        0
+      ],
+      "clip": [
+        "863",
+        0
+      ],
+      "vae": [
+        "865",
+        0
+      ],
+      "positive": [
+        "847",
+        0
+      ],
+      "negative": [
+        "848",
+        0
+      ],
+      "bbox_detector": [
+        "850",
+        0
+      ],
+      "sam_model_opt": [
+        "849",
+        0
+      ]
+    },
+    "class_type": "FaceDetailer",
+    "_meta": {
+      "title": "\u9762\u90e8\u7ec6\u5316"
+    }
+  },
+  "847": {
+    "inputs": {
+      "text": [
+        "851",
+        0
+      ],
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "clip": [
+        "863",
+        0
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP\u6587\u672c\u7f16\u7801\u5668"
+    }
+  },
+  "848": {
+    "inputs": {
+      "conditioning": [
+        "847",
+        0
+      ]
+    },
+    "class_type": "ConditioningZeroOut",
+    "_meta": {
+      "title": "\u6761\u4ef6\u96f6\u5316"
+    }
+  },
+  "849": {
+    "inputs": {
+      "model_name": "sam_vit_h_4b8939.pth",
+      "device_mode": "AUTO"
+    },
+    "class_type": "SAMLoader",
+    "_meta": {
+      "title": "SAM\u52a0\u8f7d\u5668"
+    }
+  },
+  "850": {
+    "inputs": {
+      "model_name": "bbox/face_yolov8m.pt"
+    },
+    "class_type": "UltralyticsDetectorProvider",
+    "_meta": {
+      "title": "\u68c0\u6d4b\u52a0\u8f7d\u5668"
+    }
+  },
+  "851": {
+    "inputs": {
+      "text": "Hyper-realistic facial close-up radiates luminous vitality, capturing an 18-year-old Eurasian beauty mid-laughter. Sun-kissed alabaster skin glows with inner warmth, capillaries beneath translucent cheeks pulsing like liquid coral under morning light. Her Slavic-high cheekbones catch golden halos where sunlight diffuses through downy peach fuzz, while the East Asian oval jawline reflects opalescent sheen reminiscent of moonstone. Almond eyes crinkle at the corners with uncontained mirth, irises transformed into molten topaz pools by direct sunlight - amber flecks igniting into solar flares against steel-gray depths.\n\nWind-tousled chestnut waves frame a face where European angularity and Asian softness merge: the sharp Cupid's bow of her lips arches upward into a smile so vivid it activates dimple creases, while fuller Asian lip contours glisten with moisture from recent laughter. Every epidermal detail conspires toward radiance - sweat droplets along her hairline refract prismatic light, vellus hairs on sunlit temples glowing like spun gold filaments. The Slavic nose bridge becomes a luminous ridge where sunlight fractures into spectral micro-beams across poreless skin, while faint epicanthic folds soften eye smiles into crescent moons.\n\nThis is genetic alchemy electrified by joy: sunlight penetrates to the dermal layer, revealing how golden undertones in her East Asian epidermis amplify Caucasian translucency into living bioluminescence. Even the shadows beneath lashes dance with refracted light particles, each microscopic skin valley catching highlights that transform facial topography into a 3D map of luminosity. A living portrait where multicultural beauty becomes pure energy, every skin texture vibrating with captured sunlight.",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      }
+    },
+    "class_type": "CR Text",
+    "_meta": {
+      "title": "\u6587\u672c"
+    }
+  },
+  "852": {
+    "inputs": {
+      "text": [
+        "875",
+        0
+      ],
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      }
+    },
+    "class_type": "CR Text",
+    "_meta": {
+      "title": "\u6587\u672c"
+    }
+  },
+  "853": {
+    "inputs": {
+      "text1": [
+        "790",
+        0
+      ],
+      "text2": [
+        "852",
+        0
+      ],
+      "separator": ""
+    },
+    "class_type": "CR Text Concatenate",
+    "_meta": {
+      "title": "\u6587\u672c\u8054\u7ed3"
+    }
+  },
+  "854": {
+    "inputs": {
+      "text": "\n5\uff0c\u628a\u201chyper-realistic photograph\u201d\u653e\u5728\u53e5\u9996\u3002\u5f3a\u8c03\uff1a\u68da\u5185\u5c04\u5f71\uff0c\u5e72\u51c0\u7684\u5149\u7167\uff0c\u903c\u771f\u7684\u7167\u7247\uff0c\u8d85\u5199\u5b9e\u98ce\u683c\uff0c\u81ea\u7136\u6293\u62cd\u7167\uff0c\u6e05\u65b0\u660e\u4eae\uff0c\u4f4e\u5bf9\u6bd4\u5ea6\uff0c\u771f\u5b9e\u9ad8\u7ea7\u7684\u8d28\u611f\uff0c\u8d85\u9ad8\u8d28\u91cf\u3002\u5df4\u9ece\u65f6\u88c5\u5468\u6a21\u7279\uff0c\u767d\u7699\u7684\u76ae\u80a4\u3001\u771f\u5b9e\u7684\u76ae\u80a4\u8d28\u611f,\u773c\u775b\u4e0d\u770b\u5411\u955c\u5934,\u6f02\u4eae\u7684\u8138\u3001\u5f00\u6717\u7684\u5fae\u7b11\u3001\u51c6\u786e\u7684\u4eba\u4f53\u7ed3\u6784\u3002\n6\uff0c\u7981\u6b62\u5305\u542b\u6807\u9898\u548c\u7279\u6b8a\u7b26\u53f7\u3002\n7\uff0c\u683c\u5f0f\u4e3a\u9002\u914dflux\u5927\u6a21\u578b\u7684prompt\u3002",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      }
+    },
+    "class_type": "CR Text",
+    "_meta": {
+      "title": "\u6587\u672c"
+    }
+  },
+  "855": {
+    "inputs": {
+      "text1": [
+        "853",
+        0
+      ],
+      "text2": [
+        "854",
+        0
+      ],
+      "separator": ""
+    },
+    "class_type": "CR Text Concatenate",
+    "_meta": {
+      "title": "\u6587\u672c\u8054\u7ed3"
+    }
+  },
+  "857": {
+    "inputs": {
+      "text1": [
+        "858",
+        0
+      ],
+      "text2": [
+        "787",
+        0
+      ],
+      "separator": ","
+    },
+    "class_type": "CR Text Concatenate",
+    "_meta": {
+      "title": "\u6587\u672c\u8054\u7ed3"
+    }
+  },
+  "858": {
+    "inputs": {
+      "prompt": [
+        "852",
+        0
+      ],
+      "system_instruction": "\u628a\u8fd9\u6bb5\u63cf\u8ff0\u8f6c\u4e3a\u9002\u914dsdxl\u5927\u6a21\u578b\u7684prompt\uff0c\u5168\u82f1\u6587\uff0c\u53ea\u8f93\u51fa\u7ed3\u679c\uff0c\u7981\u6b62\u6709\u6807\u9898\u548c\u7279\u6b8a\u7b26\u53f7\n\n\u8981\u6c42\uff1a\n1\uff0c\u53ea\u8f93\u51fa\u7ed3\u679c\uff0c\u82f1\u6587\uff0c\u82f1\u6587\u7b26\u53f7\u3002\n2\uff0c\u7981\u6b62\u6807\u9898\u548c\u7279\u6b8a\u7b26\u53f7\u548c\u53cc\u5f15\u53f7\u3002",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "model": [
+        "753",
+        0
+      ],
+      "tokenizer": [
+        "753",
+        1
+      ]
+    },
+    "class_type": "Qwen2_Zho",
+    "_meta": {
+      "title": "\u26f1\ufe0fQwen2"
+    }
+  },
+  "860": {
+    "inputs": {
+      "strength": 0.15000000000000002,
+      "start_percent": 0.10000000000000002,
+      "end_percent": 1,
+      "positive": [
+        "575",
+        0
+      ],
+      "negative": [
+        "575",
+        1
+      ],
+      "control_net": [
+        "576",
+        0
+      ],
+      "image": [
+        "666",
+        0
+      ],
+      "vae": [
+        "563",
+        2
+      ]
+    },
+    "class_type": "ControlNetApplyAdvanced",
+    "_meta": {
+      "title": "ControlNet\u5e94\u7528\uff08\u65e7\u7248\u9ad8\u7ea7\uff09"
+    }
+  },
+  "861": {
+    "inputs": {
+      "text1": [
+        "858",
+        0
+      ],
+      "text2": [
+        "752",
+        0
+      ],
+      "separator": ","
+    },
+    "class_type": "CR Text Concatenate",
+    "_meta": {
+      "title": "\u6587\u672c\u8054\u7ed3"
+    }
+  },
+  "862": {
+    "inputs": {
+      "unet_name": "SuperMerged2.6.safetensors",
+      "weight_dtype": "fp8_e4m3fn"
+    },
+    "class_type": "UNETLoader",
+    "_meta": {
+      "title": "UNET\u52a0\u8f7d\u5668"
+    }
+  },
+  "863": {
+    "inputs": {
+      "clip_name1": "clip_l.safetensors",
+      "clip_name2": "t5xxl_fp8_e4m3fn.safetensors",
+      "type": "flux",
+      "device": "default"
+    },
+    "class_type": "DualCLIPLoader",
+    "_meta": {
+      "title": "\u53ccCLIP\u52a0\u8f7d\u5668"
+    }
+  },
+  "865": {
+    "inputs": {
+      "vae_name": "ae.safetensors"
+    },
+    "class_type": "VAELoader",
+    "_meta": {
+      "title": "VAE\u52a0\u8f7d\u5668"
+    }
+  },
+  "867": {
+    "inputs": {
+      "text": [
+        "871",
+        0
+      ],
+      "text2": "The image is a black-and-white sketch of a person standing in a confident pose. The individual is wearing a striped long-sleeve shirt tucked into high-waisted shorts. They have long, straight hair that falls past their shoulders. On their feet are lace-up boots, and they are carrying a large tote bag in one hand. The overall style suggests a casual yet fashionable look, with the person exuding a sense of modern urban chic."
+    },
+    "class_type": "ShowText|pysssss",
+    "_meta": {
+      "title": "\u5c55\u793a\u6587\u672c"
+    }
+  },
+  "868": {
+    "inputs": {
+      "prompt": "Please extract the design content of this image and transform it into a description of the clothing design, and match it with a beautiful model. I need you to help me randomly describe the appearance of a beautiful model, without outputting ideas or thoughts. Just describe the appearance of the beautiful model wearing this clothing and help me describe it in natural language.\nOutput example: A young, healthy, and lively 18-year-old Chinese Russian mixed race beauty with a yellow top, short red hair, and a smiling face.",
+      "model": "qwen-vl-max",
+      "system_message": "You are a helpful assistant.",
+      "temperature": 0.7000000000000001,
+      "max_tokens": 1024,
+      "detail": "auto",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "image": [
+        "874",
+        0
+      ]
+    },
+    "class_type": "LLMNodeFull",
+    "_meta": {
+      "title": "LLM\u9ad8\u7ea7\u8282\u70b9"
+    }
+  },
+  "871": {
+    "inputs": {
+      "prompt": "Please provide a detailed description of this image and output it in natural language",
+      "model": "qwen-vl-max",
+      "system_message": "You are a helpful assistant.",
+      "temperature": 0.7000000000000001,
+      "max_tokens": 1024,
+      "detail": "auto",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "image": [
+        "690",
+        0
+      ]
+    },
+    "class_type": "LLMNodeFull",
+    "_meta": {
+      "title": "LLM\u9ad8\u7ea7\u8282\u70b9"
+    }
+  },
+  "872": {
+    "inputs": {},
+    "class_type": "ETN_KritaCanvas",
+    "_meta": {
+      "title": "Krita Canvas"
+    }
+  },
+  "873": {
+    "inputs": {
+      "images": [
+        "879",
+        0
+      ]
+    },
+    "class_type": "ETN_KritaOutput",
+    "_meta": {
+      "title": "Krita Output"
+    }
+  },
+  "874": {
+    "inputs": {
+      "name": "2. \u53c2\u8003\u56fe\uff08reference image\uff09(tips: \u9009\u62e9\u9700\u8981\u53c2\u8003\u7684\u56fe\u7247\u56fe\u5c42)"
+    },
+    "class_type": "ETN_KritaImageLayer",
+    "_meta": {
+      "title": "Krita Image Layer"
+    }
+  },
+  "875": {
+    "inputs": {
+      "boolean": [
+        "878",
+        0
+      ],
+      "on_true": [
+        "868",
+        0
+      ],
+      "on_false": [
+        "876",
+        0
+      ]
+    },
+    "class_type": "Switch any [Crystools]",
+    "_meta": {
+      "title": "\u5207\u6362\u4efb\u610f"
+    }
+  },
+  "876": {
+    "inputs": {
+      "String": [
+        "877",
+        0
+      ],
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      }
+    },
+    "class_type": "String",
+    "_meta": {
+      "title": "\u5b57\u7b26\u4e32"
+    }
+  },
+  "877": {
+    "inputs": {
+      "name": "3. \u63d0\u793a\u8bcd\uff08prompt\uff09(tips: \u8f93\u5165\u63d0\u793a\u8bcd\uff0c\u5982\uff1a\u9ec4\u8272\u7684\u4e0a\u8863\uff0c\u7ea2\u8272\u77ed\u53d1\uff0c\u9762\u5e26\u5fae\u7b11\uff0c\u5e74\u8f7b\u3001\u5065\u5eb7\u3001\u6d3b\u6cfc\u768418\u5c81\u4e2d\u4fc4\u6df7\u8840\u7f8e\u5973\u3002)",
+      "type": "text",
+      "default": "\u9ec4\u8272\u7684\u4e0a\u8863\uff0c\u7ea2\u8272\u77ed\u53d1\uff0c\u9762\u5e26\u5fae\u7b11\uff0c\u5e74\u8f7b\u3001\u5065\u5eb7\u3001\u6d3b\u6cfc\u768418\u5c81\u4e2d\u4fc4\u6df7\u8840\u7f8e\u5973\u3002",
+      "min": 0,
+      "max": 0
+    },
+    "class_type": "ETN_Parameter",
+    "_meta": {
+      "title": "Parameter"
+    }
+  },
+  "878": {
+    "inputs": {
+      "name": "1. \u5f00\u542f\u53c2\u8003\u56fe\u53c2\u8003\uff08Open reference image reference\uff09(tips: \u6253\u5f00\u4f1a\u53c2\u8003\u53c2\u8003\u56fe\u7684\u914d\u8272\u548c\u56fe\u6848)(on:3. \u63d0\u793a\u8bcd\uff08prompt\uff09(tips: \u8f93\u5165\u63d0\u793a\u8bcd\uff0c\u5982\uff1a\u9ec4\u8272\u7684\u4e0a\u8863\uff0c\u7ea2\u8272\u77ed\u53d1\uff0c\u9762\u5e26\u5fae\u7b11\uff0c\u5e74\u8f7b\u3001\u5065\u5eb7\u3001\u6d3b\u6cfc\u768418\u5c81\u4e2d\u4fc4\u6df7\u8840\u7f8e\u5973\u3002))(off:3. \u63d0\u793a\u8bcd\uff08prompt\uff09(tips: \u8f93\u5165\u63d0\u793a\u8bcd\uff0c\u5982\uff1a\u9ec4\u8272\u7684\u4e0a\u8863\uff0c\u7ea2\u8272\u77ed\u53d1\uff0c\u9762\u5e26\u5fae\u7b11\uff0c\u5e74\u8f7b\u3001\u5065\u5eb7\u3001\u6d3b\u6cfc\u768418\u5c81\u4e2d\u4fc4\u6df7\u8840\u7f8e\u5973\u3002))",
+      "type": "toggle",
+      "default": true,
+      "min": 0,
+      "max": 0
+    },
+    "class_type": "ETN_Parameter",
+    "_meta": {
+      "title": "Parameter"
+    }
+  },
+  "879": {
+    "inputs": {
+      "width": [
+        "872",
+        1
+      ],
+      "height": [
+        "872",
+        2
+      ],
+      "crop": "disabled",
+      "upscale_method": "nearest-exact",
+      "lock_aspect_ratio": true,
+      "image": [
+        "828",
+        0
+      ]
+    },
+    "class_type": "EG_TX_SFBLS",
+    "_meta": {
+      "title": "2\ud83d\udc15Image scaling lock"
+    }
+  },
+  "883": {
+    "inputs": {
+      "image": "C2DDA790-0231-46ee-856D-B198D344136C.png"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "\u52a0\u8f7d\u56fe\u50cf"
+    }
+  },
+  "884": {
+    "inputs": {
+      "text": [
+        "868",
+        0
+      ],
+      "text2": "A young, elegant, and vibrant 25-year-old model with long, flowing black hair and a radiant smile. She is wearing a stylish black t-shirt featuring a circular design with a paintbrush at the center, surrounded by swirling colors of pink, yellow, blue, and green, creating a dynamic and artistic look. The text below the design reads, \"This Workflow needs to be run by Krita!\" in a playful, handwritten font. Her outfit is complemented by her confident posture and bright, engaging eyes."
+    },
+    "class_type": "ShowText|pysssss",
+    "_meta": {
+      "title": "\u5c55\u793a\u6587\u672c"
+    }
+  },
+  "886": {
+    "inputs": {
+      "seed": 0
+    },
+    "class_type": "easy seed",
+    "_meta": {
+      "title": "\u968f\u673a\u79cd"
+    }
+  }
+}

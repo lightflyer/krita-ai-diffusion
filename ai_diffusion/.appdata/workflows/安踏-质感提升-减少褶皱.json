@@ -1,0 +1,2253 @@
+{
+  "1540": {
+    "inputs": {
+      "ckpt_name": "depth_anything_vitl14.pth",
+      "resolution": 512,
+      "image": [
+        "1991",
+        0
+      ]
+    },
+    "class_type": "DepthAnythingPreprocessor",
+    "_meta": {
+      "title": "DepthAnything\u6df1\u5ea6\u9884\u5904\u7406\u5668"
+    }
+  },
+  "1541": {
+    "inputs": {
+      "images": [
+        "2021",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "\u9884\u89c8\u56fe\u50cf"
+    }
+  },
+  "1542": {
+    "inputs": {
+      "brightness": 1.17,
+      "contrast": 3,
+      "saturation": 1,
+      "image": [
+        "1540",
+        0
+      ]
+    },
+    "class_type": "LayerColor: Brightness & Contrast",
+    "_meta": {
+      "title": "\u4eae\u5ea6/\u5bf9\u6bd4\u5ea6"
+    }
+  },
+  "1543": {
+    "inputs": {
+      "brightness": 0.52,
+      "contrast": 3,
+      "saturation": 1,
+      "image": [
+        "1542",
+        0
+      ]
+    },
+    "class_type": "LayerColor: Brightness & Contrast",
+    "_meta": {
+      "title": "\u4eae\u5ea6/\u5bf9\u6bd4\u5ea6"
+    }
+  },
+  "1544": {
+    "inputs": {
+      "channel": "red",
+      "image": [
+        "1543",
+        0
+      ]
+    },
+    "class_type": "ImageToMask",
+    "_meta": {
+      "title": "\u56fe\u50cf\u5230\u906e\u7f69"
+    }
+  },
+  "1545": {
+    "inputs": {
+      "expand": -3,
+      "incremental_expandrate": 0,
+      "tapered_corners": true,
+      "flip_input": false,
+      "blur_radius": 0,
+      "lerp_alpha": 1,
+      "decay_factor": 1,
+      "fill_holes": false,
+      "mask": [
+        "1544",
+        0
+      ]
+    },
+    "class_type": "GrowMaskWithBlur",
+    "_meta": {
+      "title": "\u906e\u7f69\u6a21\u7cca\u751f\u957f"
+    }
+  },
+  "1547": {
+    "inputs": {
+      "mask": [
+        "1545",
+        0
+      ]
+    },
+    "class_type": "MaskToImage",
+    "_meta": {
+      "title": "\u906e\u7f69\u5230\u56fe\u50cf"
+    }
+  },
+  "1548": {
+    "inputs": {
+      "blend_percentage": 1,
+      "image_a": [
+        "1549",
+        0
+      ],
+      "image_b": [
+        "1991",
+        0
+      ],
+      "mask": [
+        "1547",
+        0
+      ]
+    },
+    "class_type": "Image Blend by Mask",
+    "_meta": {
+      "title": "\u56fe\u50cf\u906e\u7f69\u6df7\u5408"
+    }
+  },
+  "1549": {
+    "inputs": {
+      "size": "custom",
+      "custom_width": 512,
+      "custom_height": 512,
+      "color": "#ffffff",
+      "size_as": [
+        "1991",
+        0
+      ]
+    },
+    "class_type": "LayerUtility: ColorImage V2",
+    "_meta": {
+      "title": "\u7eaf\u8272\u56fe\u50cf_V2"
+    }
+  },
+  "1718": {
+    "inputs": {
+      "guidance": 30,
+      "conditioning": [
+        "1720",
+        0
+      ]
+    },
+    "class_type": "FluxGuidance",
+    "_meta": {
+      "title": "Flux\u5f15\u5bfc"
+    }
+  },
+  "1719": {
+    "inputs": {
+      "conditioning": [
+        "1736",
+        1
+      ]
+    },
+    "class_type": "ConditioningZeroOut",
+    "_meta": {
+      "title": "\u6761\u4ef6\u96f6\u5316"
+    }
+  },
+  "1720": {
+    "inputs": {
+      "downsampling_factor": 2,
+      "downsampling_function": "area",
+      "mode": "center crop (square)",
+      "weight": 1,
+      "autocrop_margin": 0.1,
+      "conditioning": [
+        "1736",
+        0
+      ],
+      "style_model": [
+        "1721",
+        0
+      ],
+      "clip_vision": [
+        "1722",
+        0
+      ],
+      "image": [
+        "1761",
+        0
+      ]
+    },
+    "class_type": "ReduxAdvanced",
+    "_meta": {
+      "title": "ReduxAdvanced"
+    }
+  },
+  "1721": {
+    "inputs": {
+      "style_model_name": "flux1-redux-dev.safetensors"
+    },
+    "class_type": "StyleModelLoader",
+    "_meta": {
+      "title": "\u98ce\u683c\u6a21\u578b\u52a0\u8f7d\u5668"
+    }
+  },
+  "1722": {
+    "inputs": {
+      "clip_name": "sigclip_vision_patch14_384.safetensors"
+    },
+    "class_type": "CLIPVisionLoader",
+    "_meta": {
+      "title": "CLIP\u89c6\u89c9\u52a0\u8f7d\u5668"
+    }
+  },
+  "1723": {
+    "inputs": {
+      "model": [
+        "1737",
+        0
+      ]
+    },
+    "class_type": "DifferentialDiffusion",
+    "_meta": {
+      "title": "\u5dee\u5f02\u6269\u6563"
+    }
+  },
+  "1724": {
+    "inputs": {
+      "mask": [
+        "1758",
+        0
+      ]
+    },
+    "class_type": "MaskToImage",
+    "_meta": {
+      "title": "\u906e\u7f69\u5230\u56fe\u50cf"
+    }
+  },
+  "1725": {
+    "inputs": {
+      "upscale_method": "lanczos",
+      "width": [
+        "1748",
+        0
+      ],
+      "height": [
+        "1748",
+        1
+      ],
+      "crop": "disabled",
+      "image": [
+        "1730",
+        0
+      ]
+    },
+    "class_type": "ImageScale",
+    "_meta": {
+      "title": "\u56fe\u50cf\u7f29\u653e"
+    }
+  },
+  "1726": {
+    "inputs": {
+      "channel": "red",
+      "image": [
+        "1725",
+        0
+      ]
+    },
+    "class_type": "ImageToMask",
+    "_meta": {
+      "title": "\u56fe\u50cf\u5230\u906e\u7f69"
+    }
+  },
+  "1727": {
+    "inputs": {
+      "upscale_method": "lanczos",
+      "width": [
+        "1748",
+        0
+      ],
+      "height": [
+        "1748",
+        1
+      ],
+      "crop": "disabled",
+      "image": [
+        "1747",
+        0
+      ]
+    },
+    "class_type": "ImageScale",
+    "_meta": {
+      "title": "\u56fe\u50cf\u7f29\u653e"
+    }
+  },
+  "1728": {
+    "inputs": {
+      "upscale_method": "lanczos",
+      "width": [
+        "1729",
+        0
+      ],
+      "height": [
+        "1729",
+        1
+      ],
+      "crop": "center",
+      "image": [
+        "1724",
+        0
+      ]
+    },
+    "class_type": "ImageScale",
+    "_meta": {
+      "title": "\u56fe\u50cf\u7f29\u653e"
+    }
+  },
+  "1729": {
+    "inputs": {
+      "image": [
+        "1749",
+        0
+      ]
+    },
+    "class_type": "Get resolution [Crystools]",
+    "_meta": {
+      "title": "\u83b7\u53d6\u5206\u8fa8\u7387"
+    }
+  },
+  "1730": {
+    "inputs": {
+      "upscale_method": "lanczos",
+      "scale_by": 1,
+      "image": [
+        "1733",
+        0
+      ]
+    },
+    "class_type": "ImageScaleBy",
+    "_meta": {
+      "title": "\u56fe\u50cf\u6309\u7cfb\u6570\u7f29\u653e"
+    }
+  },
+  "1731": {
+    "inputs": {
+      "stitch": "right",
+      "feathering": 0,
+      "image_a": [
+        "1750",
+        0
+      ],
+      "image_b": [
+        "1749",
+        0
+      ]
+    },
+    "class_type": "Image Stitch",
+    "_meta": {
+      "title": "\u56fe\u50cf\u7f1d\u5408"
+    }
+  },
+  "1732": {
+    "inputs": {
+      "width": [
+        "1729",
+        0
+      ],
+      "height": [
+        "1729",
+        1
+      ],
+      "color": "#000000"
+    },
+    "class_type": "LayerUtility: ColorImage",
+    "_meta": {
+      "title": "\u7eaf\u8272\u56fe\u50cf"
+    }
+  },
+  "1733": {
+    "inputs": {
+      "stitch": "right",
+      "feathering": 0,
+      "image_a": [
+        "1732",
+        0
+      ],
+      "image_b": [
+        "1728",
+        0
+      ]
+    },
+    "class_type": "Image Stitch",
+    "_meta": {
+      "title": "\u56fe\u50cf\u7f1d\u5408"
+    }
+  },
+  "1734": {
+    "inputs": {
+      "clip_name1": "t5xxl_fp8_e4m3fn.safetensors",
+      "clip_name2": "clip_l.safetensors",
+      "type": "flux",
+      "device": "default"
+    },
+    "class_type": "DualCLIPLoader",
+    "_meta": {
+      "title": "\u53ccCLIP\u52a0\u8f7d\u5668"
+    }
+  },
+  "1735": {
+    "inputs": {
+      "text": "",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "clip": [
+        "1734",
+        0
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP\u6587\u672c\u7f16\u7801\u5668"
+    }
+  },
+  "1736": {
+    "inputs": {
+      "noise_mask": true,
+      "positive": [
+        "1735",
+        0
+      ],
+      "negative": [
+        "1735",
+        0
+      ],
+      "vae": [
+        "1738",
+        0
+      ],
+      "pixels": [
+        "1727",
+        0
+      ],
+      "mask": [
+        "1726",
+        0
+      ]
+    },
+    "class_type": "InpaintModelConditioning",
+    "_meta": {
+      "title": "\u5185\u8865\u6a21\u578b\u6761\u4ef6"
+    }
+  },
+  "1737": {
+    "inputs": {
+      "unet_name": "flux/flux1-fill-dev.safetensors",
+      "weight_dtype": "default"
+    },
+    "class_type": "UNETLoader",
+    "_meta": {
+      "title": "UNET\u52a0\u8f7d\u5668"
+    }
+  },
+  "1738": {
+    "inputs": {
+      "vae_name": "ae.safetensors"
+    },
+    "class_type": "VAELoader",
+    "_meta": {
+      "title": "VAE\u52a0\u8f7d\u5668"
+    }
+  },
+  "1739": {
+    "inputs": {
+      "seed": [
+        "2213",
+        0
+      ],
+      "steps": 20,
+      "cfg": 1,
+      "sampler_name": "euler",
+      "scheduler": "simple",
+      "denoise": 0.9500000000000001,
+      "model": [
+        "1723",
+        0
+      ],
+      "positive": [
+        "1718",
+        0
+      ],
+      "negative": [
+        "1719",
+        0
+      ],
+      "latent_image": [
+        "1736",
+        2
+      ]
+    },
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "K\u91c7\u6837\u5668"
+    }
+  },
+  "1740": {
+    "inputs": {
+      "samples": [
+        "1739",
+        0
+      ],
+      "vae": [
+        "1738",
+        0
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE\u89e3\u7801"
+    }
+  },
+  "1743": {
+    "inputs": {
+      "upscale_method": "lanczos",
+      "scale_by": 1,
+      "image": [
+        "1744",
+        0
+      ]
+    },
+    "class_type": "ImageScaleBy",
+    "_meta": {
+      "title": "\u56fe\u50cf\u6309\u7cfb\u6570\u7f29\u653e"
+    }
+  },
+  "1744": {
+    "inputs": {
+      "upscale_method": "lanczos",
+      "width": [
+        "1745",
+        0
+      ],
+      "height": [
+        "1745",
+        1
+      ],
+      "crop": "disabled",
+      "image": [
+        "1740",
+        0
+      ]
+    },
+    "class_type": "ImageScale",
+    "_meta": {
+      "title": "\u56fe\u50cf\u7f29\u653e"
+    }
+  },
+  "1745": {
+    "inputs": {
+      "image": [
+        "1747",
+        0
+      ]
+    },
+    "class_type": "Get resolution [Crystools]",
+    "_meta": {
+      "title": "\u83b7\u53d6\u5206\u8fa8\u7387"
+    }
+  },
+  "1746": {
+    "inputs": {
+      "width": [
+        "1729",
+        0
+      ],
+      "height": [
+        "1729",
+        1
+      ],
+      "position": "top-right",
+      "x_offset": 0,
+      "y_offset": 0,
+      "image": [
+        "1743",
+        0
+      ]
+    },
+    "class_type": "ImageCrop+",
+    "_meta": {
+      "title": "\u56fe\u50cf\u88c1\u526a"
+    }
+  },
+  "1747": {
+    "inputs": {
+      "upscale_method": "lanczos",
+      "scale_by": 1,
+      "image": [
+        "1731",
+        0
+      ]
+    },
+    "class_type": "ImageScaleBy",
+    "_meta": {
+      "title": "\u56fe\u50cf\u6309\u7cfb\u6570\u7f29\u653e"
+    }
+  },
+  "1748": {
+    "inputs": {
+      "image": [
+        "1747",
+        0
+      ]
+    },
+    "class_type": "CM_NearestSDXLResolution",
+    "_meta": {
+      "title": "\u6700\u8fd1SDXL\u5206\u8fa8\u7387"
+    }
+  },
+  "1749": {
+    "inputs": {
+      "top": [
+        "1758",
+        2
+      ],
+      "left": [
+        "1758",
+        3
+      ],
+      "right": [
+        "1758",
+        4
+      ],
+      "bottom": [
+        "1758",
+        5
+      ],
+      "image": [
+        "2118",
+        0
+      ]
+    },
+    "class_type": "Image Crop Location",
+    "_meta": {
+      "title": "\u88c1\u526a\u4f4d\u7f6e"
+    }
+  },
+  "1750": {
+    "inputs": {
+      "upscale_method": "lanczos",
+      "width": [
+        "1729",
+        0
+      ],
+      "height": [
+        "1729",
+        1
+      ],
+      "crop": "disabled",
+      "image": [
+        "1761",
+        0
+      ]
+    },
+    "class_type": "ImageScale",
+    "_meta": {
+      "title": "\u56fe\u50cf\u7f29\u653e"
+    }
+  },
+  "1752": {
+    "inputs": {
+      "top": [
+        "1760",
+        2
+      ],
+      "left": [
+        "1760",
+        3
+      ],
+      "right": [
+        "1760",
+        4
+      ],
+      "bottom": [
+        "1760",
+        5
+      ],
+      "image": [
+        "1991",
+        0
+      ]
+    },
+    "class_type": "Image Crop Location",
+    "_meta": {
+      "title": "\u88c1\u526a\u4f4d\u7f6e"
+    }
+  },
+  "1758": {
+    "inputs": {
+      "padding": 24,
+      "region_type": "dominant",
+      "mask": [
+        "2146",
+        0
+      ]
+    },
+    "class_type": "Mask Crop Region",
+    "_meta": {
+      "title": "\u906e\u7f69\u88c1\u526a\u533a\u57df"
+    }
+  },
+  "1760": {
+    "inputs": {
+      "padding": 24,
+      "region_type": "dominant",
+      "mask": [
+        "2146",
+        0
+      ]
+    },
+    "class_type": "Mask Crop Region",
+    "_meta": {
+      "title": "\u906e\u7f69\u88c1\u526a\u533a\u57df"
+    }
+  },
+  "1761": {
+    "inputs": {
+      "boolean": false,
+      "on_true": [
+        "1991",
+        2
+      ],
+      "on_false": [
+        "1752",
+        0
+      ]
+    },
+    "class_type": "Switch any [Crystools]",
+    "_meta": {
+      "title": "\u5207\u6362\u4efb\u610f"
+    }
+  },
+  "1770": {
+    "inputs": {
+      "amount": 1,
+      "samples": [
+        "1794",
+        0
+      ]
+    },
+    "class_type": "RepeatLatentBatch",
+    "_meta": {
+      "title": "\u590d\u5236Latent\u6279\u6b21"
+    }
+  },
+  "1771": {
+    "inputs": {
+      "images": [
+        "1966",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "\u9884\u89c8\u56fe\u50cf"
+    }
+  },
+  "1774": {
+    "inputs": {
+      "samples": [
+        "1793",
+        0
+      ],
+      "vae": [
+        "1783",
+        2
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE\u89e3\u7801"
+    }
+  },
+  "1777": {
+    "inputs": {
+      "preset": "PLUS (high strength)",
+      "model": [
+        "1969",
+        0
+      ]
+    },
+    "class_type": "IPAdapterUnifiedLoader",
+    "_meta": {
+      "title": "IPAdapter\u52a0\u8f7d\u5668"
+    }
+  },
+  "1778": {
+    "inputs": {
+      "strength": 1,
+      "start_percent": 0,
+      "end_percent": 1,
+      "positive": [
+        "1965",
+        0
+      ],
+      "negative": [
+        "1965",
+        1
+      ],
+      "control_net": [
+        "1799",
+        0
+      ],
+      "image": [
+        "1779",
+        0
+      ],
+      "vae": [
+        "1783",
+        2
+      ]
+    },
+    "class_type": "ControlNetApplyAdvanced",
+    "_meta": {
+      "title": "ControlNet\u5e94\u7528\uff08\u65e7\u7248\u9ad8\u7ea7\uff09"
+    }
+  },
+  "1779": {
+    "inputs": {
+      "preprocessor": "DepthAnythingPreprocessor",
+      "resolution": 1024,
+      "image": [
+        "2021",
+        0
+      ]
+    },
+    "class_type": "AIO_Preprocessor",
+    "_meta": {
+      "title": "Aux\u96c6\u6210\u9884\u5904\u7406\u5668"
+    }
+  },
+  "1781": {
+    "inputs": {
+      "text": [
+        "2113",
+        0
+      ],
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "clip": [
+        "1969",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP\u6587\u672c\u7f16\u7801\u5668"
+    }
+  },
+  "1783": {
+    "inputs": {
+      "ckpt_name": "SD1.5/realisticVisionV60B1_v51HyperVAE.safetensors"
+    },
+    "class_type": "CheckpointLoaderSimple",
+    "_meta": {
+      "title": "Checkpoint\u52a0\u8f7d\u5668(\u7b80\u6613)"
+    }
+  },
+  "1785": {
+    "inputs": {
+      "text": "(Wrinkles:1.5),",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "clip": [
+        "1783",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP\u6587\u672c\u7f16\u7801\u5668"
+    }
+  },
+  "1793": {
+    "inputs": {
+      "seed": [
+        "2212",
+        0
+      ],
+      "steps": 20,
+      "cfg": 3,
+      "sampler_name": "euler",
+      "scheduler": "karras",
+      "denoise": 1,
+      "model": [
+        "1885",
+        0
+      ],
+      "positive": [
+        "1778",
+        0
+      ],
+      "negative": [
+        "1778",
+        1
+      ],
+      "latent_image": [
+        "2049",
+        0
+      ]
+    },
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "K\u91c7\u6837\u5668"
+    }
+  },
+  "1794": {
+    "inputs": {
+      "pixels": [
+        "2021",
+        0
+      ],
+      "vae": [
+        "1783",
+        2
+      ]
+    },
+    "class_type": "VAEEncode",
+    "_meta": {
+      "title": "VAE\u7f16\u7801"
+    }
+  },
+  "1799": {
+    "inputs": {
+      "control_net_name": "control_v11f1p_sd15_depth.pth"
+    },
+    "class_type": "ControlNetLoader",
+    "_meta": {
+      "title": "ControlNet\u52a0\u8f7d\u5668"
+    }
+  },
+  "1885": {
+    "inputs": {
+      "weight": 0.65,
+      "start_at": 0,
+      "end_at": 0.8,
+      "weight_type": "prompt is more important",
+      "model": [
+        "1777",
+        0
+      ],
+      "ipadapter": [
+        "1777",
+        1
+      ],
+      "image": [
+        "2116",
+        0
+      ]
+    },
+    "class_type": "IPAdapter",
+    "_meta": {
+      "title": "\u5e94\u7528IPAdapter"
+    }
+  },
+  "1945": {
+    "inputs": {
+      "seed": 415671832323571,
+      "steps": 10,
+      "cfg": 1,
+      "sampler_name": "euler",
+      "scheduler": "karras",
+      "denoise": 0.35000000000000003,
+      "model": [
+        "1946",
+        0
+      ],
+      "positive": [
+        "1947",
+        0
+      ],
+      "negative": [
+        "1948",
+        0
+      ],
+      "latent_image": [
+        "1971",
+        0
+      ]
+    },
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "K\u91c7\u6837\u5668"
+    }
+  },
+  "1946": {
+    "inputs": {
+      "ckpt_name": "flux/flux1-schnell-fp8.safetensors"
+    },
+    "class_type": "CheckpointLoaderSimple",
+    "_meta": {
+      "title": "Checkpoint\u52a0\u8f7d\u5668(\u7b80\u6613)"
+    }
+  },
+  "1947": {
+    "inputs": {
+      "clip_l": "hd, masterpiece, 4k, smooth lines,Clean, flat, new clothes,",
+      "t5xxl": "hd, masterpiece, 4k, smooth lines,Clean, flat, new clothes,",
+      "guidance": 3.5,
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "clip": [
+        "1946",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncodeFlux",
+    "_meta": {
+      "title": "CLIP\u6587\u672c\u7f16\u7801Flux"
+    }
+  },
+  "1948": {
+    "inputs": {
+      "conditioning": [
+        "1947",
+        0
+      ]
+    },
+    "class_type": "ConditioningZeroOut",
+    "_meta": {
+      "title": "\u6761\u4ef6\u96f6\u5316"
+    }
+  },
+  "1949": {
+    "inputs": {
+      "samples": [
+        "1945",
+        0
+      ],
+      "vae": [
+        "1946",
+        2
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE\u89e3\u7801"
+    }
+  },
+  "1965": {
+    "inputs": {
+      "strength": 0.9500000000000001,
+      "start_percent": 0,
+      "end_percent": 1,
+      "positive": [
+        "2176",
+        0
+      ],
+      "negative": [
+        "1785",
+        0
+      ],
+      "control_net": [
+        "1970",
+        0
+      ],
+      "image": [
+        "1966",
+        0
+      ],
+      "vae": [
+        "1783",
+        2
+      ]
+    },
+    "class_type": "ControlNetApplyAdvanced",
+    "_meta": {
+      "title": "ControlNet\u5e94\u7528\uff08\u65e7\u7248\u9ad8\u7ea7\uff09"
+    }
+  },
+  "1966": {
+    "inputs": {
+      "preprocessor": "LineArtPreprocessor",
+      "resolution": 1024,
+      "image": [
+        "2021",
+        0
+      ]
+    },
+    "class_type": "AIO_Preprocessor",
+    "_meta": {
+      "title": "Aux\u96c6\u6210\u9884\u5904\u7406\u5668"
+    }
+  },
+  "1969": {
+    "inputs": {
+      "lora_name": "SD1.5/\u670d\u88c5\u7535\u5546\u51b2\u950b\u8863\u8bbe\u8ba1_v1.0.safetensors",
+      "strength_model": 0.3,
+      "strength_clip": 0.3,
+      "model": [
+        "1783",
+        0
+      ],
+      "clip": [
+        "1783",
+        1
+      ]
+    },
+    "class_type": "LoraLoader",
+    "_meta": {
+      "title": "LoRA\u52a0\u8f7d\u5668"
+    }
+  },
+  "1970": {
+    "inputs": {
+      "control_net_name": "control_v11p_sd15_lineart.pth"
+    },
+    "class_type": "ControlNetLoader",
+    "_meta": {
+      "title": "ControlNet\u52a0\u8f7d\u5668"
+    }
+  },
+  "1971": {
+    "inputs": {
+      "pixels": [
+        "1774",
+        0
+      ],
+      "vae": [
+        "1946",
+        2
+      ]
+    },
+    "class_type": "VAEEncode",
+    "_meta": {
+      "title": "VAE\u7f16\u7801"
+    }
+  },
+  "1991": {
+    "inputs": {
+      "aspect_ratio": "original",
+      "proportional_width": 1,
+      "proportional_height": 1,
+      "fit": "letterbox",
+      "method": "lanczos",
+      "round_to_multiple": "8",
+      "scale_to_side": "longest",
+      "scale_to_length": 1024,
+      "background_color": "#000000",
+      "image": [
+        "2005",
+        0
+      ],
+      "mask": [
+        "2181",
+        0
+      ]
+    },
+    "class_type": "LayerUtility: ImageScaleByAspectRatio V2",
+    "_meta": {
+      "title": "\u6309\u5bbd\u9ad8\u6bd4\u7f29\u653e_V2"
+    }
+  },
+  "1993": {
+    "inputs": {
+      "model_name": "4x-UltraSharp.pth"
+    },
+    "class_type": "UpscaleModelLoader",
+    "_meta": {
+      "title": "\u653e\u5927\u6a21\u578b\u52a0\u8f7d\u5668"
+    }
+  },
+  "1994": {
+    "inputs": {
+      "upscale_model": [
+        "1993",
+        0
+      ],
+      "image": [
+        "2180",
+        0
+      ]
+    },
+    "class_type": "ImageUpscaleWithModel",
+    "_meta": {
+      "title": "\u56fe\u50cf\u901a\u8fc7\u6a21\u578b\u653e\u5927"
+    }
+  },
+  "2005": {
+    "inputs": {
+      "upscale_method": "lanczos",
+      "width": [
+        "2006",
+        0
+      ],
+      "height": [
+        "2006",
+        1
+      ],
+      "crop": "disabled",
+      "image": [
+        "1994",
+        0
+      ]
+    },
+    "class_type": "ImageScale",
+    "_meta": {
+      "title": "\u56fe\u50cf\u7f29\u653e"
+    }
+  },
+  "2006": {
+    "inputs": {
+      "image": [
+        "2180",
+        0
+      ]
+    },
+    "class_type": "Get resolution [Crystools]",
+    "_meta": {
+      "title": "\u83b7\u53d6\u5206\u8fa8\u7387"
+    }
+  },
+  "2010": {
+    "inputs": {
+      "images": [
+        "1779",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "\u9884\u89c8\u56fe\u50cf"
+    }
+  },
+  "2013": {
+    "inputs": {
+      "text1": [
+        "2051",
+        0
+      ],
+      "text2": [
+        "2167",
+        0
+      ],
+      "separator": "\uff0c"
+    },
+    "class_type": "CR Text Concatenate",
+    "_meta": {
+      "title": "\u6587\u672c\u8054\u7ed3"
+    }
+  },
+  "2021": {
+    "inputs": {
+      "boolean": [
+        "2186",
+        0
+      ],
+      "on_true": [
+        "1548",
+        0
+      ],
+      "on_false": [
+        "1991",
+        0
+      ]
+    },
+    "class_type": "Switch any [Crystools]",
+    "_meta": {
+      "title": "\u5207\u6362\u4efb\u610f"
+    }
+  },
+  "2036": {
+    "inputs": {
+      "width": [
+        "2037",
+        0
+      ],
+      "height": [
+        "2037",
+        1
+      ],
+      "batch_size": 1
+    },
+    "class_type": "EmptyLatentImage",
+    "_meta": {
+      "title": "\u7a7aLatent"
+    }
+  },
+  "2037": {
+    "inputs": {
+      "image": [
+        "2021",
+        0
+      ]
+    },
+    "class_type": "Get resolution [Crystools]",
+    "_meta": {
+      "title": "\u83b7\u53d6\u5206\u8fa8\u7387"
+    }
+  },
+  "2040": {
+    "inputs": {
+      "samples": [
+        "2046",
+        0
+      ],
+      "vae": [
+        "2041",
+        2
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE\u89e3\u7801"
+    }
+  },
+  "2041": {
+    "inputs": {
+      "ckpt_name": "flux/flux1-schnell-fp8.safetensors"
+    },
+    "class_type": "CheckpointLoaderSimple",
+    "_meta": {
+      "title": "Checkpoint\u52a0\u8f7d\u5668(\u7b80\u6613)"
+    }
+  },
+  "2042": {
+    "inputs": {
+      "clip_l": [
+        "2169",
+        0
+      ],
+      "t5xxl": [
+        "2169",
+        0
+      ],
+      "guidance": 3.5,
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "clip": [
+        "2041",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncodeFlux",
+    "_meta": {
+      "title": "CLIP\u6587\u672c\u7f16\u7801Flux"
+    }
+  },
+  "2043": {
+    "inputs": {
+      "conditioning": [
+        "2042",
+        0
+      ]
+    },
+    "class_type": "ConditioningZeroOut",
+    "_meta": {
+      "title": "\u6761\u4ef6\u96f6\u5316"
+    }
+  },
+  "2046": {
+    "inputs": {
+      "seed": 717860594669272,
+      "steps": 4,
+      "cfg": 1,
+      "sampler_name": "euler",
+      "scheduler": "simple",
+      "denoise": 1,
+      "model": [
+        "2041",
+        0
+      ],
+      "positive": [
+        "2042",
+        0
+      ],
+      "negative": [
+        "2043",
+        0
+      ],
+      "latent_image": [
+        "2047",
+        0
+      ]
+    },
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "K\u91c7\u6837\u5668"
+    }
+  },
+  "2047": {
+    "inputs": {
+      "width": 512,
+      "height": 512,
+      "batch_size": 1
+    },
+    "class_type": "EmptyLatentImage",
+    "_meta": {
+      "title": "\u7a7aLatent"
+    }
+  },
+  "2048": {
+    "inputs": {
+      "images": [
+        "2040",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "\u9884\u89c8\u56fe\u50cf"
+    }
+  },
+  "2049": {
+    "inputs": {
+      "boolean": [
+        "2185",
+        0
+      ],
+      "on_true": [
+        "1770",
+        0
+      ],
+      "on_false": [
+        "2036",
+        0
+      ]
+    },
+    "class_type": "Switch any [Crystools]",
+    "_meta": {
+      "title": "\u5207\u6362\u4efb\u610f"
+    }
+  },
+  "2050": {
+    "inputs": {
+      "text": [
+        "2013",
+        0
+      ],
+      "text2": "\u6df1\u7eff\u8272\u7684\u536b\u8863\uff0c\uff0c(\u91c7\u7528\u67d4\u8f6f\u4e14\u5149\u6ed1\u7684\u9762\u6599\uff0c\u663e\u5f97\u975e\u5e38\u65b0\u4e14\u6574\u6d01:1.35)\uff0c\u54d1\u5149\u8d28\u611f\uff0c\u9ad8\u6e05\u6444\u5f71\u3001\u9ad8\u6e05\u4ea7\u54c1\u6e32\u67d3\u30014K\u3001\u9ad8\u54c1\u8d28\u3001\u771f\u5b9e\u7eb9\u7406\uff0c\u6781\u9ad8\u7684\u8d28\u611f\u548c\u7cbe\u81f4\u7684\u7ec6\u8282\uff0c\u6574\u4f53\u526a\u88c1\u5bbd\u677e\u8212\u9002\uff0c\u9002\u5408\u5404\u79cd\u4f11\u95f2\u573a\u5408\u7a7f\u7740\uff0c"
+    },
+    "class_type": "ShowText|pysssss",
+    "_meta": {
+      "title": "\u5c55\u793a\u6587\u672c"
+    }
+  },
+  "2051": {
+    "inputs": {
+      "text": [
+        "2191",
+        0
+      ],
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      }
+    },
+    "class_type": "CR Text",
+    "_meta": {
+      "title": "\u6587\u672c"
+    }
+  },
+  "2054": {
+    "inputs": {
+      "text": "\u54d1\u5149\u8d28\u611f\uff0c\u9ad8\u6e05\u6444\u5f71\u3001\u9ad8\u6e05\u4ea7\u54c1\u6e32\u67d3\u30014K\u3001\u9ad8\u54c1\u8d28\u3001\u771f\u5b9e\u7eb9\u7406\u3001(\u767d\u8272\u7684\u80cc\u666f:1.1)\uff0c",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      }
+    },
+    "class_type": "CR Text",
+    "_meta": {
+      "title": "\u6587\u672c"
+    }
+  },
+  "2055": {
+    "inputs": {
+      "expand": 10,
+      "incremental_expandrate": 0,
+      "tapered_corners": true,
+      "flip_input": false,
+      "blur_radius": 0,
+      "lerp_alpha": 1,
+      "decay_factor": 1,
+      "fill_holes": false,
+      "mask": [
+        "2146",
+        0
+      ]
+    },
+    "class_type": "GrowMaskWithBlur",
+    "_meta": {
+      "title": "\u906e\u7f69\u6a21\u7cca\u751f\u957f"
+    }
+  },
+  "2056": {
+    "inputs": {
+      "expand": 30,
+      "incremental_expandrate": 0,
+      "tapered_corners": true,
+      "flip_input": false,
+      "blur_radius": 0,
+      "lerp_alpha": 1,
+      "decay_factor": 1,
+      "fill_holes": false,
+      "mask": [
+        "2146",
+        0
+      ]
+    },
+    "class_type": "GrowMaskWithBlur",
+    "_meta": {
+      "title": "\u906e\u7f69\u6a21\u7cca\u751f\u957f"
+    }
+  },
+  "2057": {
+    "inputs": {
+      "expand": 20,
+      "incremental_expandrate": 0,
+      "tapered_corners": true,
+      "flip_input": false,
+      "blur_radius": 15,
+      "lerp_alpha": 1,
+      "decay_factor": 1,
+      "fill_holes": false,
+      "mask": [
+        "1758",
+        0
+      ]
+    },
+    "class_type": "GrowMaskWithBlur",
+    "_meta": {
+      "title": "\u906e\u7f69\u6a21\u7cca\u751f\u957f"
+    }
+  },
+  "2058": {
+    "inputs": {
+      "mask1": [
+        "2056",
+        0
+      ],
+      "mask2": [
+        "2055",
+        0
+      ]
+    },
+    "class_type": "SubtractMask",
+    "_meta": {
+      "title": "\u906e\u7f69\u76f8\u51cf"
+    }
+  },
+  "2059": {
+    "inputs": {
+      "expand": 0,
+      "incremental_expandrate": 0,
+      "tapered_corners": true,
+      "flip_input": false,
+      "blur_radius": 5,
+      "lerp_alpha": 1,
+      "decay_factor": 1,
+      "fill_holes": false,
+      "mask": [
+        "2058",
+        0
+      ]
+    },
+    "class_type": "GrowMaskWithBlur",
+    "_meta": {
+      "title": "\u906e\u7f69\u6a21\u7cca\u751f\u957f"
+    }
+  },
+  "2061": {
+    "inputs": {
+      "mask": [
+        "2059",
+        0
+      ]
+    },
+    "class_type": "MaskToImage",
+    "_meta": {
+      "title": "\u906e\u7f69\u5230\u56fe\u50cf"
+    }
+  },
+  "2062": {
+    "inputs": {
+      "image1": [
+        "2065",
+        0
+      ],
+      "image2": [
+        "2118",
+        0
+      ],
+      "mask": [
+        "2061",
+        0
+      ]
+    },
+    "class_type": "Mix Images By Mask",
+    "_meta": {
+      "title": "\u906e\u7f69\u6df7\u5408\u56fe\u50cf"
+    }
+  },
+  "2065": {
+    "inputs": {
+      "top": [
+        "1758",
+        2
+      ],
+      "left": [
+        "1758",
+        3
+      ],
+      "right": [
+        "1758",
+        4
+      ],
+      "bottom": [
+        "1758",
+        5
+      ],
+      "crop_blending": 0.05,
+      "crop_sharpening": 0,
+      "image": [
+        "2118",
+        0
+      ],
+      "crop_image": [
+        "1746",
+        0
+      ]
+    },
+    "class_type": "Image Paste Crop by Location",
+    "_meta": {
+      "title": "\u7c98\u8d34\u88c1\u526a\u4f4d\u7f6e"
+    }
+  },
+  "2108": {
+    "inputs": {
+      "model_name": "Qwen/Qwen2.5-3B-Instruct"
+    },
+    "class_type": "Qwen2_ModelLoader_Zho",
+    "_meta": {
+      "title": "\u26f1\ufe0fQwen2 ModelLoader"
+    }
+  },
+  "2110": {
+    "inputs": {
+      "text": [
+        "2113",
+        0
+      ],
+      "text2": "A deep green hoodie, made from soft and smooth fabric that looks very new and tidy (1.35). With a matte finish, high-definition photography, high-definition product rendering, 4K, high-quality, and realistic texture, it has an extremely high level of texture and fine details. The overall cut is loose and comfortable, suitable for various casual occasions."
+    },
+    "class_type": "ShowText|pysssss",
+    "_meta": {
+      "title": "\u5c55\u793a\u6587\u672c"
+    }
+  },
+  "2113": {
+    "inputs": {
+      "prompt": [
+        "2013",
+        0
+      ],
+      "system_instruction": "Translate into English",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "model": [
+        "2108",
+        0
+      ],
+      "tokenizer": [
+        "2108",
+        1
+      ]
+    },
+    "class_type": "Qwen2_Zho",
+    "_meta": {
+      "title": "\u26f1\ufe0fQwen2"
+    }
+  },
+  "2116": {
+    "inputs": {
+      "boolean": [
+        "2184",
+        0
+      ],
+      "on_true": [
+        "2182",
+        0
+      ],
+      "on_false": [
+        "2040",
+        0
+      ]
+    },
+    "class_type": "Switch any [Crystools]",
+    "_meta": {
+      "title": "\u5207\u6362\u4efb\u610f"
+    }
+  },
+  "2118": {
+    "inputs": {
+      "boolean": true,
+      "on_true": [
+        "1949",
+        0
+      ],
+      "on_false": [
+        "1774",
+        0
+      ]
+    },
+    "class_type": "Switch any [Crystools]",
+    "_meta": {
+      "title": "\u5207\u6362\u4efb\u610f"
+    }
+  },
+  "2146": {
+    "inputs": {
+      "boolean": [
+        "2179",
+        0
+      ],
+      "on_true": [
+        "2148",
+        0
+      ],
+      "on_false": [
+        "1991",
+        1
+      ]
+    },
+    "class_type": "Switch any [Crystools]",
+    "_meta": {
+      "title": "\u5207\u6362\u4efb\u610f"
+    }
+  },
+  "2147": {
+    "inputs": {
+      "size": "custom",
+      "custom_width": 512,
+      "custom_height": 512,
+      "color": "#ffffff",
+      "size_as": [
+        "1991",
+        0
+      ]
+    },
+    "class_type": "LayerUtility: ColorImage V2",
+    "_meta": {
+      "title": "\u7eaf\u8272\u56fe\u50cf_V2"
+    }
+  },
+  "2148": {
+    "inputs": {
+      "channel": "red",
+      "image": [
+        "2147",
+        0
+      ]
+    },
+    "class_type": "ImageToMask",
+    "_meta": {
+      "title": "\u56fe\u50cf\u5230\u906e\u7f69"
+    }
+  },
+  "2159": {
+    "inputs": {
+      "cond": [
+        "2179",
+        0
+      ],
+      "tt_value": [
+        "1774",
+        0
+      ],
+      "ff_value": [
+        "2062",
+        0
+      ]
+    },
+    "class_type": "ImpactConditionalBranch",
+    "_meta": {
+      "title": "\u5207\u6362"
+    }
+  },
+  "2167": {
+    "inputs": {
+      "text": "(\u91c7\u7528\u67d4\u8f6f\u4e14\u5149\u6ed1\u7684\u9762\u6599\uff0c\u663e\u5f97\u975e\u5e38\u65b0\u4e14\u6574\u6d01:1.35)\uff0c\u54d1\u5149\u8d28\u611f\uff0c\u9ad8\u6e05\u6444\u5f71\u3001\u9ad8\u6e05\u4ea7\u54c1\u6e32\u67d3\u30014K\u3001\u9ad8\u54c1\u8d28\u3001\u771f\u5b9e\u7eb9\u7406\uff0c\u6781\u9ad8\u7684\u8d28\u611f\u548c\u7cbe\u81f4\u7684\u7ec6\u8282\uff0c\u6574\u4f53\u526a\u88c1\u5bbd\u677e\u8212\u9002\uff0c\u9002\u5408\u5404\u79cd\u4f11\u95f2\u573a\u5408\u7a7f\u7740\uff0c",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      }
+    },
+    "class_type": "CR Text",
+    "_meta": {
+      "title": "\u6587\u672c"
+    }
+  },
+  "2168": {
+    "inputs": {
+      "text1": [
+        "2051",
+        0
+      ],
+      "text2": [
+        "2054",
+        0
+      ],
+      "separator": "\uff0c"
+    },
+    "class_type": "CR Text Concatenate",
+    "_meta": {
+      "title": "\u6587\u672c\u8054\u7ed3"
+    }
+  },
+  "2169": {
+    "inputs": {
+      "prompt": [
+        "2168",
+        0
+      ],
+      "system_instruction": "Translate into English",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "model": [
+        "2108",
+        0
+      ],
+      "tokenizer": [
+        "2108",
+        1
+      ]
+    },
+    "class_type": "Qwen2_Zho",
+    "_meta": {
+      "title": "\u26f1\ufe0fQwen2"
+    }
+  },
+  "2174": {
+    "inputs": {},
+    "class_type": "ConditioningCombine",
+    "_meta": {
+      "title": "\u6761\u4ef6\u5408\u5e76"
+    }
+  },
+  "2175": {
+    "inputs": {
+      "text": "(White background: 1.1),",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "clip": [
+        "1969",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP\u6587\u672c\u7f16\u7801\u5668"
+    }
+  },
+  "2176": {
+    "inputs": {
+      "conditioning_to": [
+        "1781",
+        0
+      ],
+      "conditioning_from": [
+        "2175",
+        0
+      ]
+    },
+    "class_type": "ConditioningConcat",
+    "_meta": {
+      "title": "\u6761\u4ef6\u8054\u7ed3"
+    }
+  },
+  "2179": {
+    "inputs": {
+      "mask": [
+        "1991",
+        1
+      ]
+    },
+    "class_type": "easy isMaskEmpty",
+    "_meta": {
+      "title": "\u906e\u7f69\u662f\u5426\u4e3a\u7a7a"
+    }
+  },
+  "2180": {
+    "inputs": {},
+    "class_type": "ETN_KritaCanvas",
+    "_meta": {
+      "title": "Krita Canvas"
+    }
+  },
+  "2181": {
+    "inputs": {},
+    "class_type": "ETN_KritaSelection",
+    "_meta": {
+      "title": "Krita Selection"
+    }
+  },
+  "2182": {
+    "inputs": {
+      "name": "1. \u53c2\u8003\u56fe\u7247\uff08Reference image\uff09(tips: \u9009\u62e9\u8981\u53c2\u8003\u7684\u56fe\u7247\u56fe\u5c42)"
+    },
+    "class_type": "ETN_KritaImageLayer",
+    "_meta": {
+      "title": "Krita Image Layer"
+    }
+  },
+  "2184": {
+    "inputs": {
+      "name": "2. \u662f\u5426\u5f00\u542f\u53c2\u8003\u56fe\uff08Is the reference image enabled\uff09(tips: \u6253\u5f00\u4e3a\u53c2\u8003\u56fe\u7247\uff0c\u5173\u95ed\u4e3a\u4e0d\u53c2\u8003)",
+      "type": "toggle",
+      "default": true,
+      "min": 0,
+      "max": 0
+    },
+    "class_type": "ETN_Parameter",
+    "_meta": {
+      "title": "Parameter"
+    }
+  },
+  "2185": {
+    "inputs": {
+      "name": "3. \u662f\u5426\u53c2\u8003\u539f\u56fe\u989c\u8272\uff08Do you refer to the color of the original image\uff09(tips: \u6253\u5f00\u4e3a\u53c2\u8003\u56fe\u7247\uff0c\u5173\u95ed\u4e3a\u4e0d\u53c2\u8003)",
+      "type": "toggle",
+      "default": true,
+      "min": 0,
+      "max": 0
+    },
+    "class_type": "ETN_Parameter",
+    "_meta": {
+      "title": "Parameter"
+    }
+  },
+  "2186": {
+    "inputs": {
+      "name": "4. \u662f\u5426\u53bb\u9664\u8fb9\u7ebf\uff08Do you want to remove the thick lines on the edges\uff09(tips:\u5982\u679c\u7ebf\u7a3f\u8fb9\u7f18\u8fc7\u7c97\u4f1a\u5f71\u54cd\u751f\u6210\u6548\u679c\uff0c\u6253\u5f00\u5219\u81ea\u52a8\u5e2e\u60a8\u53bb\u9664\u8fb9\u7f18\u7c97\u7ebf\uff0c\u5173\u95ed\u5219\u4e0d\u53bb\u9664)",
+      "type": "toggle",
+      "default": true,
+      "min": 0,
+      "max": 0
+    },
+    "class_type": "ETN_Parameter",
+    "_meta": {
+      "title": "Parameter"
+    }
+  },
+  "2187": {
+    "inputs": {
+      "prompt": [
+        "2190",
+        0
+      ],
+      "model": "qwen-vl-max",
+      "system_message": "You are a helpful assistant.",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "image": [
+        "2182",
+        0
+      ]
+    },
+    "class_type": "LLMNodeFull",
+    "_meta": {
+      "title": "LLM\u9ad8\u7ea7\u8282\u70b9"
+    }
+  },
+  "2188": {
+    "inputs": {
+      "text": "You need to describe this image and then convert it into a description of xxx, extracting colors and patterns. Only output the converted description and output it in English",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      }
+    },
+    "class_type": "ZuellniTextString",
+    "_meta": {
+      "title": "String"
+    }
+  },
+  "2190": {
+    "inputs": {
+      "text": [
+        "2211",
+        0
+      ],
+      "find": "xxx",
+      "replace": [
+        "2209",
+        0
+      ]
+    },
+    "class_type": "Text Find and Replace",
+    "_meta": {
+      "title": "\u6587\u672c\u66ff\u6362"
+    }
+  },
+  "2191": {
+    "inputs": {
+      "boolean": [
+        "2193",
+        0
+      ],
+      "on_true": [
+        "2187",
+        0
+      ],
+      "on_false": [
+        "2190",
+        0
+      ]
+    },
+    "class_type": "Switch any [Crystools]",
+    "_meta": {
+      "title": "\u5207\u6362\u4efb\u610f"
+    }
+  },
+  "2193": {
+    "inputs": {
+      "name": "5. \u662f\u5426\u8fdb\u884c\u53cd\u63a8\uff08Do you want to reverse engineer)(tips:\u6253\u5f00\u5219\u4e3a\u81ea\u52a8\u6839\u636e\u53c2\u8003\u56fe\u8fdb\u884c\u53cd\u63a8\u63d0\u793a\u8bcd\uff0c\u5173\u95ed\u5219\u4e3a\u624b\u52a8\u8f93\u5165\u63d0\u793a\u8bcd)",
+      "type": "toggle",
+      "default": true,
+      "min": 0,
+      "max": 0
+    },
+    "class_type": "ETN_Parameter",
+    "_meta": {
+      "title": "Parameter"
+    }
+  },
+  "2199": {
+    "inputs": {
+      "text": [
+        "2205",
+        0
+      ],
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      }
+    },
+    "class_type": "ZuellniTextString",
+    "_meta": {
+      "title": "String"
+    }
+  },
+  "2201": {
+    "inputs": {
+      "images": [
+        "2202",
+        0
+      ]
+    },
+    "class_type": "ETN_KritaOutput",
+    "_meta": {
+      "title": "Krita Output"
+    }
+  },
+  "2202": {
+    "inputs": {
+      "width": [
+        "2180",
+        1
+      ],
+      "height": [
+        "2180",
+        2
+      ],
+      "crop": "disabled",
+      "upscale_method": "nearest-exact",
+      "lock_aspect_ratio": true,
+      "image": [
+        "2118",
+        0
+      ]
+    },
+    "class_type": "EG_TX_SFBLS",
+    "_meta": {
+      "title": "2\ud83d\udc15Image scaling lock"
+    }
+  },
+  "2203": {
+    "inputs": {
+      "width": [
+        "2180",
+        1
+      ],
+      "height": [
+        "2180",
+        2
+      ],
+      "crop": "disabled",
+      "upscale_method": "nearest-exact",
+      "lock_aspect_ratio": true,
+      "image": [
+        "2159",
+        0
+      ]
+    },
+    "class_type": "EG_TX_SFBLS",
+    "_meta": {
+      "title": "2\ud83d\udc15Image scaling lock"
+    }
+  },
+  "2204": {
+    "inputs": {
+      "images": [
+        "2203",
+        0
+      ]
+    },
+    "class_type": "ETN_KritaOutput",
+    "_meta": {
+      "title": "Krita Output"
+    }
+  },
+  "2205": {
+    "inputs": {
+      "name": "6. \u63d0\u793a\u8bcd",
+      "type": "text",
+      "default": "",
+      "min": 0,
+      "max": 0
+    },
+    "class_type": "ETN_Parameter",
+    "_meta": {
+      "title": "Parameter"
+    }
+  },
+  "2206": {
+    "inputs": {
+      "text": [
+        "2199",
+        0
+      ],
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      }
+    },
+    "class_type": "ZuellniTextString",
+    "_meta": {
+      "title": "String"
+    }
+  },
+  "2209": {
+    "inputs": {
+      "boolean": [
+        "2193",
+        0
+      ],
+      "on_true": [
+        "2188",
+        0
+      ],
+      "on_false": [
+        "2206",
+        0
+      ]
+    },
+    "class_type": "Switch any [Crystools]",
+    "_meta": {
+      "title": "\u5207\u6362\u4efb\u610f"
+    }
+  },
+  "2211": {
+    "inputs": {
+      "boolean": [
+        "2193",
+        0
+      ],
+      "on_true": [
+        "2188",
+        0
+      ],
+      "on_false": [
+        "2206",
+        0
+      ]
+    },
+    "class_type": "Switch any [Crystools]",
+    "_meta": {
+      "title": "\u5207\u6362\u4efb\u610f"
+    }
+  },
+  "2212": {
+    "inputs": {
+      "seed": 0
+    },
+    "class_type": "easy seed",
+    "_meta": {
+      "title": "\u968f\u673a\u79cd"
+    }
+  },
+  "2213": {
+    "inputs": {
+      "seed": 0
+    },
+    "class_type": "easy seed",
+    "_meta": {
+      "title": "\u968f\u673a\u79cd"
+    }
+  }
+}
