@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import os
 import shutil
 import hashlib
@@ -127,20 +129,7 @@ class AutoUpdate(QObject, ObservableProperties):
         self.state = UpdateState.installing
         
         import zipfile
-        CN_ENC = "gbk"                     # 如果是 Big5/Shift-JIS，请改这里
         with zipfile.ZipFile(archive_path) as zf:
-            for info in zf.infolist():
-                raw = info.filename.encode("cp437")     # 还原原始字节
-                for enc in (CN_ENC, "utf-8"):
-                    try:
-                        new_name = raw.decode(enc)
-                        if new_name != info.filename:   # 真有变化才更新映射
-                            #   ┌── 先 pop 旧键，再放回新键
-                            zf.NameToInfo[new_name] = zf.NameToInfo.pop(info.filename)
-                            info.filename = new_name
-                        break                           # 成功就跳出编码循环
-                    except UnicodeDecodeError:
-                        continue                        # 换下一个编码尝试
             zf.extractall(source_dir)
 
         log.info(f"Installing new plugin version to {self.plugin_dir}")
