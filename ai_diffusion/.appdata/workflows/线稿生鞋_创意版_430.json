@@ -1,17 +1,17 @@
 {
   "1": {
     "inputs": {
-      "ckpt_name": "SDXL/\u4ea7\u54c1\u5199\u5b9e_SHMILY\u53bb\u4f2a\u5b58\u771f_V1.0.safetensors"
+      "ckpt_name": "Juggernaut-XL_v9_RunDiffusionPhoto_v2.safetensors"
     },
     "class_type": "CheckpointLoaderSimple",
     "_meta": {
-      "title": "Checkpoint\u52a0\u8f7d\u5668(\u7b80\u6613)"
+      "title": "Checkpoint加载器(简易)"
     }
   },
   "2": {
     "inputs": {
       "seed": [
-        "186",
+        "181",
         0
       ],
       "steps": 20,
@@ -38,7 +38,7 @@
     },
     "class_type": "KSampler",
     "_meta": {
-      "title": "K\u91c7\u6837\u5668"
+      "title": "K采样器"
     }
   },
   "3": {
@@ -60,7 +60,7 @@
     },
     "class_type": "CLIPTextEncode",
     "_meta": {
-      "title": "CLIP\u6587\u672c\u7f16\u7801\u5668"
+      "title": "CLIP文本编码器"
     }
   },
   "7": {
@@ -82,7 +82,7 @@
     },
     "class_type": "CLIPTextEncode",
     "_meta": {
-      "title": "CLIP\u6587\u672c\u7f16\u7801\u5668"
+      "title": "CLIP文本编码器"
     }
   },
   "15": {
@@ -98,7 +98,7 @@
     },
     "class_type": "VAEDecode",
     "_meta": {
-      "title": "VAE\u89e3\u7801"
+      "title": "VAE解码"
     }
   },
   "17": {
@@ -115,7 +115,7 @@
     },
     "class_type": "EmptyLatentImage",
     "_meta": {
-      "title": "\u7a7aLatent"
+      "title": "空Latent"
     }
   },
   "21": {
@@ -127,7 +127,7 @@
     },
     "class_type": "GetImageSize+",
     "_meta": {
-      "title": "\u83b7\u53d6\u56fe\u50cf\u5c3a\u5bf8"
+      "title": "获取图像尺寸"
     }
   },
   "27": {
@@ -144,7 +144,7 @@
     },
     "class_type": "ConstrainImage|pysssss",
     "_meta": {
-      "title": "\u9650\u5236\u56fe\u50cf\u533a\u57df"
+      "title": "限制图像区域"
     }
   },
   "43": {
@@ -167,7 +167,7 @@
         1
       ],
       "image": [
-        "181",
+        "190",
         0
       ],
       "image_negative": [
@@ -177,27 +177,27 @@
     },
     "class_type": "IPAdapterAdvanced",
     "_meta": {
-      "title": "\u5e94\u7528IPAdapter\uff08\u9ad8\u7ea7\uff09"
+      "title": "应用IPAdapter（高级）"
     }
   },
   "44": {
     "inputs": {
       "preset": "PLUS (high strength)",
       "model": [
-        "1",
+        "110",
         0
       ]
     },
     "class_type": "IPAdapterUnifiedLoader",
     "_meta": {
-      "title": "IPAdapter\u52a0\u8f7d\u5668"
+      "title": "IPAdapter加载器"
     }
   },
   "67": {
     "inputs": {
       "strength": 0.9000000000000001,
       "start_percent": 0,
-      "end_percent": 0.9500000000000002,
+      "end_percent": 0.9000000000000002,
       "positive": [
         "3",
         0
@@ -221,16 +221,16 @@
     },
     "class_type": "ControlNetApplyAdvanced",
     "_meta": {
-      "title": "ControlNet\u5e94\u7528\uff08\u65e7\u7248\u9ad8\u7ea7\uff09"
+      "title": "ControlNet应用（旧版高级）"
     }
   },
   "68": {
     "inputs": {
-      "control_net_name": "sdxl_cn/controlnet-union-sdxl-1.0.safetensors"
+      "control_net_name": "sdxl/diffusion_pytorch_model.safetensors"
     },
     "class_type": "ControlNetLoader",
     "_meta": {
-      "title": "ControlNet\u52a0\u8f7d\u5668"
+      "title": "ControlNet加载器"
     }
   },
   "73": {
@@ -244,7 +244,21 @@
     },
     "class_type": "AIO_Preprocessor",
     "_meta": {
-      "title": "Aux\u96c6\u6210\u9884\u5904\u7406\u5668"
+      "title": "Aux集成预处理器"
+    }
+  },
+  "110": {
+    "inputs": {
+      "lora_name": "织物网面鞋 XL-000016.safetensors",
+      "strength_model": 0.8000000000000002,
+      "model": [
+        "1",
+        0
+      ]
+    },
+    "class_type": "LoraLoaderModelOnly",
+    "_meta": {
+      "title": "LoRA加载器(仅模型)"
     }
   },
   "112": {
@@ -255,17 +269,17 @@
       "fit": "letterbox",
       "method": "lanczos",
       "round_to_multiple": "8",
-      "scale_to_side": "height",
+      "scale_to_side": "width",
       "scale_to_length": 1024,
       "background_color": "#ffffff",
       "image": [
-        "180",
+        "189",
         0
       ]
     },
     "class_type": "LayerUtility: ImageScaleByAspectRatio V2",
     "_meta": {
-      "title": "\u6309\u5bbd\u9ad8\u6bd4\u7f29\u653e_V2"
+      "title": "按宽高比缩放_V2"
     }
   },
   "138": {
@@ -274,7 +288,7 @@
     },
     "class_type": "StyleModelLoader",
     "_meta": {
-      "title": "\u98ce\u683c\u6a21\u578b\u52a0\u8f7d\u5668"
+      "title": "风格模型加载器"
     }
   },
   "139": {
@@ -283,19 +297,19 @@
     },
     "class_type": "CLIPVisionLoader",
     "_meta": {
-      "title": "CLIP\u89c6\u89c9\u52a0\u8f7d\u5668"
+      "title": "CLIP视觉加载器"
     }
   },
   "140": {
     "inputs": {
       "clip_name1": "clip_l.safetensors",
-      "clip_name2": "t5xxl_fp8_e4m3fn.safetensors",
+      "clip_name2": "t5xxl_fp16.safetensors",
       "type": "flux",
       "device": "default"
     },
     "class_type": "DualCLIPLoader",
     "_meta": {
-      "title": "\u53ccCLIP\u52a0\u8f7d\u5668"
+      "title": "双CLIP加载器"
     }
   },
   "141": {
@@ -315,7 +329,7 @@
     },
     "class_type": "easy loraStackApply",
     "_meta": {
-      "title": "\u5e94\u7528 LoRA \u5806"
+      "title": "应用 LoRA 堆"
     }
   },
   "142": {
@@ -324,7 +338,7 @@
     },
     "class_type": "UpscaleModelLoader",
     "_meta": {
-      "title": "\u653e\u5927\u6a21\u578b\u52a0\u8f7d\u5668"
+      "title": "放大模型加载器"
     }
   },
   "143": {
@@ -346,7 +360,7 @@
     },
     "class_type": "CLIPTextEncode",
     "_meta": {
-      "title": "CLIP\u6587\u672c\u7f16\u7801\u5668"
+      "title": "CLIP文本编码器"
     }
   },
   "144": {
@@ -354,7 +368,7 @@
       "downsampling_factor": 1,
       "downsampling_function": "bicubic",
       "mode": "keep aspect ratio",
-      "weight": 0.8600000000000002,
+      "weight": 1,
       "autocrop_margin": 0.10000000000000002,
       "conditioning": [
         "143",
@@ -391,7 +405,19 @@
     },
     "class_type": "VAEDecode",
     "_meta": {
-      "title": "VAE\u89e3\u7801"
+      "title": "VAE解码"
+    }
+  },
+  "148": {
+    "inputs": {
+      "images": [
+        "147",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "预览图像"
     }
   },
   "152": {
@@ -401,7 +427,7 @@
     },
     "class_type": "UNETLoader",
     "_meta": {
-      "title": "UNET\u52a0\u8f7d\u5668"
+      "title": "UNET加载器"
     }
   },
   "153": {
@@ -413,7 +439,7 @@
     },
     "class_type": "ConditioningZeroOut",
     "_meta": {
-      "title": "\u6761\u4ef6\u96f6\u5316"
+      "title": "条件零化"
     }
   },
   "154": {
@@ -426,7 +452,7 @@
     },
     "class_type": "FluxGuidance",
     "_meta": {
-      "title": "Flux\u5f15\u5bfc"
+      "title": "Flux引导"
     }
   },
   "157": {
@@ -435,20 +461,17 @@
     },
     "class_type": "VAELoader",
     "_meta": {
-      "title": "VAE\u52a0\u8f7d\u5668"
+      "title": "VAE加载器"
     }
   },
   "158": {
     "inputs": {
-      "seed": [
-        "187",
-        0
-      ],
+      "seed": 1040180462665087,
       "steps": 25,
       "cfg": 1,
       "sampler_name": "uni_pc_bh2",
       "scheduler": "sgm_uniform",
-      "denoise": 0.6500000000000001,
+      "denoise": 0.7000000000000002,
       "model": [
         "141",
         0
@@ -468,7 +491,7 @@
     },
     "class_type": "KSampler",
     "_meta": {
-      "title": "K\u91c7\u6837\u5668"
+      "title": "K采样器"
     }
   },
   "161": {
@@ -484,7 +507,7 @@
     },
     "class_type": "VAEEncode",
     "_meta": {
-      "title": "VAE\u7f16\u7801"
+      "title": "VAE编码"
     }
   },
   "166": {
@@ -498,7 +521,7 @@
     },
     "class_type": "ImageScaleBy",
     "_meta": {
-      "title": "\u56fe\u50cf\u6309\u7cfb\u6570\u7f29\u653e"
+      "title": "图像按系数缩放"
     }
   },
   "167": {
@@ -514,7 +537,7 @@
     },
     "class_type": "ImageUpscaleWithModel",
     "_meta": {
-      "title": "\u56fe\u50cf\u901a\u8fc7\u6a21\u578b\u653e\u5927"
+      "title": "图像通过模型放大"
     }
   },
   "170": {
@@ -524,7 +547,7 @@
       "text_a": "",
       "text_b": "(Pure background:1.5)",
       "text_c": [
-        "189",
+        "191",
         0
       ],
       "speak_and_recognation": {
@@ -536,12 +559,12 @@
     },
     "class_type": "StringFunction|pysssss",
     "_meta": {
-      "title": "\u5b57\u7b26\u4e32\u64cd\u4f5c"
+      "title": "字符串操作"
     }
   },
   "173": {
     "inputs": {
-      "String": "reflect light\uff0ctext, watermark,ng_deepnegative_v1_75t,(badhandv4:1.2),EasyNegative,(worst quality:2),Avoid images that are blurry,poorly lit,or lack details. No other objects or distractions in the frame. Avoid low-quality textures,dull colors,and flat lighting,, (EasyNegative:1.2),badhandv4,NSFW, (worst quality:2), (low quality:2), (normal quality:2), lowres, normal quality, ((monochrome)), ((grayscale)), skin spots, acnes, skin blemishes, age spot, (ugly:1.331), (duplicate:1.331), (morbid:1.21), (mutilated:1.21), (tranny:1.331), mutated hands, (poorly drawn hands:1.5), blurry, (bad anatomy:1.21), (bad proportions:1.331), extra limbs, (disfigured:1.331), (missing arms:1.331), (extra legs:1.331), (fused fingers:1.61051), (too many fingers:1.61051), (unclear eyes:1.331), lowers, bad hands, missing fingers, extra digit,bad hands, missing fingers, (((extra arms and legs))),lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry,",
+      "String": "reflect light，text, watermark,ng_deepnegative_v1_75t,(badhandv4:1.2),EasyNegative,(worst quality:2),Avoid images that are blurry,poorly lit,or lack details. No other objects or distractions in the frame. Avoid low-quality textures,dull colors,and flat lighting,, (EasyNegative:1.2),badhandv4,NSFW, (worst quality:2), (low quality:2), (normal quality:2), lowres, normal quality, ((monochrome)), ((grayscale)), skin spots, acnes, skin blemishes, age spot, (ugly:1.331), (duplicate:1.331), (morbid:1.21), (mutilated:1.21), (tranny:1.331), mutated hands, (poorly drawn hands:1.5), blurry, (bad anatomy:1.21), (bad proportions:1.331), extra limbs, (disfigured:1.331), (missing arms:1.331), (extra legs:1.331), (fused fingers:1.61051), (too many fingers:1.61051), (unclear eyes:1.331), lowers, bad hands, missing fingers, extra digit,bad hands, missing fingers, (((extra arms and legs))),lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry,",
       "speak_and_recognation": {
         "__value__": [
           false,
@@ -551,7 +574,7 @@
     },
     "class_type": "String",
     "_meta": {
-      "title": "\u5b57\u7b26\u4e32"
+      "title": "字符串"
     }
   },
   "174": {
@@ -559,11 +582,11 @@
       "toggle": false,
       "mode": "simple",
       "num_loras": 2,
-      "lora_1_name": "flux/yue\u7535\u5546\u5199\u5b9e\u8d85\u7ec6\u817b\u8d28\u611f.safetensors",
+      "lora_1_name": "flux_loras/external_paoxie_sole.safetensors",
       "lora_1_strength": 0.30000000000000004,
       "lora_1_model_strength": 1.0000000000000002,
       "lora_1_clip_strength": 1.0000000000000002,
-      "lora_2_name": "flux/\u7ec7\u7269\u7eb9\u7406flux v1000028.safetensors",
+      "lora_2_name": "flux/织物纹理flux v1000028.safetensors",
       "lora_2_strength": 0.5000000000000001,
       "lora_2_model_strength": 1.0000000000000002,
       "lora_2_clip_strength": 1.0000000000000002,
@@ -602,7 +625,7 @@
     },
     "class_type": "easy loraStack",
     "_meta": {
-      "title": "\u7b80\u6613Lora\u5806"
+      "title": "简易Lora堆"
     }
   },
   "176": {
@@ -633,22 +656,22 @@
     },
     "class_type": "ControlNetApplyAdvanced",
     "_meta": {
-      "title": "ControlNet\u5e94\u7528\uff08\u65e7\u7248\u9ad8\u7ea7\uff09"
+      "title": "ControlNet应用（旧版高级）"
     }
   },
   "177": {
     "inputs": {
-      "control_net_name": "flux_cn/diffusion_pytorch_model.safetensors"
+      "control_net_name": "cannys/controlnet_canny_external_paoxie_sole/diffusion_pytorch_model.safetensors"
     },
     "class_type": "ControlNetLoader",
     "_meta": {
-      "title": "ControlNet\u52a0\u8f7d\u5668"
+      "title": "ControlNet加载器"
     }
   },
   "178": {
     "inputs": {
       "preprocessor": "PyraCannyPreprocessor",
-      "resolution": 1024,
+      "resolution": 512,
       "image": [
         "167",
         0
@@ -656,123 +679,58 @@
     },
     "class_type": "AIO_Preprocessor",
     "_meta": {
-      "title": "Aux\u96c6\u6210\u9884\u5904\u7406\u5668"
+      "title": "Aux集成预处理器"
     }
   },
-  "180": {
+  "181": {
+    "inputs": {
+      "seed": 728940021698944
+    },
+    "class_type": "easy seed",
+    "_meta": {
+      "title": "随机种"
+    }
+  },
+  "189": {
     "inputs": {},
     "class_type": "ETN_KritaCanvas",
     "_meta": {
       "title": "Krita Canvas"
     }
   },
-  "181": {
+  "190": {
     "inputs": {
-      "name": "1. \u53c2\u8003(tips: \u9009\u62e9\u8981\u53c2\u8003\u7684\u56fe\u7247\u56fe\u5c42)"
+      "name": "1. 参考图（Reference image）(tips: 请选择所需要参考的图片)"
     },
     "class_type": "ETN_KritaImageLayer",
     "_meta": {
       "title": "Krita Image Layer"
     }
   },
-  "182": {
-    "inputs": {
-      "images": [
-        "184",
-        0
-      ]
-    },
-    "class_type": "ETN_KritaOutput",
-    "_meta": {
-      "title": "Krita Output"
-    }
-  },
-  "184": {
-    "inputs": {
-      "width": [
-        "180",
-        1
-      ],
-      "height": [
-        "180",
-        2
-      ],
-      "crop": "disabled",
-      "upscale_method": "nearest-exact",
-      "lock_aspect_ratio": true,
-      "image": [
-        "147",
-        0
-      ]
-    },
-    "class_type": "EG_TX_SFBLS",
-    "_meta": {
-      "title": "2\ud83d\udc15\u56fe\u50cf\u7f29\u653e\u6bd4\u4f8b\u9501"
-    }
-  },
-  "186": {
-    "inputs": {
-      "seed": 0
-    },
-    "class_type": "easy seed",
-    "_meta": {
-      "title": "\u968f\u673a\u79cd"
-    }
-  },
-  "187": {
-    "inputs": {
-      "seed": 0
-    },
-    "class_type": "easy seed",
-    "_meta": {
-      "title": "\u968f\u673a\u79cd"
-    }
-  },
-  "188": {
-    "inputs": {
-      "prompt": "1. Extract design elements from images and convert them into shoe designs, and describe them.\n2. The material and texture of shoes can only be woven mesh texture.\n3. No need to explain or describe anything else, no output of your thought process, no output of character description, only describe the appearance of the final designed shoe, and only appear text that matches the appearance of the shoe.\n",
-      "model": "qwen-vl-max",
-      "system_message": "You are an AI assistant capable of analyzing images. Please carefully observe the image and provide a detailed and accurate description based on the user's question.",
-      "speak_and_recognation": {
-        "__value__": [
-          false,
-          true
-        ]
-      },
-      "image": [
-        "181",
-        0
-      ]
-    },
-    "class_type": "LLMNodeFull",
-    "_meta": {
-      "title": "\ud83e\udd16 LLM\u9ad8\u7ea7\u8282\u70b9"
-    }
-  },
-  "189": {
+  "191": {
     "inputs": {
       "boolean": [
-        "192",
+        "194",
         0
       ],
       "on_true": [
-        "193",
+        "204",
         0
       ],
       "on_false": [
-        "188",
+        "206",
         0
       ]
     },
-    "class_type": "easy ifElse",
+    "class_type": "Switch any [Crystools]",
     "_meta": {
-      "title": "\u662f\u5426\u5224\u65ad"
+      "title": "切换任意"
     }
   },
-  "190": {
+  "192": {
     "inputs": {
       "String": [
-        "191",
+        "193",
         0
       ],
       "speak_and_recognation": {
@@ -784,13 +742,13 @@
     },
     "class_type": "String",
     "_meta": {
-      "title": "\u5b57\u7b26\u4e32"
+      "title": "字符串"
     }
   },
-  "191": {
+  "193": {
     "inputs": {
-      "name": "3. \u63d0\u793a\u8bcd",
-      "type": "text",
+      "name": "3. 提示词（prompt）(tips: 请输入你对线稿的描述。)",
+      "type": "prompt (positive)",
       "default": "",
       "min": 0,
       "max": 0
@@ -800,11 +758,11 @@
       "title": "Parameter"
     }
   },
-  "192": {
+  "194": {
     "inputs": {
-      "name": "2. \u662f\u5426\u624b\u8f93\u63d0\u793a\u8bcd(tips:\u6253\u5f00\u4e3a\u624b\u8f93\u63d0\u793a\u8bcd\uff0c\u5173\u95ed\u4e3a\u81ea\u52a8\u53cd\u63a8\u63d0\u793a\u8bcd)",
+      "name": "2. 开启参考图参考（Open reference image reference）(tips:开启后，输入的提示词将不起作用，AI将通过上传的参考图控制生成)",
       "type": "toggle",
-      "default": false,
+      "default": true,
       "min": 0,
       "max": 0
     },
@@ -813,14 +771,145 @@
       "title": "Parameter"
     }
   },
-  "193": {
+  "195": {
     "inputs": {
-      "prompt": [
-        "190",
+      "boolean": [
+        "194",
         0
       ],
-      "model": "qwen-vl-max",
-      "system_message": "\u4f60\u9700\u8981\u5c06\u6211\u8f93\u5165\u7684\u4e2d\u6587\u7ffb\u8bd1\u6210\u82f1\u6587",
+      "on_true": [
+        "196",
+        0
+      ],
+      "on_false": [
+        "197",
+        0
+      ]
+    },
+    "class_type": "Switch any [Crystools]",
+    "_meta": {
+      "title": "切换任意"
+    }
+  },
+  "196": {
+    "inputs": {
+      "Number": "0.5"
+    },
+    "class_type": "Float",
+    "_meta": {
+      "title": "浮点"
+    }
+  },
+  "197": {
+    "inputs": {
+      "Number": "0"
+    },
+    "class_type": "Float",
+    "_meta": {
+      "title": "浮点"
+    }
+  },
+  "198": {
+    "inputs": {
+      "images": [
+        "199",
+        0
+      ]
+    },
+    "class_type": "ETN_KritaOutput",
+    "_meta": {
+      "title": "Krita Output"
+    }
+  },
+  "199": {
+    "inputs": {
+      "width": [
+        "189",
+        1
+      ],
+      "height": [
+        "189",
+        2
+      ],
+      "crop": "disabled",
+      "upscale_method": "nearest-exact",
+      "lock_aspect_ratio": true,
+      "image": [
+        "147",
+        0
+      ]
+    },
+    "class_type": "EG_TX_SFBLS",
+    "_meta": {
+      "title": "2🐕Image scaling lock"
+    }
+  },
+  "204": {
+    "inputs": {
+      "model": "qwen2.5-vl-72b-instruct",
+      "system_prompt": "You are an AI assistant capable of analyzing images. Please carefully observe the image and provide a detailed and accurate description based on the user's question.",
+      "user_prompt": "Extract key design elements for footwear design from the image, including but not limited to: colors, design style, patterns, textures, and design concepts.\n﻿\nTransform the extracted design elements into shoe designs with detailed descriptions, generating optimized prompt text suitable for the SDXL model.\n﻿\nRequirements:\n﻿\nThe shoes must exclusively use woven mesh material/texture.\n﻿\nThe prompt text must be concise, precise and compliant with SDXL model input specifications.\n﻿\nNo need to explain or describe anything else, no output of your thought process, no output of character description, only describe the appearance of the final designed shoe,The material of the shoe body must be described and given priority， and only appear text that matches the appearance of the shoe.\n﻿\nOutput example:\nThe shoe features a sleek, modern design with a predominantly white upper constructed from woven mesh material for breathability and flexibility. The midsole is accentuated with vibrant pink stripes, adding a pop of color to the otherwise monochrome palette. The outsole is designed with a dynamic, sculpted pattern in shades of gray and pink, providing both style and traction. The overall aesthetic is sporty and stylish, The background should be pure white,suitable for both athletic activities and casual wear.",
+      "max_tokens": 1024,
+      "temperature": 0.7000000000000002,
+      "detail": "auto",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "images": [
+        "190",
+        0
+      ]
+    },
+    "class_type": "BizyAirSiliconCloudVLMAPI",
+    "_meta": {
+      "title": "☁️BizyAir SiliconCloud VLM API"
+    }
+  },
+  "206": {
+    "inputs": {
+      "text_1": [
+        "207",
+        0
+      ],
+      "text_2": [
+        "208",
+        0
+      ]
+    },
+    "class_type": "FusionText",
+    "_meta": {
+      "title": "融合文本"
+    }
+  },
+  "207": {
+    "inputs": {
+      "String": "HD photography, HD product rendering, 4K, high quality， no background,advanced upper design, high-quality product design, exquisite shoelaces, (white background: 1.15)",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      }
+    },
+    "class_type": "String",
+    "_meta": {
+      "title": "字符串"
+    }
+  },
+  "208": {
+    "inputs": {
+      "prompt": [
+        "192",
+        0
+      ],
+      "model": "qwen-plus",
+      "system_message": "You are creating a prompt for Stable Diffusion to generate an image. First step: understand the input and generate a text prompt for the input. Second step: only respond in English with the prompt itself in phrase, but embellish it as needed but keep it under 50 tokens.",
+      "temperature": 0.7000000000000001,
+      "max_tokens": 1024,
+      "detail": "auto",
       "speak_and_recognation": {
         "__value__": [
           false,
@@ -830,116 +919,7 @@
     },
     "class_type": "LLMNodeFull",
     "_meta": {
-      "title": "\ud83e\udd16 LLM\u9ad8\u7ea7\u8282\u70b9"
-    }
-  },
-  "195": {
-    "inputs": {
-      "Number": "0"
-    },
-    "class_type": "Float",
-    "_meta": {
-      "title": "\u6d6e\u70b9"
-    }
-  },
-  "196": {
-    "inputs": {
-      "boolean": [
-        "192",
-        0
-      ],
-      "on_true": [
-        "195",
-        0
-      ],
-      "on_false": [
-        "197",
-        0
-      ]
-    },
-    "class_type": "easy ifElse",
-    "_meta": {
-      "title": "\u662f\u5426\u5224\u65ad"
-    }
-  },
-  "197": {
-    "inputs": {
-      "Number": "0.5"
-    },
-    "class_type": "Float",
-    "_meta": {
-      "title": "\u6d6e\u70b9"
-    }
-  },
-  "198": {
-    "inputs": {
-      "images": [
-        "147",
-        0
-      ]
-    },
-    "class_type": "PreviewImage",
-    "_meta": {
-      "title": "\u9884\u89c8\u56fe\u50cf"
-    }
-  },
-  "200": {
-    "inputs": {
-      "inputcount": 3,
-      "direction": "right",
-      "match_image_size": true,
-      "Update inputs": null,
-      "image_1": [
-        "180",
-        0
-      ],
-      "image_2": [
-        "181",
-        0
-      ],
-      "image_3": [
-        "184",
-        0
-      ]
-    },
-    "class_type": "ImageConcatMulti",
-    "_meta": {
-      "title": "\u56fe\u50cf\u8054\u7ed3\uff08\u591a\u4e2a\uff09"
-    }
-  },
-  "201": {
-    "inputs": {
-      "images": [
-        "202",
-        0
-      ]
-    },
-    "class_type": "ETN_KritaOutput",
-    "_meta": {
-      "title": "Krita Output"
-    }
-  },
-  "202": {
-    "inputs": {
-      "width": [
-        "180",
-        1
-      ],
-      "height": [
-        "180",
-        2
-      ],
-      "crop": "disabled",
-      "upscale_method": "nearest-exact",
-      "lock_aspect_ratio": true,
-      "image": [
-        "200",
-        0
-      ]
-    },
-    "class_type": "EG_TX_SFBLS",
-    "_meta": {
-      "title": "2\ud83d\udc15\u56fe\u50cf\u7f29\u653e\u6bd4\u4f8b\u9501"
+      "title": "LLM高级节点"
     }
   }
 }

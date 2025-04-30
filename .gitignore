@@ -1,4 +1,3 @@
-.appdata
 .coverage
 .debug
 .env
@@ -33,3 +32,4 @@ scripts
 media
 docs
 .github
+/.appdata

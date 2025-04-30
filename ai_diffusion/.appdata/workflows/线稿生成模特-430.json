@@ -2,7 +2,7 @@
   "543": {
     "inputs": {
       "ckpt_name": "depth_anything_v2_vitl.pth",
-      "resolution": 1408,
+      "resolution": 1024,
       "image": [
         "690",
         0
@@ -10,7 +10,7 @@
     },
     "class_type": "DepthAnythingV2Preprocessor",
     "_meta": {
-      "title": "DepthAnythingV2\u6df1\u5ea6\u9884\u5904\u7406\u5668"
+      "title": "DepthAnythingV2深度预处理器"
     }
   },
   "545": {
@@ -25,7 +25,7 @@
     },
     "class_type": "LayerColor: Brightness & Contrast",
     "_meta": {
-      "title": "\u4eae\u5ea6/\u5bf9\u6bd4\u5ea6"
+      "title": "亮度/对比度"
     }
   },
   "546": {
@@ -40,7 +40,7 @@
     },
     "class_type": "LayerColor: Brightness & Contrast",
     "_meta": {
-      "title": "\u4eae\u5ea6/\u5bf9\u6bd4\u5ea6"
+      "title": "亮度/对比度"
     }
   },
   "549": {
@@ -53,7 +53,7 @@
     },
     "class_type": "ImageToMask",
     "_meta": {
-      "title": "\u56fe\u50cf\u5230\u906e\u7f69"
+      "title": "图像到遮罩"
     }
   },
   "563": {
@@ -62,7 +62,7 @@
     },
     "class_type": "CheckpointLoaderSimple",
     "_meta": {
-      "title": "Checkpoint\u52a0\u8f7d\u5668(\u7b80\u6613)"
+      "title": "Checkpoint加载器(简易)"
     }
   },
   "564": {
@@ -95,7 +95,7 @@
     },
     "class_type": "KSampler",
     "_meta": {
-      "title": "K\u91c7\u6837\u5668"
+      "title": "K采样器"
     }
   },
   "565": {
@@ -117,7 +117,7 @@
     },
     "class_type": "CLIPTextEncode",
     "_meta": {
-      "title": "CLIP\u6587\u672c\u7f16\u7801\u5668"
+      "title": "CLIP文本编码器"
     }
   },
   "567": {
@@ -135,7 +135,7 @@
         1
       ],
       "image": [
-        "767",
+        "584",
         0
       ],
       "attn_mask": [
@@ -145,7 +145,7 @@
     },
     "class_type": "IPAdapter",
     "_meta": {
-      "title": "\u5e94\u7528IPAdapter"
+      "title": "应用IPAdapter"
     }
   },
   "568": {
@@ -158,7 +158,7 @@
     },
     "class_type": "IPAdapterUnifiedLoader",
     "_meta": {
-      "title": "IPAdapter\u52a0\u8f7d\u5668"
+      "title": "IPAdapter加载器"
     }
   },
   "570": {
@@ -174,7 +174,7 @@
     },
     "class_type": "VAEDecode",
     "_meta": {
-      "title": "VAE\u89e3\u7801"
+      "title": "VAE解码"
     }
   },
   "575": {
@@ -205,7 +205,7 @@
     },
     "class_type": "ControlNetApplyAdvanced",
     "_meta": {
-      "title": "ControlNet\u5e94\u7528\uff08\u65e7\u7248\u9ad8\u7ea7\uff09"
+      "title": "ControlNet应用（旧版高级）"
     }
   },
   "576": {
@@ -214,7 +214,7 @@
     },
     "class_type": "ControlNetLoader",
     "_meta": {
-      "title": "ControlNet\u52a0\u8f7d\u5668"
+      "title": "ControlNet加载器"
     }
   },
   "580": {
@@ -241,7 +241,7 @@
     },
     "class_type": "CLIPTextEncodeFlux",
     "_meta": {
-      "title": "CLIP\u6587\u672c\u7f16\u7801Flux"
+      "title": "CLIP文本编码Flux"
     }
   },
   "581": {
@@ -259,7 +259,7 @@
     },
     "class_type": "ImageResizeKJ",
     "_meta": {
-      "title": "\u56fe\u50cf\u7f29\u653e\uff08KJ\uff09"
+      "title": "图像缩放（KJ）"
     }
   },
   "582": {
@@ -268,7 +268,7 @@
     },
     "class_type": "CheckpointLoaderSimple",
     "_meta": {
-      "title": "Checkpoint\u52a0\u8f7d\u5668(\u7b80\u6613)"
+      "title": "Checkpoint加载器(简易)"
     }
   },
   "583": {
@@ -280,7 +280,7 @@
     },
     "class_type": "ConditioningZeroOut",
     "_meta": {
-      "title": "\u6761\u4ef6\u96f6\u5316"
+      "title": "条件零化"
     }
   },
   "584": {
@@ -296,7 +296,7 @@
     },
     "class_type": "VAEDecode",
     "_meta": {
-      "title": "VAE\u89e3\u7801"
+      "title": "VAE解码"
     }
   },
   "585": {
@@ -329,7 +329,7 @@
     },
     "class_type": "KSampler",
     "_meta": {
-      "title": "K\u91c7\u6837\u5668"
+      "title": "K采样器"
     }
   },
   "586": {
@@ -341,7 +341,7 @@
     },
     "class_type": "PreviewImage",
     "_meta": {
-      "title": "\u9884\u89c8\u56fe\u50cf"
+      "title": "预览图像"
     }
   },
   "664": {
@@ -358,7 +358,7 @@
     },
     "class_type": "EmptyLatentImage",
     "_meta": {
-      "title": "\u7a7aLatent"
+      "title": "空Latent"
     }
   },
   "666": {
@@ -370,7 +370,7 @@
     },
     "class_type": "MaskToImage",
     "_meta": {
-      "title": "\u906e\u7f69\u5230\u56fe\u50cf"
+      "title": "遮罩到图像"
     }
   },
   "667": {
@@ -382,7 +382,7 @@
     },
     "class_type": "PreviewImage",
     "_meta": {
-      "title": "\u9884\u89c8\u56fe\u50cf"
+      "title": "预览图像"
     }
   },
   "669": {
@@ -398,12 +398,12 @@
     },
     "class_type": "VAEDecode",
     "_meta": {
-      "title": "VAE\u89e3\u7801"
+      "title": "VAE解码"
     }
   },
   "673": {
     "inputs": {
-      "seed": 1087306609276177,
+      "seed": 980001631158992,
       "steps": 6,
       "cfg": 1,
       "sampler_name": "euler",
@@ -428,7 +428,7 @@
     },
     "class_type": "KSampler",
     "_meta": {
-      "title": "K\u91c7\u6837\u5668"
+      "title": "K采样器"
     }
   },
   "675": {
@@ -444,7 +444,7 @@
     },
     "class_type": "VAEEncode",
     "_meta": {
-      "title": "VAE\u7f16\u7801"
+      "title": "VAE编码"
     }
   },
   "685": {
@@ -462,30 +462,30 @@
     },
     "class_type": "ImageResizeKJ",
     "_meta": {
-      "title": "\u56fe\u50cf\u7f29\u653e\uff08KJ\uff09"
+      "title": "图像缩放（KJ）"
     }
   },
   "690": {
     "inputs": {
-      "width": 1408,
-      "height": 1408,
+      "width": 1024,
+      "height": 1024,
       "upscale_method": "lanczos",
       "keep_proportion": true,
       "divisible_by": 2,
       "crop": "disabled",
       "image": [
-        "872",
+        "897",
         0
       ]
     },
     "class_type": "ImageResizeKJ",
     "_meta": {
-      "title": "\u56fe\u50cf\u7f29\u653e\uff08KJ\uff09"
+      "title": "图像缩放（KJ）"
     }
   },
   "693": {
     "inputs": {
-      "negative": "Black stroke, (nsfw:1.5)\uff0c(more arm:1.2)\uff0c(more leg:1.2)\uff0c(look forward the camera:1.4),(glove:1.7),(cartoon:1.4), Leather material,hair, fur, false, dark, (overexposed: 1.2), distorted, low quality, (high contrast: 1.2), (wrinkled:1.2), (hanging: 1.3),(floating: 1.3), complex background, mottled background, (high reflection material: 1.1)\uff0c(high contrast:1.3), (dark skin:1.2)",
+      "negative": "Black stroke, (nsfw:1.5)，(more arm:1.2)，(more leg:1.2)，(look forward the camera:1.4),(glove:1.7),(cartoon:1.4), Leather material,hair, fur, false, dark, (overexposed: 1.2), distorted, low quality, (high contrast: 1.2), (wrinkled:1.2), (hanging: 1.3),(floating: 1.3), complex background, mottled background, (high reflection material: 1.1)，(high contrast:1.3), (dark skin:1.2)",
       "speak_and_recognation": {
         "__value__": [
           false,
@@ -495,7 +495,7 @@
     },
     "class_type": "easy negative",
     "_meta": {
-      "title": "\u8d1f\u9762\u63d0\u793a\u8bcd"
+      "title": "负面提示词"
     }
   },
   "730": {
@@ -523,7 +523,7 @@
     },
     "class_type": "IPAdapter",
     "_meta": {
-      "title": "\u5e94\u7528IPAdapter"
+      "title": "应用IPAdapter"
     }
   },
   "731": {
@@ -535,7 +535,7 @@
     },
     "class_type": "InvertMask (segment anything)",
     "_meta": {
-      "title": "\u53cd\u8f6c\u906e\u7f69"
+      "title": "反转遮罩"
     }
   },
   "732": {
@@ -551,7 +551,7 @@
     },
     "class_type": "LayerUtility: ColorImage V2",
     "_meta": {
-      "title": "\u7eaf\u8272\u56fe\u50cf_V2"
+      "title": "纯色图像_V2"
     }
   },
   "750": {
@@ -559,13 +559,13 @@
       "coarse": "disable",
       "resolution": 1408,
       "image": [
-        "872",
+        "897",
         0
       ]
     },
     "class_type": "LineArtPreprocessor",
     "_meta": {
-      "title": "LineArt\u827a\u672f\u7ebf\u9884\u5904\u7406\u5668"
+      "title": "LineArt艺术线预处理器"
     }
   },
   "751": {
@@ -577,7 +577,7 @@
     },
     "class_type": "PreviewImage",
     "_meta": {
-      "title": "\u9884\u89c8\u56fe\u50cf"
+      "title": "预览图像"
     }
   },
   "752": {
@@ -607,7 +607,7 @@
     },
     "class_type": "Qwen2_Zho",
     "_meta": {
-      "title": "\u26f1\ufe0fQwen2"
+      "title": "⛱️Qwen2"
     }
   },
   "753": {
@@ -616,12 +616,11 @@
     },
     "class_type": "Qwen2_ModelLoader_Zho",
     "_meta": {
-      "title": "\u26f1\ufe0fQwen2 ModelLoader"
+      "title": "⛱️Qwen2 ModelLoader"
     }
   },
   "754": {
     "inputs": {
-      "text": "Hyper-realistic photograph captures a young, poised model against a clean, studio-lit backdrop. She sports a sleek, fitted yellow dress that highlights her elegant silhouette, adorned with delicate black accents for a contemporary, refined aesthetic. Accompanied by sharp black heels, her ensemble exudes sophistication and elegance. Her long, flowing black hair adds to her allure, while her radiant smile completes her chic appearance. The image boasts a high-quality, low-contrast clarity, showcasing the natural texture of her flawless skin and her vibrant, unposed expression.",
       "anything": [
         "752",
         0
@@ -629,7 +628,7 @@
     },
     "class_type": "easy showAnything",
     "_meta": {
-      "title": "\u5c55\u793a\u4efb\u4f55"
+      "title": "展示任何"
     }
   },
   "755": {
@@ -651,7 +650,7 @@
     },
     "class_type": "CLIPTextEncode",
     "_meta": {
-      "title": "CLIP\u6587\u672c\u7f16\u7801\u5668"
+      "title": "CLIP文本编码器"
     }
   },
   "766": {
@@ -666,27 +665,7 @@
     },
     "class_type": "LayerColor: Brightness & Contrast",
     "_meta": {
-      "title": "\u4eae\u5ea6/\u5bf9\u6bd4\u5ea6"
-    }
-  },
-  "767": {
-    "inputs": {
-      "boolean": [
-        "878",
-        0
-      ],
-      "on_true": [
-        "874",
-        0
-      ],
-      "on_false": [
-        "584",
-        0
-      ]
-    },
-    "class_type": "Switch any [Crystools]",
-    "_meta": {
-      "title": "\u5207\u6362\u4efb\u610f"
+      "title": "亮度/对比度"
     }
   },
   "787": {
@@ -695,7 +674,7 @@
         "752",
         0
       ],
-      "system_instruction": "\u628a\u8fd9\u6bb5\u63cf\u8ff0\u8f6c\u4e3a\u9002\u914dsdxl\u5927\u6a21\u578b\u7684prompt\uff0c\u5168\u82f1\u6587\uff0c\u53ea\u8f93\u51fa\u7ed3\u679c\uff0c\u7981\u6b62\u6709\u6807\u9898\u548c\u7279\u6b8a\u7b26\u53f7\n\n\u8981\u6c42\uff1a\n1\uff0c\u53ea\u8f93\u51fa\u7ed3\u679c\uff0c\u82f1\u6587\uff0c\u82f1\u6587\u7b26\u53f7\u3002\n2\uff0c\u7981\u6b62\u6807\u9898\u548c\u7279\u6b8a\u7b26\u53f7\u548c\u53cc\u5f15\u53f7\u3002\n3\uff0c\u5f3a\u8c03\u8d85\u903c\u771f\u56fe\u7247\uff0c\u8d85\u5199\u5b9e\u98ce\u3002\n4\uff0c100\u5b57\u7b26\u4ee5\u5185",
+      "system_instruction": "把这段描述转为适配sdxl大模型的prompt，全英文，只输出结果，禁止有标题和特殊符号\n\n要求：\n1，只输出结果，英文，英文符号。\n2，禁止标题和特殊符号和双引号。\n3，强调超逼真图片，超写实风。\n4，100字符以内",
       "speak_and_recognation": {
         "__value__": [
           false,
@@ -713,7 +692,7 @@
     },
     "class_type": "Qwen2_Zho",
     "_meta": {
-      "title": "\u26f1\ufe0fQwen2"
+      "title": "⛱️Qwen2"
     }
   },
   "788": {
@@ -721,17 +700,16 @@
       "text": [
         "857",
         0
-      ],
-      "text2": "A young, elegant, and confident model with long, flowing black hair and a radiant smile is portrayed. She is adorned in a sleek, form-fitting yellow dress that highlights her graceful figure. The dress incorporates subtle black accents, enhancing its modern and sophisticated design. Her ensemble is perfected with stylish black heels, contributing to her chic and polished appearance.,Create an incredibly realistic, hyper-detailed photo of a poised model in a sleek yellow dress with black accents, against a clean studio backdrop. Add sophistication with sharp black heels and flowing black hair, finishing with a radiant smile. Ensure high quality, low contrast for natural skin texture and vibrant expression."
+      ]
     },
     "class_type": "ShowText|pysssss",
     "_meta": {
-      "title": "\u5c55\u793a\u6587\u672c"
+      "title": "展示文本"
     }
   },
   "790": {
     "inputs": {
-      "text": "\u53bb\u6389\u63d2\u753b\u548c\u9ed1\u767d\u56fe\u76f8\u5173\u7684\u63cf\u8ff0\uff0c\u628a\u63cf\u8ff0\u6539\u4e3a\u65f6\u5c1a\u7684\u670d\u9970\u3002\u589e\u52a0\u98ce\u683c\u63cf\u8ff0\uff1a\u8d85\u5199\u5b9e\u98ce\u683c\uff0c\u6e05\u6670\u7684\u5e03\u6599\u7eb9\u7406\u3002\n\n\u8981\u6c42\uff1a\n1\uff0c\u7b80\u6d01\u660e\u4e86\uff0c\u53ea\u8f93\u51fa\u7b54\u6848\uff0c\u7eaf\u82f1\u6587\u3002\n2\uff0c\u53bb\u6389\u63d2\u753b\u3001illustration\u3001\u9ed1\u767d\u56fe\u7b49\u6709\u5173\u5361\u901a\u63d2\u753b\u7684\u753b\u9762\u63cf\u8ff0\u3002\n3\uff0c\u53bb\u6389\u6240\u6709\u989c\u8272\u63cf\u8ff0\uff0c\u5f3a\u5316\u8863\u670d\u4e0a\u7684\u56fe\u6848\u63cf\u8ff0\u3002\n4\uff0c\u589e\u52a0\u6216\u5f3a\u5316\u63cf\u8ff0\uff1a",
+      "text": "去掉插画和黑白图相关的描述，把描述改为时尚的服饰。增加风格描述：超写实风格，清晰的布料纹理。\n\n要求：\n1，简洁明了，只输出答案，纯英文。\n2，去掉插画、illustration、黑白图等有关卡通插画的画面描述。\n3，去掉所有颜色描述，强化衣服上的图案描述。\n4，增加或强化描述：",
       "speak_and_recognation": {
         "__value__": [
           false,
@@ -741,7 +719,7 @@
     },
     "class_type": "CR Text",
     "_meta": {
-      "title": "\u6587\u672c"
+      "title": "文本"
     }
   },
   "797": {
@@ -758,7 +736,7 @@
     },
     "class_type": "EmptyLatentImage",
     "_meta": {
-      "title": "\u7a7aLatent"
+      "title": "空Latent"
     }
   },
   "803": {
@@ -777,7 +755,7 @@
     },
     "class_type": "LoraLoader",
     "_meta": {
-      "title": "LoRA\u52a0\u8f7d\u5668"
+      "title": "LoRA加载器"
     }
   },
   "828": {
@@ -785,7 +763,7 @@
       "guide_size": 512,
       "guide_size_for": true,
       "max_size": 1024,
-      "seed": 31448630879588,
+      "seed": 829644618111795,
       "steps": 20,
       "cfg": 1,
       "sampler_name": "euler",
@@ -825,7 +803,7 @@
         ]
       },
       "image": [
-        "685",
+        "898",
         0
       ],
       "model": [
@@ -859,7 +837,7 @@
     },
     "class_type": "FaceDetailer",
     "_meta": {
-      "title": "\u9762\u90e8\u7ec6\u5316"
+      "title": "面部细化"
     }
   },
   "847": {
@@ -881,7 +859,7 @@
     },
     "class_type": "CLIPTextEncode",
     "_meta": {
-      "title": "CLIP\u6587\u672c\u7f16\u7801\u5668"
+      "title": "CLIP文本编码器"
     }
   },
   "848": {
@@ -893,7 +871,7 @@
     },
     "class_type": "ConditioningZeroOut",
     "_meta": {
-      "title": "\u6761\u4ef6\u96f6\u5316"
+      "title": "条件零化"
     }
   },
   "849": {
@@ -903,7 +881,7 @@
     },
     "class_type": "SAMLoader",
     "_meta": {
-      "title": "SAM\u52a0\u8f7d\u5668"
+      "title": "SAM加载器"
     }
   },
   "850": {
@@ -912,7 +890,7 @@
     },
     "class_type": "UltralyticsDetectorProvider",
     "_meta": {
-      "title": "\u68c0\u6d4b\u52a0\u8f7d\u5668"
+      "title": "检测加载器"
     }
   },
   "851": {
@@ -927,7 +905,7 @@
     },
     "class_type": "CR Text",
     "_meta": {
-      "title": "\u6587\u672c"
+      "title": "文本"
     }
   },
   "852": {
@@ -945,7 +923,7 @@
     },
     "class_type": "CR Text",
     "_meta": {
-      "title": "\u6587\u672c"
+      "title": "文本"
     }
   },
   "853": {
@@ -962,12 +940,12 @@
     },
     "class_type": "CR Text Concatenate",
     "_meta": {
-      "title": "\u6587\u672c\u8054\u7ed3"
+      "title": "文本联结"
     }
   },
   "854": {
     "inputs": {
-      "text": "\n5\uff0c\u628a\u201chyper-realistic photograph\u201d\u653e\u5728\u53e5\u9996\u3002\u5f3a\u8c03\uff1a\u68da\u5185\u5c04\u5f71\uff0c\u5e72\u51c0\u7684\u5149\u7167\uff0c\u903c\u771f\u7684\u7167\u7247\uff0c\u8d85\u5199\u5b9e\u98ce\u683c\uff0c\u81ea\u7136\u6293\u62cd\u7167\uff0c\u6e05\u65b0\u660e\u4eae\uff0c\u4f4e\u5bf9\u6bd4\u5ea6\uff0c\u771f\u5b9e\u9ad8\u7ea7\u7684\u8d28\u611f\uff0c\u8d85\u9ad8\u8d28\u91cf\u3002\u5df4\u9ece\u65f6\u88c5\u5468\u6a21\u7279\uff0c\u767d\u7699\u7684\u76ae\u80a4\u3001\u771f\u5b9e\u7684\u76ae\u80a4\u8d28\u611f,\u773c\u775b\u4e0d\u770b\u5411\u955c\u5934,\u6f02\u4eae\u7684\u8138\u3001\u5f00\u6717\u7684\u5fae\u7b11\u3001\u51c6\u786e\u7684\u4eba\u4f53\u7ed3\u6784\u3002\n6\uff0c\u7981\u6b62\u5305\u542b\u6807\u9898\u548c\u7279\u6b8a\u7b26\u53f7\u3002\n7\uff0c\u683c\u5f0f\u4e3a\u9002\u914dflux\u5927\u6a21\u578b\u7684prompt\u3002",
+      "text": "\n5，把“hyper-realistic photograph”放在句首。强调：棚内射影，干净的光照，逼真的照片，超写实风格，自然抓拍照，清新明亮，低对比度，真实高级的质感，超高质量。巴黎时装周模特，白皙的皮肤、真实的皮肤质感,眼睛不看向镜头,漂亮的脸、开朗的微笑、准确的人体结构。\n6，禁止包含标题和特殊符号。\n7，格式为适配flux大模型的prompt。",
       "speak_and_recognation": {
         "__value__": [
           false,
@@ -977,7 +955,7 @@
     },
     "class_type": "CR Text",
     "_meta": {
-      "title": "\u6587\u672c"
+      "title": "文本"
     }
   },
   "855": {
@@ -994,7 +972,7 @@
     },
     "class_type": "CR Text Concatenate",
     "_meta": {
-      "title": "\u6587\u672c\u8054\u7ed3"
+      "title": "文本联结"
     }
   },
   "857": {
@@ -1011,7 +989,7 @@
     },
     "class_type": "CR Text Concatenate",
     "_meta": {
-      "title": "\u6587\u672c\u8054\u7ed3"
+      "title": "文本联结"
     }
   },
   "858": {
@@ -1020,7 +998,7 @@
         "852",
         0
       ],
-      "system_instruction": "\u628a\u8fd9\u6bb5\u63cf\u8ff0\u8f6c\u4e3a\u9002\u914dsdxl\u5927\u6a21\u578b\u7684prompt\uff0c\u5168\u82f1\u6587\uff0c\u53ea\u8f93\u51fa\u7ed3\u679c\uff0c\u7981\u6b62\u6709\u6807\u9898\u548c\u7279\u6b8a\u7b26\u53f7\n\n\u8981\u6c42\uff1a\n1\uff0c\u53ea\u8f93\u51fa\u7ed3\u679c\uff0c\u82f1\u6587\uff0c\u82f1\u6587\u7b26\u53f7\u3002\n2\uff0c\u7981\u6b62\u6807\u9898\u548c\u7279\u6b8a\u7b26\u53f7\u548c\u53cc\u5f15\u53f7\u3002",
+      "system_instruction": "把这段描述转为适配sdxl大模型的prompt，全英文，只输出结果，禁止有标题和特殊符号\n\n要求：\n1，只输出结果，英文，英文符号。\n2，禁止标题和特殊符号和双引号。",
       "speak_and_recognation": {
         "__value__": [
           false,
@@ -1038,7 +1016,7 @@
     },
     "class_type": "Qwen2_Zho",
     "_meta": {
-      "title": "\u26f1\ufe0fQwen2"
+      "title": "⛱️Qwen2"
     }
   },
   "860": {
@@ -1069,7 +1047,7 @@
     },
     "class_type": "ControlNetApplyAdvanced",
     "_meta": {
-      "title": "ControlNet\u5e94\u7528\uff08\u65e7\u7248\u9ad8\u7ea7\uff09"
+      "title": "ControlNet应用（旧版高级）"
     }
   },
   "861": {
@@ -1086,7 +1064,7 @@
     },
     "class_type": "CR Text Concatenate",
     "_meta": {
-      "title": "\u6587\u672c\u8054\u7ed3"
+      "title": "文本联结"
     }
   },
   "862": {
@@ -1096,7 +1074,7 @@
     },
     "class_type": "UNETLoader",
     "_meta": {
-      "title": "UNET\u52a0\u8f7d\u5668"
+      "title": "UNET加载器"
     }
   },
   "863": {
@@ -1108,7 +1086,7 @@
     },
     "class_type": "DualCLIPLoader",
     "_meta": {
-      "title": "\u53ccCLIP\u52a0\u8f7d\u5668"
+      "title": "双CLIP加载器"
     }
   },
   "865": {
@@ -1117,7 +1095,7 @@
     },
     "class_type": "VAELoader",
     "_meta": {
-      "title": "VAE\u52a0\u8f7d\u5668"
+      "title": "VAE加载器"
     }
   },
   "867": {
@@ -1125,17 +1103,16 @@
       "text": [
         "871",
         0
-      ],
-      "text2": "The image is a black-and-white sketch of a person standing in a confident pose. The individual is wearing a striped long-sleeve shirt tucked into high-waisted shorts. They have long, straight hair that falls past their shoulders. On their feet are lace-up boots, and they are carrying a large tote bag in one hand. The overall style suggests a casual yet fashionable look, with the person exuding a sense of modern urban chic."
+      ]
     },
     "class_type": "ShowText|pysssss",
     "_meta": {
-      "title": "\u5c55\u793a\u6587\u672c"
+      "title": "展示文本"
     }
   },
   "868": {
     "inputs": {
-      "prompt": "Please extract the design content of this image and transform it into a description of the clothing design, and match it with a beautiful model. I need you to help me randomly describe the appearance of a beautiful model, without outputting ideas or thoughts. Just describe the appearance of the beautiful model wearing this clothing and help me describe it in natural language.\nOutput example: A young, healthy, and lively 18-year-old Chinese Russian mixed race beauty with a yellow top, short red hair, and a smiling face.",
+      "prompt": "Please describe the color and pattern of this picture",
       "model": "qwen-vl-max",
       "system_message": "You are a helpful assistant.",
       "temperature": 0.7000000000000001,
@@ -1154,7 +1131,7 @@
     },
     "class_type": "LLMNodeFull",
     "_meta": {
-      "title": "LLM\u9ad8\u7ea7\u8282\u70b9"
+      "title": "LLM高级节点"
     }
   },
   "871": {
@@ -1178,7 +1155,7 @@
     },
     "class_type": "LLMNodeFull",
     "_meta": {
-      "title": "LLM\u9ad8\u7ea7\u8282\u70b9"
+      "title": "LLM高级节点"
     }
   },
   "872": {
@@ -1202,7 +1179,7 @@
   },
   "874": {
     "inputs": {
-      "name": "2. \u53c2\u8003\u56fe\uff08reference image\uff09(tips: \u9009\u62e9\u9700\u8981\u53c2\u8003\u7684\u56fe\u7247\u56fe\u5c42)"
+      "name": "2. 参考图（reference image）(tips: 请选择所需要参考的图片)"
     },
     "class_type": "ETN_KritaImageLayer",
     "_meta": {
@@ -1216,7 +1193,7 @@
         0
       ],
       "on_true": [
-        "868",
+        "894",
         0
       ],
       "on_false": [
@@ -1226,7 +1203,7 @@
     },
     "class_type": "Switch any [Crystools]",
     "_meta": {
-      "title": "\u5207\u6362\u4efb\u610f"
+      "title": "切换任意"
     }
   },
   "876": {
@@ -1244,14 +1221,14 @@
     },
     "class_type": "String",
     "_meta": {
-      "title": "\u5b57\u7b26\u4e32"
+      "title": "字符串"
     }
   },
   "877": {
     "inputs": {
-      "name": "3. \u63d0\u793a\u8bcd\uff08prompt\uff09(tips: \u8f93\u5165\u63d0\u793a\u8bcd\uff0c\u5982\uff1a\u9ec4\u8272\u7684\u4e0a\u8863\uff0c\u7ea2\u8272\u77ed\u53d1\uff0c\u9762\u5e26\u5fae\u7b11\uff0c\u5e74\u8f7b\u3001\u5065\u5eb7\u3001\u6d3b\u6cfc\u768418\u5c81\u4e2d\u4fc4\u6df7\u8840\u7f8e\u5973\u3002)",
+      "name": "3. 提示词（prompt）(tips:请输入你对线稿的描述。)",
       "type": "text",
-      "default": "\u9ec4\u8272\u7684\u4e0a\u8863\uff0c\u7ea2\u8272\u77ed\u53d1\uff0c\u9762\u5e26\u5fae\u7b11\uff0c\u5e74\u8f7b\u3001\u5065\u5eb7\u3001\u6d3b\u6cfc\u768418\u5c81\u4e2d\u4fc4\u6df7\u8840\u7f8e\u5973\u3002",
+      "default": "黄色的上衣，红色短发，面带微笑，年轻、健康、活泼的18岁中俄混血美女。",
       "min": 0,
       "max": 0
     },
@@ -1262,7 +1239,7 @@
   },
   "878": {
     "inputs": {
-      "name": "1. \u5f00\u542f\u53c2\u8003\u56fe\u53c2\u8003\uff08Open reference image reference\uff09(tips: \u6253\u5f00\u4f1a\u53c2\u8003\u53c2\u8003\u56fe\u7684\u914d\u8272\u548c\u56fe\u6848)(on:3. \u63d0\u793a\u8bcd\uff08prompt\uff09(tips: \u8f93\u5165\u63d0\u793a\u8bcd\uff0c\u5982\uff1a\u9ec4\u8272\u7684\u4e0a\u8863\uff0c\u7ea2\u8272\u77ed\u53d1\uff0c\u9762\u5e26\u5fae\u7b11\uff0c\u5e74\u8f7b\u3001\u5065\u5eb7\u3001\u6d3b\u6cfc\u768418\u5c81\u4e2d\u4fc4\u6df7\u8840\u7f8e\u5973\u3002))(off:3. \u63d0\u793a\u8bcd\uff08prompt\uff09(tips: \u8f93\u5165\u63d0\u793a\u8bcd\uff0c\u5982\uff1a\u9ec4\u8272\u7684\u4e0a\u8863\uff0c\u7ea2\u8272\u77ed\u53d1\uff0c\u9762\u5e26\u5fae\u7b11\uff0c\u5e74\u8f7b\u3001\u5065\u5eb7\u3001\u6d3b\u6cfc\u768418\u5c81\u4e2d\u4fc4\u6df7\u8840\u7f8e\u5973\u3002))",
+      "name": "1. 开启参考图参考（Open reference image reference）(tips: 开启后，输入的提示词将不起作用，AI将通过上传的参考图控制生成)",
       "type": "toggle",
       "default": true,
       "min": 0,
@@ -1293,38 +1270,144 @@
     },
     "class_type": "EG_TX_SFBLS",
     "_meta": {
-      "title": "2\ud83d\udc15Image scaling lock"
-    }
-  },
-  "883": {
-    "inputs": {
-      "image": "C2DDA790-0231-46ee-856D-B198D344136C.png"
-    },
-    "class_type": "LoadImage",
-    "_meta": {
-      "title": "\u52a0\u8f7d\u56fe\u50cf"
-    }
-  },
-  "884": {
-    "inputs": {
-      "text": [
-        "868",
-        0
-      ],
-      "text2": "A young, elegant, and vibrant 25-year-old model with long, flowing black hair and a radiant smile. She is wearing a stylish black t-shirt featuring a circular design with a paintbrush at the center, surrounded by swirling colors of pink, yellow, blue, and green, creating a dynamic and artistic look. The text below the design reads, \"This Workflow needs to be run by Krita!\" in a playful, handwritten font. Her outfit is complemented by her confident posture and bright, engaging eyes."
-    },
-    "class_type": "ShowText|pysssss",
-    "_meta": {
-      "title": "\u5c55\u793a\u6587\u672c"
+      "title": "2🐕Image scaling lock"
     }
   },
   "886": {
     "inputs": {
-      "seed": 0
+      "seed": 135121212950668
     },
     "class_type": "easy seed",
     "_meta": {
-      "title": "\u968f\u673a\u79cd"
+      "title": "随机种"
+    }
+  },
+  "891": {
+    "inputs": {
+      "action": "append",
+      "tidy_tags": "yes",
+      "text_a": [
+        "895",
+        0
+      ],
+      "text_b": [
+        "896",
+        0
+      ],
+      "text_c": "",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      }
+    },
+    "class_type": "StringFunction|pysssss",
+    "_meta": {
+      "title": "字符串操作"
+    }
+  },
+  "892": {
+    "inputs": {
+      "prompt": [
+        "891",
+        0
+      ],
+      "model": "qwen-max",
+      "system_message": "1. Please adjust the prompt words according to the description given to you. The first paragraph provides an overall description of the clothing, movements, background, shoes, etc. worn by the model, while the second paragraph describes the color scheme of the clothes worn by the model.\n3. Extract the color pattern from the second paragraph description and replace the clothing color scheme from the first paragraph. If there is a handbag, the handbag color scheme should also be applied.\n4. The use of black and white lines, sketches, drawings, and other descriptions is prohibited, and only models depicting real people are allowed. Please output prompt words in the following output example format.\nOutput example: A young, healthy, and lively 18-year-old Chinese Russian mixed race beauty wearing a yellow striped shirt, with short red hair and a smile on her face.",
+      "temperature": 0.7000000000000001,
+      "max_tokens": 1024,
+      "detail": "auto",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      }
+    },
+    "class_type": "LLMNodeFull",
+    "_meta": {
+      "title": "LLM高级节点"
+    }
+  },
+  "894": {
+    "inputs": {
+      "text": [
+        "892",
+        0
+      ]
+    },
+    "class_type": "ShowText|pysssss",
+    "_meta": {
+      "title": "展示文本"
+    }
+  },
+  "895": {
+    "inputs": {
+      "action": "append",
+      "tidy_tags": "no",
+      "text_a": "第一段：",
+      "text_b": [
+        "871",
+        0
+      ],
+      "text_c": "",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      }
+    },
+    "class_type": "StringFunction|pysssss",
+    "_meta": {
+      "title": "字符串操作"
+    }
+  },
+  "896": {
+    "inputs": {
+      "action": "append",
+      "tidy_tags": "no",
+      "text_a": "第二段：",
+      "text_b": [
+        "868",
+        0
+      ],
+      "text_c": "",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      }
+    },
+    "class_type": "StringFunction|pysssss",
+    "_meta": {
+      "title": "字符串操作"
+    }
+  },
+  "897": {
+    "inputs": {
+      "anything": [
+        "872",
+        0
+      ]
+    },
+    "class_type": "easy cleanGpuUsed",
+    "_meta": {
+      "title": "清理GPU占用"
+    }
+  },
+  "898": {
+    "inputs": {
+      "anything": [
+        "685",
+        0
+      ]
+    },
+    "class_type": "easy cleanGpuUsed",
+    "_meta": {
+      "title": "清理GPU占用"
     }
   }
 }

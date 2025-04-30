@@ -129,12 +129,12 @@ class QueuePopup(QMenu):
         self._layout.addWidget(resolution_multiplier_label, 2, 0)
         self._layout.addLayout(resolution_multiplier_layout, 2, 1)
 
-        enqueue_label = QLabel(_("Enqueue"), self)
-        self._queue_front_combo = QComboBox(self)
-        self._queue_front_combo.addItem(_("in Front (new jobs first)"), True)
-        self._queue_front_combo.addItem(_("at the Back"), False)
-        self._layout.addWidget(enqueue_label, 3, 0)
-        self._layout.addWidget(self._queue_front_combo, 3, 1)
+        # enqueue_label = QLabel(_("Enqueue"), self)
+        # self._queue_front_combo = QComboBox(self)
+        # self._queue_front_combo.addItem(_("in Front (new jobs first)"), True)
+        # self._queue_front_combo.addItem(_("at the Back"), False)
+        # self._layout.addWidget(enqueue_label, 3, 0)
+        # self._layout.addWidget(self._queue_front_combo, 3, 1)
 
         cancel_label = QLabel(_("Cancel"), self)
         self._layout.addWidget(cancel_label, 4, 0)
@@ -170,7 +170,7 @@ class QueuePopup(QMenu):
             self._model.fixed_seed_changed.connect(self._randomize_seed.setEnabled),
             self._randomize_seed.clicked.connect(self._model.generate_seed),
             model.resolution_multiplier_changed.connect(self._update_resolution_multiplier),
-            bind_combo(self._model, "queue_front", self._queue_front_combo),
+            # bind_combo(self._model, "queue_front", self._queue_front_combo),
             model.jobs.count_changed.connect(self._update_cancel_buttons),
         ]
 
