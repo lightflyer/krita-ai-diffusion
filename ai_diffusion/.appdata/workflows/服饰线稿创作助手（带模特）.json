@@ -807,7 +807,7 @@
         0
       ],
       "model": [
-        "862",
+        "910",
         0
       ],
       "clip": [
@@ -1136,7 +1136,10 @@
   },
   "871": {
     "inputs": {
-      "prompt": "Please provide a detailed description of this image and output it in natural language",
+      "prompt": [
+        "907",
+        0
+      ],
       "model": "qwen-vl-max",
       "system_message": "You are a helpful assistant.",
       "temperature": 0.7000000000000001,
@@ -1314,7 +1317,7 @@
         0
       ],
       "model": "qwen-max",
-      "system_message": "1. Please adjust the prompt words according to the description given to you. The first paragraph provides an overall description of the clothing, movements, background, shoes, etc. worn by the model, while the second paragraph describes the color scheme of the clothes worn by the model.\n3. Extract the color pattern from the second paragraph description and replace the clothing color scheme from the first paragraph. If there is a handbag, the handbag color scheme should also be applied.\n4. The use of black and white lines, sketches, drawings, and other descriptions is prohibited, and only models depicting real people are allowed. Please output prompt words in the following output example format.\nOutput example: A young, healthy, and lively 18-year-old Chinese Russian mixed race beauty wearing a yellow striped shirt, with short red hair and a smile on her face.",
+      "system_message": "1. Please adjust the prompt words according to the description given to you. The first paragraph provides an overall description of the clothing, movements, background, shoes, etc. worn by the model, while the second paragraph describes the color scheme of the clothes worn by the model.\n3. Extract the color pattern from the second paragraph description and replace the clothing color scheme from the first paragraph. If there is a handbag, the handbag color scheme should also be applied.\n4. The use of black and white lines, sketches, drawings, and other descriptions is prohibited, and only models depicting real people are allowed. Please output prompt words in the following output example format.\n5.The use of black and white lines,and only models depicting real people are allowed.\nOutput example: A young, healthy, and lively 18-year-old Chinese Russian mixed race beauty wearing a yellow striped shirt, with short red hair and a smile on her face.",
       "temperature": 0.7000000000000001,
       "max_tokens": 1024,
       "detail": "auto",
@@ -1408,6 +1411,126 @@
     "class_type": "easy cleanGpuUsed",
     "_meta": {
       "title": "清理GPU占用"
+    }
+  },
+  "899": {
+    "inputs": {
+      "lora_name": "CCD真实感小红书网红帅哥美女噪点照片_v1.0.safetensors",
+      "strength_model": 1,
+      "model": [
+        "913",
+        0
+      ]
+    },
+    "class_type": "LoraLoaderModelOnly",
+    "_meta": {
+      "title": "LoRA加载器(仅模型)"
+    }
+  },
+  "902": {
+    "inputs": {
+      "text": "Please provide a detailed description of this image.xxx",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      }
+    },
+    "class_type": "ZuellniTextString",
+    "_meta": {
+      "title": "String"
+    }
+  },
+  "903": {
+    "inputs": {
+      "text": [
+        "902",
+        0
+      ],
+      "find": "xxx",
+      "replace": "他是一个阳刚的男模特"
+    },
+    "class_type": "Text Find and Replace",
+    "_meta": {
+      "title": "文本替换"
+    }
+  },
+  "907": {
+    "inputs": {
+      "boolean": [
+        "915",
+        0
+      ],
+      "on_true": [
+        "908",
+        0
+      ],
+      "on_false": [
+        "903",
+        0
+      ]
+    },
+    "class_type": "Switch any [Crystools]",
+    "_meta": {
+      "title": "切换任意"
+    }
+  },
+  "908": {
+    "inputs": {
+      "text": [
+        "902",
+        0
+      ],
+      "find": "xxx",
+      "replace": "他是一个美丽的女模特"
+    },
+    "class_type": "Text Find and Replace",
+    "_meta": {
+      "title": "文本替换"
+    }
+  },
+  "910": {
+    "inputs": {
+      "boolean": [
+        "915",
+        0
+      ],
+      "on_true": [
+        "862",
+        0
+      ],
+      "on_false": [
+        "899",
+        0
+      ]
+    },
+    "class_type": "Switch any [Crystools]",
+    "_meta": {
+      "title": "切换任意"
+    }
+  },
+  "913": {
+    "inputs": {
+      "unet_name": "flux/flux1-dev-fp8-e4m3fn.safetensors",
+      "weight_dtype": "fp8_e4m3fn"
+    },
+    "class_type": "UNETLoader",
+    "_meta": {
+      "title": "UNET加载器"
+    }
+  },
+  "915": {
+    "inputs": {
+      "name": "4. 是否为女模特（Female model）(tips:打开为女模特，关闭为男模特)",
+      "type": "toggle",
+      "default": true,
+      "min": 0,
+      "max": 0
+    },
+    "class_type": "ETN_Parameter",
+    "_meta": {
+      "title": "Parameter"
     }
   }
 }
