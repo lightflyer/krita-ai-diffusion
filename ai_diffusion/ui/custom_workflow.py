@@ -517,13 +517,16 @@ class WorkflowParamsWidget(QWidget):
                 pass
 
     def _set_widget_status(self, widget: CustomParamWidget, status: str):
-        if isinstance(widget, (PromptParamWidget, TextParamWidget)):
-            # 现在仅支持提示词框、文本框的修改
+        if isinstance(widget, (PromptParamWidget, TextParamWidget, 
+                               LayerSelect, ChoiceParamWidget)):
+            # 现在仅支持提示词框、文本框、图层选择框、选择框的修改
             match status:
                 case WidgetStatus.on.value:
                     widget.setVisible(True)
                 case WidgetStatus.off.value:
-                    widget.value = ""
+                    # 如果是关闭状态，则清空文本框内容，并隐藏组件
+                    if isinstance(widget, (PromptParamWidget, TextParamWidget)):
+                        widget.value = ""
                     widget.setVisible(False)
                 case _:
                     pass
