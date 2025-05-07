@@ -1,4 +1,3 @@
-import re
 from functools import wraps
 from pathlib import Path
 from typing import Any, Callable
@@ -11,7 +10,7 @@ from PyQt5.QtWidgets import QLabel, QLineEdit, QListWidgetItem, QMessageBox, QSp
 from PyQt5.QtWidgets import QToolButton, QVBoxLayout, QWidget, QSlider, QDoubleSpinBox
 from PyQt5.QtWidgets import QScrollArea, QTextEdit, QSplitter
 
-from ..custom_workflow import CustomParam, ParamKind, SortedWorkflows, WorkflowSource
+from ..custom_workflow import CustomParam, ParamKind, SortedWorkflows, WorkflowSource, WidgetStatus
 from ..custom_workflow import CustomGenerationMode
 from ..client import TextOutput
 from ..jobs import JobKind
@@ -484,29 +483,48 @@ class WorkflowParamsWidget(QWidget):
     def _control_widget_show(self, widget: CustomParamWidget, widget_name: str= "") -> None:
         # 1、判断是否是BoolParamWidget组件
         if isinstance(widget, BoolParamWidget):
-            extract_func = lambda content, mode="on":  CustomParam.extract_info(content, mode).split(";")
+            
+            # 保存序列号和组件的映射关系, 用于组件状态控制时, 根据序列号找到组件
+            serial_dict = {} 
             # 如果有多个name绑定同一个widget, 会导致widget出现问题
-            if not widget_name:
-                reversed_dict = {v: k for k, v in self._widgets.items()}
-                # 2、找出组件对应的name
-                widget_name = reversed_dict[widget]
+            for _widget_name, _widget_item in self._widgets.items():
+                serial_dict[CustomParam.extract_serial(_widget_name)] = _widget_item
+                if not widget_name and _widget_item == widget:
+                    # 2、找出组件对应的name
+                    widget_name = _widget_name
             # 3、判断组件的状态
             match widget.value:
                 case True:
-                    # 如果是开启状态，将组件打开
-                    for need_on_widget_name in extract_func(widget_name):
-                        need_on_widget = self._widgets.get(need_on_widget_name, "")
-                        # 现在仅支持提示词框、文本框的修改
-                        if isinstance(need_on_widget, (PromptParamWidget, TextParamWidget)):
-                            need_on_widget.setVisible(True)
-                            
+                    # 如果是开启状态，找到对应需要修改状态的组件
+                    self._batch_set_widget_status(serial_dict, widget_name, mode="on")
                 case False:
-                    for need_off_widget_name in extract_func(widget_name, mode="off"):
-                        need_off_widget = self._widgets.get(need_off_widget_name, "")
-                        # 现在仅支持提示词框、文本框的修改
-                        if isinstance(need_off_widget, (PromptParamWidget, TextParamWidget)):
-                            need_off_widget.value = ""
-                            need_off_widget.setVisible(False)
+                     # 如果是关闭状态，找到对应需要修改状态的组件
+                    self._batch_set_widget_status(serial_dict, widget_name, mode="off")
+                case _:
+                    pass
+
+    def _batch_set_widget_status(
+            self, 
+            widget_dict: dict[int, CustomParamWidget], 
+            widget_name: str, 
+            mode: str="on") -> None:
+        for need_action_widget_name in CustomParam.extract_info(widget_name, mode).split(";"):
+            try:
+                widget_serial, status = need_action_widget_name.split("-")
+                need_action_widget = widget_dict.get(int(widget_serial), "")
+                self._set_widget_status(need_action_widget, status)
+            except Exception:
+                pass
+
+    def _set_widget_status(self, widget: CustomParamWidget, status: str):
+        if isinstance(widget, (PromptParamWidget, TextParamWidget)):
+            # 现在仅支持提示词框、文本框的修改
+            match status:
+                case WidgetStatus.on.value:
+                    widget.setVisible(True)
+                case WidgetStatus.off.value:
+                    widget.value = ""
+                    widget.setVisible(False)
                 case _:
                     pass
 

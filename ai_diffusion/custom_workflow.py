@@ -240,6 +240,10 @@ class ParamKind(Enum):
     choice = 8
     style = 9
 
+class WidgetStatus(Enum):
+    on = "on"
+    off = "off"
+
 
 class CustomParam(NamedTuple):
     kind: ParamKind
@@ -291,6 +295,10 @@ class CustomParam(NamedTuple):
                 brackets_stack.append("(")
             
         return content[start:start + cursor].strip()
+
+    @staticmethod
+    def extract_serial(content: str) -> int:
+        return int((re.findall(r'^\d+', content) + ['0'])[0])
 
     def _split_name(self):
         if "/" in self.main_name:

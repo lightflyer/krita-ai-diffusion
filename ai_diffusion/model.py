@@ -1367,7 +1367,7 @@ def _save_job_result(model: Model, job: Job | None, index: int):
     path = Path(model.document.filename)
     path = path.parent / f"{path.stem}-generated-{timestamp}-{index}-{prompt}.png"
     path = util.find_unused_path(path)
-    base_image = model._get_current_image(Bounds(0, 0, *model.document.extent))
     result_image = job.results[index]
+    base_image = model._get_current_image(Bounds(0, 0, *result_image.extent))
     base_image.draw_image(result_image, job.params.bounds.offset)
     base_image.save(path)
