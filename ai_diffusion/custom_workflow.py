@@ -270,29 +270,27 @@ class CustomParam(NamedTuple):
     
     @property
     def main_name(self) -> str:
-        _main_name, *_ = self.name.split("(")
-        return _main_name
+        pos = (match.span() if (match := re.search(r"[\(（](on|off|tips)[:：]", self.name)) else None)
+        if pos is None:
+            return self.name
+        return self.name[:pos[0]].strip()
     
     @staticmethod
     def extract_info(content: str, keyword: str="") -> str:
-        keyword_len = len(keyword)
-        start = 0
-        for i in range(len(content) - keyword_len):
-            if content[i:keyword_len+i+2] == f"({keyword}:":
-                start = i+ keyword_len + 2
-                break
-        if start == 0:
+        position = (match.span() if (match := re.search(fr"[\(（]{keyword}[:：]", content)) else None)
+        if position is None:
             return ""
+        start = position[1]
         brackets_stack = ["("]
         cursor = 0
         for idx, i in enumerate(content[start:]):
             if brackets_stack == []:
                 break
             cursor = idx
-            if i == ")":
+            if i == ")" or i == "）":
                 brackets_stack.pop()
-            if i == "(":
-                brackets_stack.append("(")
+            if i == "(" or i == "（":
+                brackets_stack.append(i)
             
         return content[start:start + cursor].strip()
 
