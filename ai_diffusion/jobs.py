@@ -5,6 +5,7 @@ from datetime import datetime
 from enum import Enum, Flag
 from typing import Any, NamedTuple, TYPE_CHECKING
 from PyQt5.QtCore import QObject, pyqtSignal
+from pathlib import Path
 
 from .image import Bounds, ImageCollection
 from .settings import settings
@@ -106,14 +107,21 @@ class Job:
     timestamp: datetime
     results: ImageCollection
     in_use: dict[int, bool]
+    image_saved_paths: dict[int, Path]
 
-    def __init__(self, id: str | None, kind: JobKind, params: JobParams):
+    def __init__(
+            self, 
+            id: str | None, 
+            kind: JobKind, 
+            params: JobParams, 
+            ):
         self.id = id
         self.kind = kind
         self.params = params
         self.timestamp = datetime.now()
         self.results = ImageCollection()
         self.in_use = {}
+        self.image_saved_paths = {}
 
     def result_was_used(self, index: int):
         return self.in_use.get(index, False)

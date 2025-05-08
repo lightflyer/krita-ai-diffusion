@@ -1361,13 +1361,19 @@ async def _report_errors(parent: Model, coro):
 def _save_job_result(model: Model, job: Job | None, index: int):
     assert job is not None, "Cannot save result, invalid job id"
     assert len(job.results) > index, "Cannot save result, invalid result index"
-    assert model.document.filename, "Cannot save result, document is not saved"
     timestamp = job.timestamp.strftime("%Y%m%d-%H%M%S")
     prompt = util.sanitize_prompt(job.params.name)
-    path = Path(model.document.filename)
+    if model.document.filename:
+        path = Path(model.document.filename)
+    else:
+        path = util._get_user_data_dir() / "images" 
+        path.mkdir(exist_ok=True)
+        path = path / "unsaved"
+
     path = path.parent / f"{path.stem}-generated-{timestamp}-{index}-{prompt}.png"
     path = util.find_unused_path(path)
     result_image = job.results[index]
     base_image = model._get_current_image(Bounds(0, 0, *result_image.extent))
     base_image.draw_image(result_image, job.params.bounds.offset)
     base_image.save(path)
+    job.image_saved_paths[index] = path

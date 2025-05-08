@@ -1,11 +1,12 @@
 from __future__ import annotations
 from textwrap import wrap as wrap_text
 from typing import cast
-from PyQt5.QtCore import Qt, QMetaObject, QSize, QPoint, QTimer, QUuid, pyqtSignal
+from PyQt5.QtCore import Qt, QMetaObject, QSize, QPoint, QTimer, QUuid, pyqtSignal, QProcess
 from PyQt5.QtGui import QGuiApplication, QMouseEvent, QPalette, QColor, QIcon
 from PyQt5.QtWidgets import QAction, QWidget, QVBoxLayout, QHBoxLayout, QPushButton, QProgressBar
 from PyQt5.QtWidgets import QListWidget, QListWidgetItem, QListView, QSizePolicy
 from PyQt5.QtWidgets import QComboBox, QCheckBox, QMenu, QShortcut, QMessageBox, QToolButton
+from sys import platform as sys_platform
 
 from ..properties import Binding, Bind, bind, bind_combo, bind_toggle
 from ..image import Bounds, Extent, Image
@@ -358,7 +359,8 @@ class HistoryWidget(QListWidget):
     def _show_context_menu(self, pos: QPoint):
         item = self.itemAt(pos)
         if item is not None:
-            job = self._model.jobs.find(self._item_data(item).job)
+            job_id, image_index = self.item_info(item)
+            job = self._model.jobs.find(job_id)
             menu = QMenu(self)
             menu.addAction(_("Copy Prompt"), self._copy_prompt)
             menu.addAction(_("Copy Strength"), self._copy_strength)
@@ -368,19 +370,40 @@ class HistoryWidget(QListWidget):
             menu.addAction(_("Copy Seed"), self._copy_seed)
             menu.addAction(_("Info to Clipboard"), self._info_to_clipboard)
             menu.addSeparator()
-            save_action = ensure(menu.addAction(_("Save Image"), self._save_image))
-            if self._model.document.filename == "":
-                save_action.setEnabled(False)
-                save_action.setToolTip(
+            menu.addAction(_("Save Image"), self._save_image)
+            menu.addAction(_("Discard Image"), self._discard_image)
+            open_folder_action = ensure(menu.addAction(_("Open Image Folder"), 
+                                                       self._open_image_folder))
+            if not job.image_saved_paths.get(image_index, None):
+                open_folder_action.setEnabled(False)
+                open_folder_action.setToolTip(
                     _(
-                        "Save as separate image to the same folder as the document.\nMust save the document first!"
+                        "The image has not been saved yet. Please save the image first."
                     )
                 )
                 menu.setToolTipsVisible(True)
-            menu.addAction(_("Discard Image"), self._discard_image)
             menu.addSeparator()
             menu.addAction(_("Clear History"), self._clear_all)
             menu.exec(self.mapToGlobal(pos))
+
+    def _open_image_folder(self):
+        items = self.selectedItems()
+        for item in items:
+            job_id, image_index = self.item_info(item)
+            job = self._model.jobs.find(job_id)
+            if job:
+                target_file = job.image_saved_paths.get(image_index, None)
+                if target_file:
+                    match sys_platform:
+                        case "win32":
+                            command = ["explorer", "/select,", str(target_file)]
+                        case "darwin":
+                            command = ["open", "-R", str(target_file)]
+                        case _:
+                            command = ["xdg-open", str(target_file.parent)]
+
+                    process = QProcess()
+                    process.startDetached(" ".join(command))
 
     def _show_context_menu_dropdown(self):
         pos = self._context_button.pos()

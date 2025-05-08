@@ -92,6 +92,8 @@
     "Disabled": "禁用",
     "Disabled: selected layer must be a vector layer to add a pose": "已禁用：选定的图层必须是矢量图层才能添加姿势",
     "Discard Image": "丢弃图像",
+    "Open Image Folder": "打开图像文件夹",
+    "The image has not been saved yet. Please save the image first.": "图像尚未保存。请先保存图像。",
     "Disconnected": "已断开连接",
     "Disconnected from server, trying to reconnect...": "与服务器断开连接，正在尝试重新连接...",
     "Display the number of steps to be evaluated in the weights box.": "在权重框中显示要评估的步骤数量。",

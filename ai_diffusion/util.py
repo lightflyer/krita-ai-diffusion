@@ -54,9 +54,6 @@ def _get_user_data_dir():
 anta_data_dir = _get_anta_data_dir()
 user_data_dir = _get_user_data_dir()
 
-if __name__ == "__main__":
-    print(user_data_dir)
-
 
 def _get_log_dir():
     dir = user_data_dir / "logs"
