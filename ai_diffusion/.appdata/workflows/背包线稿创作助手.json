@@ -1,4 +1,32 @@
 {
+  "505": {
+    "inputs": {
+      "caption_type": "Descriptive",
+      "caption_length": "long",
+      "low_vram": false,
+      "joy_two_pipeline": [
+        "506",
+        0
+      ],
+      "image": [
+        "852",
+        0
+      ]
+    },
+    "class_type": "Joy_caption_two",
+    "_meta": {
+      "title": "Joy Caption Two"
+    }
+  },
+  "506": {
+    "inputs": {
+      "model": "unsloth/Meta-Llama-3.1-8B-Instruct"
+    },
+    "class_type": "Joy_caption_two_load",
+    "_meta": {
+      "title": "Joy Caption Two Load"
+    }
+  },
   "543": {
     "inputs": {
       "ckpt_name": "depth_anything_v2_vitl.pth",
@@ -10,14 +38,14 @@
     },
     "class_type": "DepthAnythingV2Preprocessor",
     "_meta": {
-      "title": "DepthAnythingV2深度预处理器"
+      "title": "DepthAnythingV2\u6df1\u5ea6\u9884\u5904\u7406\u5668"
     }
   },
   "545": {
     "inputs": {
-      "brightness": 0.6000000000000001,
+      "brightness": 0.6,
       "contrast": 3,
-      "saturation": 1.0000000000000002,
+      "saturation": 1,
       "image": [
         "543",
         0
@@ -25,14 +53,14 @@
     },
     "class_type": "LayerColor: Brightness & Contrast",
     "_meta": {
-      "title": "亮度/对比度"
+      "title": "\u4eae\u5ea6/\u5bf9\u6bd4\u5ea6"
     }
   },
   "546": {
     "inputs": {
-      "brightness": 0.6000000000000001,
+      "brightness": 0.6,
       "contrast": 3,
-      "saturation": 1.0000000000000002,
+      "saturation": 1,
       "image": [
         "545",
         0
@@ -40,7 +68,7 @@
     },
     "class_type": "LayerColor: Brightness & Contrast",
     "_meta": {
-      "title": "亮度/对比度"
+      "title": "\u4eae\u5ea6/\u5bf9\u6bd4\u5ea6"
     }
   },
   "549": {
@@ -53,7 +81,7 @@
     },
     "class_type": "ImageToMask",
     "_meta": {
-      "title": "图像到遮罩"
+      "title": "\u56fe\u50cf\u5230\u906e\u7f69"
     }
   },
   "563": {
@@ -62,13 +90,13 @@
     },
     "class_type": "CheckpointLoaderSimple",
     "_meta": {
-      "title": "Checkpoint加载器(简易)"
+      "title": "Checkpoint\u52a0\u8f7d\u5668(\u7b80\u6613)"
     }
   },
   "564": {
     "inputs": {
       "seed": [
-        "830",
+        "850",
         0
       ],
       "steps": 20,
@@ -95,7 +123,7 @@
     },
     "class_type": "KSampler",
     "_meta": {
-      "title": "K采样器"
+      "title": "K\u91c7\u6837\u5668"
     }
   },
   "565": {
@@ -104,12 +132,7 @@
         "808",
         0
       ],
-      "speak_and_recognation": {
-        "__value__": [
-          false,
-          true
-        ]
-      },
+      "speak_and_recognation": true,
       "clip": [
         "563",
         1
@@ -117,15 +140,15 @@
     },
     "class_type": "CLIPTextEncode",
     "_meta": {
-      "title": "CLIP文本编码器"
+      "title": "CLIP\u6587\u672c\u7f16\u7801\u5668"
     }
   },
   "567": {
     "inputs": {
-      "weight": 0.6000000000000001,
+      "weight": 0.7000000000000001,
       "start_at": 0,
       "end_at": 1,
-      "weight_type": "style transfer",
+      "weight_type": "standard",
       "model": [
         "568",
         0
@@ -145,7 +168,7 @@
     },
     "class_type": "IPAdapter",
     "_meta": {
-      "title": "应用IPAdapter"
+      "title": "\u5e94\u7528IPAdapter"
     }
   },
   "568": {
@@ -158,7 +181,7 @@
     },
     "class_type": "IPAdapterUnifiedLoader",
     "_meta": {
-      "title": "IPAdapter加载器"
+      "title": "IPAdapter\u52a0\u8f7d\u5668"
     }
   },
   "570": {
@@ -174,13 +197,13 @@
     },
     "class_type": "VAEDecode",
     "_meta": {
-      "title": "VAE解码"
+      "title": "VAE\u89e3\u7801"
     }
   },
   "575": {
     "inputs": {
-      "strength": 0.8500000000000002,
-      "start_percent": 0.07000000000000002,
+      "strength": 0.8,
+      "start_percent": 0,
       "end_percent": 1,
       "positive": [
         "565",
@@ -205,7 +228,7 @@
     },
     "class_type": "ControlNetApplyAdvanced",
     "_meta": {
-      "title": "ControlNet应用（旧版高级）"
+      "title": "ControlNet\u5e94\u7528\uff08\u65e7\u7248\u9ad8\u7ea7\uff09"
     }
   },
   "576": {
@@ -214,34 +237,7 @@
     },
     "class_type": "ControlNetLoader",
     "_meta": {
-      "title": "ControlNet加载器"
-    }
-  },
-  "580": {
-    "inputs": {
-      "clip_l": [
-        "807",
-        0
-      ],
-      "t5xxl": [
-        "807",
-        0
-      ],
-      "guidance": 3.5,
-      "speak_and_recognation": {
-        "__value__": [
-          false,
-          true
-        ]
-      },
-      "clip": [
-        "582",
-        1
-      ]
-    },
-    "class_type": "CLIPTextEncodeFlux",
-    "_meta": {
-      "title": "CLIP文本编码Flux"
+      "title": "ControlNet\u52a0\u8f7d\u5668"
     }
   },
   "581": {
@@ -259,28 +255,16 @@
     },
     "class_type": "ImageResizeKJ",
     "_meta": {
-      "title": "图像缩放（KJ）"
+      "title": "\u56fe\u50cf\u7f29\u653e\uff08KJ\uff09"
     }
   },
   "582": {
     "inputs": {
-      "ckpt_name": "flux/flux1-schnell-fp8.safetensors"
+      "ckpt_name": "SD1.5/realisticVisionV60B1_v51HyperVAE.safetensors"
     },
     "class_type": "CheckpointLoaderSimple",
     "_meta": {
-      "title": "Checkpoint加载器(简易)"
-    }
-  },
-  "583": {
-    "inputs": {
-      "conditioning": [
-        "580",
-        0
-      ]
-    },
-    "class_type": "ConditioningZeroOut",
-    "_meta": {
-      "title": "条件零化"
+      "title": "Checkpoint\u52a0\u8f7d\u5668(\u7b80\u6613)"
     }
   },
   "584": {
@@ -296,31 +280,31 @@
     },
     "class_type": "VAEDecode",
     "_meta": {
-      "title": "VAE解码"
+      "title": "VAE\u89e3\u7801"
     }
   },
   "585": {
     "inputs": {
       "seed": [
-        "830",
+        "848",
         0
       ],
-      "steps": 4,
-      "cfg": 1,
+      "steps": 20,
+      "cfg": 7,
       "sampler_name": "euler",
-      "scheduler": "beta",
+      "scheduler": "karras",
       "denoise": 1,
       "model": [
         "582",
         0
       ],
       "positive": [
-        "580",
+        "830",
         0
       ],
       "negative": [
-        "583",
-        0
+        "830",
+        1
       ],
       "latent_image": [
         "797",
@@ -329,19 +313,7 @@
     },
     "class_type": "KSampler",
     "_meta": {
-      "title": "K采样器"
-    }
-  },
-  "586": {
-    "inputs": {
-      "images": [
-        "584",
-        0
-      ]
-    },
-    "class_type": "PreviewImage",
-    "_meta": {
-      "title": "预览图像"
+      "title": "K\u91c7\u6837\u5668"
     }
   },
   "664": {
@@ -358,7 +330,7 @@
     },
     "class_type": "EmptyLatentImage",
     "_meta": {
-      "title": "空Latent"
+      "title": "\u7a7aLatent"
     }
   },
   "666": {
@@ -370,7 +342,7 @@
     },
     "class_type": "MaskToImage",
     "_meta": {
-      "title": "遮罩到图像"
+      "title": "\u906e\u7f69\u5230\u56fe\u50cf"
     }
   },
   "667": {
@@ -382,7 +354,7 @@
     },
     "class_type": "PreviewImage",
     "_meta": {
-      "title": "预览图像"
+      "title": "\u9884\u89c8\u56fe\u50cf"
     }
   },
   "669": {
@@ -392,36 +364,36 @@
         0
       ],
       "vae": [
-        "582",
+        "832",
         2
       ]
     },
     "class_type": "VAEDecode",
     "_meta": {
-      "title": "VAE解码"
+      "title": "VAE\u89e3\u7801"
     }
   },
   "673": {
     "inputs": {
       "seed": [
-        "830",
+        "849",
         0
       ],
       "steps": 10,
       "cfg": 1,
       "sampler_name": "euler",
       "scheduler": "beta",
-      "denoise": 0.5500000000000002,
+      "denoise": 0.7000000000000001,
       "model": [
-        "582",
+        "832",
         0
       ],
       "positive": [
-        "580",
+        "834",
         0
       ],
       "negative": [
-        "583",
+        "835",
         0
       ],
       "latent_image": [
@@ -431,7 +403,7 @@
     },
     "class_type": "KSampler",
     "_meta": {
-      "title": "K采样器"
+      "title": "K\u91c7\u6837\u5668"
     }
   },
   "675": {
@@ -441,18 +413,18 @@
         0
       ],
       "vae": [
-        "582",
+        "832",
         2
       ]
     },
     "class_type": "VAEEncode",
     "_meta": {
-      "title": "VAE编码"
+      "title": "VAE\u7f16\u7801"
     }
   },
   "684": {
     "inputs": {
-      "amount": 0.30000000000000004,
+      "amount": 0.3,
       "image": [
         "669",
         0
@@ -460,7 +432,7 @@
     },
     "class_type": "ImageCASharpening+",
     "_meta": {
-      "title": "图像对比度自适应锐化"
+      "title": "\u56fe\u50cf\u5bf9\u6bd4\u5ea6\u81ea\u9002\u5e94\u9510\u5316"
     }
   },
   "685": {
@@ -478,7 +450,7 @@
     },
     "class_type": "ImageResizeKJ",
     "_meta": {
-      "title": "图像缩放（KJ）"
+      "title": "\u56fe\u50cf\u7f29\u653e\uff08KJ\uff09"
     }
   },
   "690": {
@@ -490,18 +462,18 @@
       "divisible_by": 2,
       "crop": "disabled",
       "image": [
-        "819",
+        "851",
         0
       ]
     },
     "class_type": "ImageResizeKJ",
     "_meta": {
-      "title": "图像缩放（KJ）"
+      "title": "\u56fe\u50cf\u7f29\u653e\uff08KJ\uff09"
     }
   },
   "693": {
     "inputs": {
-      "negative": "Black stroke, (nsfw:1.5)，(more arm:1.2)，(more leg:1.2)，(look forward the camera:1.4),(glove:1.7),(cartoon:1.4), Leather material,hair, fur, false, dark, (overexposed: 1.2), distorted, low quality, (high contrast: 1.2), (wrinkled:1.2), (hanging: 1.3),(floating: 1.3), complex background, mottled background, (high reflection material: 1.1)，(high contrast:1.3), (dark skin:1.2)",
+      "negative": "Black stroke, (nsfw:1.5)\uff0c(more arm:1.2)\uff0c(more leg:1.2)\uff0c(look forward the camera:1.4),(glove:1.7),(cartoon:1.4), Leather material,hair, fur, false, dark, (overexposed: 1.2), distorted, low quality, (high contrast: 1.2), (wrinkled:1.2), (hanging: 1.3),(floating: 1.3), complex background, mottled background, (high reflection material: 1.1)\uff0c(high contrast:1.3), (dark skin:1.2)",
       "speak_and_recognation": {
         "__value__": [
           false,
@@ -511,15 +483,15 @@
     },
     "class_type": "easy negative",
     "_meta": {
-      "title": "负面提示词"
+      "title": "\u8d1f\u9762\u63d0\u793a\u8bcd"
     }
   },
   "730": {
     "inputs": {
-      "weight": 0.3500000000000001,
+      "weight": 0.3,
       "start_at": 0,
       "end_at": 1,
-      "weight_type": "style transfer",
+      "weight_type": "standard",
       "model": [
         "567",
         0
@@ -539,7 +511,7 @@
     },
     "class_type": "IPAdapter",
     "_meta": {
-      "title": "应用IPAdapter"
+      "title": "\u5e94\u7528IPAdapter"
     }
   },
   "731": {
@@ -551,7 +523,7 @@
     },
     "class_type": "InvertMask (segment anything)",
     "_meta": {
-      "title": "反转遮罩"
+      "title": "\u53cd\u8f6c\u906e\u7f69"
     }
   },
   "732": {
@@ -567,7 +539,7 @@
     },
     "class_type": "LayerUtility: ColorImage V2",
     "_meta": {
-      "title": "纯色图像_V2"
+      "title": "\u7eaf\u8272\u56fe\u50cf_V2"
     }
   },
   "750": {
@@ -575,13 +547,13 @@
       "coarse": "disable",
       "resolution": 1408,
       "image": [
-        "819",
+        "836",
         0
       ]
     },
     "class_type": "LineArtPreprocessor",
     "_meta": {
-      "title": "LineArt艺术线预处理器"
+      "title": "LineArt\u827a\u672f\u7ebf\u9884\u5904\u7406\u5668"
     }
   },
   "751": {
@@ -593,13 +565,13 @@
     },
     "class_type": "PreviewImage",
     "_meta": {
-      "title": "预览图像"
+      "title": "\u9884\u89c8\u56fe\u50cf"
     }
   },
   "752": {
     "inputs": {
       "prompt": [
-        "812",
+        "505",
         0
       ],
       "system_instruction": [
@@ -623,7 +595,7 @@
     },
     "class_type": "Qwen2_Zho",
     "_meta": {
-      "title": "⛱️Qwen2"
+      "title": "\u26f1\ufe0fQwen2"
     }
   },
   "753": {
@@ -632,11 +604,12 @@
     },
     "class_type": "Qwen2_ModelLoader_Zho",
     "_meta": {
-      "title": "⛱️Qwen2 ModelLoader"
+      "title": "\u26f1\ufe0fQwen2 ModelLoader"
     }
   },
   "754": {
     "inputs": {
+      "text": "canvas backpack,A hyper-realistic photograph captures the essence of this premium canvas sports backpack. The fabric's intricate texture is meticulously detailed, showcasing the robustness and authenticity of the material. The bag, in a clean, neutral shade of grey, is adorned with a prominent zippered pocket on the frontal panel. Embossed in bold, capital letters across its sides, the brand name \"FILA\" stands out against the pristine white background, exuding a sense of luxury and recognition.\n\nThe top of the backpack features a minimalist logo and a practical keyring holder, adding a touch of utility without compromising the aesthetic appeal. The adjustable straps, rendered with a subtle grey and white palette, ensure comfort and versatility for any user. This design emphasizes both functionality and style, perfectly blending modern aesthetics with practical durability. The backdrop is a serene, light-toned environment, amplifying the clarity and realism of every element depicted.",
       "anything": [
         "807",
         0
@@ -644,7 +617,7 @@
     },
     "class_type": "easy showAnything",
     "_meta": {
-      "title": "展示任何"
+      "title": "\u5c55\u793a\u4efb\u4f55"
     }
   },
   "755": {
@@ -666,14 +639,14 @@
     },
     "class_type": "CLIPTextEncode",
     "_meta": {
-      "title": "CLIP文本编码器"
+      "title": "CLIP\u6587\u672c\u7f16\u7801\u5668"
     }
   },
   "766": {
     "inputs": {
-      "brightness": 3,
-      "contrast": 1.0000000000000002,
-      "saturation": 1.0000000000000002,
+      "brightness": 1.5,
+      "contrast": 3,
+      "saturation": 1,
       "image": [
         "750",
         0
@@ -681,17 +654,17 @@
     },
     "class_type": "LayerColor: Brightness & Contrast",
     "_meta": {
-      "title": "亮度/对比度"
+      "title": "\u4eae\u5ea6/\u5bf9\u6bd4\u5ea6"
     }
   },
   "767": {
     "inputs": {
       "boolean": [
-        "829",
+        "842",
         0
       ],
       "on_true": [
-        "820",
+        "844",
         0
       ],
       "on_false": [
@@ -701,7 +674,7 @@
     },
     "class_type": "Switch any [Crystools]",
     "_meta": {
-      "title": "切换任意"
+      "title": "\u5207\u6362\u4efb\u610f"
     }
   },
   "787": {
@@ -710,7 +683,7 @@
         "807",
         0
       ],
-      "system_instruction": "把这段描述转为适配sdxl大模型的prompt，全英文，只输出结果，禁止有标题和特殊符号\n\n要求：\n1，只输出英文prompt。\n2，禁止标题和特殊符号和双引号。\n3，强调超逼真图片，超写实风。\n4，积极阳光，健康向上\n5，100字符以内",
+      "system_instruction": "\u628a\u8fd9\u6bb5\u63cf\u8ff0\u8f6c\u4e3a\u9002\u914dsdxl\u5927\u6a21\u578b\u7684prompt\uff0c\u5168\u82f1\u6587\uff0c\u53ea\u8f93\u51fa\u7ed3\u679c\uff0c\u7981\u6b62\u6709\u6807\u9898\u548c\u7279\u6b8a\u7b26\u53f7\n\n\u8981\u6c42\uff1a\n1\uff0c\u53ea\u8f93\u51fa\u82f1\u6587prompt\u3002\n2\uff0c\u7981\u6b62\u6807\u9898\u548c\u7279\u6b8a\u7b26\u53f7\u548c\u53cc\u5f15\u53f7\u3002\n3\uff0c\u5f3a\u8c03\u8d85\u903c\u771f\u56fe\u7247\uff0c\u8d85\u5199\u5b9e\u98ce\u3002\n4\uff0c100\u5b57\u7b26\u4ee5\u5185",
       "speak_and_recognation": {
         "__value__": [
           false,
@@ -728,7 +701,7 @@
     },
     "class_type": "Qwen2_Zho",
     "_meta": {
-      "title": "⛱️Qwen2"
+      "title": "\u26f1\ufe0fQwen2"
     }
   },
   "788": {
@@ -736,16 +709,17 @@
       "text": [
         "787",
         0
-      ]
+      ],
+      "text2": "Create a hyper-realistic photograph of a premium canvas sports backpack in neutral grey. Show intricate fabric texture, prominent zippered pocket, bold \"FILA\" branding, minimalist logo, practical keyring holder, and adjustable straps. Set against a serene, light-toned backdrop. Emphasize both functionality and style."
     },
     "class_type": "ShowText|pysssss",
     "_meta": {
-      "title": "展示文本"
+      "title": "\u5c55\u793a\u6587\u672c"
     }
   },
   "791": {
     "inputs": {
-      "text": "去掉插画和黑白图相关的描述，把描述改为超写实风格描述，添加清晰的织物纹理、帆布材质，金属装饰、清晰的文字、时尚的颜色，浅色背景等相关描写，站立在地板上。\n\n要求：\n1，强调或补充：",
+      "text": "\u53bb\u6389\u63d2\u753b\u548c\u9ed1\u767d\u56fe\u76f8\u5173\u7684\u63cf\u8ff0\uff0c\u628a\u63cf\u8ff0\u6539\u4e3a\u8d85\u5199\u5b9e\u98ce\u683c\u63cf\u8ff0\uff0c\u6dfb\u52a0\u6e05\u6670\u7684\u7ec7\u7269\u7eb9\u7406\u3001\u5e06\u5e03\u6750\u8d28\uff0c\u91d1\u5c5e\u88c5\u9970\u3001\u6e05\u6670\u7684\u6587\u5b57\u3001\u65f6\u5c1a\u7684\u989c\u8272\uff0c\u6d45\u8272\u80cc\u666f\u7b49\u76f8\u5173\u63cf\u5199\uff0c\u7ad9\u7acb\u5728\u5730\u677f\u4e0a\u3002\n\n\u8981\u6c42\uff1a\n1\uff0c\u5f3a\u8c03\u6216\u8865\u5145\uff1a",
       "speak_and_recognation": {
         "__value__": [
           false,
@@ -755,7 +729,7 @@
     },
     "class_type": "CR Text",
     "_meta": {
-      "title": "文本"
+      "title": "\u6587\u672c"
     }
   },
   "797": {
@@ -772,12 +746,12 @@
     },
     "class_type": "EmptyLatentImage",
     "_meta": {
-      "title": "空Latent"
+      "title": "\u7a7aLatent"
     }
   },
   "799": {
     "inputs": {
-      "text": "hyper-realistic photograph，逼真的照片，清晰的纹理，棚内射影。\n2，简洁明了，只输出答案，纯英文。\n3，禁止出现：插画、illustration、黑白图、black and white……等有关卡通插画或线稿的画面描述。\n4，以高级的时尚前卫的帆布运动背包商品为主题。\n5，强调逼真的照片，超写实风格，干净整洁，超高质量。\n6，禁止包含标题和特殊符号。\n7，格式为适配flux大模型的prompt。",
+      "text": "hyper-realistic photograph\uff0c\u903c\u771f\u7684\u7167\u7247\uff0c\u6e05\u6670\u7684\u7eb9\u7406\uff0c\u68da\u5185\u5c04\u5f71\u3002\n2\uff0c\u7b80\u6d01\u660e\u4e86\uff0c\u53ea\u8f93\u51fa\u7b54\u6848\uff0c\u7eaf\u82f1\u6587\u3002\n3\uff0c\u7981\u6b62\u51fa\u73b0\uff1a\u63d2\u753b\u3001illustration\u3001\u9ed1\u767d\u56fe\u3001black and white\u2026\u2026\u7b49\u6709\u5173\u5361\u901a\u63d2\u753b\u6216\u7ebf\u7a3f\u7684\u753b\u9762\u63cf\u8ff0\u3002\n4\uff0c\u4ee5\u9ad8\u7ea7\u7684\u65f6\u5c1a\u524d\u536b\u7684\u5e06\u5e03\u8fd0\u52a8\u80cc\u5305\u5546\u54c1\u4e3a\u4e3b\u9898\u3002\n5\uff0c\u5f3a\u8c03\u903c\u771f\u7684\u7167\u7247\uff0c\u8d85\u5199\u5b9e\u98ce\u683c\uff0c\u5e72\u51c0\u6574\u6d01\uff0c\u8d85\u9ad8\u8d28\u91cf\u3002\n6\uff0c\u7981\u6b62\u5305\u542b\u6807\u9898\u548c\u7279\u6b8a\u7b26\u53f7\u3002\n7\uff0c\u683c\u5f0f\u4e3a\u9002\u914dflux\u5927\u6a21\u578b\u7684prompt\u3002",
       "speak_and_recognation": {
         "__value__": [
           false,
@@ -787,13 +761,13 @@
     },
     "class_type": "CR Text",
     "_meta": {
-      "title": "文本"
+      "title": "\u6587\u672c"
     }
   },
   "800": {
     "inputs": {
       "text": [
-        "814",
+        "841",
         0
       ],
       "speak_and_recognation": {
@@ -805,7 +779,7 @@
     },
     "class_type": "CR Text",
     "_meta": {
-      "title": "文本"
+      "title": "\u6587\u672c"
     }
   },
   "801": {
@@ -822,7 +796,7 @@
     },
     "class_type": "CR Text Concatenate",
     "_meta": {
-      "title": "文本联结"
+      "title": "\u6587\u672c\u8054\u7ed3"
     }
   },
   "802": {
@@ -835,11 +809,11 @@
         "799",
         0
       ],
-      "separator": "，"
+      "separator": "\uff0c"
     },
     "class_type": "CR Text Concatenate",
     "_meta": {
-      "title": "文本联结"
+      "title": "\u6587\u672c\u8054\u7ed3"
     }
   },
   "805": {
@@ -869,12 +843,12 @@
     },
     "class_type": "Qwen2_Zho",
     "_meta": {
-      "title": "⛱️Qwen2"
+      "title": "\u26f1\ufe0fQwen2"
     }
   },
   "806": {
     "inputs": {
-      "text": "把中文翻译成，flux大模型的prompt。\n要求：\n1，只输出英文prompt，只输出结果。\n2，禁止出现标题和特殊符号，禁止出现双引号。",
+      "text": "\u628a\u4e2d\u6587\u7ffb\u8bd1\u6210\uff0cflux\u5927\u6a21\u578b\u7684prompt\u3002\n\u8981\u6c42\uff1a\n1\uff0c\u786e\u4fdd\u53ea\u8f93\u51fa\u82f1\u6587prompt\uff0c\u786e\u4fdd\u53ea\u8f93\u51fa\u7ffb\u8bd1\u7ed3\u679c\u3002\n2\uff0c\u7981\u6b62\u51fa\u73b0\u6807\u9898\u548c\u7279\u6b8a\u7b26\u53f7\uff0c\u7981\u6b62\u51fa\u73b0\u53cc\u5f15\u53f7\u3002",
       "speak_and_recognation": {
         "__value__": [
           false,
@@ -884,7 +858,7 @@
     },
     "class_type": "CR Text",
     "_meta": {
-      "title": "文本"
+      "title": "\u6587\u672c"
     }
   },
   "807": {
@@ -901,7 +875,7 @@
     },
     "class_type": "CR Text Concatenate",
     "_meta": {
-      "title": "文本联结"
+      "title": "\u6587\u672c\u8054\u7ed3"
     }
   },
   "808": {
@@ -918,13 +892,13 @@
     },
     "class_type": "CR Text Concatenate",
     "_meta": {
-      "title": "文本联结"
+      "title": "\u6587\u672c\u8054\u7ed3"
     }
   },
   "810": {
     "inputs": {
-      "strength": 0.20000000000000004,
-      "start_percent": 0.10000000000000002,
+      "strength": 0.4,
+      "start_percent": 0,
       "end_percent": 1,
       "positive": [
         "575",
@@ -949,135 +923,254 @@
     },
     "class_type": "ControlNetApplyAdvanced",
     "_meta": {
-      "title": "ControlNet应用（旧版高级）"
+      "title": "ControlNet\u5e94\u7528\uff08\u65e7\u7248\u9ad8\u7ea7\uff09"
     }
   },
-  "811": {
+  "814": {
     "inputs": {
-      "prompt": "请十分详细的描述这张图，最后用英文自然语言输出",
-      "model": "qwen-vl-max",
-      "system_message": "You are a helpful assistant.",
-      "temperature": 0.7000000000000001,
-      "max_tokens": 1024,
-      "detail": "auto",
+      "images": [
+        "543",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "\u9884\u89c8\u56fe\u50cf"
+    }
+  },
+  "816": {
+    "inputs": {
+      "text": "A hyper-realistic photograph captures the essence of this premium canvas sports backpack. The fabric's intricate texture is meticulously detailed, showcasing the robustness and authenticity of the material. The bag, in a clean, neutral shade of grey, is adorned with a prominent zippered pocket on the frontal panel. Embossed in bold, capital letters across its sides, the brand name \"FILA\" stands out against the pristine white background, exuding a sense of luxury and recognition.\n\nThe top of the backpack features a minimalist logo and a practical keyring holder, adding a touch of utility without compromising the aesthetic appeal. The adjustable straps, rendered with a subtle grey and white palette, ensure comfort and versatility for any user. This design emphasizes both functionality and style, perfectly blending modern aesthetics with practical durability. The backdrop is a serene, light-toned environment, amplifying the clarity and realism of every element depicted.",
+      "anything": [
+        "752",
+        0
+      ]
+    },
+    "class_type": "easy showAnything",
+    "_meta": {
+      "title": "\u5c55\u793a\u4efb\u4f55"
+    }
+  },
+  "824": {
+    "inputs": {
+      "text": [
+        "805",
+        0
+      ],
       "speak_and_recognation": {
         "__value__": [
           false,
           true
         ]
       },
+      "clip": [
+        "582",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP\u6587\u672c\u7f16\u7801\u5668"
+    }
+  },
+  "825": {
+    "inputs": {
+      "text": "dark,low quality\uff0c",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "clip": [
+        "582",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP\u6587\u672c\u7f16\u7801\u5668"
+    }
+  },
+  "826": {
+    "inputs": {
+      "strength": 1,
+      "start_percent": 0,
+      "end_percent": 1,
+      "positive": [
+        "824",
+        0
+      ],
+      "negative": [
+        "825",
+        0
+      ],
+      "control_net": [
+        "827",
+        0
+      ],
+      "image": [
+        "766",
+        0
+      ],
+      "vae": [
+        "582",
+        2
+      ]
+    },
+    "class_type": "ControlNetApplyAdvanced",
+    "_meta": {
+      "title": "ControlNet\u5e94\u7528\uff08\u65e7\u7248\u9ad8\u7ea7\uff09"
+    }
+  },
+  "827": {
+    "inputs": {
+      "control_net_name": "control_v11p_sd15_canny.pth"
+    },
+    "class_type": "ControlNetLoader",
+    "_meta": {
+      "title": "ControlNet\u52a0\u8f7d\u5668"
+    }
+  },
+  "829": {
+    "inputs": {
+      "text": [
+        "805",
+        0
+      ],
+      "text2": "canvas backpack"
+    },
+    "class_type": "ShowText|pysssss",
+    "_meta": {
+      "title": "\u5c55\u793a\u6587\u672c"
+    }
+  },
+  "830": {
+    "inputs": {
+      "strength": 1,
+      "start_percent": 0,
+      "end_percent": 1,
+      "positive": [
+        "826",
+        0
+      ],
+      "negative": [
+        "826",
+        1
+      ],
+      "control_net": [
+        "831",
+        0
+      ],
+      "image": [
+        "543",
+        0
+      ],
+      "vae": [
+        "582",
+        2
+      ]
+    },
+    "class_type": "ControlNetApplyAdvanced",
+    "_meta": {
+      "title": "ControlNet\u5e94\u7528\uff08\u65e7\u7248\u9ad8\u7ea7\uff09"
+    }
+  },
+  "831": {
+    "inputs": {
+      "control_net_name": "control_v11f1p_sd15_depth.pth"
+    },
+    "class_type": "ControlNetLoader",
+    "_meta": {
+      "title": "ControlNet\u52a0\u8f7d\u5668"
+    }
+  },
+  "832": {
+    "inputs": {
+      "ckpt_name": "flux/flux1-schnell-fp8.safetensors"
+    },
+    "class_type": "CheckpointLoaderSimple",
+    "_meta": {
+      "title": "Checkpoint\u52a0\u8f7d\u5668(\u7b80\u6613)"
+    }
+  },
+  "834": {
+    "inputs": {
+      "clip_l": [
+        "807",
+        0
+      ],
+      "t5xxl": [
+        "807",
+        0
+      ],
+      "guidance": 3.5,
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "clip": [
+        "832",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncodeFlux",
+    "_meta": {
+      "title": "CLIP\u6587\u672c\u7f16\u7801Flux"
+    }
+  },
+  "835": {
+    "inputs": {
+      "conditioning": [
+        "834",
+        0
+      ]
+    },
+    "class_type": "ConditioningZeroOut",
+    "_meta": {
+      "title": "\u6761\u4ef6\u96f6\u5316"
+    }
+  },
+  "836": {
+    "inputs": {
+      "brightness": 1,
+      "contrast": 3,
+      "saturation": 1,
       "image": [
         "690",
         0
       ]
     },
-    "class_type": "LLMNodeFull",
+    "class_type": "LayerColor: Brightness & Contrast",
     "_meta": {
-      "title": "LLM高级节点"
+      "title": "\u4eae\u5ea6/\u5bf9\u6bd4\u5ea6"
     }
   },
-  "812": {
-    "inputs": {
-      "text": [
-        "811",
-        0
-      ]
-    },
-    "class_type": "ShowText|pysssss",
-    "_meta": {
-      "title": "展示文本"
-    }
-  },
-  "813": {
-    "inputs": {
-      "prompt": [
-        "816",
-        0
-      ],
-      "model": "qwen-vl-max",
-      "system_message": "You are a helpful assistant.",
-      "temperature": 0.7000000000000001,
-      "max_tokens": 1024,
-      "detail": "auto",
-      "speak_and_recognation": {
-        "__value__": [
-          false,
-          true
-        ]
-      },
-      "image": [
-        "820",
-        0
-      ]
-    },
-    "class_type": "LLMNodeFull",
-    "_meta": {
-      "title": "LLM高级节点"
-    }
-  },
-  "814": {
-    "inputs": {
-      "text": [
-        "822",
-        0
-      ]
-    },
-    "class_type": "ShowText|pysssss",
-    "_meta": {
-      "title": "展示文本"
-    }
-  },
-  "816": {
-    "inputs": {
-      "text": [
-        "818",
-        0
-      ],
-      "find": "xxx",
-      "replace": [
-        "828",
-        0
-      ]
-    },
-    "class_type": "Text Find and Replace",
-    "_meta": {
-      "title": "文本替换"
-    }
-  },
-  "818": {
-    "inputs": {
-      "String": "请提取这个图片里的配色和图案，用sdxl风格的提示词输出跟背包有关的xl提示词，材质要xxx材质，必须输出材质，只需要提示词不要解释。",
-      "speak_and_recognation": {
-        "__value__": [
-          false,
-          true
-        ]
-      }
-    },
-    "class_type": "String",
-    "_meta": {
-      "title": "字符串"
-    }
-  },
-  "819": {
+  "840": {
     "inputs": {},
     "class_type": "ETN_KritaCanvas",
     "_meta": {
       "title": "Krita Canvas"
     }
   },
-  "820": {
+  "841": {
     "inputs": {
-      "name": "2. 参考图（Reference image）(tips: 请选择所需要参考的图片)"
+      "name": "3. \u63d0\u793a\u8bcd\uff08prompt\uff09\uff08tips\uff1a\u8bf7\u8f93\u5165\u4f60\u5bf9\u7ebf\u7a3f\u7684\u63cf\u8ff0\uff0c\u5982\u5e06\u5e03\u80cc\u5305\uff09",
+      "type": "prompt (positive)",
+      "default": "\u5e06\u5e03\u80cc\u5305",
+      "min": 0,
+      "max": 0
     },
-    "class_type": "ETN_KritaImageLayer",
+    "class_type": "ETN_Parameter",
     "_meta": {
-      "title": "Krita Image Layer"
+      "title": "Parameter"
     }
   },
-  "821": {
+  "842": {
     "inputs": {
-      "name": "1. 开启参考图参考（Open reference）(tips: 开启后，输入的提示词将不起作用，AI将通过上传的参考图控制生成)",
+      "name": "1. \u5f00\u542f\u53c2\u8003\u56fe\uff08tips\uff1a\u5f00\u542f\u540e\u80cc\u5305\u5c06\u53c2\u8003\u53c2\u8003\u56fe\u914d\u8272\uff09",
       "type": "toggle",
       "default": true,
       "min": 0,
@@ -1088,61 +1181,19 @@
       "title": "Parameter"
     }
   },
-  "822": {
+  "844": {
     "inputs": {
-      "boolean": [
-        "821",
-        0
-      ],
-      "on_true": [
-        "813",
-        0
-      ],
-      "on_false": [
-        "823",
-        0
-      ]
+      "name": "2. \u53c2\u8003\u56fe\uff08tips\uff1a\u8bf7\u9009\u62e9\u9700\u8981\u53c2\u8003\u7684\u56fe\u7247\uff09"
     },
-    "class_type": "Switch any [Crystools]",
+    "class_type": "ETN_KritaImageLayer",
     "_meta": {
-      "title": "切换任意"
+      "title": "Krita Image Layer"
     }
   },
-  "823": {
-    "inputs": {
-      "String": [
-        "825",
-        0
-      ],
-      "speak_and_recognation": {
-        "__value__": [
-          false,
-          true
-        ]
-      }
-    },
-    "class_type": "String",
-    "_meta": {
-      "title": "字符串"
-    }
-  },
-  "825": {
-    "inputs": {
-      "name": "3. 提示词（prompt）(tips: 请输入你对线稿的描述。)",
-      "type": "prompt (positive)",
-      "default": "红色帆布的背包，一个白色的玩偶",
-      "min": 0,
-      "max": 0
-    },
-    "class_type": "ETN_Parameter",
-    "_meta": {
-      "title": "Parameter"
-    }
-  },
-  "826": {
+  "845": {
     "inputs": {
       "images": [
-        "827",
+        "846",
         0
       ]
     },
@@ -1151,19 +1202,19 @@
       "title": "Krita Output"
     }
   },
-  "827": {
+  "846": {
     "inputs": {
       "width": [
-        "819",
+        "840",
         1
       ],
       "height": [
-        "819",
+        "840",
         2
       ],
       "crop": "disabled",
       "upscale_method": "nearest-exact",
-      "lock_aspect_ratio": false,
+      "lock_aspect_ratio": true,
       "image": [
         "685",
         0
@@ -1171,42 +1222,58 @@
     },
     "class_type": "EG_TX_SFBLS",
     "_meta": {
-      "title": "2🐕Image scaling lock"
+      "title": "2\ud83d\udc15Image scaling lock"
     }
   },
-  "828": {
-    "inputs": {
-      "name": "4. 材质修正（Specify material）(tips: 通过提示词控制生成的包包材质，如果不指定材质，生成的包包材质会是皮革的比较多)",
-      "type": "text",
-      "default": "帆布",
-      "min": 0,
-      "max": 0
-    },
-    "class_type": "ETN_Parameter",
-    "_meta": {
-      "title": "Parameter"
-    }
-  },
-  "829": {
-    "inputs": {
-      "name": "5. 参考颜色（Specify material）(tips: 开启后，生成包包将会尽量遵循参考图的配色)",
-      "type": "toggle",
-      "default": true,
-      "min": 0,
-      "max": 0
-    },
-    "class_type": "ETN_Parameter",
-    "_meta": {
-      "title": "Parameter"
-    }
-  },
-  "830": {
+  "848": {
     "inputs": {
       "seed": 0
     },
     "class_type": "easy seed",
     "_meta": {
-      "title": "随机种"
+      "title": "\u968f\u673a\u79cd"
+    }
+  },
+  "849": {
+    "inputs": {
+      "seed": 0
+    },
+    "class_type": "easy seed",
+    "_meta": {
+      "title": "\u968f\u673a\u79cd"
+    }
+  },
+  "850": {
+    "inputs": {
+      "seed": 0
+    },
+    "class_type": "easy seed",
+    "_meta": {
+      "title": "\u968f\u673a\u79cd"
+    }
+  },
+  "851": {
+    "inputs": {
+      "anything": [
+        "840",
+        0
+      ]
+    },
+    "class_type": "easy cleanGpuUsed",
+    "_meta": {
+      "title": "\u6e05\u7406GPU\u5360\u7528"
+    }
+  },
+  "852": {
+    "inputs": {
+      "anything": [
+        "690",
+        0
+      ]
+    },
+    "class_type": "easy cleanGpuUsed",
+    "_meta": {
+      "title": "\u6e05\u7406GPU\u5360\u7528"
     }
   }
 }
