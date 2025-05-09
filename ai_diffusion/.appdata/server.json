@@ -1,36 +1,36 @@
 [
     {
-        "url": "http://comfyui-antaai-krita-chuangliu.1835654106092022.cn-hangzhou.pai-eas.aliyuncs.com/",
+        "url": "http://comfyui-antaai-krita-chuangliu.1835654106092022.vpc.cn-hangzhou.pai-eas.aliyuncs.com/",
         "access_token": "ZDIwZmVmOGNkY2ZhZWNhZTdhYTI0ZDI1ZmZmMjdjODA0MzI3NWIxMg=="
     },
     {
-        "url": "http://krita-7.1835654106092022.cn-hangzhou.pai-eas.aliyuncs.com/",
+        "url": "http://krita-7.1835654106092022.vpc.cn-hangzhou.pai-eas.aliyuncs.com/",
         "access_token": "YzMzMDRiYmMwNWIxNDc2MjczOTc3NTRmZjQ1MGRhYjYyZGEyMmY3MA=="
     },
     {
         
-        "url": "http://krita-6.1835654106092022.cn-hangzhou.pai-eas.aliyuncs.com/",
+        "url": "http://krita-6.1835654106092022.vpc.cn-hangzhou.pai-eas.aliyuncs.com/",
         "access_token": "N2VlYTk2MzNiZmEyY2UwNTJmZTZjZTg0MWJlMTJiYTkzNjJjZTExOA=="
     },
     {
-        "url": "http://krita-5.1835654106092022.cn-hangzhou.pai-eas.aliyuncs.com/",
+        "url": "http://krita-5.1835654106092022.vpc.cn-hangzhou.pai-eas.aliyuncs.com/",
         "access_token": "MmIyZGJlNzNhMDhkNDQ2NGFkNGI5ODhmNGVlMjc4MWJiMTI2YWJjYw=="
     },
     {
-        "url": "http://krita-4.1835654106092022.cn-hangzhou.pai-eas.aliyuncs.com/",
+        "url": "http://krita-4.1835654106092022.vpc.cn-hangzhou.pai-eas.aliyuncs.com/",
         "access_token": "Zjg4YzQxNTM2MDY3NjEwNDE3N2YwZjc3MDRkYjcxYmU2NTY0OGVjNQ=="
     },
     {
-        "url": "http://krita-3.1835654106092022.cn-hangzhou.pai-eas.aliyuncs.com/",
+        "url": "http://krita-3.1835654106092022.vpc.cn-hangzhou.pai-eas.aliyuncs.com/",
         "access_token": "OGY0M2Q0MzE2MjkzMDIxMTQ3ZTEwNmViYWU3MWRmN2I3YTliZDc1ZQ=="
     },
     {
         
-        "url": "http://krita-2.1835654106092022.cn-hangzhou.pai-eas.aliyuncs.com/",
+        "url": "http://krita-2.1835654106092022.vpc.vpc.cn-hangzhou.pai-eas.aliyuncs.com/",
         "access_token": "NGMzMWZkYWZmYWM1OGJiYzlhMzZlNmRjN2VkMWQ3MDA5MDQ3MTVhZA=="
     },
     {
-        "url": "http://krita-1.1835654106092022.cn-hangzhou.pai-eas.aliyuncs.com/",
+        "url": "http://krita-1.1835654106092022.vpc.vpc.cn-hangzhou.pai-eas.aliyuncs.com/",
         "access_token": "NWQyNTUyZWI0ODIzZjRmZjVjZmExYTM5N2JlNjlmMzgxNDE3Y2NjZA=="
     }  
 ]
