@@ -5,13 +5,13 @@
     },
     "class_type": "VAELoader",
     "_meta": {
-      "title": "VAE加载器"
+      "title": "VAE\u52a0\u8f7d\u5668"
     }
   },
   "34": {
     "inputs": {
       "upscale_method": "lanczos",
-      "megapixels": 8,
+      "megapixels": 8.000000000000002,
       "image": [
         "134",
         0
@@ -19,7 +19,7 @@
     },
     "class_type": "ImageScaleToTotalPixels",
     "_meta": {
-      "title": "图像按像素缩放"
+      "title": "\u56fe\u50cf\u6309\u50cf\u7d20\u7f29\u653e"
     }
   },
   "36": {
@@ -44,7 +44,7 @@
   },
   "42": {
     "inputs": {
-      "text": "high quality, detailed, photograph , hd, 8k , 4k , sharp, highly detailed",
+      "text": "",
       "speak_and_recognation": {
         "__value__": [
           false,
@@ -58,7 +58,7 @@
     },
     "class_type": "CLIPTextEncode",
     "_meta": {
-      "title": "CLIP文本编码器"
+      "title": "CLIP\u6587\u672c\u7f16\u7801\u5668"
     }
   },
   "67": {
@@ -86,7 +86,7 @@
     },
     "class_type": "SamplerCustomAdvanced",
     "_meta": {
-      "title": "自定义采样器(高级)"
+      "title": "\u81ea\u5b9a\u4e49\u91c7\u6837\u5668(\u9ad8\u7ea7)"
     }
   },
   "68": {
@@ -95,14 +95,14 @@
     },
     "class_type": "KSamplerSelect",
     "_meta": {
-      "title": "K采样器选择"
+      "title": "K\u91c7\u6837\u5668\u9009\u62e9"
     }
   },
   "69": {
     "inputs": {
       "scheduler": "simple",
       "steps": 4,
-      "denoise": 0.3,
+      "denoise": 0.30000000000000004,
       "model": [
         "162",
         0
@@ -110,7 +110,7 @@
     },
     "class_type": "BasicScheduler",
     "_meta": {
-      "title": "基础调度器"
+      "title": "\u57fa\u7840\u8c03\u5ea6\u5668"
     }
   },
   "70": {
@@ -122,7 +122,7 @@
     },
     "class_type": "RandomNoise",
     "_meta": {
-      "title": "随机噪波"
+      "title": "\u968f\u673a\u566a\u6ce2"
     }
   },
   "72": {
@@ -138,7 +138,7 @@
     },
     "class_type": "BasicGuider",
     "_meta": {
-      "title": "基础引导"
+      "title": "\u57fa\u7840\u5f15\u5bfc"
     }
   },
   "73": {
@@ -151,7 +151,7 @@
     },
     "class_type": "FluxGuidance",
     "_meta": {
-      "title": "Flux引导"
+      "title": "Flux\u5f15\u5bfc"
     }
   },
   "77": {
@@ -161,7 +161,7 @@
     },
     "class_type": "UNETLoader",
     "_meta": {
-      "title": "UNET加载器"
+      "title": "UNET\u52a0\u8f7d\u5668"
     }
   },
   "78": {
@@ -173,7 +173,7 @@
     },
     "class_type": "DualCLIPLoader",
     "_meta": {
-      "title": "双CLIP加载器"
+      "title": "\u53ccCLIP\u52a0\u8f7d\u5668"
     }
   },
   "96": {
@@ -193,14 +193,14 @@
     },
     "class_type": "VAEDecodeTiled",
     "_meta": {
-      "title": "VAE分块解码"
+      "title": "VAE\u5206\u5757\u89e3\u7801"
     }
   },
   "111": {
     "inputs": {
       "width_factor": 2,
       "height_factor": 3,
-      "overlap_rate": 0.05,
+      "overlap_rate": 0.05000000000000001,
       "image": [
         "34",
         0
@@ -249,7 +249,7 @@
     },
     "class_type": "VAEEncode",
     "_meta": {
-      "title": "VAE编码"
+      "title": "VAE\u7f16\u7801"
     }
   },
   "133": {
@@ -258,7 +258,7 @@
     },
     "class_type": "UpscaleModelLoader",
     "_meta": {
-      "title": "放大模型加载器"
+      "title": "\u653e\u5927\u6a21\u578b\u52a0\u8f7d\u5668"
     }
   },
   "134": {
@@ -274,14 +274,14 @@
     },
     "class_type": "ImageUpscaleWithModel",
     "_meta": {
-      "title": "图像通过模型放大"
+      "title": "\u56fe\u50cf\u901a\u8fc7\u6a21\u578b\u653e\u5927"
     }
   },
   "162": {
     "inputs": {
       "lora_name": "flux/Flux Dev4-step.safetensors",
-      "strength_model": 1,
-      "strength_clip": 1,
+      "strength_model": 1.0000000000000002,
+      "strength_clip": 1.0000000000000002,
       "model": [
         "77",
         0
@@ -293,7 +293,7 @@
     },
     "class_type": "LoraLoader",
     "_meta": {
-      "title": "LoRA加载器"
+      "title": "LoRA\u52a0\u8f7d\u5668"
     }
   },
   "163": {
@@ -305,7 +305,7 @@
     },
     "class_type": "easy imageBatchToImageList",
     "_meta": {
-      "title": "图像批次到图像列表"
+      "title": "\u56fe\u50cf\u6279\u6b21\u5230\u56fe\u50cf\u5217\u8868"
     }
   },
   "237": {
@@ -317,7 +317,7 @@
     },
     "class_type": "ImageListToImageBatch",
     "_meta": {
-      "title": "图像列表到图像批次"
+      "title": "\u56fe\u50cf\u5217\u8868\u5230\u56fe\u50cf\u6279\u6b21"
     }
   },
   "244": {
@@ -329,77 +329,46 @@
       "divisible_by": 2,
       "crop": "disabled",
       "image": [
-        "247",
+        "252",
         0
       ]
     },
     "class_type": "ImageResizeKJ",
     "_meta": {
-      "title": "图像缩放（KJ）"
+      "title": "\u56fe\u50cf\u7f29\u653e\uff08KJ\uff09"
     }
   },
-  "245": {
+  "251": {
     "inputs": {
-      "rgthree_comparer": {
-        "images": [
-          {
-            "name": "A",
-            "selected": true,
-            "url": "/api/view?filename=rgthree.compare._temp_oegpy_00000000_174651350280704_45240776-86a1-43ba-bbde-0dccf0058667_.png&type=temp&subfolder=&rand=0.460896812694201"
-          },
-          {
-            "name": "B",
-            "selected": true,
-            "url": "/api/view?filename=rgthree.compare._temp_oegpy_00000000_174651350303484_4d71030d-d16b-4fed-bf4f-4ce2733fd638_.png&type=temp&subfolder=&rand=0.17275048169612917"
-          }
-        ]
-      },
-      "image_a": [
-        "247",
-        0
-      ],
-      "image_b": [
-        "127",
-        0
-      ]
+      "seed": 876160117583435
     },
-    "class_type": "Image Comparer (rgthree)",
+    "class_type": "easy seed",
     "_meta": {
-      "title": "图像对比"
+      "title": "\u968f\u673a\u79cd"
     }
   },
-  "247": {
-    "inputs": {},
-    "class_type": "ETN_KritaCanvas",
-    "_meta": {
-      "title": "Krita Canvas"
-    }
-  },
-  "248": {
+  "252": {
     "inputs": {
-      "images": [
-        "127",
-        0
-      ]
+      "name": "1. \u9009\u62e9\u8981\u653e\u5927\u7684\u56fe\u7247(tips\uff1a\u8bf7\u9009\u62e9\u9700\u8981\u653e\u5927\u7684\u56fe\u7247)"
     },
-    "class_type": "ETN_KritaOutput",
+    "class_type": "ETN_KritaImageLayer",
     "_meta": {
-      "title": "Krita Output"
+      "title": "Krita Image Layer"
     }
   },
-  "249": {
+  "254": {
     "inputs": {
       "width": [
-        "247",
+        "257",
         1
       ],
       "height": [
-        "247",
+        "257",
         2
       ],
       "crop": "disabled",
       "upscale_method": "nearest-exact",
-      "lock_aspect_ratio": false,
+      "lock_aspect_ratio": true,
       "image": [
         "127",
         0
@@ -407,13 +376,13 @@
     },
     "class_type": "EG_TX_SFBLS",
     "_meta": {
-      "title": "2🐕Image scaling lock"
+      "title": "2\ud83d\udc15Image scaling lock"
     }
   },
-  "250": {
+  "256": {
     "inputs": {
       "images": [
-        "249",
+        "259",
         0
       ]
     },
@@ -422,13 +391,36 @@
       "title": "Krita Output"
     }
   },
-  "251": {
-    "inputs": {
-      "seed": 0
-    },
-    "class_type": "easy seed",
+  "257": {
+    "inputs": {},
+    "class_type": "ETN_KritaCanvas",
     "_meta": {
-      "title": "随机种"
+      "title": "Krita Canvas"
+    }
+  },
+  "259": {
+    "inputs": {
+      "upscale_model": [
+        "260",
+        0
+      ],
+      "image": [
+        "254",
+        0
+      ]
+    },
+    "class_type": "ImageUpscaleWithModel",
+    "_meta": {
+      "title": "\u56fe\u50cf\u901a\u8fc7\u6a21\u578b\u653e\u5927"
+    }
+  },
+  "260": {
+    "inputs": {
+      "model_name": "OmniSR_X2_DIV2K.safetensors"
+    },
+    "class_type": "UpscaleModelLoader",
+    "_meta": {
+      "title": "\u653e\u5927\u6a21\u578b\u52a0\u8f7d\u5668"
     }
   }
 }
