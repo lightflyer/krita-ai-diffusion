@@ -269,14 +269,22 @@ class Model(QObject, ObservableProperties):
     ):
         sampling = ensure(input.sampling)
         params.has_mask = input.images is not None and input.images.hires_mask is not None
-
+        
+        client = self._connection.client
         for i in range(count):
             next_seed = sampling.seed + i * settings.batch_size
             input = replace(input, sampling=replace(sampling, seed=next_seed))
             params.seed = next_seed
             job = self.jobs.add(kind, copy(params))
-            await self._enqueue_job(job, input)
 
+            self._connection.notify_job_queue_length_changed()
+            job_queue_length = client.queued_count if hasattr(client, 'queued_count') else 0
+            if job_queue_length >= 5:
+                self.report_error(_("Job queue is too long, please wait for the previous job to finish."))
+                break
+
+            await self._enqueue_job(job, input)
+    
     async def _enqueue_job(self, job: Job, input: WorkflowInput):
         if not self.jobs.any_executing():
             self.progress = 0.0

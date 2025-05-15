@@ -836,6 +836,17 @@ class CustomWorkflowWidget(QWidget):
     def _show_settings(self):
         Krita.instance().action("ai_diffusion_settings").trigger()
 
+    def _update_button_state(self):
+        client = root.connection.client_if_connected
+        if client:
+            queue_length = client.queued_count
+            if queue_length >= 5:
+                self._generate_button.setEnabled(False)
+                self._generate_button.setToolTip(_("您的任务已经达到上限，请等待当前任务完成"))
+            else:
+                self._generate_button.setEnabled(True)
+                self._generate_button.setToolTip("")
+
     @property
     def model(self):
         return self._model
@@ -857,6 +868,7 @@ class CustomWorkflowWidget(QWidget):
                 model.custom.is_live_changed.connect(self._update_ui),
                 model.custom.result_available.connect(self._live_preview.show_image),
                 model.custom.has_result_changed.connect(self._apply_button.setEnabled),
+                model._connection.job_queue_length_changed.connect(self._update_button_state),
             ]
             self._queue_button.model = model
             self._progress_bar.model = model
@@ -864,6 +876,7 @@ class CustomWorkflowWidget(QWidget):
             self._update_current_workflow()
             self._update_ui()
             self._set_params_height(model.custom.params_ui_height)
+            self._update_button_state()
 
     def _mk_action(self, mode: CustomGenerationMode, text: str, icon: str):
         action = QAction(text, self)
@@ -902,6 +915,8 @@ class CustomWorkflowWidget(QWidget):
             icon = "pause"
         self._generate_button.operation = text
         self._generate_button.setIcon(theme.icon(icon))
+
+        
 
     def _generate(self):
         if self.model.custom.mode is CustomGenerationMode.live:

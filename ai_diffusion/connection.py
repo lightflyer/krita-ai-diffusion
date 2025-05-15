@@ -35,6 +35,7 @@ class Connection(QObject, ObservableProperties):
     models_changed = pyqtSignal()
     message_received = pyqtSignal(ClientMessage)
     workflow_published = pyqtSignal(str)
+    job_queue_length_changed = pyqtSignal(int)
 
     def __init__(self):
         super().__init__()
@@ -44,6 +45,7 @@ class Connection(QObject, ObservableProperties):
         self._workflows: dict[str, dict] = {}
         self._temporary_disconnect = False
         self.missing_resources: MissingResources | None = None
+        self._previous_job_queue_length: int = -1
 
         settings.changed.connect(self._handle_settings_changed)
         self._update_state()
@@ -51,6 +53,27 @@ class Connection(QObject, ObservableProperties):
     def __del__(self):
         if self._task is not None:
             self._task.cancel()
+
+    def _update_and_emit_job_queue_length(self):
+        """
+        更新并发射作业队列长度
+        """
+        current_length = 0
+        client = self.client_if_connected
+        if client and hasattr(client, 'queued_count'):
+            try:
+                current_length = client.queued_count
+            except Exception:
+                current_length = (self._previous_job_queue_length 
+                                  if self._previous_job_queue_length != -1 else 0)
+        
+        if current_length != self._previous_job_queue_length:
+            self._previous_job_queue_length = current_length
+            self.job_queue_length_changed.emit(current_length)
+    
+    def notify_job_queue_length_changed(self):
+        self._update_and_emit_job_queue_length()
+                
 
     async def _sign_in(self, url: str):
         self._client = CloudClient(url)

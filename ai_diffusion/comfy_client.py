@@ -235,6 +235,8 @@ class ComfyClient(Client):
                 except Exception as e:
                     log.exception(f"Unhandled exception while processing {job}")
                     await self._report(ClientEvent.error, job.local_id, error=str(e))
+                finally:
+                    self._connection.notify_job_queue_length_changed()
         except asyncio.CancelledError:
             pass
 
@@ -385,6 +387,8 @@ class ComfyClient(Client):
                 await self._report(ClientEvent.interrupted, job.local_id)
             except asyncio.QueueEmpty:
                 break
+            finally:
+                self._connection.notify_job_queue_length_changed()
 
         await self._post("queue", {"clear": True})
         self._jobs.clear()
