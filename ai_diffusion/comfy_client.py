@@ -100,7 +100,7 @@ class ComfyClient(Client):
         self._jobs: deque[JobInfo] = deque()
         self._is_connected = False
 
-        self._server_base_url = "http://localhost:5080/"
+        self._server_base_url = "http://10.235.28.32:31586"
         self._record_url = f"{self._server_base_url}/krita-server/v1/job"
 
     @staticmethod
