@@ -174,6 +174,7 @@ class WorkflowInput:
     batch_count: int = 1
     nsfw_filter: float = 0.0
     custom_workflow: CustomWorkflowInput | None = None
+    workflow_id: str = ""
 
     @property
     def extent(self):

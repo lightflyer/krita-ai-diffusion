@@ -276,6 +276,7 @@ class Model(QObject, ObservableProperties):
             next_seed = sampling.seed + i * settings.batch_size
             input = replace(input, sampling=replace(sampling, seed=next_seed))
             params.seed = next_seed
+            input.workflow_id = self.custom.workflow_id
             job = self.jobs.add(kind, copy(params))
             if client and client.__class__.__name__ == "ComfyClient" and hasattr(client, "queued_count"):
                 queue_length = client.queued_count
@@ -517,6 +518,10 @@ class Model(QObject, ObservableProperties):
         if self.error:
             self.error = no_error
 
+    def _track_job(self, op: str, data: dict):
+        if self.comfy_client:
+            eventloop.run(self.comfy_client._job_tracking(op, data))
+
     def handle_message(self, message: ClientMessage):
         job = self.jobs.find(message.job_id)
         if job is None:
@@ -524,15 +529,15 @@ class Model(QObject, ObservableProperties):
             return
 
         if message.event is ClientEvent.queued:
-            self.jobs.notify_started(job)
+            self._start_job(job)
             self.progress = -1
             self.progress_changed.emit(-1)
         elif message.event is ClientEvent.progress:
-            self.jobs.notify_started(job)
+            self._start_job(job)
             self.progress_kind = ProgressKind.generation
             self.progress = message.progress
         elif message.event is ClientEvent.upload:
-            self.jobs.notify_started(job)
+            self._start_job(job)
             self.progress_kind = ProgressKind.upload
             self.progress = message.progress
         elif message.event is ClientEvent.output:
@@ -555,10 +560,32 @@ class Model(QObject, ObservableProperties):
             self._finish_job(job, ClientEvent.error)
             assert isinstance(message.error, str) and isinstance(message.result, dict)
             self.report_error(Error(ErrorKind.insufficient_funds, message.error, message.result))
+    
+    @property
+    def comfy_client(self):
+        if self._connection.state == ConnectionState.connected and (
+                client := self._connection.client_if_connected) and (
+                    client.__class__.__name__ == "ComfyClient"):
+            return client
+        return None
+    
+    def _start_job(self, job: Job):
+        self.jobs.notify_started(job)
+        job_record = {
+            "job_id": job.id,
+            "status": "running"
+        }
+        self._track_job("update", job_record)
+
 
     def _finish_job(self, job: Job, event: ClientEvent):
         if job.kind is JobKind.upscaling:
             self.upscale.set_in_progress(False)
+
+        job_record = {
+            "job_id": job.id,
+        }
+        
 
         if event is ClientEvent.finished:
             self.jobs.notify_finished(job)
@@ -570,9 +597,13 @@ class Model(QObject, ObservableProperties):
                     self.jobs.select(job.id, 0)
                 elif action is GenerationFinishedAction.apply:
                     self.apply_generated_result(job.id, 0)
+            job_record["status"] = "completed"
+            self._track_job("update", job_record)
         else:
             self.jobs.notify_cancelled(job)
             self.progress = 0
+            job_record["status"] = "cancelled"
+            self._track_job("update", job_record)
 
     def update_preview(self):
         if selection := self.jobs.selection:

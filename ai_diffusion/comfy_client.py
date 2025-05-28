@@ -100,6 +100,9 @@ class ComfyClient(Client):
         self._jobs: deque[JobInfo] = deque()
         self._is_connected = False
 
+        self._server_base_url = "http://localhost:5080/"
+        self._record_url = f"{self._server_base_url}/krita-server/v1/job"
+
     @staticmethod
     async def connect(url=default_url, access_token=""):
         client = ComfyClient(parse_url(url))
@@ -111,7 +114,7 @@ class ComfyClient(Client):
         # Try to establish websockets connection
         wsurl = websocket_url(client.url)
         try:
-            headers = client._get_headers(is_http=False)
+            headers = client._get_comfy_headers(is_http=False)
                 
             async with websockets.connect(f"{wsurl}/ws?clientId={client._id}", additional_headers=headers):
                 pass
@@ -192,7 +195,7 @@ class ComfyClient(Client):
         _ensure_supported_style(client)
         return client
     
-    def _get_headers(self, new_headers: dict|None = None, is_http: bool = True) -> dict| list[tuple[str, str]]:
+    def _get_comfy_headers(self, new_headers: dict|None = None, is_http: bool = True) -> dict| list[tuple[str, str]]:
         header_dict = settings.headers or {}
         header_dict.update({
             "Authorization": f"{settings.access_token}",
@@ -209,12 +212,28 @@ class ComfyClient(Client):
         else:
             return header_dict
 
+    def _get_server_headers(self, new_headers: dict|None = None) -> list[tuple[str, str]]:
+        header_dict = new_headers or {"token": "super_admin_token"}
+        return [
+                (key, value) for key, value in header_dict.items()
+            ]
+    
+    async def _server_post(self, op: str, data: dict):
+        headers = self._get_server_headers()
+        return await self._requests.post(f"{self._record_url}/{op}", data, headers=headers)
+    
+    async def _job_tracking(self, op: str, data: dict):
+        try:
+            return await self._server_post(op, data)
+        except Exception as e:
+            log.error(f"Failed to {op} job record: {str(e)}")
+
     async def _get(self, op: str, timeout: float | None = 30):
-        headers = self._get_headers(is_http=True)
+        headers = self._get_comfy_headers(is_http=True)
         return await self._requests.get(f"{self.url}/{op}", timeout=timeout, headers=headers)
 
     async def _post(self, op: str, data: dict):
-        headers = self._get_headers(is_http=True)
+        headers = self._get_comfy_headers(is_http=True)
         return await self._requests.post(f"{self.url}/{op}", data, headers=headers)
 
     async def enqueue(self, work: WorkflowInput, front: bool = False):
@@ -249,18 +268,33 @@ class ComfyClient(Client):
         data = {"prompt": workflow.root, "client_id": self._id, "front": job.front}
         job.remote_id = asyncio.get_running_loop().create_future()
         self._jobs.append(job)
+        job_record = {
+            "job_id": job.local_id,
+            "worker_id": self._id,
+            "workflow_id": job.work.workflow_id,
+        }
+
         try:
             result = await self._post("prompt", data)
             job.remote_id.set_result(result["prompt_id"])
+            job_record["remote_id"] = result["prompt_id"]
+            job_record["status"] = "pending"
         except Exception as e:
             job.remote_id.set_result("ERROR")
+            job_record["remote_id"] = "ERROR"
+            job_record["status"] = "failed"
             if self._jobs[0] == job:
                 self._jobs.popleft()
             raise e
+        finally:
+            try:
+                await self._job_tracking("create", job_record)
+            except Exception as e:
+                log.error(f"Failed to create job record: {str(e)}")
 
     async def _listen(self):
         url = websocket_url(self.url)
-        headers = self._get_headers(is_http=False)
+        headers = self._get_comfy_headers(is_http=False)
         async for websocket in websockets.connect(
             f"{url}/ws?clientId={self._id}", max_size=2**30, ping_timeout=60, additional_headers=headers
         ):
