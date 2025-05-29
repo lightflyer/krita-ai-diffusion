@@ -1,0 +1,214 @@
+{
+  "1": {
+    "inputs": {
+      "prompt": [
+        "22",
+        0
+      ],
+      "quality": "high",
+      "size": "1024x1024",
+      "seed": [
+        "20",
+        0
+      ],
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "images": [
+        "6",
+        0
+      ]
+    },
+    "class_type": "GPTImage1Edit",
+    "_meta": {
+      "title": "GPT Image Edit"
+    }
+  },
+  "6": {
+    "inputs": {
+      "inputcount": 2,
+      "Update inputs": null,
+      "image_1": [
+        "19",
+        0
+      ],
+      "image_2": [
+        "12",
+        0
+      ]
+    },
+    "class_type": "ImageBatchMulti",
+    "_meta": {
+      "title": "图像组合批次（多重）"
+    }
+  },
+  "10": {
+    "inputs": {},
+    "class_type": "ETN_KritaCanvas",
+    "_meta": {
+      "title": "Krita Canvas"
+    }
+  },
+  "12": {
+    "inputs": {
+      "name": "1. 参考图片（tips:请选择要参考的图片）"
+    },
+    "class_type": "ETN_KritaImageLayer",
+    "_meta": {
+      "title": "Krita Image Layer"
+    }
+  },
+  "13": {
+    "inputs": {
+      "images": [
+        "18:3",
+        0
+      ]
+    },
+    "class_type": "ETN_KritaOutput",
+    "_meta": {
+      "title": "Krita Output"
+    }
+  },
+  "19": {
+    "inputs": {
+      "aspect_ratio": "1:1",
+      "proportional_width": 1,
+      "proportional_height": 1,
+      "fit": "letterbox",
+      "method": "lanczos",
+      "round_to_multiple": "8",
+      "scale_to_side": "longest",
+      "scale_to_length": 1024,
+      "background_color": "#000000",
+      "image": [
+        "10",
+        0
+      ]
+    },
+    "class_type": "LayerUtility: ImageScaleByAspectRatio V2",
+    "_meta": {
+      "title": "按宽高比缩放_V2"
+    }
+  },
+  "20": {
+    "inputs": {
+      "seed": 221791106008412
+    },
+    "class_type": "easy seed",
+    "_meta": {
+      "title": "随机种"
+    }
+  },
+  "21": {
+    "inputs": {
+      "name": "1. 提示词（tips:告诉ai你要干什么,例：图1是线稿，图2是配色，将图2的配色和设计风格迁移到图1上，图1造型不变）",
+      "type": "prompt (positive)",
+      "default": "迁移配色",
+      "min": 0,
+      "max": 0
+    },
+    "class_type": "ETN_Parameter",
+    "_meta": {
+      "title": "Parameter"
+    }
+  },
+  "22": {
+    "inputs": {
+      "action": "append",
+      "tidy_tags": "no",
+      "text_a": "你是服装的印花设计师，图1是用户上传的主体图片，图二是用户上传的参考图，请根据图二的风格和颜色，按照用户的要求进行印花的设计，用户的要求如下：",
+      "text_b": [
+        "21",
+        0
+      ],
+      "text_c": "",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "result": "你是服装的印花设计师，图1是用户上传的主体图片，图二是用户上传的参考图，请根据图二的风格和颜色，按照用户的要求进行印花的设计，用户的要求如下：迁移配色"
+    },
+    "class_type": "StringFunction|pysssss",
+    "_meta": {
+      "title": "字符串操作"
+    }
+  },
+  "23": {
+    "inputs": {
+      "text": "你是服装的印花设计师，图1是用户上传的主体图片，图二是用户上传的参考图，请根据图二的风格和颜色，按照用户的要求进行印花的设计，用户的要求如下：迁移配色",
+      "anything": [
+        "22",
+        0
+      ]
+    },
+    "class_type": "easy showAnything",
+    "_meta": {
+      "title": "展示任何"
+    }
+  },
+  "18:0": {
+    "inputs": {
+      "image": "image (48).png"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "加载图像"
+    }
+  },
+  "18:1": {
+    "inputs": {
+      "image": [
+        "10",
+        0
+      ]
+    },
+    "class_type": "GetImageSize+",
+    "_meta": {
+      "title": "获取图像尺寸"
+    }
+  },
+  "18:2": {
+    "inputs": {
+      "upscale_method": "nearest-exact",
+      "width": [
+        "18:1",
+        0
+      ],
+      "height": [
+        "18:1",
+        1
+      ],
+      "crop": "disabled",
+      "image": [
+        "18:0",
+        0
+      ]
+    },
+    "class_type": "ImageScale",
+    "_meta": {
+      "title": "图像缩放"
+    }
+  },
+  "18:3": {
+    "inputs": {
+      "image1": [
+        "1",
+        0
+      ],
+      "image2": [
+        "18:2",
+        0
+      ]
+    },
+    "class_type": "ImageOverlayNode",
+    "_meta": {
+      "title": "Image Overlay (Fit & Center)"
+    }
+  }
+}

@@ -1,285 +1,14 @@
 {
-  "543": {
+  "45": {
     "inputs": {
-      "ckpt_name": "depth_anything_v2_vitl.pth",
-      "resolution": 1408,
-      "image": [
-        "690",
+      "prompt": [
+        "109",
         0
-      ]
-    },
-    "class_type": "DepthAnythingV2Preprocessor",
-    "_meta": {
-      "title": "DepthAnythingV2深度预处理器"
-    }
-  },
-  "549": {
-    "inputs": {
-      "channel": "red",
-      "image": [
-        "872",
-        0
-      ]
-    },
-    "class_type": "ImageToMask",
-    "_meta": {
-      "title": "图像到遮罩"
-    }
-  },
-  "563": {
-    "inputs": {
-      "ckpt_name": "SDXL/juggernautXL_v9Rdphoto2Lightning.safetensors"
-    },
-    "class_type": "CheckpointLoaderSimple",
-    "_meta": {
-      "title": "Checkpoint加载器(简易)"
-    }
-  },
-  "564": {
-    "inputs": {
+      ],
+      "quality": "high",
+      "size": "1024x1024",
       "seed": [
-        "938",
-        0
-      ],
-      "steps": 20,
-      "cfg": 3.5,
-      "sampler_name": "euler",
-      "scheduler": "karras",
-      "denoise": 0.8500000000000002,
-      "model": [
-        "730",
-        0
-      ],
-      "positive": [
-        "575",
-        0
-      ],
-      "negative": [
-        "575",
-        1
-      ],
-      "latent_image": [
-        "878",
-        0
-      ]
-    },
-    "class_type": "KSampler",
-    "_meta": {
-      "title": "K采样器"
-    }
-  },
-  "567": {
-    "inputs": {
-      "weight": [
-        "904",
-        0
-      ],
-      "start_at": 0,
-      "end_at": 1,
-      "weight_type": "standard",
-      "model": [
-        "568",
-        0
-      ],
-      "ipadapter": [
-        "568",
-        1
-      ],
-      "image": [
-        "767",
-        0
-      ],
-      "attn_mask": [
-        "549",
-        0
-      ]
-    },
-    "class_type": "IPAdapter",
-    "_meta": {
-      "title": "应用IPAdapter"
-    }
-  },
-  "568": {
-    "inputs": {
-      "preset": "PLUS (high strength)",
-      "model": [
-        "563",
-        0
-      ]
-    },
-    "class_type": "IPAdapterUnifiedLoader",
-    "_meta": {
-      "title": "IPAdapter加载器"
-    }
-  },
-  "570": {
-    "inputs": {
-      "samples": [
-        "564",
-        0
-      ],
-      "vae": [
-        "563",
-        2
-      ]
-    },
-    "class_type": "VAEDecode",
-    "_meta": {
-      "title": "VAE解码"
-    }
-  },
-  "575": {
-    "inputs": {
-      "strength": 0.8500000000000002,
-      "start_percent": 0,
-      "end_percent": 1,
-      "positive": [
-        "933",
-        0
-      ],
-      "negative": [
-        "755",
-        0
-      ],
-      "control_net": [
-        "576",
-        0
-      ],
-      "image": [
-        "929",
-        0
-      ],
-      "vae": [
-        "563",
-        2
-      ]
-    },
-    "class_type": "ControlNetApplyAdvanced",
-    "_meta": {
-      "title": "ControlNet应用（旧版高级）"
-    }
-  },
-  "576": {
-    "inputs": {
-      "control_net_name": "sdxl_cn/controlnet-union-promax-sdxl-1.0.safetensors"
-    },
-    "class_type": "ControlNetLoader",
-    "_meta": {
-      "title": "ControlNet加载器"
-    }
-  },
-  "582": {
-    "inputs": {
-      "ckpt_name": "flux/flux1-schnell-fp8.safetensors"
-    },
-    "class_type": "CheckpointLoaderSimple",
-    "_meta": {
-      "title": "Checkpoint加载器(简易)"
-    }
-  },
-  "664": {
-    "inputs": {
-      "width": [
-        "690",
-        1
-      ],
-      "height": [
-        "690",
-        2
-      ],
-      "batch_size": 1
-    },
-    "class_type": "EmptyLatentImage",
-    "_meta": {
-      "title": "空Latent"
-    }
-  },
-  "666": {
-    "inputs": {
-      "mask": [
-        "549",
-        0
-      ]
-    },
-    "class_type": "MaskToImage",
-    "_meta": {
-      "title": "遮罩到图像"
-    }
-  },
-  "690": {
-    "inputs": {
-      "width": 1408,
-      "height": 1408,
-      "upscale_method": "lanczos",
-      "keep_proportion": true,
-      "divisible_by": 2,
-      "crop": 0,
-      "image": [
-        "817",
-        0
-      ]
-    },
-    "class_type": "ImageResizeKJ",
-    "_meta": {
-      "title": "图像缩放（KJ）"
-    }
-  },
-  "730": {
-    "inputs": {
-      "weight": 0.25000000000000006,
-      "start_at": 0,
-      "end_at": 1,
-      "weight_type": "standard",
-      "model": [
-        "567",
-        0
-      ],
-      "ipadapter": [
-        "568",
-        1
-      ],
-      "image": [
-        "921",
-        0
-      ],
-      "attn_mask": [
-        "731",
-        0
-      ]
-    },
-    "class_type": "IPAdapter",
-    "_meta": {
-      "title": "应用IPAdapter"
-    }
-  },
-  "731": {
-    "inputs": {
-      "mask": [
-        "549",
-        0
-      ]
-    },
-    "class_type": "InvertMask (segment anything)",
-    "_meta": {
-      "title": "反转遮罩"
-    }
-  },
-  "751": {
-    "inputs": {
-      "images": [
-        "929",
-        0
-      ]
-    },
-    "class_type": "PreviewImage",
-    "_meta": {
-      "title": "预览图像"
-    }
-  },
-  "755": {
-    "inputs": {
-      "text": [
-        "876",
+        "116",
         0
       ],
       "speak_and_recognation": {
@@ -288,64 +17,73 @@
           true
         ]
       },
-      "clip": [
-        "563",
-        1
-      ]
-    },
-    "class_type": "CLIPTextEncode",
-    "_meta": {
-      "title": "CLIP文本编码器"
-    }
-  },
-  "767": {
-    "inputs": {
-      "boolean": [
-        "935",
-        0
-      ],
-      "on_true": [
-        "819",
-        0
-      ],
-      "on_false": [
-        "842",
+      "images": [
+        "47",
         0
       ]
     },
-    "class_type": "Switch any [Crystools]",
+    "class_type": "GPTImage1Edit",
     "_meta": {
-      "title": "切换任意"
+      "title": "GPT Image Edit"
     }
   },
-  "811": {
+  "47": {
     "inputs": {
-      "prompt": "Please provide a detailed description of this image and output it in natural language",
-      "model": "qwen-vl-max",
-      "system_message": "You are a helpful assistant.",
-      "temperature": 0.7000000000000001,
-      "max_tokens": 1024,
-      "detail": "auto",
-      "speak_and_recognation": {
-        "__value__": [
-          false,
-          true
-        ]
-      },
+      "aspect_ratio": "1:1",
+      "proportional_width": 1,
+      "proportional_height": 1,
+      "fit": "letterbox",
+      "method": "lanczos",
+      "round_to_multiple": "8",
+      "scale_to_side": "shortest",
+      "scale_to_length": 1024,
+      "background_color": "#FFFFFF",
       "image": [
-        "690",
+        "108",
         0
       ]
     },
-    "class_type": "LLMNodeFull",
+    "class_type": "LayerUtility: ImageScaleByAspectRatio V2",
     "_meta": {
-      "title": "LLM高级节点"
+      "title": "按宽高比缩放_V2"
     }
   },
-  "816": {
+  "49": {
+    "inputs": {
+      "image1": [
+        "88",
+        0
+      ],
+      "image2": [
+        "89",
+        0
+      ]
+    },
+    "class_type": "ImageBatch",
+    "_meta": {
+      "title": "图像组合批次"
+    }
+  },
+  "88": {
+    "inputs": {},
+    "class_type": "ETN_KritaCanvas",
+    "_meta": {
+      "title": "Krita Canvas"
+    }
+  },
+  "89": {
+    "inputs": {
+      "name": "2. 参考图（tips:请选择要参考的图）"
+    },
+    "class_type": "ETN_KritaImageLayer",
+    "_meta": {
+      "title": "Krita Image Layer"
+    }
+  },
+  "91": {
     "inputs": {
       "images": [
-        "936",
+        "90:3",
         0
       ]
     },
@@ -354,564 +92,18 @@
       "title": "Krita Output"
     }
   },
-  "817": {
-    "inputs": {},
-    "class_type": "ETN_KritaCanvas",
-    "_meta": {
-      "title": "Krita Canvas"
-    }
-  },
-  "819": {
-    "inputs": {
-      "name": "2. 参考图（reference image）(tips: 选择需要参考的图片图层)"
-    },
-    "class_type": "ETN_KritaImageLayer",
-    "_meta": {
-      "title": "Krita Image Layer"
-    }
-  },
-  "827": {
-    "inputs": {
-      "image": [
-        "817",
-        0
-      ]
-    },
-    "class_type": "easy imageSize",
-    "_meta": {
-      "title": "图像尺寸"
-    }
-  },
-  "836": {
-    "inputs": {
-      "text": "a realistic photograph,red backpack,blue logo-text,yellow plush-toys,black zipper",
-      "speak_and_recognation": {
-        "__value__": [
-          false,
-          true
-        ]
-      }
-    },
-    "class_type": "CR Text",
-    "_meta": {
-      "title": "文本"
-    }
-  },
-  "838": {
-    "inputs": {
-      "seed": [
-        "937",
-        0
-      ],
-      "steps": 4,
-      "cfg": 1,
-      "sampler_name": "euler",
-      "scheduler": "beta",
-      "denoise": 1,
-      "model": [
-        "582",
-        0
-      ],
-      "positive": [
-        "845",
-        0
-      ],
-      "negative": [
-        "845",
-        1
-      ],
-      "latent_image": [
-        "877",
-        0
-      ]
-    },
-    "class_type": "KSampler",
-    "_meta": {
-      "title": "K采样器"
-    }
-  },
-  "842": {
-    "inputs": {
-      "samples": [
-        "838",
-        0
-      ],
-      "vae": [
-        "582",
-        2
-      ]
-    },
-    "class_type": "VAEDecode",
-    "_meta": {
-      "title": "VAE解码"
-    }
-  },
-  "844": {
-    "inputs": {
-      "control_net_name": "flux_cn/tmp_test_canny_flux.safetensors"
-    },
-    "class_type": "ControlNetLoader",
-    "_meta": {
-      "title": "ControlNet加载器"
-    }
-  },
-  "845": {
-    "inputs": {
-      "strength": 1.0000000000000002,
-      "start_percent": 0,
-      "end_percent": 1,
-      "positive": [
-        "854",
-        0
-      ],
-      "negative": [
-        "855",
-        0
-      ],
-      "control_net": [
-        "844",
-        0
-      ],
-      "image": [
-        "929",
-        0
-      ],
-      "vae": [
-        "582",
-        2
-      ]
-    },
-    "class_type": "ControlNetApplyAdvanced",
-    "_meta": {
-      "title": "ControlNet应用（旧版高级）"
-    }
-  },
-  "854": {
-    "inputs": {
-      "clip_l": [
-        "893",
-        0
-      ],
-      "t5xxl": [
-        "893",
-        0
-      ],
-      "guidance": 3.5,
-      "speak_and_recognation": {
-        "__value__": [
-          false,
-          true
-        ]
-      },
-      "clip": [
-        "582",
-        1
-      ]
-    },
-    "class_type": "CLIPTextEncodeFlux",
-    "_meta": {
-      "title": "CLIP文本编码Flux"
-    }
-  },
-  "855": {
-    "inputs": {
-      "conditioning": [
-        "854",
-        0
-      ]
-    },
-    "class_type": "ConditioningZeroOut",
-    "_meta": {
-      "title": "条件零化"
-    }
-  },
-  "864": {
-    "inputs": {
-      "images": [
-        "872",
-        0
-      ]
-    },
-    "class_type": "PreviewImage",
-    "_meta": {
-      "title": "预览图像"
-    }
-  },
-  "868": {
-    "inputs": {
-      "detail_method": "VITMatte",
-      "detail_erode": 6,
-      "detail_dilate": 6,
-      "black_point": 0.01,
-      "white_point": 0.99,
-      "process_detail": true,
-      "device": "cuda",
-      "max_megapixels": 2,
-      "image": [
-        "543",
-        0
-      ]
-    },
-    "class_type": "LayerMask: RmBgUltra V2",
-    "_meta": {
-      "title": "移除背景 V2"
-    }
-  },
-  "871": {
-    "inputs": {
-      "size": "custom",
-      "custom_width": 512,
-      "custom_height": 512,
-      "color": "#000000",
-      "size_as": [
-        "868",
-        0
-      ]
-    },
-    "class_type": "LayerUtility: ColorImage V2",
-    "_meta": {
-      "title": "纯色图像_V2"
-    }
-  },
-  "872": {
-    "inputs": {
-      "invert_mask": false,
-      "blend_mode": "normal",
-      "opacity": 100,
-      "x_percent": 50,
-      "y_percent": 50,
-      "mirror": "None",
-      "scale": 1,
-      "aspect_ratio": 1,
-      "rotate": 0,
-      "transform_method": "lanczos",
-      "anti_aliasing": 0,
-      "background_image": [
-        "871",
-        0
-      ],
-      "layer_image": [
-        "873",
-        0
-      ],
-      "layer_mask": [
-        "868",
-        1
-      ]
-    },
-    "class_type": "LayerUtility: ImageBlendAdvance",
-    "_meta": {
-      "title": "混合(高级)"
-    }
-  },
-  "873": {
-    "inputs": {
-      "size": "custom",
-      "custom_width": 512,
-      "custom_height": 512,
-      "color": "#ffffff",
-      "size_as": [
-        "868",
-        0
-      ]
-    },
-    "class_type": "LayerUtility: ColorImage V2",
-    "_meta": {
-      "title": "纯色图像_V2"
-    }
-  },
-  "876": {
-    "inputs": {
-      "negative": "(worst quality, low quality, normal quality:1.4),\n(deformed, distorted, disfigured:1.3),(leather material:1.2),\nbad anatomy, extra limbs, missing limb,\nmutated hands, mutated fingers, extra fingers,\nugly, morbid, poorly drawn face,\nmalformed limbs, missing arms, missing legs,\nlong neck, duplicated body parts,\ntext, error, watermark, signature,\nunrealistic, surreal, fake, cartoon,\nlow contrast, over-saturated, under-saturated,\npoor lighting, bad proportions,\nout of frame, cut off, blurry,\nmutation, mutated, extra, duplicate,\nnsfw, nude, blood, gore",
-      "speak_and_recognation": {
-        "__value__": [
-          false,
-          true
-        ]
-      }
-    },
-    "class_type": "easy negative",
-    "_meta": {
-      "title": "负面提示词"
-    }
-  },
-  "877": {
-    "inputs": {
-      "width": [
-        "690",
-        1
-      ],
-      "height": [
-        "690",
-        2
-      ],
-      "batch_size": 1
-    },
-    "class_type": "EmptyLatentImage",
-    "_meta": {
-      "title": "空Latent"
-    }
-  },
-  "878": {
-    "inputs": {
-      "pixels": [
-        "915",
-        0
-      ],
-      "vae": [
-        "563",
-        2
-      ]
-    },
-    "class_type": "VAEEncode",
-    "_meta": {
-      "title": "VAE编码"
-    }
-  },
-  "879": {
-    "inputs": {
-      "seed": 699018425014536,
-      "steps": 10,
-      "cfg": 1,
-      "sampler_name": "euler",
-      "scheduler": "beta",
-      "denoise": 0.45000000000000007,
-      "model": [
-        "582",
-        0
-      ],
-      "positive": [
-        "902",
-        0
-      ],
-      "negative": [
-        "855",
-        0
-      ],
-      "latent_image": [
-        "880",
-        0
-      ]
-    },
-    "class_type": "KSampler",
-    "_meta": {
-      "title": "K采样器"
-    }
-  },
-  "880": {
-    "inputs": {
-      "pixels": [
-        "570",
-        0
-      ],
-      "vae": [
-        "582",
-        2
-      ]
-    },
-    "class_type": "VAEEncode",
-    "_meta": {
-      "title": "VAE编码"
-    }
-  },
-  "881": {
-    "inputs": {
-      "samples": [
-        "879",
-        0
-      ],
-      "vae": [
-        "582",
-        2
-      ]
-    },
-    "class_type": "VAEDecode",
-    "_meta": {
-      "title": "VAE解码"
-    }
-  },
-  "883": {
-    "inputs": {
-      "name": "3. 提示词（prompt）(tips: 输入提示词，如：红色的背包，背包上有个白色玩偶)",
-      "type": "text",
-      "default": "黄色的背包，白色的logo",
-      "min": 0,
-      "max": 0
-    },
-    "class_type": "ETN_Parameter",
-    "_meta": {
-      "title": "Parameter"
-    }
-  },
-  "893": {
-    "inputs": {
-      "prompt": [
-        "883",
-        0
-      ],
-      "system_instruction": "just translate this into English",
-      "speak_and_recognation": {
-        "__value__": [
-          false,
-          true
-        ]
-      },
-      "model": [
-        "894",
-        0
-      ],
-      "tokenizer": [
-        "894",
-        1
-      ]
-    },
-    "class_type": "Qwen2_Zho",
-    "_meta": {
-      "title": "⛱️Qwen2"
-    }
-  },
-  "894": {
-    "inputs": {
-      "model_name": "Qwen/Qwen2-7B-Instruct"
-    },
-    "class_type": "Qwen2_ModelLoader_Zho",
-    "_meta": {
-      "title": "⛱️Qwen2 ModelLoader"
-    }
-  },
-  "895": {
-    "inputs": {
-      "text_0": "The translation in English is: \"Yellow backpack with a white logo.\"Ultra-realistic studio shot of pristine 600D waxed canvas backpack, diamond twill weave texture under cross-polarized lighting, liquid-metal zipper system with vibrant color contrast, (nanotech coating surface details:1.3), Hasselblad H6D f/16 sharpness, 4K macro focus on aerospace-grade triple-stitching, pure white cyclorama background enhancing product contours",
-      "text": [
-        "897",
-        0
-      ]
-    },
-    "class_type": "ShowText|pysssss",
-    "_meta": {
-      "title": "展示文本"
-    }
-  },
-  "896": {
-    "inputs": {
-      "text": "Ultra-realistic studio shot of pristine 600D waxed canvas backpack, diamond twill weave texture under cross-polarized lighting, liquid-metal zipper system with vibrant color contrast, (nanotech coating surface details:1.3), Hasselblad H6D f/16 sharpness, 4K macro focus on aerospace-grade triple-stitching, pure white cyclorama background enhancing product contours",
-      "speak_and_recognation": {
-        "__value__": [
-          false,
-          true
-        ]
-      }
-    },
-    "class_type": "CR Text",
-    "_meta": {
-      "title": "文本"
-    }
-  },
-  "897": {
-    "inputs": {
-      "separator": "",
-      "text1": [
-        "893",
-        0
-      ],
-      "text2": [
-        "896",
-        0
-      ]
-    },
-    "class_type": "CR Text Concatenate",
-    "_meta": {
-      "title": "文本联结"
-    }
-  },
-  "898": {
-    "inputs": {
-      "text_0": "The translation in English is: \"Yellow backpack with a white logo.\"",
-      "text": [
-        "893",
-        0
-      ]
-    },
-    "class_type": "ShowText|pysssss",
-    "_meta": {
-      "title": "展示文本"
-    }
-  },
-  "900": {
-    "inputs": {
-      "noise_radius": 7,
-      "preserve_edges": 0.75,
-      "sharpen": 5,
-      "ratio": 0.30000000000000004,
-      "image": [
-        "881",
-        0
-      ]
-    },
-    "class_type": "ImageSmartSharpen+",
-    "_meta": {
-      "title": "图像智能锐化"
-    }
-  },
-  "902": {
-    "inputs": {
-      "clip_l": [
-        "895",
-        0
-      ],
-      "t5xxl": [
-        "895",
-        0
-      ],
-      "guidance": 3.5,
-      "speak_and_recognation": {
-        "__value__": [
-          false,
-          true
-        ]
-      },
-      "clip": [
-        "582",
-        1
-      ]
-    },
-    "class_type": "CLIPTextEncodeFlux",
-    "_meta": {
-      "title": "CLIP文本编码Flux"
-    }
-  },
-  "903": {
-    "inputs": {
-      "strength": 20,
-      "brightness": 0,
-      "contrast": 0,
-      "saturation": 0,
-      "red": 0,
-      "green": 0,
-      "blue": 0,
-      "mode": "RGB",
-      "image": [
-        "900",
-        0
-      ]
-    },
-    "class_type": "LayerColor: AutoAdjustV2",
-    "_meta": {
-      "title": "自动调色 V2"
-    }
-  },
-  "904": {
+  "108": {
     "inputs": {
       "boolean": [
-        "935",
+        "114",
         0
       ],
       "on_true": [
-        "906",
+        "49",
         0
       ],
       "on_false": [
-        "905",
+        "88",
         0
       ]
     },
@@ -920,160 +112,94 @@
       "title": "切换任意"
     }
   },
-  "905": {
+  "109": {
     "inputs": {
-      "value": 0.20000000000000004
-    },
-    "class_type": "FloatConstant",
-    "_meta": {
-      "title": "浮点常量"
-    }
-  },
-  "906": {
-    "inputs": {
-      "value": 0.6000000000000002
-    },
-    "class_type": "FloatConstant",
-    "_meta": {
-      "title": "浮点常量"
-    }
-  },
-  "907": {
-    "inputs": {
-      "text_0": "0.2",
-      "text": [
-        "904",
-        0
-      ]
-    },
-    "class_type": "ShowText|pysssss",
-    "_meta": {
-      "title": "展示文本"
-    }
-  },
-  "909": {
-    "inputs": {
-      "brightness": 1,
-      "contrast": 3,
-      "saturation": 1,
-      "image": [
-        "690",
-        0
-      ]
-    },
-    "class_type": "LayerColor: Brightness & Contrast",
-    "_meta": {
-      "title": "亮度/对比度"
-    }
-  },
-  "915": {
-    "inputs": {
-      "invert_mask": false,
-      "blend_mode": "normal",
-      "opacity": 100,
-      "background_image": [
-        "921",
+      "find1": "XXX",
+      "replace1": [
+        "117",
         0
       ],
-      "layer_image": [
-        "842",
+      "find2": "xl",
+      "replace2": [
+        "118",
         0
       ],
-      "layer_mask": [
-        "549",
+      "find3": "",
+      "replace3": "",
+      "prompt": [
+        "112",
         0
       ]
     },
-    "class_type": "LayerUtility: ImageBlend",
+    "class_type": "easy promptReplace",
     "_meta": {
-      "title": "混合"
+      "title": "提示词替换"
     }
   },
-  "921": {
+  "110": {
     "inputs": {
-      "size": "custom",
-      "custom_width": 512,
-      "custom_height": 512,
-      "angle": 0,
-      "start_color": "#e6e6e6",
-      "end_color": "#cfcfcf",
-      "size_as": [
-        "842",
-        0
-      ]
-    },
-    "class_type": "LayerUtility: GradientImage V2",
-    "_meta": {
-      "title": "渐变图像_V2"
-    }
-  },
-  "929": {
-    "inputs": {
-      "guassian_sigma": 1.0000000000000002,
-      "intensity_threshold": 0,
-      "resolution": 1408,
-      "image": [
-        "932",
-        0
-      ]
-    },
-    "class_type": "LineartStandardPreprocessor",
-    "_meta": {
-      "title": "LineArtStandard艺术线预处理器"
-    }
-  },
-  "931": {
-    "inputs": {
-      "images": [
-        "932",
-        0
-      ]
-    },
-    "class_type": "PreviewImage",
-    "_meta": {
-      "title": "预览图像"
-    }
-  },
-  "932": {
-    "inputs": {
-      "brightness": 1,
-      "contrast": 3,
-      "saturation": 1,
-      "image": [
-        "909",
-        0
-      ]
-    },
-    "class_type": "LayerColor: Brightness & Contrast",
-    "_meta": {
-      "title": "亮度/对比度"
-    }
-  },
-  "933": {
-    "inputs": {
-      "text": [
-        "897",
-        0
-      ],
+      "action": "append",
+      "tidy_tags": "yes",
+      "text_a": "任务：\n图1是产品的设计线稿，图2是参考图，请根据图二的风格，颜色，图案元素等对图1的产品进行设计，请注意！要参考图2的颜色生成。不要参考线稿颜色，XXX,输出2K高清写实产品照片。xl。\n要求：\n1.所设计的产品要考虑产品的可生产性，注意使用现实中存在的材质和工艺\n2.不要对产品设计线稿进行修改，严格遵循产品设计线稿进行设计\n3.参考参考图的时候不要把参考图的造型也参考进来，只参考风格、颜色、图案\n4.产品背景必须是白色的",
+      "text_b": "下面是对这个线稿的描述：",
+      "text_c": "",
       "speak_and_recognation": {
         "__value__": [
           false,
           true
         ]
-      },
-      "clip": [
-        "563",
-        1
-      ]
+      }
     },
-    "class_type": "CLIPTextEncode",
+    "class_type": "StringFunction|pysssss",
     "_meta": {
-      "title": "CLIP文本编码器"
+      "title": "字符串操作"
     }
   },
-  "935": {
+  "111": {
     "inputs": {
-      "name": "1. 打开参考图（open eference image）(tips: 打开参考图会参考参考图材质和配色、纹理)",
+      "action": "append",
+      "tidy_tags": "yes",
+      "text_a": "任务：\n请遵循图中的线稿，来生成背包，下面是我对服装样式的背包。XXX,xl。",
+      "text_b": [
+        "115",
+        0
+      ],
+      "text_c": "",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      }
+    },
+    "class_type": "StringFunction|pysssss",
+    "_meta": {
+      "title": "字符串操作"
+    }
+  },
+  "112": {
+    "inputs": {
+      "boolean": [
+        "114",
+        0
+      ],
+      "on_true": [
+        "110",
+        0
+      ],
+      "on_false": [
+        "111",
+        0
+      ]
+    },
+    "class_type": "Switch any [Crystools]",
+    "_meta": {
+      "title": "切换任意"
+    }
+  },
+  "114": {
+    "inputs": {
+      "name": "1. 打开参考图（tips:打开后会对参考图进行参考）",
       "type": "toggle",
       "default": true,
       "min": 0,
@@ -1084,45 +210,111 @@
       "title": "Parameter"
     }
   },
-  "936": {
+  "115": {
     "inputs": {
-      "width": [
-        "817",
-        1
-      ],
-      "height": [
-        "817",
-        2
-      ],
-      "crop": "disabled",
-      "upscale_method": "nearest-exact",
-      "lock_aspect_ratio": false,
+      "name": "3. 提示词(tips:请输入你要的效果，如：红色背包，材质是帆布，描述尽量详细)",
+      "type": "text",
+      "default": "红色背包，背包右下角有一只白色的兔子玩偶",
+      "min": 0,
+      "max": 0
+    },
+    "class_type": "ETN_Parameter",
+    "_meta": {
+      "title": "Parameter"
+    }
+  },
+  "116": {
+    "inputs": {
+      "seed": 931165385088375
+    },
+    "class_type": "easy seed",
+    "_meta": {
+      "title": "随机种"
+    }
+  },
+  "117": {
+    "inputs": {
+      "name": "4. 材质（tips:请输入想要的材质）",
+      "type": "text",
+      "default": "材质是帆布",
+      "min": 0,
+      "max": 0
+    },
+    "class_type": "ETN_Parameter",
+    "_meta": {
+      "title": "Parameter"
+    }
+  },
+  "118": {
+    "inputs": {
+      "name": "5. logo（tips:请输入要加上的logo名称如：加上安踏LOGO）",
+      "type": "text",
+      "default": "加上FILA的logo",
+      "min": 0,
+      "max": 0
+    },
+    "class_type": "ETN_Parameter",
+    "_meta": {
+      "title": "Parameter"
+    }
+  },
+  "90:0": {
+    "inputs": {
+      "image": "image (48).png"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "加载图像"
+    }
+  },
+  "90:1": {
+    "inputs": {
       "image": [
-        "903",
+        "88",
         0
       ]
     },
-    "class_type": "EG_TX_SFBLS",
+    "class_type": "GetImageSize+",
     "_meta": {
-      "title": "2🐕Image scaling lock"
+      "title": "获取图像尺寸"
     }
   },
-  "937": {
+  "90:2": {
     "inputs": {
-      "seed": 0
+      "upscale_method": "nearest-exact",
+      "width": [
+        "90:1",
+        0
+      ],
+      "height": [
+        "90:1",
+        1
+      ],
+      "crop": "disabled",
+      "image": [
+        "90:0",
+        0
+      ]
     },
-    "class_type": "easy seed",
+    "class_type": "ImageScale",
     "_meta": {
-      "title": "随机种"
+      "title": "图像缩放"
     }
   },
-  "938": {
+  "90:3": {
     "inputs": {
-      "seed": 0
+      "image1": [
+        "45",
+        0
+      ],
+      "image2": [
+        "90:2",
+        0
+      ]
     },
-    "class_type": "easy seed",
+    "class_type": "ImageOverlayNode",
     "_meta": {
-      "title": "随机种"
+      "title": "Image Overlay (Fit & Center)"
     }
   }
 }

@@ -1,0 +1,132 @@
+{
+  "6": {
+    "inputs": {
+      "prompt": [
+        "23",
+        0
+      ],
+      "model": "qwen-vl-max",
+      "system_message": "你是一个中译英专家，需要帮我把输入内容翻译成英文，最后只输出翻译后的内容，不要解释。",
+      "temperature": 0.7000000000000001,
+      "max_tokens": 1024,
+      "detail": "auto",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      }
+    },
+    "class_type": "LLMNodeFull",
+    "_meta": {
+      "title": "LLM高级节点"
+    }
+  },
+  "20": {
+    "inputs": {
+      "sam_model": "sam_vit_h (2.56GB)",
+      "grounding_dino_model": "GroundingDINO_SwinT_OGC (694MB)",
+      "threshold": 0.30000000000000004,
+      "detail_range": 16,
+      "black_point": 0.15000000000000002,
+      "white_point": 0.99,
+      "process_detail": true,
+      "prompt": [
+        "6",
+        0
+      ],
+      "cache_model": false,
+      "image": [
+        "22",
+        0
+      ]
+    },
+    "class_type": "LayerMask: SegmentAnythingUltra",
+    "_meta": {
+      "title": "SegmentAnything Ultra"
+    }
+  },
+  "22": {
+    "inputs": {},
+    "class_type": "ETN_KritaCanvas",
+    "_meta": {
+      "title": "Krita Canvas"
+    }
+  },
+  "23": {
+    "inputs": {
+      "name": "1. 抠图目标（tips:请输入要抠出来的目标名称）",
+      "type": "text",
+      "default": "",
+      "min": 0,
+      "max": 0
+    },
+    "class_type": "ETN_Parameter",
+    "_meta": {
+      "title": "Parameter"
+    }
+  },
+  "24": {
+    "inputs": {
+      "images": [
+        "26",
+        0
+      ]
+    },
+    "class_type": "ETN_KritaOutput",
+    "_meta": {
+      "title": "Krita Output"
+    }
+  },
+  "25": {
+    "inputs": {
+      "rem_mode": "Inspyrenet",
+      "image_output": "Preview",
+      "save_prefix": "ComfyUI",
+      "torchscript_jit": false,
+      "add_background": "none",
+      "refine_foreground": false,
+      "images": [
+        "22",
+        0
+      ]
+    },
+    "class_type": "easy imageRemBg",
+    "_meta": {
+      "title": "图像背景移除"
+    }
+  },
+  "26": {
+    "inputs": {
+      "boolean": [
+        "30",
+        0
+      ],
+      "on_true": [
+        "20",
+        0
+      ],
+      "on_false": [
+        "25",
+        0
+      ]
+    },
+    "class_type": "Switch any [Crystools]",
+    "_meta": {
+      "title": "切换任意"
+    }
+  },
+  "30": {
+    "inputs": {
+      "name": "2. 开启指定抠图（tips:开启后请在抠图目标输入要抠的物品）",
+      "type": "toggle",
+      "default": false,
+      "min": 0,
+      "max": 0
+    },
+    "class_type": "ETN_Parameter",
+    "_meta": {
+      "title": "Parameter"
+    }
+  }
+}

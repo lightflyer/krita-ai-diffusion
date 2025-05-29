@@ -1,0 +1,273 @@
+{
+  "1": {
+    "inputs": {
+      "prompt": [
+        "60",
+        0
+      ],
+      "quality": "high",
+      "size": "1024x1024",
+      "seed": [
+        "65",
+        0
+      ],
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "images": [
+        "52",
+        0
+      ]
+    },
+    "class_type": "GPTImage1Edit",
+    "_meta": {
+      "title": "GPT Image Edit"
+    }
+  },
+  "52": {
+    "inputs": {
+      "aspect_ratio": "1:1",
+      "proportional_width": 1,
+      "proportional_height": 1,
+      "fit": "letterbox",
+      "method": "lanczos",
+      "round_to_multiple": "8",
+      "scale_to_side": "shortest",
+      "scale_to_length": 1024,
+      "background_color": "#FFFFFF",
+      "image": [
+        "58",
+        0
+      ]
+    },
+    "class_type": "LayerUtility: ImageScaleByAspectRatio V2",
+    "_meta": {
+      "title": "按宽高比缩放_V2"
+    }
+  },
+  "53": {
+    "inputs": {
+      "prompt": "请将他转变为对鞋子设计的描述,描述记得只输出配色和图案",
+      "model": "qwen-vl-max",
+      "system_message": "You are a helpful assistant.",
+      "temperature": 0.7000000000000001,
+      "max_tokens": 1024,
+      "detail": "auto",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "image": [
+        "57",
+        0
+      ]
+    },
+    "class_type": "LLMNodeFull",
+    "_meta": {
+      "title": "LLM高级节点"
+    }
+  },
+  "56": {
+    "inputs": {
+      "action": "append",
+      "tidy_tags": "no",
+      "text_a": "提升一下鞋子的质感，让他更真实，",
+      "text_b": [
+        "53",
+        0
+      ],
+      "text_c": "造型外观不要变。",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      }
+    },
+    "class_type": "StringFunction|pysssss",
+    "_meta": {
+      "title": "字符串操作"
+    }
+  },
+  "57": {
+    "inputs": {
+      "name": "2. 参考图（请选择要参考的图片）"
+    },
+    "class_type": "ETN_KritaImageLayer",
+    "_meta": {
+      "title": "Krita Image Layer"
+    }
+  },
+  "58": {
+    "inputs": {},
+    "class_type": "ETN_KritaCanvas",
+    "_meta": {
+      "title": "Krita Canvas"
+    }
+  },
+  "59": {
+    "inputs": {
+      "name": "3. 提示词（请输入提示词，如改变鞋子颜色，或者改变鞋子图案等）",
+      "type": "text",
+      "default": "",
+      "min": 0,
+      "max": 0
+    },
+    "class_type": "ETN_Parameter",
+    "_meta": {
+      "title": "Parameter"
+    }
+  },
+  "60": {
+    "inputs": {
+      "boolean": [
+        "63",
+        0
+      ],
+      "on_true": [
+        "56",
+        0
+      ],
+      "on_false": [
+        "61",
+        0
+      ]
+    },
+    "class_type": "Switch any [Crystools]",
+    "_meta": {
+      "title": "切换任意"
+    }
+  },
+  "61": {
+    "inputs": {
+      "action": "append",
+      "tidy_tags": "no",
+      "text_a": "任务:将这个鞋子改成",
+      "text_b": [
+        "59",
+        0
+      ],
+      "text_c": "造型不变,让他变成真实的鞋子。\n",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      }
+    },
+    "class_type": "StringFunction|pysssss",
+    "_meta": {
+      "title": "字符串操作"
+    }
+  },
+  "62": {
+    "inputs": {
+      "images": [
+        "67:3",
+        0
+      ]
+    },
+    "class_type": "ETN_KritaOutput",
+    "_meta": {
+      "title": "Krita Output"
+    }
+  },
+  "63": {
+    "inputs": {
+      "name": "1. 开启参考（tips:开启后将进行参考图参考）",
+      "type": "toggle",
+      "default": true,
+      "min": 0,
+      "max": 0
+    },
+    "class_type": "ETN_Parameter",
+    "_meta": {
+      "title": "Parameter"
+    }
+  },
+  "65": {
+    "inputs": {
+      "seed": 359658260388357
+    },
+    "class_type": "easy seed",
+    "_meta": {
+      "title": "随机种"
+    }
+  },
+  "66": {
+    "inputs": {
+      "anything": [
+        "56",
+        0
+      ]
+    },
+    "class_type": "easy showAnything",
+    "_meta": {
+      "title": "展示任何"
+    }
+  },
+  "67:0": {
+    "inputs": {
+      "image": "image (48).png"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "加载图像"
+    }
+  },
+  "67:1": {
+    "inputs": {
+      "image": [
+        "58",
+        0
+      ]
+    },
+    "class_type": "GetImageSize+",
+    "_meta": {
+      "title": "获取图像尺寸"
+    }
+  },
+  "67:2": {
+    "inputs": {
+      "upscale_method": "nearest-exact",
+      "width": [
+        "67:1",
+        0
+      ],
+      "height": [
+        "67:1",
+        1
+      ],
+      "crop": "disabled",
+      "image": [
+        "67:0",
+        0
+      ]
+    },
+    "class_type": "ImageScale",
+    "_meta": {
+      "title": "图像缩放"
+    }
+  },
+  "67:3": {
+    "inputs": {
+      "image1": [
+        "1",
+        0
+      ],
+      "image2": [
+        "67:2",
+        0
+      ]
+    },
+    "class_type": "ImageOverlayNode",
+    "_meta": {
+      "title": "Image Overlay (Fit & Center)"
+    }
+  }
+}

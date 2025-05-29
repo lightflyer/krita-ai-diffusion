@@ -1,0 +1,135 @@
+{
+  "35": {
+    "inputs": {
+      "prompt": "任务：\n请将这张图片转换成手绘线稿，要求轮廓清晰合理，细节到位，可落地生成的线稿，线稿卡通一些，发散一些，抽象一些，随机一些，线条不要粗",
+      "quality": "high",
+      "size": "1024x1024",
+      "seed": [
+        "119",
+        0
+      ],
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "images": [
+        "36",
+        0
+      ]
+    },
+    "class_type": "GPTImage1Edit",
+    "_meta": {
+      "title": "GPT Image Edit"
+    }
+  },
+  "36": {
+    "inputs": {
+      "aspect_ratio": "1:1",
+      "proportional_width": 1,
+      "proportional_height": 1,
+      "fit": "letterbox",
+      "method": "lanczos",
+      "round_to_multiple": "8",
+      "scale_to_side": "shortest",
+      "scale_to_length": 1024,
+      "background_color": "#FFFFFF",
+      "image": [
+        "86",
+        0
+      ]
+    },
+    "class_type": "LayerUtility: ImageScaleByAspectRatio V2",
+    "_meta": {
+      "title": "按宽高比缩放_V2"
+    }
+  },
+  "86": {
+    "inputs": {},
+    "class_type": "ETN_KritaCanvas",
+    "_meta": {
+      "title": "Krita Canvas"
+    }
+  },
+  "92": {
+    "inputs": {
+      "images": [
+        "87:3",
+        0
+      ]
+    },
+    "class_type": "ETN_KritaOutput",
+    "_meta": {
+      "title": "Krita Output"
+    }
+  },
+  "119": {
+    "inputs": {
+      "seed": 0
+    },
+    "class_type": "easy seed",
+    "_meta": {
+      "title": "随机种"
+    }
+  },
+  "87:0": {
+    "inputs": {
+      "image": "image (48).png"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "加载图像"
+    }
+  },
+  "87:1": {
+    "inputs": {
+      "image": [
+        "86",
+        0
+      ]
+    },
+    "class_type": "GetImageSize+",
+    "_meta": {
+      "title": "获取图像尺寸"
+    }
+  },
+  "87:2": {
+    "inputs": {
+      "upscale_method": "nearest-exact",
+      "width": [
+        "87:1",
+        0
+      ],
+      "height": [
+        "87:1",
+        1
+      ],
+      "crop": "disabled",
+      "image": [
+        "87:0",
+        0
+      ]
+    },
+    "class_type": "ImageScale",
+    "_meta": {
+      "title": "图像缩放"
+    }
+  },
+  "87:3": {
+    "inputs": {
+      "image1": [
+        "35",
+        0
+      ],
+      "image2": [
+        "87:2",
+        0
+      ]
+    },
+    "class_type": "ImageOverlayNode",
+    "_meta": {
+      "title": "Image Overlay (Fit & Center)"
+    }
+  }
+}

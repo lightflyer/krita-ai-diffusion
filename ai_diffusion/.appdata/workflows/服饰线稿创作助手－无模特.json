@@ -1,0 +1,2254 @@
+{
+  "3": {
+    "inputs": {
+      "method": "default",
+      "images": [
+        "2209",
+        0
+      ],
+      "mask": [
+        "2220",
+        0
+      ]
+    },
+    "class_type": "AlphaChanelAddByMask",
+    "_meta": {
+      "title": "AlphaChanelAddByMask"
+    }
+  },
+  "5": {
+    "inputs": {
+      "image": [
+        "3",
+        0
+      ]
+    },
+    "class_type": "SplitImageWithAlpha",
+    "_meta": {
+      "title": "分离图像Alpha"
+    }
+  },
+  "1540": {
+    "inputs": {
+      "ckpt_name": "depth_anything_vitl14.pth",
+      "resolution": 512,
+      "image": [
+        "1991",
+        0
+      ]
+    },
+    "class_type": "DepthAnythingPreprocessor",
+    "_meta": {
+      "title": "DepthAnything深度预处理器"
+    }
+  },
+  "1541": {
+    "inputs": {
+      "images": [
+        "2021",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "预览图像"
+    }
+  },
+  "1542": {
+    "inputs": {
+      "brightness": 1.1700000000000002,
+      "contrast": 3,
+      "saturation": 1.0000000000000002,
+      "image": [
+        "1540",
+        0
+      ]
+    },
+    "class_type": "LayerColor: Brightness & Contrast",
+    "_meta": {
+      "title": "亮度/对比度"
+    }
+  },
+  "1543": {
+    "inputs": {
+      "brightness": 0.5200000000000001,
+      "contrast": 3,
+      "saturation": 1.0000000000000002,
+      "image": [
+        "1542",
+        0
+      ]
+    },
+    "class_type": "LayerColor: Brightness & Contrast",
+    "_meta": {
+      "title": "亮度/对比度"
+    }
+  },
+  "1544": {
+    "inputs": {
+      "channel": "red",
+      "image": [
+        "1543",
+        0
+      ]
+    },
+    "class_type": "ImageToMask",
+    "_meta": {
+      "title": "图像到遮罩"
+    }
+  },
+  "1545": {
+    "inputs": {
+      "expand": -3,
+      "incremental_expandrate": 0,
+      "tapered_corners": true,
+      "flip_input": false,
+      "blur_radius": 0,
+      "lerp_alpha": 1,
+      "decay_factor": 1,
+      "fill_holes": false,
+      "mask": [
+        "1544",
+        0
+      ]
+    },
+    "class_type": "GrowMaskWithBlur",
+    "_meta": {
+      "title": "遮罩模糊生长"
+    }
+  },
+  "1547": {
+    "inputs": {
+      "mask": [
+        "1545",
+        0
+      ]
+    },
+    "class_type": "MaskToImage",
+    "_meta": {
+      "title": "遮罩到图像"
+    }
+  },
+  "1548": {
+    "inputs": {
+      "blend_percentage": 1,
+      "image_a": [
+        "1549",
+        0
+      ],
+      "image_b": [
+        "1991",
+        0
+      ],
+      "mask": [
+        "1547",
+        0
+      ]
+    },
+    "class_type": "Image Blend by Mask",
+    "_meta": {
+      "title": "图像遮罩混合"
+    }
+  },
+  "1549": {
+    "inputs": {
+      "size": "custom",
+      "custom_width": 512,
+      "custom_height": 512,
+      "color": "#ffffff",
+      "size_as": [
+        "1991",
+        0
+      ]
+    },
+    "class_type": "LayerUtility: ColorImage V2",
+    "_meta": {
+      "title": "纯色图像_V2"
+    }
+  },
+  "1718": {
+    "inputs": {
+      "guidance": 30,
+      "conditioning": [
+        "1720",
+        0
+      ]
+    },
+    "class_type": "FluxGuidance",
+    "_meta": {
+      "title": "Flux引导"
+    }
+  },
+  "1719": {
+    "inputs": {
+      "conditioning": [
+        "1736",
+        1
+      ]
+    },
+    "class_type": "ConditioningZeroOut",
+    "_meta": {
+      "title": "条件零化"
+    }
+  },
+  "1720": {
+    "inputs": {
+      "downsampling_factor": 2,
+      "downsampling_function": "area",
+      "mode": "center crop (square)",
+      "weight": 1,
+      "autocrop_margin": 0.10000000000000002,
+      "conditioning": [
+        "1736",
+        0
+      ],
+      "style_model": [
+        "1721",
+        0
+      ],
+      "clip_vision": [
+        "1722",
+        0
+      ],
+      "image": [
+        "1761",
+        0
+      ]
+    },
+    "class_type": "ReduxAdvanced",
+    "_meta": {
+      "title": "ReduxAdvanced"
+    }
+  },
+  "1721": {
+    "inputs": {
+      "style_model_name": "flux1-redux-dev.safetensors"
+    },
+    "class_type": "StyleModelLoader",
+    "_meta": {
+      "title": "风格模型加载器"
+    }
+  },
+  "1722": {
+    "inputs": {
+      "clip_name": "sigclip_vision_patch14_384.safetensors"
+    },
+    "class_type": "CLIPVisionLoader",
+    "_meta": {
+      "title": "CLIP视觉加载器"
+    }
+  },
+  "1723": {
+    "inputs": {
+      "model": [
+        "1737",
+        0
+      ]
+    },
+    "class_type": "DifferentialDiffusion",
+    "_meta": {
+      "title": "差异扩散"
+    }
+  },
+  "1724": {
+    "inputs": {
+      "mask": [
+        "1758",
+        0
+      ]
+    },
+    "class_type": "MaskToImage",
+    "_meta": {
+      "title": "遮罩到图像"
+    }
+  },
+  "1725": {
+    "inputs": {
+      "upscale_method": "lanczos",
+      "width": [
+        "1748",
+        0
+      ],
+      "height": [
+        "1748",
+        1
+      ],
+      "crop": "disabled",
+      "image": [
+        "1730",
+        0
+      ]
+    },
+    "class_type": "ImageScale",
+    "_meta": {
+      "title": "图像缩放"
+    }
+  },
+  "1726": {
+    "inputs": {
+      "channel": "red",
+      "image": [
+        "1725",
+        0
+      ]
+    },
+    "class_type": "ImageToMask",
+    "_meta": {
+      "title": "图像到遮罩"
+    }
+  },
+  "1727": {
+    "inputs": {
+      "upscale_method": "lanczos",
+      "width": [
+        "1748",
+        0
+      ],
+      "height": [
+        "1748",
+        1
+      ],
+      "crop": "disabled",
+      "image": [
+        "1747",
+        0
+      ]
+    },
+    "class_type": "ImageScale",
+    "_meta": {
+      "title": "图像缩放"
+    }
+  },
+  "1728": {
+    "inputs": {
+      "upscale_method": "lanczos",
+      "width": [
+        "1729",
+        0
+      ],
+      "height": [
+        "1729",
+        1
+      ],
+      "crop": "center",
+      "image": [
+        "1724",
+        0
+      ]
+    },
+    "class_type": "ImageScale",
+    "_meta": {
+      "title": "图像缩放"
+    }
+  },
+  "1729": {
+    "inputs": {
+      "image": [
+        "1749",
+        0
+      ]
+    },
+    "class_type": "Get resolution [Crystools]",
+    "_meta": {
+      "title": "获取分辨率"
+    }
+  },
+  "1730": {
+    "inputs": {
+      "upscale_method": "lanczos",
+      "scale_by": 1.0000000000000002,
+      "image": [
+        "1733",
+        0
+      ]
+    },
+    "class_type": "ImageScaleBy",
+    "_meta": {
+      "title": "图像按系数缩放"
+    }
+  },
+  "1731": {
+    "inputs": {
+      "stitch": "right",
+      "feathering": 0,
+      "image_a": [
+        "1750",
+        0
+      ],
+      "image_b": [
+        "1749",
+        0
+      ]
+    },
+    "class_type": "Image Stitch",
+    "_meta": {
+      "title": "图像缝合"
+    }
+  },
+  "1732": {
+    "inputs": {
+      "width": [
+        "1729",
+        0
+      ],
+      "height": [
+        "1729",
+        1
+      ],
+      "color": "#000000"
+    },
+    "class_type": "LayerUtility: ColorImage",
+    "_meta": {
+      "title": "纯色图像"
+    }
+  },
+  "1733": {
+    "inputs": {
+      "stitch": "right",
+      "feathering": 0,
+      "image_a": [
+        "1732",
+        0
+      ],
+      "image_b": [
+        "1728",
+        0
+      ]
+    },
+    "class_type": "Image Stitch",
+    "_meta": {
+      "title": "图像缝合"
+    }
+  },
+  "1734": {
+    "inputs": {
+      "clip_name1": "t5xxl_fp16.safetensors",
+      "clip_name2": "clip_l.safetensors",
+      "type": "flux",
+      "device": "default"
+    },
+    "class_type": "DualCLIPLoader",
+    "_meta": {
+      "title": "双CLIP加载器"
+    }
+  },
+  "1735": {
+    "inputs": {
+      "text": "",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "clip": [
+        "1734",
+        0
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP文本编码器"
+    }
+  },
+  "1736": {
+    "inputs": {
+      "noise_mask": true,
+      "positive": [
+        "1735",
+        0
+      ],
+      "negative": [
+        "1735",
+        0
+      ],
+      "vae": [
+        "1738",
+        0
+      ],
+      "pixels": [
+        "1727",
+        0
+      ],
+      "mask": [
+        "1726",
+        0
+      ]
+    },
+    "class_type": "InpaintModelConditioning",
+    "_meta": {
+      "title": "内补模型条件"
+    }
+  },
+  "1737": {
+    "inputs": {
+      "unet_name": "flux/flux1-fill-dev.safetensors",
+      "weight_dtype": "default"
+    },
+    "class_type": "UNETLoader",
+    "_meta": {
+      "title": "UNET加载器"
+    }
+  },
+  "1738": {
+    "inputs": {
+      "vae_name": "ae.safetensors"
+    },
+    "class_type": "VAELoader",
+    "_meta": {
+      "title": "VAE加载器"
+    }
+  },
+  "1739": {
+    "inputs": {
+      "seed": [
+        "2219",
+        0
+      ],
+      "steps": 20,
+      "cfg": 1,
+      "sampler_name": "euler",
+      "scheduler": "simple",
+      "denoise": 0.9500000000000002,
+      "model": [
+        "1723",
+        0
+      ],
+      "positive": [
+        "1718",
+        0
+      ],
+      "negative": [
+        "1719",
+        0
+      ],
+      "latent_image": [
+        "1736",
+        2
+      ]
+    },
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "K采样器"
+    }
+  },
+  "1740": {
+    "inputs": {
+      "samples": [
+        "1739",
+        0
+      ],
+      "vae": [
+        "1738",
+        0
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE解码"
+    }
+  },
+  "1743": {
+    "inputs": {
+      "upscale_method": "lanczos",
+      "scale_by": 1.0000000000000002,
+      "image": [
+        "1744",
+        0
+      ]
+    },
+    "class_type": "ImageScaleBy",
+    "_meta": {
+      "title": "图像按系数缩放"
+    }
+  },
+  "1744": {
+    "inputs": {
+      "upscale_method": "lanczos",
+      "width": [
+        "1745",
+        0
+      ],
+      "height": [
+        "1745",
+        1
+      ],
+      "crop": "disabled",
+      "image": [
+        "1740",
+        0
+      ]
+    },
+    "class_type": "ImageScale",
+    "_meta": {
+      "title": "图像缩放"
+    }
+  },
+  "1745": {
+    "inputs": {
+      "image": [
+        "1747",
+        0
+      ]
+    },
+    "class_type": "Get resolution [Crystools]",
+    "_meta": {
+      "title": "获取分辨率"
+    }
+  },
+  "1746": {
+    "inputs": {
+      "width": [
+        "1729",
+        0
+      ],
+      "height": [
+        "1729",
+        1
+      ],
+      "position": "top-right",
+      "x_offset": 0,
+      "y_offset": 0,
+      "image": [
+        "1743",
+        0
+      ]
+    },
+    "class_type": "ImageCrop+",
+    "_meta": {
+      "title": "图像裁剪"
+    }
+  },
+  "1747": {
+    "inputs": {
+      "upscale_method": "lanczos",
+      "scale_by": 1.0000000000000002,
+      "image": [
+        "1731",
+        0
+      ]
+    },
+    "class_type": "ImageScaleBy",
+    "_meta": {
+      "title": "图像按系数缩放"
+    }
+  },
+  "1748": {
+    "inputs": {
+      "image": [
+        "1747",
+        0
+      ]
+    },
+    "class_type": "CM_NearestSDXLResolution",
+    "_meta": {
+      "title": "最近SDXL分辨率"
+    }
+  },
+  "1749": {
+    "inputs": {
+      "top": [
+        "1758",
+        2
+      ],
+      "left": [
+        "1758",
+        3
+      ],
+      "right": [
+        "1758",
+        4
+      ],
+      "bottom": [
+        "1758",
+        5
+      ],
+      "image": [
+        "2118",
+        0
+      ]
+    },
+    "class_type": "Image Crop Location",
+    "_meta": {
+      "title": "裁剪位置"
+    }
+  },
+  "1750": {
+    "inputs": {
+      "upscale_method": "lanczos",
+      "width": [
+        "1729",
+        0
+      ],
+      "height": [
+        "1729",
+        1
+      ],
+      "crop": "disabled",
+      "image": [
+        "1761",
+        0
+      ]
+    },
+    "class_type": "ImageScale",
+    "_meta": {
+      "title": "图像缩放"
+    }
+  },
+  "1752": {
+    "inputs": {
+      "top": [
+        "1760",
+        2
+      ],
+      "left": [
+        "1760",
+        3
+      ],
+      "right": [
+        "1760",
+        4
+      ],
+      "bottom": [
+        "1760",
+        5
+      ],
+      "image": [
+        "1991",
+        0
+      ]
+    },
+    "class_type": "Image Crop Location",
+    "_meta": {
+      "title": "裁剪位置"
+    }
+  },
+  "1758": {
+    "inputs": {
+      "padding": 24,
+      "region_type": "dominant",
+      "mask": [
+        "2146",
+        0
+      ]
+    },
+    "class_type": "Mask Crop Region",
+    "_meta": {
+      "title": "遮罩裁剪区域"
+    }
+  },
+  "1760": {
+    "inputs": {
+      "padding": 24,
+      "region_type": "dominant",
+      "mask": [
+        "2146",
+        0
+      ]
+    },
+    "class_type": "Mask Crop Region",
+    "_meta": {
+      "title": "遮罩裁剪区域"
+    }
+  },
+  "1761": {
+    "inputs": {
+      "boolean": false,
+      "on_true": [
+        "1991",
+        2
+      ],
+      "on_false": [
+        "1752",
+        0
+      ]
+    },
+    "class_type": "Switch any [Crystools]",
+    "_meta": {
+      "title": "切换任意"
+    }
+  },
+  "1770": {
+    "inputs": {
+      "amount": 1,
+      "samples": [
+        "1794",
+        0
+      ]
+    },
+    "class_type": "RepeatLatentBatch",
+    "_meta": {
+      "title": "复制Latent批次"
+    }
+  },
+  "1771": {
+    "inputs": {
+      "images": [
+        "1966",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "预览图像"
+    }
+  },
+  "1774": {
+    "inputs": {
+      "samples": [
+        "1793",
+        0
+      ],
+      "vae": [
+        "1783",
+        2
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE解码"
+    }
+  },
+  "1777": {
+    "inputs": {
+      "preset": "PLUS (high strength)",
+      "model": [
+        "1969",
+        0
+      ]
+    },
+    "class_type": "IPAdapterUnifiedLoader",
+    "_meta": {
+      "title": "IPAdapter加载器"
+    }
+  },
+  "1778": {
+    "inputs": {
+      "strength": 0.8000000000000002,
+      "start_percent": 0,
+      "end_percent": 1,
+      "positive": [
+        "1965",
+        0
+      ],
+      "negative": [
+        "1965",
+        1
+      ],
+      "control_net": [
+        "1799",
+        0
+      ],
+      "image": [
+        "1779",
+        0
+      ],
+      "vae": [
+        "1783",
+        2
+      ]
+    },
+    "class_type": "ControlNetApplyAdvanced",
+    "_meta": {
+      "title": "ControlNet应用（旧版高级）"
+    }
+  },
+  "1779": {
+    "inputs": {
+      "preprocessor": "DepthAnythingPreprocessor",
+      "resolution": 1024,
+      "image": [
+        "2021",
+        0
+      ]
+    },
+    "class_type": "AIO_Preprocessor",
+    "_meta": {
+      "title": "Aux集成预处理器"
+    }
+  },
+  "1781": {
+    "inputs": {
+      "text": [
+        "2113",
+        0
+      ],
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "clip": [
+        "1969",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP文本编码器"
+    }
+  },
+  "1783": {
+    "inputs": {
+      "ckpt_name": "SD1.5/realisticVisionV60B1_v51HyperVAE.safetensors"
+    },
+    "class_type": "CheckpointLoaderSimple",
+    "_meta": {
+      "title": "Checkpoint加载器(简易)"
+    }
+  },
+  "1785": {
+    "inputs": {
+      "text": "(Wrinkles:1.5),(Face:1.3), human, facial features, hair,\nFace, glasses, nose, mouth, expression, facial features,",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "clip": [
+        "1783",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP文本编码器"
+    }
+  },
+  "1793": {
+    "inputs": {
+      "seed": [
+        "2217",
+        0
+      ],
+      "steps": 25,
+      "cfg": 3.5,
+      "sampler_name": "euler",
+      "scheduler": "karras",
+      "denoise": 1,
+      "model": [
+        "1885",
+        0
+      ],
+      "positive": [
+        "1778",
+        0
+      ],
+      "negative": [
+        "1778",
+        1
+      ],
+      "latent_image": [
+        "2049",
+        0
+      ]
+    },
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "K采样器"
+    }
+  },
+  "1794": {
+    "inputs": {
+      "pixels": [
+        "2021",
+        0
+      ],
+      "vae": [
+        "1783",
+        2
+      ]
+    },
+    "class_type": "VAEEncode",
+    "_meta": {
+      "title": "VAE编码"
+    }
+  },
+  "1799": {
+    "inputs": {
+      "control_net_name": "control_v11f1p_sd15_depth.pth"
+    },
+    "class_type": "ControlNetLoader",
+    "_meta": {
+      "title": "ControlNet加载器"
+    }
+  },
+  "1885": {
+    "inputs": {
+      "weight": 0.6500000000000001,
+      "start_at": 0,
+      "end_at": 0.8000000000000002,
+      "weight_type": "prompt is more important",
+      "model": [
+        "1777",
+        0
+      ],
+      "ipadapter": [
+        "1777",
+        1
+      ],
+      "image": [
+        "2116",
+        0
+      ]
+    },
+    "class_type": "IPAdapter",
+    "_meta": {
+      "title": "应用IPAdapter"
+    }
+  },
+  "1945": {
+    "inputs": {
+      "seed": [
+        "2218",
+        0
+      ],
+      "steps": 20,
+      "cfg": 1,
+      "sampler_name": "euler",
+      "scheduler": "simple",
+      "denoise": 0.28,
+      "model": [
+        "2224",
+        0
+      ],
+      "positive": [
+        "1947",
+        0
+      ],
+      "negative": [
+        "1948",
+        0
+      ],
+      "latent_image": [
+        "1971",
+        0
+      ]
+    },
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "K采样器"
+    }
+  },
+  "1947": {
+    "inputs": {
+      "clip_l": "hd, masterpiece, 4k, smooth lines,Clean, flat, new clothes,A white background,",
+      "t5xxl": "hd, masterpiece, 4k, smooth lines,Clean, flat, new clothes,A white background,",
+      "guidance": 30,
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "clip": [
+        "2223",
+        0
+      ]
+    },
+    "class_type": "CLIPTextEncodeFlux",
+    "_meta": {
+      "title": "CLIP文本编码Flux"
+    }
+  },
+  "1948": {
+    "inputs": {
+      "conditioning": [
+        "1947",
+        0
+      ]
+    },
+    "class_type": "ConditioningZeroOut",
+    "_meta": {
+      "title": "条件零化"
+    }
+  },
+  "1949": {
+    "inputs": {
+      "samples": [
+        "1945",
+        0
+      ],
+      "vae": [
+        "2225",
+        0
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE解码"
+    }
+  },
+  "1965": {
+    "inputs": {
+      "strength": 0.9600000000000002,
+      "start_percent": 0,
+      "end_percent": 0.9600000000000002,
+      "positive": [
+        "2176",
+        0
+      ],
+      "negative": [
+        "1785",
+        0
+      ],
+      "control_net": [
+        "1970",
+        0
+      ],
+      "image": [
+        "1966",
+        0
+      ],
+      "vae": [
+        "1783",
+        2
+      ]
+    },
+    "class_type": "ControlNetApplyAdvanced",
+    "_meta": {
+      "title": "ControlNet应用（旧版高级）"
+    }
+  },
+  "1966": {
+    "inputs": {
+      "preprocessor": "LineArtPreprocessor",
+      "resolution": 1024,
+      "image": [
+        "2021",
+        0
+      ]
+    },
+    "class_type": "AIO_Preprocessor",
+    "_meta": {
+      "title": "Aux集成预处理器"
+    }
+  },
+  "1969": {
+    "inputs": {
+      "lora_name": "SD1.5/服装电商冲锋衣设计_v1.0.safetensors",
+      "strength_model": 0.30000000000000004,
+      "strength_clip": 0.30000000000000004,
+      "model": [
+        "1783",
+        0
+      ],
+      "clip": [
+        "1783",
+        1
+      ]
+    },
+    "class_type": "LoraLoader",
+    "_meta": {
+      "title": "LoRA加载器"
+    }
+  },
+  "1970": {
+    "inputs": {
+      "control_net_name": "control_v11p_sd15_lineart.pth"
+    },
+    "class_type": "ControlNetLoader",
+    "_meta": {
+      "title": "ControlNet加载器"
+    }
+  },
+  "1971": {
+    "inputs": {
+      "pixels": [
+        "1774",
+        0
+      ],
+      "vae": [
+        "2225",
+        0
+      ]
+    },
+    "class_type": "VAEEncode",
+    "_meta": {
+      "title": "VAE编码"
+    }
+  },
+  "1991": {
+    "inputs": {
+      "aspect_ratio": "original",
+      "proportional_width": 1,
+      "proportional_height": 1,
+      "fit": "letterbox",
+      "method": "lanczos",
+      "round_to_multiple": "8",
+      "scale_to_side": "longest",
+      "scale_to_length": 1024,
+      "background_color": "#000000",
+      "image": [
+        "2005",
+        0
+      ],
+      "mask": [
+        "5",
+        1
+      ]
+    },
+    "class_type": "LayerUtility: ImageScaleByAspectRatio V2",
+    "_meta": {
+      "title": "按宽高比缩放_V2"
+    }
+  },
+  "1993": {
+    "inputs": {
+      "model_name": "4x-UltraSharp.pth"
+    },
+    "class_type": "UpscaleModelLoader",
+    "_meta": {
+      "title": "放大模型加载器"
+    }
+  },
+  "1994": {
+    "inputs": {
+      "upscale_model": [
+        "1993",
+        0
+      ],
+      "image": [
+        "5",
+        0
+      ]
+    },
+    "class_type": "ImageUpscaleWithModel",
+    "_meta": {
+      "title": "图像通过模型放大"
+    }
+  },
+  "2005": {
+    "inputs": {
+      "upscale_method": "lanczos",
+      "width": [
+        "2006",
+        0
+      ],
+      "height": [
+        "2006",
+        1
+      ],
+      "crop": "disabled",
+      "image": [
+        "1994",
+        0
+      ]
+    },
+    "class_type": "ImageScale",
+    "_meta": {
+      "title": "图像缩放"
+    }
+  },
+  "2006": {
+    "inputs": {
+      "image": [
+        "5",
+        0
+      ]
+    },
+    "class_type": "Get resolution [Crystools]",
+    "_meta": {
+      "title": "获取分辨率"
+    }
+  },
+  "2010": {
+    "inputs": {
+      "images": [
+        "1779",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "预览图像"
+    }
+  },
+  "2013": {
+    "inputs": {
+      "separator": "，",
+      "text1": [
+        "2051",
+        0
+      ],
+      "text2": [
+        "2167",
+        0
+      ]
+    },
+    "class_type": "CR Text Concatenate",
+    "_meta": {
+      "title": "文本联结"
+    }
+  },
+  "2021": {
+    "inputs": {
+      "boolean": [
+        "2214",
+        0
+      ],
+      "on_true": [
+        "1548",
+        0
+      ],
+      "on_false": [
+        "1991",
+        0
+      ]
+    },
+    "class_type": "Switch any [Crystools]",
+    "_meta": {
+      "title": "切换任意"
+    }
+  },
+  "2036": {
+    "inputs": {
+      "width": [
+        "2037",
+        0
+      ],
+      "height": [
+        "2037",
+        1
+      ],
+      "batch_size": 1
+    },
+    "class_type": "EmptyLatentImage",
+    "_meta": {
+      "title": "空Latent"
+    }
+  },
+  "2037": {
+    "inputs": {
+      "image": [
+        "2021",
+        0
+      ]
+    },
+    "class_type": "Get resolution [Crystools]",
+    "_meta": {
+      "title": "获取分辨率"
+    }
+  },
+  "2040": {
+    "inputs": {
+      "samples": [
+        "2046",
+        0
+      ],
+      "vae": [
+        "2041",
+        2
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE解码"
+    }
+  },
+  "2041": {
+    "inputs": {
+      "ckpt_name": "flux/flux1-schnell-fp8.safetensors"
+    },
+    "class_type": "CheckpointLoaderSimple",
+    "_meta": {
+      "title": "Checkpoint加载器(简易)"
+    }
+  },
+  "2042": {
+    "inputs": {
+      "clip_l": [
+        "2169",
+        0
+      ],
+      "t5xxl": [
+        "2169",
+        0
+      ],
+      "guidance": 3.5,
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "clip": [
+        "2041",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncodeFlux",
+    "_meta": {
+      "title": "CLIP文本编码Flux"
+    }
+  },
+  "2043": {
+    "inputs": {
+      "conditioning": [
+        "2042",
+        0
+      ]
+    },
+    "class_type": "ConditioningZeroOut",
+    "_meta": {
+      "title": "条件零化"
+    }
+  },
+  "2046": {
+    "inputs": {
+      "seed": 312231824930113,
+      "steps": 4,
+      "cfg": 1,
+      "sampler_name": "euler",
+      "scheduler": "simple",
+      "denoise": 1,
+      "model": [
+        "2041",
+        0
+      ],
+      "positive": [
+        "2042",
+        0
+      ],
+      "negative": [
+        "2043",
+        0
+      ],
+      "latent_image": [
+        "2047",
+        0
+      ]
+    },
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "K采样器"
+    }
+  },
+  "2047": {
+    "inputs": {
+      "width": 512,
+      "height": 512,
+      "batch_size": 1
+    },
+    "class_type": "EmptyLatentImage",
+    "_meta": {
+      "title": "空Latent"
+    }
+  },
+  "2048": {
+    "inputs": {
+      "images": [
+        "2040",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "预览图像"
+    }
+  },
+  "2049": {
+    "inputs": {
+      "boolean": [
+        "2215",
+        0
+      ],
+      "on_true": [
+        "1770",
+        0
+      ],
+      "on_false": [
+        "2036",
+        0
+      ]
+    },
+    "class_type": "Switch any [Crystools]",
+    "_meta": {
+      "title": "切换任意"
+    }
+  },
+  "2050": {
+    "inputs": {
+      "text": [
+        "2013",
+        0
+      ]
+    },
+    "class_type": "ShowText|pysssss",
+    "_meta": {
+      "title": "展示文本"
+    }
+  },
+  "2051": {
+    "inputs": {
+      "text": [
+        "2229",
+        0
+      ],
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      }
+    },
+    "class_type": "CR Text",
+    "_meta": {
+      "title": "文本"
+    }
+  },
+  "2054": {
+    "inputs": {
+      "text": "哑光质感，高清摄影、高清产品渲染、4K、高品质、真实纹理、(白色的背景:1.1)，",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      }
+    },
+    "class_type": "CR Text",
+    "_meta": {
+      "title": "文本"
+    }
+  },
+  "2055": {
+    "inputs": {
+      "expand": 10,
+      "incremental_expandrate": 0,
+      "tapered_corners": true,
+      "flip_input": false,
+      "blur_radius": 0,
+      "lerp_alpha": 1,
+      "decay_factor": 1,
+      "fill_holes": false,
+      "mask": [
+        "2146",
+        0
+      ]
+    },
+    "class_type": "GrowMaskWithBlur",
+    "_meta": {
+      "title": "遮罩模糊生长"
+    }
+  },
+  "2056": {
+    "inputs": {
+      "expand": 30,
+      "incremental_expandrate": 0,
+      "tapered_corners": true,
+      "flip_input": false,
+      "blur_radius": 0,
+      "lerp_alpha": 1,
+      "decay_factor": 1,
+      "fill_holes": false,
+      "mask": [
+        "2146",
+        0
+      ]
+    },
+    "class_type": "GrowMaskWithBlur",
+    "_meta": {
+      "title": "遮罩模糊生长"
+    }
+  },
+  "2057": {
+    "inputs": {
+      "expand": 20,
+      "incremental_expandrate": 0,
+      "tapered_corners": true,
+      "flip_input": false,
+      "blur_radius": 15,
+      "lerp_alpha": 1,
+      "decay_factor": 1,
+      "fill_holes": false,
+      "mask": [
+        "1758",
+        0
+      ]
+    },
+    "class_type": "GrowMaskWithBlur",
+    "_meta": {
+      "title": "遮罩模糊生长"
+    }
+  },
+  "2058": {
+    "inputs": {
+      "mask1": [
+        "2056",
+        0
+      ],
+      "mask2": [
+        "2055",
+        0
+      ]
+    },
+    "class_type": "SubtractMask",
+    "_meta": {
+      "title": "遮罩相减"
+    }
+  },
+  "2059": {
+    "inputs": {
+      "expand": 0,
+      "incremental_expandrate": 0,
+      "tapered_corners": true,
+      "flip_input": false,
+      "blur_radius": 5,
+      "lerp_alpha": 1,
+      "decay_factor": 1,
+      "fill_holes": false,
+      "mask": [
+        "2058",
+        0
+      ]
+    },
+    "class_type": "GrowMaskWithBlur",
+    "_meta": {
+      "title": "遮罩模糊生长"
+    }
+  },
+  "2061": {
+    "inputs": {
+      "mask": [
+        "2059",
+        0
+      ]
+    },
+    "class_type": "MaskToImage",
+    "_meta": {
+      "title": "遮罩到图像"
+    }
+  },
+  "2062": {
+    "inputs": {
+      "image1": [
+        "2065",
+        0
+      ],
+      "image2": [
+        "2118",
+        0
+      ],
+      "mask": [
+        "2061",
+        0
+      ]
+    },
+    "class_type": "Mix Images By Mask",
+    "_meta": {
+      "title": "遮罩混合图像"
+    }
+  },
+  "2065": {
+    "inputs": {
+      "top": [
+        "1758",
+        2
+      ],
+      "left": [
+        "1758",
+        3
+      ],
+      "right": [
+        "1758",
+        4
+      ],
+      "bottom": [
+        "1758",
+        5
+      ],
+      "crop_blending": 0.05000000000000001,
+      "crop_sharpening": 0,
+      "image": [
+        "2118",
+        0
+      ],
+      "crop_image": [
+        "1746",
+        0
+      ]
+    },
+    "class_type": "Image Paste Crop by Location",
+    "_meta": {
+      "title": "粘贴裁剪位置"
+    }
+  },
+  "2091": {
+    "inputs": {
+      "filename_prefix": "ComfyUI",
+      "images": [
+        "2118",
+        0
+      ]
+    },
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "保存图像"
+    }
+  },
+  "2108": {
+    "inputs": {
+      "model_name": "Qwen/Qwen2.5-3B-Instruct"
+    },
+    "class_type": "Qwen2_ModelLoader_Zho",
+    "_meta": {
+      "title": "⛱️Qwen2 ModelLoader"
+    }
+  },
+  "2110": {
+    "inputs": {
+      "text": [
+        "2113",
+        0
+      ]
+    },
+    "class_type": "ShowText|pysssss",
+    "_meta": {
+      "title": "展示文本"
+    }
+  },
+  "2113": {
+    "inputs": {
+      "prompt": [
+        "2013",
+        0
+      ],
+      "system_instruction": "Translate into English",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "model": [
+        "2108",
+        0
+      ],
+      "tokenizer": [
+        "2108",
+        1
+      ]
+    },
+    "class_type": "Qwen2_Zho",
+    "_meta": {
+      "title": "⛱️Qwen2"
+    }
+  },
+  "2116": {
+    "inputs": {
+      "boolean": [
+        "2216",
+        0
+      ],
+      "on_true": [
+        "2213",
+        0
+      ],
+      "on_false": [
+        "2040",
+        0
+      ]
+    },
+    "class_type": "Switch any [Crystools]",
+    "_meta": {
+      "title": "切换任意"
+    }
+  },
+  "2118": {
+    "inputs": {
+      "boolean": true,
+      "on_true": [
+        "1949",
+        0
+      ],
+      "on_false": [
+        "1774",
+        0
+      ]
+    },
+    "class_type": "Switch any [Crystools]",
+    "_meta": {
+      "title": "切换任意"
+    }
+  },
+  "2146": {
+    "inputs": {
+      "boolean": [
+        "2162",
+        0
+      ],
+      "on_true": [
+        "2148",
+        0
+      ],
+      "on_false": [
+        "1991",
+        1
+      ]
+    },
+    "class_type": "Switch any [Crystools]",
+    "_meta": {
+      "title": "切换任意"
+    }
+  },
+  "2147": {
+    "inputs": {
+      "size": "custom",
+      "custom_width": 512,
+      "custom_height": 512,
+      "color": "#ffffff",
+      "size_as": [
+        "1991",
+        0
+      ]
+    },
+    "class_type": "LayerUtility: ColorImage V2",
+    "_meta": {
+      "title": "纯色图像_V2"
+    }
+  },
+  "2148": {
+    "inputs": {
+      "channel": "red",
+      "image": [
+        "2147",
+        0
+      ]
+    },
+    "class_type": "ImageToMask",
+    "_meta": {
+      "title": "图像到遮罩"
+    }
+  },
+  "2159": {
+    "inputs": {
+      "cond": [
+        "2162",
+        0
+      ],
+      "tt_value": [
+        "1774",
+        0
+      ],
+      "ff_value": [
+        "2062",
+        0
+      ]
+    },
+    "class_type": "ImpactConditionalBranch",
+    "_meta": {
+      "title": "切换"
+    }
+  },
+  "2160": {
+    "inputs": {
+      "mask": [
+        "1991",
+        1
+      ]
+    },
+    "class_type": "IsMaskEmpty",
+    "_meta": {
+      "title": "遮罩是否存在"
+    }
+  },
+  "2161": {
+    "inputs": {
+      "a": [
+        "2160",
+        0
+      ]
+    },
+    "class_type": "CM_NumberToInt",
+    "_meta": {
+      "title": "数字到整数"
+    }
+  },
+  "2162": {
+    "inputs": {
+      "a": [
+        "2161",
+        0
+      ]
+    },
+    "class_type": "CM_IntToBool",
+    "_meta": {
+      "title": "整数到布尔"
+    }
+  },
+  "2167": {
+    "inputs": {
+      "text": "(采用柔软且光滑的面料，显得非常新且整洁:1.35)，哑光质感，高清摄影、高清产品渲染、4K、高品质、真实纹理，极高的质感和精致的细节，整体剪裁宽松舒适，适合各种休闲场合穿着，",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      }
+    },
+    "class_type": "CR Text",
+    "_meta": {
+      "title": "文本"
+    }
+  },
+  "2168": {
+    "inputs": {
+      "separator": "，",
+      "text1": [
+        "2051",
+        0
+      ],
+      "text2": [
+        "2054",
+        0
+      ]
+    },
+    "class_type": "CR Text Concatenate",
+    "_meta": {
+      "title": "文本联结"
+    }
+  },
+  "2169": {
+    "inputs": {
+      "prompt": [
+        "2168",
+        0
+      ],
+      "system_instruction": "Translate into English",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "model": [
+        "2108",
+        0
+      ],
+      "tokenizer": [
+        "2108",
+        1
+      ]
+    },
+    "class_type": "Qwen2_Zho",
+    "_meta": {
+      "title": "⛱️Qwen2"
+    }
+  },
+  "2175": {
+    "inputs": {
+      "text": "(White background: 1.1),",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "clip": [
+        "1969",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP文本编码器"
+    }
+  },
+  "2176": {
+    "inputs": {
+      "conditioning_to": [
+        "1781",
+        0
+      ],
+      "conditioning_from": [
+        "2175",
+        0
+      ]
+    },
+    "class_type": "ConditioningConcat",
+    "_meta": {
+      "title": "条件联结"
+    }
+  },
+  "2195": {
+    "inputs": {
+      "images": [
+        "1774",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "预览图像"
+    }
+  },
+  "2196": {
+    "inputs": {
+      "images": [
+        "1949",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "预览图像"
+    }
+  },
+  "2200": {
+    "inputs": {
+      "images": [
+        "2040",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "预览图像"
+    }
+  },
+  "2209": {
+    "inputs": {},
+    "class_type": "ETN_KritaCanvas",
+    "_meta": {
+      "title": "Krita Canvas"
+    }
+  },
+  "2211": {
+    "inputs": {
+      "images": [
+        "2221",
+        0
+      ]
+    },
+    "class_type": "ETN_KritaOutput",
+    "_meta": {
+      "title": "Krita Output"
+    }
+  },
+  "2212": {
+    "inputs": {
+      "name": "5. 提示词（tips:请输入提示词）",
+      "type": "text",
+      "default": "红色棉质卫衣",
+      "min": 0,
+      "max": 0
+    },
+    "class_type": "ETN_Parameter",
+    "_meta": {
+      "title": "Parameter"
+    }
+  },
+  "2213": {
+    "inputs": {
+      "name": "2. 参考图（tips:请选择要参考的图片）"
+    },
+    "class_type": "ETN_KritaImageLayer",
+    "_meta": {
+      "title": "Krita Image Layer"
+    }
+  },
+  "2214": {
+    "inputs": {
+      "name": "3. 是否去除边线（tips:开启后将去除边缘粗线条）",
+      "type": "toggle",
+      "default": true,
+      "min": 0,
+      "max": 0
+    },
+    "class_type": "ETN_Parameter",
+    "_meta": {
+      "title": "Parameter"
+    }
+  },
+  "2215": {
+    "inputs": {
+      "name": "4. 是否匹配原图（加强手绘稿）（tips:开启后将增强手绘稿）",
+      "type": "toggle",
+      "default": true,
+      "min": 0,
+      "max": 0
+    },
+    "class_type": "ETN_Parameter",
+    "_meta": {
+      "title": "Parameter"
+    }
+  },
+  "2216": {
+    "inputs": {
+      "name": "1. 是否开启参考图（tips:打开后将开启参考图参考）",
+      "type": "toggle",
+      "default": true,
+      "min": 0,
+      "max": 0
+    },
+    "class_type": "ETN_Parameter",
+    "_meta": {
+      "title": "Parameter"
+    }
+  },
+  "2217": {
+    "inputs": {
+      "seed": 100852215133462
+    },
+    "class_type": "easy seed",
+    "_meta": {
+      "title": "随机种"
+    }
+  },
+  "2218": {
+    "inputs": {
+      "seed": 232006267340200
+    },
+    "class_type": "easy seed",
+    "_meta": {
+      "title": "随机种"
+    }
+  },
+  "2219": {
+    "inputs": {
+      "seed": 976318141210537
+    },
+    "class_type": "easy seed",
+    "_meta": {
+      "title": "随机种"
+    }
+  },
+  "2220": {
+    "inputs": {},
+    "class_type": "ETN_KritaSelection",
+    "_meta": {
+      "title": "Krita Selection"
+    }
+  },
+  "2221": {
+    "inputs": {
+      "width": [
+        "2209",
+        1
+      ],
+      "height": [
+        "2209",
+        2
+      ],
+      "crop": "disabled",
+      "upscale_method": "nearest-exact",
+      "lock_aspect_ratio": false,
+      "image": [
+        "2159",
+        0
+      ]
+    },
+    "class_type": "EG_TX_SFBLS",
+    "_meta": {
+      "title": "2🐕Image scaling lock"
+    }
+  },
+  "2222": {
+    "inputs": {
+      "images": [
+        "2159",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "预览图像"
+    }
+  },
+  "2223": {
+    "inputs": {
+      "clip_name1": "t5xxl_fp16.safetensors",
+      "clip_name2": "clip_l.safetensors",
+      "type": "flux",
+      "device": "default"
+    },
+    "class_type": "DualCLIPLoader",
+    "_meta": {
+      "title": "双CLIP加载器"
+    }
+  },
+  "2224": {
+    "inputs": {
+      "unet_name": "flux/flux1-dev.safetensors",
+      "weight_dtype": "default"
+    },
+    "class_type": "UNETLoader",
+    "_meta": {
+      "title": "UNET加载器"
+    }
+  },
+  "2225": {
+    "inputs": {
+      "vae_name": "ae.safetensors"
+    },
+    "class_type": "VAELoader",
+    "_meta": {
+      "title": "VAE加载器"
+    }
+  },
+  "2228": {
+    "inputs": {
+      "prompt": "1. Extract design elements from images and convert them into clothing designs, and describe them.\n2. The material and texture of clothings can only be woven mesh texture.\n3. No need to explain or describe anything else, no output of your thought process, no output of character description, only describe the appearance of the final designed clothing, and only appear text that matches the appearance of the clothing.\nExample output format: A red cotton sweatshirt with a jacket featuring a bright red color and an abstract urban architectural pattern printed on it",
+      "model": "qwen-vl-max",
+      "system_message": "You are an AI assistant capable of analyzing images. Please carefully observe the image and provide a detailed and accurate description based on the user's question.",
+      "temperature": 0.7000000000000001,
+      "max_tokens": 1024,
+      "detail": "high",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "image": [
+        "2213",
+        0
+      ]
+    },
+    "class_type": "LLMNodeFull",
+    "_meta": {
+      "title": "LLM高级节点"
+    }
+  },
+  "2229": {
+    "inputs": {
+      "boolean": [
+        "2216",
+        0
+      ],
+      "on_true": [
+        "2228",
+        0
+      ],
+      "on_false": [
+        "2230",
+        0
+      ]
+    },
+    "class_type": "Switch any [Crystools]",
+    "_meta": {
+      "title": "切换任意"
+    }
+  },
+  "2230": {
+    "inputs": {
+      "String": [
+        "2212",
+        0
+      ],
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      }
+    },
+    "class_type": "String",
+    "_meta": {
+      "title": "字符串"
+    }
+  }
+}
