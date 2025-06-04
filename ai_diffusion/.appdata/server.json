@@ -1,55 +1,55 @@
 [
     {
-        "url": "http://krita-cluster-1.1835654106092022.cn-hangzhou.pai-eas.aliyuncs.com/",
+        "url": "http://krita-cluster-1.1835654106092022.vpc.cn-hangzhou.pai-eas.aliyuncs.com/",
         "access_token": "MjU0NjJkY2UzZjM0NzEyNGFkZTMwYTUzOTIxYzFiMDQxMzgxMzJhMA==",
         "headers": {
             "x-eas-uid": "anta-1"
         }
     },
     {
-        "url": "http://krita-cluster-1.1835654106092022.cn-hangzhou.pai-eas.aliyuncs.com/",
+        "url": "http://krita-cluster-1.1835654106092022.vpc.cn-hangzhou.pai-eas.aliyuncs.com/",
         "access_token": "MjU0NjJkY2UzZjM0NzEyNGFkZTMwYTUzOTIxYzFiMDQxMzgxMzJhMA==",
         "headers": {
             "x-eas-uid": "anta-2"
         }
     },
     {
-        "url": "http://krita-cluster-1.1835654106092022.cn-hangzhou.pai-eas.aliyuncs.com/",
+        "url": "http://krita-cluster-1.1835654106092022.vpc.cn-hangzhou.pai-eas.aliyuncs.com/",
         "access_token": "MjU0NjJkY2UzZjM0NzEyNGFkZTMwYTUzOTIxYzFiMDQxMzgxMzJhMA==",
         "headers": {
             "x-eas-uid": "anta-3"
         }
     },
     {
-        "url": "http://krita-cluster-1.1835654106092022.cn-hangzhou.pai-eas.aliyuncs.com/",
+        "url": "http://krita-cluster-1.1835654106092022.vpc.cn-hangzhou.pai-eas.aliyuncs.com/",
         "access_token": "MjU0NjJkY2UzZjM0NzEyNGFkZTMwYTUzOTIxYzFiMDQxMzgxMzJhMA==",
         "headers": {
             "x-eas-uid": "anta-4"
         }
     },
     {
-        "url": "http://krita-cluster-1.1835654106092022.cn-hangzhou.pai-eas.aliyuncs.com/",
+        "url": "http://krita-cluster-1.1835654106092022.vpc.cn-hangzhou.pai-eas.aliyuncs.com/",
         "access_token": "MjU0NjJkY2UzZjM0NzEyNGFkZTMwYTUzOTIxYzFiMDQxMzgxMzJhMA==",
         "headers": {
             "x-eas-uid": "anta-5"
         }
     },
     {
-        "url": "http://krita-cluster-1.1835654106092022.cn-hangzhou.pai-eas.aliyuncs.com/",
+        "url": "http://krita-cluster-1.1835654106092022.vpc.cn-hangzhou.pai-eas.aliyuncs.com/",
         "access_token": "MjU0NjJkY2UzZjM0NzEyNGFkZTMwYTUzOTIxYzFiMDQxMzgxMzJhMA==",
         "headers": {
             "x-eas-uid": "anta-6"
         }
     },
     {
-        "url": "http://krita-cluster-1.1835654106092022.cn-hangzhou.pai-eas.aliyuncs.com/",
+        "url": "http://krita-cluster-1.1835654106092022.vpc.cn-hangzhou.pai-eas.aliyuncs.com/",
         "access_token": "MjU0NjJkY2UzZjM0NzEyNGFkZTMwYTUzOTIxYzFiMDQxMzgxMzJhMA==",
         "headers": {
             "x-eas-uid": "anta-7"
         }
     },
     {
-        "url": "http://krita-cluster-1.1835654106092022.cn-hangzhou.pai-eas.aliyuncs.com/",
+        "url": "http://krita-cluster-1.1835654106092022.vpc.cn-hangzhou.pai-eas.aliyuncs.com/",
         "access_token": "MjU0NjJkY2UzZjM0NzEyNGFkZTMwYTUzOTIxYzFiMDQxMzgxMzJhMA==",
         "headers": {
             "x-eas-uid": "anta-8"
