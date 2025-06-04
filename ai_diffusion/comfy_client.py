@@ -217,6 +217,15 @@ class ComfyClient(Client):
         return [
                 (key, value) for key, value in header_dict.items()
             ]
+
+    def _get_upload_headers(self, new_headers: dict|None = None) -> list[tuple[str, str]]:
+        header_dict = new_headers or {
+            'accept': 'application/json',
+            'token': '14ba021369ecbdb128c367539953e0b5'
+        }
+        return [
+                (key, value) for key, value in header_dict.items()
+            ]
     
     async def _server_post(self, op: str, data: dict):
         headers = self._get_server_headers()
@@ -257,6 +266,14 @@ class ComfyClient(Client):
         except asyncio.CancelledError:
             pass
 
+    async def _upload_image(self, image_data: bytes, format: str) -> str:
+        url = "https://xai.anta.com/aimodels-server/private/uploads"
+        filename = f"{uuid.uuid4()}.{format}"
+        headers = self._get_upload_headers()
+        resp = await self._requests.upload_image_data(
+            url, image_data, filename, image_format=format, headers=headers)
+        return resp.get("data", {}).get("url", "")
+
     async def _run_job(self, job: JobInfo):
         await self.upload_loras(job.work, job.local_id)
         workflow = create_workflow(job.work, self.models)
@@ -265,7 +282,34 @@ class ComfyClient(Client):
         if settings.debug_dump_workflow:
             workflow.dump(util.log_dir)
 
-        data = {"prompt": workflow.root, "client_id": self._id, "front": job.front}
+        try:
+            prompt_data = {}
+            prompt_original_data = workflow.root
+            for idx, node in workflow.root.items():
+                node_type = node.get("class_type", "")
+                match node_type:
+                    case "ETN_LoadMaskBase64":
+                        image_data = Image.base64_to_bytes(
+                            node.get("inputs", {}).get("mask", ""))
+                        new_node = node.copy()
+                        new_node["inputs"]["mask"] = await self._upload_image(image_data, "png")
+                        prompt_data[idx] = new_node
+                    case "ETN_LoadImageBase64":
+                        image_data = Image.base64_to_bytes(
+                            node.get("inputs", {}).get("image", ""))
+                        new_node = node.copy()
+                        new_node["inputs"]["image"] = await self._upload_image(image_data, "png")
+                        prompt_data[idx] = new_node
+                    case _:
+                        prompt_data[idx] = node
+        except Exception as e:
+            log.error(f"Failed to upload image: {str(e)}")
+            prompt_data = workflow.root
+
+        data = {"prompt": prompt_data, "client_id": self._id, "front": job.front}
+
+        
+
         job.remote_id = asyncio.get_running_loop().create_future()
         self._jobs.append(job)
         job_record = {
@@ -325,9 +369,10 @@ class ComfyClient(Client):
 
         async for msg in websocket:
             if isinstance(msg, bytes):
-                image = _extract_message_png_image(memoryview(msg))
-                if image is not None:
-                    images.append(image)
+                pass
+            #     image = _extract_message_png_image(memoryview(msg))
+            #     if image is not None:
+            #         images.append(image)
 
             elif isinstance(msg, str):
                 msg = json.loads(msg)
@@ -383,7 +428,16 @@ class ComfyClient(Client):
                         pose_json = _extract_pose_json(msg)
                         if pose_json is not None:
                             result = pose_json
-
+                    try:
+                        if images_data := msg.get("data", {}).get("output", {}).get("images", []):
+                            for item in images_data:
+                                if url := item.get("url"):
+                                    image_data = await self._requests.download_image_async(url)
+                                    image = Image.from_bytes(image_data)
+                                    if image is not None:
+                                        images.append(image)
+                    except Exception as e:
+                        log.error(f"Failed to download image: {str(e)}")
                 if msg["type"] == "execution_error":
                     job = self._get_active_job(msg["data"]["prompt_id"])
                     if job:

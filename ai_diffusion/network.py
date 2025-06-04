@@ -7,7 +7,7 @@ from datetime import datetime
 from pathlib import Path
 from typing import NamedTuple
 from PyQt5.QtCore import QByteArray, QUrl, QFile, QBuffer
-from PyQt5.QtNetwork import QNetworkAccessManager, QNetworkRequest, QNetworkReply, QSslError
+from PyQt5.QtNetwork import QNetworkAccessManager, QNetworkRequest, QNetworkReply, QSslError, QHttpMultiPart, QHttpPart
 
 from .localization import translate as _
 from .util import client_logger as log
@@ -190,6 +190,30 @@ class RequestManager:
         self._requests[reply] = tracker
         return future
 
+    def download_image_async(
+            self, url: str, 
+            timeout: float | None = None
+        ) -> Future[QByteArray]:
+        """异步下载图片"""
+        self._cleanup()
+        request = QNetworkRequest(QUrl(url))
+        request.setAttribute(QNetworkRequest.Attribute.FollowRedirectsAttribute, True)
+
+        if timeout is not None and timeout > 0:
+            request.setTransferTimeout(int(timeout * 1000)) 
+
+        reply = self._net.get(request)
+        assert reply is not None, f"Network request for image {url} failed: reply is None"
+
+        image_data_future = asyncio.get_running_loop().create_future()
+        
+        self._requests[reply] = Request(url=url, future=image_data_future, buffer=None)
+        
+        reply.downloadProgress.connect(
+            lambda bytes_received, bytes_total: log.debug(f"Image {url}: {bytes_received}/{bytes_total}"))
+
+        return image_data_future
+
     def _upload_progress(self, bytes_sent: int, bytes_total: int):
         if bytes_total == 0:
             return
@@ -232,6 +256,64 @@ class RequestManager:
     def _handle_ssl_errors(self, reply: QNetworkReply, errors: list[QSslError]):
         for error in errors:
             log.warning(f"SSL error: {error.errorString()} [{error.error()}]")
+
+    def post_multipart(
+        self,
+        url: str,
+        multi_part: QHttpMultiPart,
+        headers: Headers | None = None,
+        timeout: float | None = None,
+    ) -> Future[QByteArray]:
+        self._cleanup()
+
+        request = QNetworkRequest(QUrl(url))
+        request.setAttribute(QNetworkRequest.FollowRedirectsAttribute, True)
+        request.setRawHeader(b"ngrok-skip-browser-warning", b"69420")
+
+        if headers:
+            for key, value in headers:
+                request.setRawHeader(key.encode("utf-8"), value.encode("utf-8"))
+        
+        if timeout is not None:
+            request.setTransferTimeout(int(timeout * 1000))
+
+        reply = self._net.post(request, multi_part)
+        multi_part.setParent(reply)
+
+        assert reply is not None, f"Network request for {url} failed: reply is None"
+        future = asyncio.get_running_loop().create_future()
+        self._requests[reply] = Request(url, future)
+        return future
+
+    def upload_image_data(
+        self,
+        url: str,
+        image_bytes: QByteArray,
+        image_filename: str,
+        headers: Headers | None = None,
+        image_format: str = "png",
+        timeout: float | None = None,
+    ) -> Future[QByteArray]:
+        self._cleanup()
+
+        multi_part = QHttpMultiPart(QHttpMultiPart.FormDataType)
+
+        image_part = QHttpPart()
+        image_part.setHeader(
+            QNetworkRequest.ContentDispositionHeader,
+            f'form-data; name="file"; filename="{image_filename}"'
+        )
+        image_mime_type = {
+                "png": "image/png", "jpg": "image/jpeg", "jpeg": "image/jpeg",
+                "webp": "image/webp", "gif": "image/gif", "bmp": "image/bmp"
+            }.get(image_format, "application/octet-stream")
+        image_part.setHeader(
+            QNetworkRequest.ContentTypeHeader,
+            image_mime_type
+        )
+        image_part.setBody(image_bytes)
+        multi_part.append(image_part)
+        return self.post_multipart(url, multi_part, headers=headers, timeout=timeout)
 
 
 class DownloadProgress(NamedTuple):

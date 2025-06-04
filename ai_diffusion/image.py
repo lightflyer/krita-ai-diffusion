@@ -446,6 +446,10 @@ class Image:
         b = img_b.to_array()
         return np.sqrt(np.mean((a - b) ** 2))
 
+    @staticmethod
+    def base64_to_bytes(base64: str) -> QByteArray:
+        return QByteArray.fromBase64(base64.encode("utf-8"))
+
     def pixel(self, x: int, y: int):
         c = self._qimage.pixel(x, y)
         if self.is_rgba:
