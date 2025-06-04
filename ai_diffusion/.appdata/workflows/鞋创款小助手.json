@@ -11,6 +11,7 @@
         "65",
         0
       ],
+      "is_upload_image": true,
       "speak_and_recognation": {
         "__value__": [
           false,
