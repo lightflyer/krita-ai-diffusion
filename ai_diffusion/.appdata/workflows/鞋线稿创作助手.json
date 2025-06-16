@@ -5,7 +5,7 @@
     },
     "class_type": "CheckpointLoaderSimple",
     "_meta": {
-      "title": "Checkpoint\u52a0\u8f7d\u5668(\u7b80\u6613)"
+      "title": "Checkpoint加载器(简易)"
     }
   },
   "1": {
@@ -14,12 +14,12 @@
     },
     "class_type": "ControlNetLoader",
     "_meta": {
-      "title": "ControlNet\u52a0\u8f7d\u5668"
+      "title": "ControlNet加载器"
     }
   },
   "2": {
     "inputs": {
-      "lora_name": "\u7ec7\u7269\u7f51\u9762\u978b XL-000016.safetensors",
+      "lora_name": "织物网面鞋 XL-000016.safetensors",
       "strength_model": 1.0000000000000002,
       "model": [
         "0",
@@ -28,7 +28,7 @@
     },
     "class_type": "LoraLoaderModelOnly",
     "_meta": {
-      "title": "LoRA\u52a0\u8f7d\u5668(\u4ec5\u6a21\u578b)"
+      "title": "LoRA加载器(仅模型)"
     }
   },
   "3": {
@@ -37,7 +37,7 @@
     },
     "class_type": "StyleModelLoader",
     "_meta": {
-      "title": "\u98ce\u683c\u6a21\u578b\u52a0\u8f7d\u5668"
+      "title": "风格模型加载器"
     }
   },
   "4": {
@@ -46,7 +46,7 @@
     },
     "class_type": "CLIPVisionLoader",
     "_meta": {
-      "title": "CLIP\u89c6\u89c9\u52a0\u8f7d\u5668"
+      "title": "CLIP视觉加载器"
     }
   },
   "5": {
@@ -58,7 +58,7 @@
     },
     "class_type": "DualCLIPLoader",
     "_meta": {
-      "title": "\u53ccCLIP\u52a0\u8f7d\u5668"
+      "title": "双CLIP加载器"
     }
   },
   "6": {
@@ -67,7 +67,7 @@
     },
     "class_type": "UpscaleModelLoader",
     "_meta": {
-      "title": "\u653e\u5927\u6a21\u578b\u52a0\u8f7d\u5668"
+      "title": "放大模型加载器"
     }
   },
   "7": {
@@ -77,7 +77,7 @@
     },
     "class_type": "UNETLoader",
     "_meta": {
-      "title": "UNET\u52a0\u8f7d\u5668"
+      "title": "UNET加载器"
     }
   },
   "8": {
@@ -86,12 +86,12 @@
     },
     "class_type": "VAELoader",
     "_meta": {
-      "title": "VAE\u52a0\u8f7d\u5668"
+      "title": "VAE加载器"
     }
   },
   "9": {
     "inputs": {
-      "String": "reflect light\uff0ctext, watermark,ng_deepnegative_v1_75t,(badhandv4:1.2),EasyNegative,(worst quality:2),Avoid images that are blurry,poorly lit,or lack details. No other objects or distractions in the frame. Avoid low-quality textures,dull colors,and flat lighting,, (EasyNegative:1.2),badhandv4,NSFW, (worst quality:2), (low quality:2), (normal quality:2), lowres, normal quality, ((monochrome)), ((grayscale)), skin spots, acnes, skin blemishes, age spot, (ugly:1.331), (duplicate:1.331), (morbid:1.21), (mutilated:1.21), (tranny:1.331), mutated hands, (poorly drawn hands:1.5), blurry, (bad anatomy:1.21), (bad proportions:1.331), extra limbs, (disfigured:1.331), (missing arms:1.331), (extra legs:1.331), (fused fingers:1.61051), (too many fingers:1.61051), (unclear eyes:1.331), lowers, bad hands, missing fingers, extra digit,bad hands, missing fingers, (((extra arms and legs))),lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry,",
+      "String": "reflect light，text, watermark,ng_deepnegative_v1_75t,(badhandv4:1.2),EasyNegative,(worst quality:2),Avoid images that are blurry,poorly lit,or lack details. No other objects or distractions in the frame. Avoid low-quality textures,dull colors,and flat lighting,, (EasyNegative:1.2),badhandv4,NSFW, (worst quality:2), (low quality:2), (normal quality:2), lowres, normal quality, ((monochrome)), ((grayscale)), skin spots, acnes, skin blemishes, age spot, (ugly:1.331), (duplicate:1.331), (morbid:1.21), (mutilated:1.21), (tranny:1.331), mutated hands, (poorly drawn hands:1.5), blurry, (bad anatomy:1.21), (bad proportions:1.331), extra limbs, (disfigured:1.331), (missing arms:1.331), (extra legs:1.331), (fused fingers:1.61051), (too many fingers:1.61051), (unclear eyes:1.331), lowers, bad hands, missing fingers, extra digit,bad hands, missing fingers, (((extra arms and legs))),lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry,",
       "speak_and_recognation": {
         "__value__": [
           false,
@@ -101,7 +101,7 @@
     },
     "class_type": "String",
     "_meta": {
-      "title": "\u5b57\u7b26\u4e32"
+      "title": "字符串"
     }
   },
   "10": {
@@ -113,7 +113,7 @@
       "lora_1_strength": 0.30000000000000004,
       "lora_1_model_strength": 1.0000000000000002,
       "lora_1_clip_strength": 1.0000000000000002,
-      "lora_2_name": "flux/\u7ec7\u7269\u7eb9\u7406flux v1000028.safetensors",
+      "lora_2_name": "flux/织物纹理flux v1000028.safetensors",
       "lora_2_strength": 0.5000000000000001,
       "lora_2_model_strength": 1.0000000000000002,
       "lora_2_clip_strength": 1.0000000000000002,
@@ -152,7 +152,7 @@
     },
     "class_type": "easy loraStack",
     "_meta": {
-      "title": "\u7b80\u6613Lora\u5806"
+      "title": "简易Lora堆"
     }
   },
   "11": {
@@ -161,7 +161,7 @@
     },
     "class_type": "ControlNetLoader",
     "_meta": {
-      "title": "ControlNet\u52a0\u8f7d\u5668"
+      "title": "ControlNet加载器"
     }
   },
   "12": {
@@ -170,7 +170,7 @@
     },
     "class_type": "easy seed",
     "_meta": {
-      "title": "\u968f\u673a\u79cd"
+      "title": "随机种"
     }
   },
   "13": {
@@ -182,7 +182,7 @@
   },
   "14": {
     "inputs": {
-      "name": "1. \u53c2\u8003\u56fe\uff08Reference image\uff09(tips: \u8bf7\u9009\u62e9\u6240\u9700\u8981\u53c2\u8003\u7684\u56fe\u7247)"
+      "name": "1. 参考图（Reference image）(tips: 请选择所需要参考的图片)"
     },
     "class_type": "ETN_KritaImageLayer",
     "_meta": {
@@ -191,8 +191,8 @@
   },
   "15": {
     "inputs": {
-      "name": "3. \u63d0\u793a\u8bcd\uff08prompt\uff09(tips: \u8bf7\u8f93\u5165\u4f60\u5bf9\u7ebf\u7a3f\u7684\u63cf\u8ff0\u3002)",
-      "type": "prompt (positive)",
+      "name": "3. 提示词（prompt）(tips: 请输入你对线稿的描述。)",
+      "type": "text",
       "default": "",
       "min": 0,
       "max": 0
@@ -204,7 +204,7 @@
   },
   "16": {
     "inputs": {
-      "name": "2. \u5f00\u542f\u53c2\u8003\u56fe\u53c2\u8003\uff08Open reference image reference\uff09(tips:\u5f00\u542f\u540e\uff0c\u8f93\u5165\u7684\u63d0\u793a\u8bcd\u5c06\u4e0d\u8d77\u4f5c\u7528\uff0cAI\u5c06\u901a\u8fc7\u4e0a\u4f20\u7684\u53c2\u8003\u56fe\u63a7\u5236\u751f\u6210)(on:3-off)(off:3-on)",
+      "name": "2. 开启参考图参考（Open reference image reference）(tips:开启后，输入的提示词将不起作用，AI将通过上传的参考图控制生成)(on:3-off)(off:3-on)",
       "type": "toggle",
       "default": true,
       "min": 0,
@@ -221,7 +221,7 @@
     },
     "class_type": "Float",
     "_meta": {
-      "title": "\u6d6e\u70b9"
+      "title": "浮点"
     }
   },
   "18": {
@@ -230,14 +230,14 @@
     },
     "class_type": "Float",
     "_meta": {
-      "title": "\u6d6e\u70b9"
+      "title": "浮点"
     }
   },
   "19": {
     "inputs": {
       "model": "qwen2.5-vl-72b-instruct",
       "system_prompt": "You are an AI assistant capable of analyzing images. Please carefully observe the image and provide a detailed and accurate description based on the user's question.",
-      "user_prompt": "Extract key design elements for footwear design from the image, including but not limited to: colors, design style, patterns, textures, and design concepts.\n\ufeff\nTransform the extracted design elements into shoe designs with detailed descriptions, generating optimized prompt text suitable for the SDXL model.\n\ufeff\nRequirements:\n\ufeff\nThe shoes must exclusively use woven mesh material/texture.\n\ufeff\nThe prompt text must be concise, precise and compliant with SDXL model input specifications.\n\ufeff\nNo need to explain or describe anything else, no output of your thought process, no output of character description, only describe the appearance of the final designed shoe,The material of the shoe body must be described and given priority\uff0c and only appear text that matches the appearance of the shoe.\n\ufeff\nOutput example:\nThe shoe features a sleek, modern design with a predominantly white upper constructed from woven mesh material for breathability and flexibility. The midsole is accentuated with vibrant pink stripes, adding a pop of color to the otherwise monochrome palette. The outsole is designed with a dynamic, sculpted pattern in shades of gray and pink, providing both style and traction. The overall aesthetic is sporty and stylish, The background should be pure white,suitable for both athletic activities and casual wear.",
+      "user_prompt": "Extract key design elements for footwear design from the image, including but not limited to: colors, design style, patterns, textures, and design concepts.\n﻿\nTransform the extracted design elements into shoe designs with detailed descriptions, generating optimized prompt text suitable for the SDXL model.\n﻿\nRequirements:\n﻿\nThe shoes must exclusively use woven mesh material/texture.\n﻿\nThe prompt text must be concise, precise and compliant with SDXL model input specifications.\n﻿\nNo need to explain or describe anything else, no output of your thought process, no output of character description, only describe the appearance of the final designed shoe,The material of the shoe body must be described and given priority， and only appear text that matches the appearance of the shoe.\n﻿\nOutput example:\nThe shoe features a sleek, modern design with a predominantly white upper constructed from woven mesh material for breathability and flexibility. The midsole is accentuated with vibrant pink stripes, adding a pop of color to the otherwise monochrome palette. The outsole is designed with a dynamic, sculpted pattern in shades of gray and pink, providing both style and traction. The overall aesthetic is sporty and stylish, The background should be pure white,suitable for both athletic activities and casual wear.",
       "max_tokens": 1024,
       "temperature": 0.7000000000000002,
       "detail": "auto",
@@ -254,12 +254,12 @@
     },
     "class_type": "BizyAirSiliconCloudVLMAPI",
     "_meta": {
-      "title": "\u2601\ufe0fBizyAir SiliconCloud VLM API"
+      "title": "☁️BizyAir SiliconCloud VLM API"
     }
   },
   "20": {
     "inputs": {
-      "String": "HD photography, HD product rendering, 4K, high quality\uff0c no background,advanced upper design, high-quality product design, exquisite shoelaces, (white background: 1.15)",
+      "String": "HD photography, HD product rendering, 4K, high quality， no background,advanced upper design, high-quality product design, exquisite shoelaces, (white background: 1.15)",
       "speak_and_recognation": {
         "__value__": [
           false,
@@ -269,7 +269,7 @@
     },
     "class_type": "String",
     "_meta": {
-      "title": "\u5b57\u7b26\u4e32"
+      "title": "字符串"
     }
   },
   "21": {
@@ -291,7 +291,7 @@
     },
     "class_type": "CLIPTextEncode",
     "_meta": {
-      "title": "CLIP\u6587\u672c\u7f16\u7801\u5668"
+      "title": "CLIP文本编码器"
     }
   },
   "22": {
@@ -304,7 +304,7 @@
     },
     "class_type": "IPAdapterUnifiedLoader",
     "_meta": {
-      "title": "IPAdapter\u52a0\u8f7d\u5668"
+      "title": "IPAdapter加载器"
     }
   },
   "23": {
@@ -325,7 +325,7 @@
     },
     "class_type": "LayerUtility: ImageScaleByAspectRatio V2",
     "_meta": {
-      "title": "\u6309\u5bbd\u9ad8\u6bd4\u7f29\u653e_V2"
+      "title": "按宽高比缩放_V2"
     }
   },
   "24": {
@@ -345,7 +345,7 @@
     },
     "class_type": "easy loraStackApply",
     "_meta": {
-      "title": "\u5e94\u7528 LoRA \u5806"
+      "title": "应用 LoRA 堆"
     }
   },
   "25": {
@@ -363,7 +363,7 @@
     },
     "class_type": "String",
     "_meta": {
-      "title": "\u5b57\u7b26\u4e32"
+      "title": "字符串"
     }
   },
   "26": {
@@ -383,7 +383,7 @@
     },
     "class_type": "Switch any [Crystools]",
     "_meta": {
-      "title": "\u5207\u6362\u4efb\u610f"
+      "title": "切换任意"
     }
   },
   "27": {
@@ -406,7 +406,7 @@
     },
     "class_type": "LLMNodeFull",
     "_meta": {
-      "title": "LLM\u9ad8\u7ea7\u8282\u70b9"
+      "title": "LLM高级节点"
     }
   },
   "28": {
@@ -423,7 +423,7 @@
     },
     "class_type": "ConstrainImage|pysssss",
     "_meta": {
-      "title": "\u9650\u5236\u56fe\u50cf\u533a\u57df"
+      "title": "限制图像区域"
     }
   },
   "29": {
@@ -456,7 +456,7 @@
     },
     "class_type": "IPAdapterAdvanced",
     "_meta": {
-      "title": "\u5e94\u7528IPAdapter\uff08\u9ad8\u7ea7\uff09"
+      "title": "应用IPAdapter（高级）"
     }
   },
   "30": {
@@ -470,7 +470,7 @@
     },
     "class_type": "AIO_Preprocessor",
     "_meta": {
-      "title": "Aux\u96c6\u6210\u9884\u5904\u7406\u5668"
+      "title": "Aux集成预处理器"
     }
   },
   "31": {
@@ -486,7 +486,7 @@
     },
     "class_type": "FusionText",
     "_meta": {
-      "title": "\u878d\u5408\u6587\u672c"
+      "title": "融合文本"
     }
   },
   "32": {
@@ -498,7 +498,7 @@
     },
     "class_type": "GetImageSize+",
     "_meta": {
-      "title": "\u83b7\u53d6\u56fe\u50cf\u5c3a\u5bf8"
+      "title": "获取图像尺寸"
     }
   },
   "33": {
@@ -518,7 +518,7 @@
     },
     "class_type": "Switch any [Crystools]",
     "_meta": {
-      "title": "\u5207\u6362\u4efb\u610f"
+      "title": "切换任意"
     }
   },
   "34": {
@@ -535,7 +535,7 @@
     },
     "class_type": "EmptyLatentImage",
     "_meta": {
-      "title": "\u7a7aLatent"
+      "title": "空Latent"
     }
   },
   "35": {
@@ -557,7 +557,7 @@
     },
     "class_type": "StringFunction|pysssss",
     "_meta": {
-      "title": "\u5b57\u7b26\u4e32\u64cd\u4f5c"
+      "title": "字符串操作"
     }
   },
   "36": {
@@ -579,7 +579,7 @@
     },
     "class_type": "CLIPTextEncode",
     "_meta": {
-      "title": "CLIP\u6587\u672c\u7f16\u7801\u5668"
+      "title": "CLIP文本编码器"
     }
   },
   "37": {
@@ -610,7 +610,7 @@
     },
     "class_type": "ControlNetApplyAdvanced",
     "_meta": {
-      "title": "ControlNet\u5e94\u7528\uff08\u65e7\u7248\u9ad8\u7ea7\uff09"
+      "title": "ControlNet应用（旧版高级）"
     }
   },
   "38": {
@@ -632,7 +632,7 @@
     },
     "class_type": "CLIPTextEncode",
     "_meta": {
-      "title": "CLIP\u6587\u672c\u7f16\u7801\u5668"
+      "title": "CLIP文本编码器"
     }
   },
   "39": {
@@ -665,7 +665,7 @@
     },
     "class_type": "KSampler",
     "_meta": {
-      "title": "K\u91c7\u6837\u5668"
+      "title": "K采样器"
     }
   },
   "40": {
@@ -681,7 +681,7 @@
     },
     "class_type": "VAEDecode",
     "_meta": {
-      "title": "VAE\u89e3\u7801"
+      "title": "VAE解码"
     }
   },
   "41": {
@@ -722,7 +722,7 @@
     },
     "class_type": "ConditioningZeroOut",
     "_meta": {
-      "title": "\u6761\u4ef6\u96f6\u5316"
+      "title": "条件零化"
     }
   },
   "43": {
@@ -735,7 +735,7 @@
     },
     "class_type": "FluxGuidance",
     "_meta": {
-      "title": "Flux\u5f15\u5bfc"
+      "title": "Flux引导"
     }
   },
   "44": {
@@ -749,7 +749,7 @@
     },
     "class_type": "ImageScaleBy",
     "_meta": {
-      "title": "\u56fe\u50cf\u6309\u7cfb\u6570\u7f29\u653e"
+      "title": "图像按系数缩放"
     }
   },
   "45": {
@@ -765,7 +765,7 @@
     },
     "class_type": "ImageUpscaleWithModel",
     "_meta": {
-      "title": "\u56fe\u50cf\u901a\u8fc7\u6a21\u578b\u653e\u5927"
+      "title": "图像通过模型放大"
     }
   },
   "46": {
@@ -779,7 +779,7 @@
     },
     "class_type": "AIO_Preprocessor",
     "_meta": {
-      "title": "Aux\u96c6\u6210\u9884\u5904\u7406\u5668"
+      "title": "Aux集成预处理器"
     }
   },
   "47": {
@@ -795,7 +795,7 @@
     },
     "class_type": "VAEEncode",
     "_meta": {
-      "title": "VAE\u7f16\u7801"
+      "title": "VAE编码"
     }
   },
   "48": {
@@ -826,7 +826,7 @@
     },
     "class_type": "ControlNetApplyAdvanced",
     "_meta": {
-      "title": "ControlNet\u5e94\u7528\uff08\u65e7\u7248\u9ad8\u7ea7\uff09"
+      "title": "ControlNet应用（旧版高级）"
     }
   },
   "49": {
@@ -836,7 +836,10 @@
       "cfg": 1,
       "sampler_name": "uni_pc_bh2",
       "scheduler": "sgm_uniform",
-      "denoise": 0.7000000000000002,
+      "denoise": [
+        "54",
+        0
+      ],
       "model": [
         "24",
         0
@@ -856,7 +859,7 @@
     },
     "class_type": "KSampler",
     "_meta": {
-      "title": "K\u91c7\u6837\u5668"
+      "title": "K采样器"
     }
   },
   "50": {
@@ -872,7 +875,7 @@
     },
     "class_type": "VAEDecode",
     "_meta": {
-      "title": "VAE\u89e3\u7801"
+      "title": "VAE解码"
     }
   },
   "51": {
@@ -884,7 +887,7 @@
     },
     "class_type": "PreviewImage",
     "_meta": {
-      "title": "\u9884\u89c8\u56fe\u50cf"
+      "title": "预览图像"
     }
   },
   "52": {
@@ -907,7 +910,7 @@
     },
     "class_type": "EG_TX_SFBLS",
     "_meta": {
-      "title": "2\ud83d\udc15Image scaling lock"
+      "title": "2🐕Image scaling lock"
     }
   },
   "53": {
@@ -920,6 +923,19 @@
     "class_type": "ETN_KritaOutput",
     "_meta": {
       "title": "Krita Output"
+    }
+  },
+  "54": {
+    "inputs": {
+      "name": "4. 降噪强度（tips:越高越偏离原图）",
+      "type": "number",
+      "default": 0.7000000000000002,
+      "min": 0,
+      "max": 1
+    },
+    "class_type": "ETN_Parameter",
+    "_meta": {
+      "title": "Parameter"
     }
   }
 }

@@ -1,0 +1,338 @@
+{
+  "158": {
+    "inputs": {
+      "prompt": "没有人，只有xx被提取出来，放在白色背景上，顶部侧视，产品摄影风格，",
+      "model": "qwen-plus",
+      "system_message": "将我输入的内容翻译成英文，只需要输出翻译后的内容，不需要解释",
+      "temperature": 0.7000000000000001,
+      "max_tokens": 1024,
+      "detail": "auto",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      }
+    },
+    "class_type": "LLMNodeFull",
+    "_meta": {
+      "title": "LLM高级节点"
+    }
+  },
+  "161": {
+    "inputs": {
+      "model": "black-forest-labs/flux-kontext-pro",
+      "prompt": [
+        "196",
+        0
+      ],
+      "aspect_ratio": "match_input_image",
+      "safety_tolerance": 5,
+      "output_format": "png",
+      "seed": 1845,
+      "is_upload_image": true,
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "input_image": [
+        "166",
+        0
+      ]
+    },
+    "class_type": "FluxKontextProNode",
+    "_meta": {
+      "title": "Flux Kontext Pro Generator"
+    }
+  },
+  "163": {
+    "inputs": {
+      "prompt": "没有人，只提取图中xx，侧视图，白色背景，产品摄影风格，给我展示鞋子的极近特写",
+      "model": "qwen-plus",
+      "system_message": "将我输入的内容翻译成英文，只需要输出翻译后的内容，不需要解释",
+      "temperature": 0.7000000000000001,
+      "max_tokens": 1024,
+      "detail": "auto",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      }
+    },
+    "class_type": "LLMNodeFull",
+    "_meta": {
+      "title": "LLM高级节点"
+    }
+  },
+  "164": {
+    "inputs": {
+      "prompt": "没有人，只有xx被提取出来，放在白色背景上，顶部侧视，产品摄影风格",
+      "model": "qwen-plus",
+      "system_message": "将我输入的内容翻译成英文，只需要输出翻译后的内容，不需要解释",
+      "temperature": 0.7000000000000001,
+      "max_tokens": 1024,
+      "detail": "auto",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      }
+    },
+    "class_type": "LLMNodeFull",
+    "_meta": {
+      "title": "LLM高级节点"
+    }
+  },
+  "165": {
+    "inputs": {
+      "name": "1. 选择提取物品类型（tips:目前支持鞋子、服装、背包）",
+      "type": "choice",
+      "default": "鞋子",
+      "min": 0,
+      "max": 0
+    },
+    "class_type": "ETN_Parameter",
+    "_meta": {
+      "title": "Parameter"
+    }
+  },
+  "166": {
+    "inputs": {},
+    "class_type": "ETN_KritaCanvas",
+    "_meta": {
+      "title": "Krita Canvas"
+    }
+  },
+  "167": {
+    "inputs": {
+      "images": [
+        "169",
+        0
+      ]
+    },
+    "class_type": "ETN_KritaOutput",
+    "_meta": {
+      "title": "Krita Output"
+    }
+  },
+  "168": {
+    "inputs": {
+      "width": [
+        "166",
+        1
+      ],
+      "height": [
+        "166",
+        2
+      ],
+      "red": 255,
+      "green": 255,
+      "blue": 255
+    },
+    "class_type": "Image Blank",
+    "_meta": {
+      "title": "空图像"
+    }
+  },
+  "169": {
+    "inputs": {
+      "image1": [
+        "161",
+        0
+      ],
+      "image2": [
+        "168",
+        0
+      ]
+    },
+    "class_type": "ImageOverlayNode",
+    "_meta": {
+      "title": "Image Overlay (Fit & Center)"
+    }
+  },
+  "171": {
+    "inputs": {
+      "find": "xx",
+      "replace": [
+        "174",
+        0
+      ],
+      "text": [
+        "163",
+        0
+      ]
+    },
+    "class_type": "Text Find and Replace",
+    "_meta": {
+      "title": "文本替换"
+    }
+  },
+  "172": {
+    "inputs": {
+      "find": "xx",
+      "replace": [
+        "174",
+        0
+      ],
+      "text": [
+        "164",
+        0
+      ]
+    },
+    "class_type": "Text Find and Replace",
+    "_meta": {
+      "title": "文本替换"
+    }
+  },
+  "173": {
+    "inputs": {
+      "find": "xx",
+      "replace": [
+        "174",
+        0
+      ],
+      "text": [
+        "158",
+        0
+      ]
+    },
+    "class_type": "Text Find and Replace",
+    "_meta": {
+      "title": "文本替换"
+    }
+  },
+  "174": {
+    "inputs": {
+      "name": "2. 提取目标（tips:请输入要提取的目标，如：鞋子、背包、蓝色上衣）",
+      "type": "text",
+      "default": "背包",
+      "min": 0,
+      "max": 0
+    },
+    "class_type": "ETN_Parameter",
+    "_meta": {
+      "title": "Parameter"
+    }
+  },
+  "175": {
+    "inputs": {
+      "prompt": "没有人，只提取红框中的xx，平铺展示，白色背景，产品摄影风格，不要红框",
+      "model": "qwen-plus",
+      "system_message": "将我输入的内容翻译成英文，只需要输出翻译后的内容，不需要解释",
+      "temperature": 0.7000000000000001,
+      "max_tokens": 1024,
+      "detail": "auto",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      }
+    },
+    "class_type": "LLMNodeFull",
+    "_meta": {
+      "title": "LLM高级节点"
+    }
+  },
+  "176": {
+    "inputs": {
+      "boolean": [
+        "177",
+        0
+      ],
+      "on_true": [
+        "178",
+        0
+      ],
+      "on_false": [
+        "213",
+        0
+      ]
+    },
+    "class_type": "Switch any [Crystools]",
+    "_meta": {
+      "title": "切换任意"
+    }
+  },
+  "177": {
+    "inputs": {
+      "name": "3. 开启红框引导提取（tips:开启后，请在页面上用红色框框选需要提取的物品）",
+      "type": "toggle",
+      "default": true,
+      "min": 0,
+      "max": 0
+    },
+    "class_type": "ETN_Parameter",
+    "_meta": {
+      "title": "Parameter"
+    }
+  },
+  "178": {
+    "inputs": {
+      "find": "xx",
+      "replace": [
+        "174",
+        0
+      ],
+      "text": [
+        "175",
+        0
+      ]
+    },
+    "class_type": "Text Find and Replace",
+    "_meta": {
+      "title": "文本替换"
+    }
+  },
+  "196": {
+    "inputs": {
+      "prompt": [
+        "176",
+        0
+      ],
+      "model": "qwen-plus",
+      "system_message": "将我输入的内容翻译成英文，只需要输出翻译后的内容，不需要解释",
+      "temperature": 0.7000000000000001,
+      "max_tokens": 1024,
+      "detail": "auto",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      }
+    },
+    "class_type": "LLMNodeFull",
+    "_meta": {
+      "title": "LLM高级节点"
+    }
+  },
+  "213": {
+    "inputs": {
+      "selector": [
+        "165",
+        0
+      ],
+      "input1": [
+        "171",
+        0
+      ],
+      "input2": [
+        "172",
+        0
+      ],
+      "input3": [
+        "173",
+        0
+      ]
+    },
+    "class_type": "TextSelectorNode",
+    "_meta": {
+      "title": "Text Selector Node"
+    }
+  }
+}

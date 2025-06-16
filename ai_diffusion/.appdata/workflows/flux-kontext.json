@@ -1,0 +1,235 @@
+{
+  "179": {
+    "inputs": {
+      "model": "black-forest-labs/flux-kontext-pro",
+      "prompt": [
+        "207",
+        0
+      ],
+      "aspect_ratio": "match_input_image",
+      "safety_tolerance": 5,
+      "output_format": "png",
+      "seed": 1111,
+      "is_upload_image": [
+        "214",
+        0
+      ],
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "input_image": [
+        "202",
+        0
+      ]
+    },
+    "class_type": "FluxKontextProNode",
+    "_meta": {
+      "title": "Flux Kontext Pro Generator"
+    }
+  },
+  "180": {
+    "inputs": {
+      "image1": [
+        "179",
+        0
+      ],
+      "image2": [
+        "216",
+        0
+      ]
+    },
+    "class_type": "ImageOverlayNode",
+    "_meta": {
+      "title": "Image Overlay (Fit & Center)"
+    }
+  },
+  "181": {
+    "inputs": {
+      "width": [
+        "203",
+        0
+      ],
+      "height": [
+        "203",
+        1
+      ],
+      "red": 255,
+      "green": 255,
+      "blue": 255
+    },
+    "class_type": "Image Blank",
+    "_meta": {
+      "title": "空图像"
+    }
+  },
+  "183": {
+    "inputs": {
+      "images": [
+        "180",
+        0
+      ]
+    },
+    "class_type": "ETN_KritaOutput",
+    "_meta": {
+      "title": "Krita Output"
+    }
+  },
+  "185": {
+    "inputs": {
+      "name": "3. 提示词（tips:请输入你要对图片编辑的想法，如：提取背包、去除水印、修改颜色等）",
+      "type": "prompt (positive)",
+      "default": "主体保持不变，文字样式保持不变，\"BACKPACK\"文字修改为\"Cool Irene\".",
+      "min": 0,
+      "max": 0
+    },
+    "class_type": "ETN_Parameter",
+    "_meta": {
+      "title": "Parameter"
+    }
+  },
+  "202": {
+    "inputs": {
+      "name": "2. 选择编辑图片（tips:请选择 要编辑的图片）"
+    },
+    "class_type": "ETN_KritaImageLayer",
+    "_meta": {
+      "title": "Krita Image Layer"
+    }
+  },
+  "203": {
+    "inputs": {
+      "image": [
+        "202",
+        0
+      ]
+    },
+    "class_type": "GetImageSize+",
+    "_meta": {
+      "title": "获取图像尺寸"
+    }
+  },
+  "207": {
+    "inputs": {
+      "prompt": [
+        "185",
+        0
+      ],
+      "model": "qwen-turbo",
+      "system_message": "将我输入的内容翻译成英文，只输出翻译内容，不要解释",
+      "temperature": 0.7000000000000001,
+      "max_tokens": 1024,
+      "detail": "auto",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      }
+    },
+    "class_type": "LLMNodeFull",
+    "_meta": {
+      "title": "LLM高级节点"
+    }
+  },
+  "210": {
+    "inputs": {
+      "text": "The main body remains unchanged, and the text style remains unchanged. Change the text \"BACKPACK\" to \"Cool Irene.\"",
+      "anything": [
+        "207",
+        0
+      ]
+    },
+    "class_type": "easy showAnything",
+    "_meta": {
+      "title": "展示任何"
+    }
+  },
+  "214": {
+    "inputs": {
+      "name": "1. 上传参考图（tips:打开后将进行图片编辑）(off:2-off)(on:2-on)",
+      "type": "toggle",
+      "default": true,
+      "min": 0,
+      "max": 0
+    },
+    "class_type": "ETN_Parameter",
+    "_meta": {
+      "title": "Parameter"
+    }
+  },
+  "215": {
+    "inputs": {},
+    "class_type": "ETN_KritaCanvas",
+    "_meta": {
+      "title": "Krita Canvas"
+    }
+  },
+  "216": {
+    "inputs": {
+      "boolean": [
+        "214",
+        0
+      ],
+      "on_true": [
+        "181",
+        0
+      ],
+      "on_false": [
+        "221",
+        0
+      ]
+    },
+    "class_type": "Switch any [Crystools]",
+    "_meta": {
+      "title": "切换任意"
+    }
+  },
+  "219": {
+    "inputs": {
+      "text": "512",
+      "anything": [
+        "203",
+        0
+      ]
+    },
+    "class_type": "easy showAnything",
+    "_meta": {
+      "title": "展示任何"
+    }
+  },
+  "220": {
+    "inputs": {
+      "text": "512",
+      "anything": [
+        "203",
+        1
+      ]
+    },
+    "class_type": "easy showAnything",
+    "_meta": {
+      "title": "展示任何"
+    }
+  },
+  "221": {
+    "inputs": {
+      "width": [
+        "215",
+        1
+      ],
+      "height": [
+        "215",
+        2
+      ],
+      "red": 255,
+      "green": 255,
+      "blue": 255
+    },
+    "class_type": "Image Blank",
+    "_meta": {
+      "title": "空图像"
+    }
+  }
+}

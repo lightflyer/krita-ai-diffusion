@@ -1,0 +1,260 @@
+{
+  "187": {
+    "inputs": {
+      "images": [
+        "188",
+        0
+      ]
+    },
+    "class_type": "ETN_KritaOutput",
+    "_meta": {
+      "title": "Krita Output"
+    }
+  },
+  "188": {
+    "inputs": {
+      "image1": [
+        "192",
+        0
+      ],
+      "image2": [
+        "224",
+        0
+      ]
+    },
+    "class_type": "ImageOverlayNode",
+    "_meta": {
+      "title": "Image Overlay (Fit & Center)"
+    }
+  },
+  "189": {
+    "inputs": {
+      "width": [
+        "205",
+        0
+      ],
+      "height": [
+        "205",
+        1
+      ],
+      "red": 255,
+      "green": 255,
+      "blue": 255
+    },
+    "class_type": "Image Blank",
+    "_meta": {
+      "title": "空图像"
+    }
+  },
+  "190": {
+    "inputs": {
+      "name": "5. 提示词（tips:请输入你要对图片编辑的想法，如：提取背包、去除水印、修改颜色等）",
+      "type": "text",
+      "default": "Edit the image"
+    },
+    "class_type": "ETN_Parameter",
+    "_meta": {
+      "title": "Parameter"
+    }
+  },
+  "192": {
+    "inputs": {
+      "prompt": [
+        "190",
+        0
+      ],
+      "quality": [
+        "194",
+        0
+      ],
+      "size": "1024x1024",
+      "seed": 1446,
+      "is_upload_image": [
+        "212",
+        0
+      ],
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "images": [
+        "227",
+        0
+      ]
+    },
+    "class_type": "GPTImage1Edit",
+    "_meta": {
+      "title": "GPT Image Edit"
+    }
+  },
+  "193": {
+    "inputs": {
+      "aspect_ratio": "1:1",
+      "proportional_width": 1,
+      "proportional_height": 1,
+      "fit": "letterbox",
+      "method": "lanczos",
+      "round_to_multiple": "8",
+      "scale_to_side": "longest",
+      "scale_to_length": 1024,
+      "background_color": "#FFFFFF",
+      "image": [
+        "204",
+        0
+      ]
+    },
+    "class_type": "LayerUtility: ImageScaleByAspectRatio V2",
+    "_meta": {
+      "title": "按宽高比缩放_V2"
+    }
+  },
+  "194": {
+    "inputs": {
+      "name": "6. 生成质量（tips:请输入你要对图片编辑的想法，如：质量越高生成越久）",
+      "type": "choice",
+      "default": "high"
+    },
+    "class_type": "ETN_Parameter",
+    "_meta": {
+      "title": "Parameter"
+    }
+  },
+  "204": {
+    "inputs": {
+      "name": "2. 选择编辑图片（tips:请选择 要编辑的图片）"
+    },
+    "class_type": "ETN_KritaImageLayer",
+    "_meta": {
+      "title": "Krita Image Layer"
+    }
+  },
+  "205": {
+    "inputs": {
+      "image": [
+        "204",
+        0
+      ]
+    },
+    "class_type": "GetImageSize+",
+    "_meta": {
+      "title": "获取图像尺寸"
+    }
+  },
+  "212": {
+    "inputs": {
+      "name": "1. 开启图片编辑（tips:开启后将进行图片编辑，关闭后将进行文生图）(off:2-off)(on:2-on)",
+      "type": "toggle",
+      "default": true
+    },
+    "class_type": "ETN_Parameter",
+    "_meta": {
+      "title": "Parameter"
+    }
+  },
+  "222": {
+    "inputs": {},
+    "class_type": "ETN_KritaCanvas",
+    "_meta": {
+      "title": "Krita Canvas"
+    }
+  },
+  "223": {
+    "inputs": {
+      "width": [
+        "222",
+        1
+      ],
+      "height": [
+        "222",
+        2
+      ],
+      "red": 255,
+      "green": 255,
+      "blue": 255
+    },
+    "class_type": "Image Blank",
+    "_meta": {
+      "title": "空图像"
+    }
+  },
+  "224": {
+    "inputs": {
+      "boolean": [
+        "212",
+        0
+      ],
+      "on_true": [
+        "189",
+        0
+      ],
+      "on_false": [
+        "223",
+        0
+      ]
+    },
+    "class_type": "Switch any [Crystools]",
+    "_meta": {
+      "title": "切换任意"
+    }
+  },
+  "225": {
+    "inputs": {
+      "direction": "right",
+      "match_image_size": true,
+      "image1": [
+        "193",
+        0
+      ],
+      "image2": [
+        "226",
+        0
+      ]
+    },
+    "class_type": "ImageConcanate",
+    "_meta": {
+      "title": "图像联结"
+    }
+  },
+  "226": {
+    "inputs": {
+      "name": "4. 选择参考图片（tips:请选择 要参考的图片）"
+    },
+    "class_type": "ETN_KritaImageLayer",
+    "_meta": {
+      "title": "Krita Image Layer"
+    }
+  },
+  "227": {
+    "inputs": {
+      "boolean": [
+        "228",
+        0
+      ],
+      "on_true": [
+        "225",
+        0
+      ],
+      "on_false": [
+        "204",
+        0
+      ]
+    },
+    "class_type": "Switch any [Crystools]",
+    "_meta": {
+      "title": "切换任意"
+    }
+  },
+  "228": {
+    "inputs": {
+      "name": "3. 开启参考图参考（tips:开启后将进行图片参考，关闭后将进行图生图）(off:4-off)(on:4-on)",
+      "type": "toggle",
+      "default": true
+    },
+    "class_type": "ETN_Parameter",
+    "_meta": {
+      "title": "Parameter"
+    }
+  }
+}

@@ -1,0 +1,3213 @@
+{
+  "120": {
+    "inputs": {
+      "repeats": [
+        "127",
+        0
+      ],
+      "images": [
+        "764",
+        0
+      ],
+      "mask": [
+        "738",
+        0
+      ]
+    },
+    "class_type": "ImageBatchRepeatInterleaving",
+    "_meta": {
+      "title": "复制图像批次"
+    }
+  },
+  "123": {
+    "inputs": {
+      "overlap_x": 0,
+      "overlap_y": 0,
+      "rows": [
+        "141",
+        0
+      ],
+      "cols": [
+        "141",
+        0
+      ],
+      "tiles": [
+        "120",
+        0
+      ]
+    },
+    "class_type": "ImageUntile+",
+    "_meta": {
+      "title": "图像逆分块"
+    }
+  },
+  "127": {
+    "inputs": {
+      "value": "a*b",
+      "a": [
+        "141",
+        0
+      ],
+      "b": [
+        "141",
+        0
+      ]
+    },
+    "class_type": "SimpleMath+",
+    "_meta": {
+      "title": "简易运算"
+    }
+  },
+  "141": {
+    "inputs": {
+      "boolean": [
+        "143",
+        0
+      ],
+      "on_true": [
+        "148",
+        0
+      ],
+      "on_false": [
+        "698",
+        0
+      ]
+    },
+    "class_type": "Switch any [Crystools]",
+    "_meta": {
+      "title": "切换任意"
+    }
+  },
+  "143": {
+    "inputs": {
+      "cmp": "a <= b",
+      "a": [
+        "698",
+        0
+      ],
+      "b": [
+        "144",
+        0
+      ]
+    },
+    "class_type": "ImpactCompare",
+    "_meta": {
+      "title": "比较"
+    }
+  },
+  "144": {
+    "inputs": {
+      "value": 1
+    },
+    "class_type": "ImpactInt",
+    "_meta": {
+      "title": "整数"
+    }
+  },
+  "148": {
+    "inputs": {
+      "value": 2
+    },
+    "class_type": "ImpactInt",
+    "_meta": {
+      "title": "整数"
+    }
+  },
+  "150": {
+    "inputs": {
+      "boolean": [
+        "143",
+        0
+      ],
+      "on_true": [
+        "764",
+        0
+      ],
+      "on_false": [
+        "123",
+        0
+      ]
+    },
+    "class_type": "Switch any [Crystools]",
+    "_meta": {
+      "title": "切换任意"
+    }
+  },
+  "151": {
+    "inputs": {
+      "boolean": [
+        "152",
+        0
+      ],
+      "on_true": [
+        "154",
+        0
+      ],
+      "on_false": [
+        "150",
+        0
+      ]
+    },
+    "class_type": "Switch any [Crystools]",
+    "_meta": {
+      "title": "切换任意"
+    }
+  },
+  "152": {
+    "inputs": {
+      "cmp": "a = b",
+      "a": [
+        "698",
+        0
+      ],
+      "b": [
+        "153",
+        0
+      ]
+    },
+    "class_type": "ImpactCompare",
+    "_meta": {
+      "title": "比较"
+    }
+  },
+  "153": {
+    "inputs": {
+      "value": 0
+    },
+    "class_type": "ImpactInt",
+    "_meta": {
+      "title": "整数"
+    }
+  },
+  "154": {
+    "inputs": {
+      "width": 1280,
+      "height": 1280,
+      "color": "#ffffff"
+    },
+    "class_type": "LayerUtility: ColorImage",
+    "_meta": {
+      "title": "纯色图像"
+    }
+  },
+  "165": {
+    "inputs": {
+      "value": 1
+    },
+    "class_type": "ImpactInt",
+    "_meta": {
+      "title": "整数"
+    }
+  },
+  "169": {
+    "inputs": {
+      "image": "clipspace/clipspace-mask-17757651.5.png [input]"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "加载图像"
+    }
+  },
+  "182": {
+    "inputs": {
+      "images": [
+        "120",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "预览图像"
+    }
+  },
+  "183": {
+    "inputs": {
+      "images": [
+        "123",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "预览图像"
+    }
+  },
+  "184": {
+    "inputs": {
+      "text": "true",
+      "anything": [
+        "143",
+        0
+      ]
+    },
+    "class_type": "easy showAnything",
+    "_meta": {
+      "title": "展示任何"
+    }
+  },
+  "185": {
+    "inputs": {
+      "text": "2",
+      "anything": [
+        "141",
+        0
+      ]
+    },
+    "class_type": "easy showAnything",
+    "_meta": {
+      "title": "展示任何"
+    }
+  },
+  "186": {
+    "inputs": {
+      "output": "",
+      "input": [
+        "127",
+        0
+      ]
+    },
+    "class_type": "Display Int (rgthree)",
+    "_meta": {
+      "title": "显示整数"
+    }
+  },
+  "189": {
+    "inputs": {
+      "images": [
+        "151",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "预览图像"
+    }
+  },
+  "239": {
+    "inputs": {
+      "value": "a/b",
+      "a": [
+        "660",
+        1
+      ],
+      "b": [
+        "244",
+        0
+      ]
+    },
+    "class_type": "SimpleMath+",
+    "_meta": {
+      "title": "简易运算"
+    }
+  },
+  "240": {
+    "inputs": {
+      "value": "a/b",
+      "a": [
+        "660",
+        2
+      ],
+      "b": [
+        "244",
+        0
+      ]
+    },
+    "class_type": "SimpleMath+",
+    "_meta": {
+      "title": "简易运算"
+    }
+  },
+  "241": {
+    "inputs": {
+      "value": "a*b",
+      "a": [
+        "239",
+        0
+      ],
+      "b": [
+        "244",
+        0
+      ]
+    },
+    "class_type": "SimpleMath+",
+    "_meta": {
+      "title": "简易运算"
+    }
+  },
+  "242": {
+    "inputs": {
+      "value": "a*b",
+      "a": [
+        "240",
+        0
+      ],
+      "b": [
+        "244",
+        0
+      ]
+    },
+    "class_type": "SimpleMath+",
+    "_meta": {
+      "title": "简易运算"
+    }
+  },
+  "244": {
+    "inputs": {
+      "value": 8
+    },
+    "class_type": "ImpactInt",
+    "_meta": {
+      "title": "整数"
+    }
+  },
+  "250": {
+    "inputs": {
+      "value": 1280
+    },
+    "class_type": "ImpactInt",
+    "_meta": {
+      "title": "整数"
+    }
+  },
+  "252": {
+    "inputs": {
+      "image": [
+        "658",
+        0
+      ]
+    },
+    "class_type": "Get resolution [Crystools]",
+    "_meta": {
+      "title": "获取分辨率"
+    }
+  },
+  "276": {
+    "inputs": {
+      "text": "a pure white clothes,(masterpiece, best quality, ultra detailed, high resolution:1.2),white background",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      }
+    },
+    "class_type": "CR Text",
+    "_meta": {
+      "title": "文本"
+    }
+  },
+  "375": {
+    "inputs": {
+      "invert_mask": false,
+      "background_image": [
+        "446",
+        0
+      ],
+      "croped_image": [
+        "481",
+        0
+      ],
+      "crop_box": [
+        "403",
+        2
+      ],
+      "croped_mask": [
+        "435",
+        0
+      ]
+    },
+    "class_type": "LayerUtility: RestoreCropBox",
+    "_meta": {
+      "title": "裁剪恢复"
+    }
+  },
+  "402": {
+    "inputs": {
+      "rem_mode": "RMBG-1.4",
+      "image_output": "Preview",
+      "save_prefix": "ComfyUI",
+      "torchscript_jit": false,
+      "add_background": "none",
+      "refine_foreground": false,
+      "images": [
+        "534",
+        0
+      ]
+    },
+    "class_type": "easy imageRemBg",
+    "_meta": {
+      "title": "图像背景移除"
+    }
+  },
+  "403": {
+    "inputs": {
+      "invert_mask": false,
+      "detect": "mask_area",
+      "top_reserve": 20,
+      "bottom_reserve": 20,
+      "left_reserve": 20,
+      "right_reserve": 20,
+      "round_to_multiple": "8",
+      "image": [
+        "408",
+        0
+      ],
+      "mask": [
+        "402",
+        1
+      ]
+    },
+    "class_type": "LayerUtility: CropByMask V2",
+    "_meta": {
+      "title": "遮罩裁剪_V2"
+    }
+  },
+  "404": {
+    "inputs": {
+      "images": [
+        "533",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "预览图像"
+    }
+  },
+  "405": {
+    "inputs": {
+      "invert_mask": false,
+      "blend_mode": "multply",
+      "opacity": [
+        "543",
+        0
+      ],
+      "x_percent": 50,
+      "y_percent": 50,
+      "mirror": "None",
+      "scale": 1,
+      "aspect_ratio": 1,
+      "rotate": 0,
+      "transform_method": "lanczos",
+      "anti_aliasing": 0,
+      "background_image": [
+        "533",
+        0
+      ],
+      "layer_image": [
+        "485",
+        0
+      ]
+    },
+    "class_type": "LayerUtility: ImageBlendAdvance",
+    "_meta": {
+      "title": "混合(高级)"
+    }
+  },
+  "408": {
+    "inputs": {
+      "brightness": [
+        "613",
+        0
+      ],
+      "contrast": [
+        "653",
+        0
+      ],
+      "saturation": 0,
+      "image": [
+        "402",
+        0
+      ]
+    },
+    "class_type": "LayerColor: Brightness & Contrast",
+    "_meta": {
+      "title": "亮度/对比度"
+    }
+  },
+  "435": {
+    "inputs": {
+      "expand": -3,
+      "incremental_expandrate": 0,
+      "tapered_corners": true,
+      "flip_input": false,
+      "blur_radius": 0,
+      "lerp_alpha": 1,
+      "decay_factor": 1,
+      "fill_holes": false,
+      "mask": [
+        "403",
+        1
+      ]
+    },
+    "class_type": "GrowMaskWithBlur",
+    "_meta": {
+      "title": "遮罩模糊生长"
+    }
+  },
+  "436": {
+    "inputs": {
+      "image": [
+        "533",
+        0
+      ]
+    },
+    "class_type": "Get resolution [Crystools]",
+    "_meta": {
+      "title": "获取分辨率"
+    }
+  },
+  "439": {
+    "inputs": {
+      "image": [
+        "151",
+        0
+      ]
+    },
+    "class_type": "Get resolution [Crystools]",
+    "_meta": {
+      "title": "获取分辨率"
+    }
+  },
+  "440": {
+    "inputs": {
+      "cmp": "a > b",
+      "a": [
+        "439",
+        0
+      ],
+      "b": [
+        "439",
+        1
+      ]
+    },
+    "class_type": "ImpactCompare",
+    "_meta": {
+      "title": "比较"
+    }
+  },
+  "441": {
+    "inputs": {
+      "boolean": [
+        "440",
+        0
+      ],
+      "on_true": [
+        "439",
+        0
+      ],
+      "on_false": [
+        "439",
+        1
+      ]
+    },
+    "class_type": "Switch any [Crystools]",
+    "_meta": {
+      "title": "切换任意"
+    }
+  },
+  "442": {
+    "inputs": {
+      "images": [
+        "663",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "预览图像"
+    }
+  },
+  "444": {
+    "inputs": {
+      "size": "custom",
+      "custom_width": 512,
+      "custom_height": 512,
+      "color": "#ffffff",
+      "size_as": [
+        "403",
+        0
+      ]
+    },
+    "class_type": "LayerUtility: ColorImage V2",
+    "_meta": {
+      "title": "纯色图像_V2"
+    }
+  },
+  "445": {
+    "inputs": {
+      "invert_mask": false,
+      "blend_mode": "normal",
+      "opacity": 100,
+      "background_image": [
+        "444",
+        0
+      ],
+      "layer_image": [
+        "622",
+        0
+      ],
+      "layer_mask": [
+        "435",
+        0
+      ]
+    },
+    "class_type": "LayerUtility: ImageBlend",
+    "_meta": {
+      "title": "混合"
+    }
+  },
+  "446": {
+    "inputs": {
+      "lama_model": "lama",
+      "device": "cuda",
+      "invert_mask": false,
+      "mask_grow": 20,
+      "mask_blur": 6,
+      "image": [
+        "658",
+        0
+      ],
+      "mask": [
+        "402",
+        1
+      ]
+    },
+    "class_type": "LayerUtility: LaMa",
+    "_meta": {
+      "title": "LaMa"
+    }
+  },
+  "447": {
+    "inputs": {
+      "images": [
+        "446",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "预览图像"
+    }
+  },
+  "448": {
+    "inputs": {
+      "cmp": "a > b",
+      "a": [
+        "436",
+        0
+      ],
+      "b": [
+        "436",
+        1
+      ]
+    },
+    "class_type": "ImpactCompare",
+    "_meta": {
+      "title": "比较"
+    }
+  },
+  "449": {
+    "inputs": {
+      "boolean": [
+        "448",
+        0
+      ],
+      "on_true": [
+        "436",
+        0
+      ],
+      "on_false": [
+        "436",
+        1
+      ]
+    },
+    "class_type": "Switch any [Crystools]",
+    "_meta": {
+      "title": "切换任意"
+    }
+  },
+  "450": {
+    "inputs": {
+      "text": "864",
+      "anything": [
+        "449",
+        0
+      ]
+    },
+    "class_type": "easy showAnything",
+    "_meta": {
+      "title": "展示任何"
+    }
+  },
+  "460": {
+    "inputs": {
+      "seed": [
+        "790",
+        0
+      ],
+      "steps": [
+        "695",
+        0
+      ],
+      "cfg": 1,
+      "sampler_name": "euler",
+      "scheduler": "beta",
+      "denoise": 0.4,
+      "model": [
+        "470",
+        0
+      ],
+      "positive": [
+        "473",
+        0
+      ],
+      "negative": [
+        "463",
+        0
+      ],
+      "latent_image": [
+        "465",
+        0
+      ]
+    },
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "K采样器"
+    }
+  },
+  "463": {
+    "inputs": {
+      "conditioning": [
+        "473",
+        0
+      ]
+    },
+    "class_type": "ConditioningZeroOut",
+    "_meta": {
+      "title": "条件零化"
+    }
+  },
+  "465": {
+    "inputs": {
+      "pixels": [
+        "644",
+        0
+      ],
+      "vae": [
+        "474",
+        0
+      ]
+    },
+    "class_type": "VAEEncode",
+    "_meta": {
+      "title": "VAE编码"
+    }
+  },
+  "466": {
+    "inputs": {
+      "samples": [
+        "460",
+        0
+      ],
+      "vae": [
+        "474",
+        0
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE解码"
+    }
+  },
+  "468": {
+    "inputs": {
+      "strength": 20,
+      "brightness": 10,
+      "contrast": 5,
+      "saturation": -100,
+      "red": 0,
+      "green": 0,
+      "blue": 0,
+      "mode": "RGB",
+      "image": [
+        "466",
+        0
+      ],
+      "mask": [
+        "403",
+        1
+      ]
+    },
+    "class_type": "LayerColor: AutoAdjustV2",
+    "_meta": {
+      "title": "自动调色 V2"
+    }
+  },
+  "470": {
+    "inputs": {
+      "unet_name": "flux/flux1-dev.safetensors",
+      "weight_dtype": "fp8_e4m3fn"
+    },
+    "class_type": "UNETLoader",
+    "_meta": {
+      "title": "UNET加载器"
+    }
+  },
+  "471": {
+    "inputs": {
+      "clip_name1": "t5xxl_fp8_e4m3fn.safetensors",
+      "clip_name2": "clip_l.safetensors",
+      "type": "flux",
+      "device": "default"
+    },
+    "class_type": "DualCLIPLoader",
+    "_meta": {
+      "title": "双CLIP加载器"
+    }
+  },
+  "473": {
+    "inputs": {
+      "clip_l": [
+        "276",
+        0
+      ],
+      "t5xxl": [
+        "276",
+        0
+      ],
+      "guidance": 3.5,
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "clip": [
+        "471",
+        0
+      ]
+    },
+    "class_type": "CLIPTextEncodeFlux",
+    "_meta": {
+      "title": "CLIP文本编码Flux"
+    }
+  },
+  "474": {
+    "inputs": {
+      "vae_name": "ae.sft"
+    },
+    "class_type": "VAELoader",
+    "_meta": {
+      "title": "VAE加载器"
+    }
+  },
+  "476": {
+    "inputs": {
+      "seed": [
+        "789",
+        0
+      ],
+      "steps": [
+        "714",
+        0
+      ],
+      "cfg": 1,
+      "sampler_name": "euler",
+      "scheduler": "beta",
+      "denoise": 0.3,
+      "model": [
+        "470",
+        0
+      ],
+      "positive": [
+        "625",
+        0
+      ],
+      "negative": [
+        "463",
+        0
+      ],
+      "latent_image": [
+        "478",
+        0
+      ]
+    },
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "K采样器"
+    }
+  },
+  "478": {
+    "inputs": {
+      "pixels": [
+        "693",
+        0
+      ],
+      "vae": [
+        "474",
+        0
+      ]
+    },
+    "class_type": "VAEEncode",
+    "_meta": {
+      "title": "VAE编码"
+    }
+  },
+  "479": {
+    "inputs": {
+      "samples": [
+        "476",
+        0
+      ],
+      "vae": [
+        "474",
+        0
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE解码"
+    }
+  },
+  "481": {
+    "inputs": {
+      "invert_mask": false,
+      "blend_mode": "add",
+      "opacity": 35,
+      "x_percent": 50,
+      "y_percent": 50,
+      "mirror": "None",
+      "scale": 1,
+      "aspect_ratio": 1,
+      "rotate": 0,
+      "transform_method": "lanczos",
+      "anti_aliasing": 0,
+      "background_image": [
+        "405",
+        0
+      ],
+      "layer_image": [
+        "482",
+        0
+      ]
+    },
+    "class_type": "LayerUtility: ImageBlendAdvance",
+    "_meta": {
+      "title": "混合(高级)"
+    }
+  },
+  "482": {
+    "inputs": {
+      "brightness": 0.2,
+      "contrast": 3,
+      "saturation": 0,
+      "image": [
+        "533",
+        0
+      ]
+    },
+    "class_type": "LayerColor: Brightness & Contrast",
+    "_meta": {
+      "title": "亮度/对比度"
+    }
+  },
+  "483": {
+    "inputs": {
+      "images": [
+        "482",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "预览图像"
+    }
+  },
+  "485": {
+    "inputs": {
+      "amplitude": 40,
+      "images": [
+        "490",
+        0
+      ],
+      "displacement_maps": [
+        "482",
+        0
+      ]
+    },
+    "class_type": "Image Displacement Warp",
+    "_meta": {
+      "title": "图像置换"
+    }
+  },
+  "490": {
+    "inputs": {
+      "invert_mask": false,
+      "blend_mode": "normal",
+      "opacity": 100,
+      "x_percent": 50,
+      "y_percent": 50,
+      "mirror": "None",
+      "scale": 1,
+      "aspect_ratio": 1,
+      "rotate": 0,
+      "transform_method": "lanczos",
+      "anti_aliasing": 0,
+      "background_image": [
+        "533",
+        0
+      ],
+      "layer_image": [
+        "673",
+        0
+      ]
+    },
+    "class_type": "LayerUtility: ImageBlendAdvance",
+    "_meta": {
+      "title": "混合(高级)"
+    }
+  },
+  "492": {
+    "inputs": {
+      "invert_mask": false,
+      "blend_mode": "normal",
+      "opacity": 100,
+      "x_percent": 50,
+      "y_percent": 50,
+      "mirror": "None",
+      "scale": 1,
+      "aspect_ratio": 1,
+      "rotate": 0,
+      "transform_method": "lanczos",
+      "anti_aliasing": 0,
+      "background_image": [
+        "446",
+        0
+      ],
+      "layer_image": [
+        "375",
+        0
+      ],
+      "layer_mask": [
+        "503",
+        0
+      ]
+    },
+    "class_type": "LayerUtility: ImageBlendAdvance",
+    "_meta": {
+      "title": "混合(高级)"
+    }
+  },
+  "497": {
+    "inputs": {
+      "mask": [
+        "755",
+        0
+      ]
+    },
+    "class_type": "MaskToImage",
+    "_meta": {
+      "title": "遮罩到图像"
+    }
+  },
+  "499": {
+    "inputs": {
+      "channel": "red",
+      "image": [
+        "662",
+        0
+      ]
+    },
+    "class_type": "ImageToMask",
+    "_meta": {
+      "title": "图像到遮罩"
+    }
+  },
+  "500": {
+    "inputs": {
+      "expand": 10,
+      "incremental_expandrate": 0,
+      "tapered_corners": true,
+      "flip_input": false,
+      "blur_radius": 5,
+      "lerp_alpha": 1,
+      "decay_factor": 1,
+      "fill_holes": false,
+      "mask": [
+        "499",
+        0
+      ]
+    },
+    "class_type": "GrowMaskWithBlur",
+    "_meta": {
+      "title": "遮罩模糊生长"
+    }
+  },
+  "501": {
+    "inputs": {
+      "size": "custom",
+      "custom_width": 512,
+      "custom_height": 512,
+      "color": "#ffffff",
+      "size_as": [
+        "662",
+        0
+      ]
+    },
+    "class_type": "LayerUtility: ColorImage V2",
+    "_meta": {
+      "title": "纯色图像_V2"
+    }
+  },
+  "502": {
+    "inputs": {
+      "channel": "red",
+      "image": [
+        "501",
+        0
+      ]
+    },
+    "class_type": "ImageToMask",
+    "_meta": {
+      "title": "图像到遮罩"
+    }
+  },
+  "503": {
+    "inputs": {
+      "boolean": [
+        "505",
+        0
+      ],
+      "on_true": [
+        "546",
+        0
+      ],
+      "on_false": [
+        "500",
+        0
+      ]
+    },
+    "class_type": "Switch any [Crystools]",
+    "_meta": {
+      "title": "切换任意"
+    }
+  },
+  "505": {
+    "inputs": {
+      "mask": [
+        "499",
+        0
+      ]
+    },
+    "class_type": "easy isMaskEmpty",
+    "_meta": {
+      "title": "遮罩是否为空"
+    }
+  },
+  "506": {
+    "inputs": {
+      "invert_mask": false,
+      "blend_mode": "normal",
+      "opacity": 100,
+      "x_percent": 50,
+      "y_percent": 50,
+      "mirror": "None",
+      "scale": 1,
+      "aspect_ratio": 1,
+      "rotate": 0,
+      "transform_method": "lanczos",
+      "anti_aliasing": 0,
+      "background_image": [
+        "658",
+        0
+      ],
+      "layer_image": [
+        "479",
+        0
+      ],
+      "layer_mask": [
+        "503",
+        0
+      ]
+    },
+    "class_type": "LayerUtility: ImageBlendAdvance",
+    "_meta": {
+      "title": "混合(高级)"
+    }
+  },
+  "507": {
+    "inputs": {
+      "blur": 100,
+      "image": [
+        "515",
+        0
+      ]
+    },
+    "class_type": "LayerFilter: GaussianBlur",
+    "_meta": {
+      "title": "高斯模糊"
+    }
+  },
+  "508": {
+    "inputs": {
+      "images": [
+        "513",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "预览图像"
+    }
+  },
+  "511": {
+    "inputs": {
+      "width": 256,
+      "height": 256,
+      "position": "center",
+      "x_offset": 0,
+      "y_offset": 0,
+      "image": [
+        "658",
+        0
+      ]
+    },
+    "class_type": "ImageCrop+",
+    "_meta": {
+      "title": "图像裁剪"
+    }
+  },
+  "513": {
+    "inputs": {
+      "mode": "main_color",
+      "color_of": "subject",
+      "remove_bkgd_method": "none",
+      "invert_mask": false,
+      "mask_grow": 0,
+      "image": [
+        "507",
+        0
+      ]
+    },
+    "class_type": "LayerUtility: GetColorToneV2",
+    "_meta": {
+      "title": "获取色调_V2"
+    }
+  },
+  "515": {
+    "inputs": {
+      "brightness": 1,
+      "contrast": 1,
+      "saturation": 0,
+      "image": [
+        "511",
+        0
+      ]
+    },
+    "class_type": "LayerColor: Brightness & Contrast",
+    "_meta": {
+      "title": "亮度/对比度"
+    }
+  },
+  "524": {
+    "inputs": {
+      "text": "314",
+      "anything": [
+        "530",
+        0
+      ]
+    },
+    "class_type": "easy showAnything",
+    "_meta": {
+      "title": "展示任何"
+    }
+  },
+  "530": {
+    "inputs": {
+      "index": 2,
+      "any": [
+        "513",
+        2
+      ]
+    },
+    "class_type": "easy indexAnything",
+    "_meta": {
+      "title": "任何索引"
+    }
+  },
+  "531": {
+    "inputs": {
+      "cmp": "a < b",
+      "a": [
+        "530",
+        0
+      ],
+      "b": [
+        "532",
+        0
+      ]
+    },
+    "class_type": "ImpactCompare",
+    "_meta": {
+      "title": "比较"
+    }
+  },
+  "532": {
+    "inputs": {
+      "value": 280
+    },
+    "class_type": "ImpactInt",
+    "_meta": {
+      "title": "整数"
+    }
+  },
+  "533": {
+    "inputs": {
+      "boolean": [
+        "531",
+        0
+      ],
+      "on_true": [
+        "468",
+        0
+      ],
+      "on_false": [
+        "644",
+        0
+      ]
+    },
+    "class_type": "Switch any [Crystools]",
+    "_meta": {
+      "title": "切换任意"
+    }
+  },
+  "534": {
+    "inputs": {
+      "boolean": [
+        "531",
+        0
+      ],
+      "on_true": [
+        "578",
+        0
+      ],
+      "on_false": [
+        "658",
+        0
+      ]
+    },
+    "class_type": "Switch any [Crystools]",
+    "_meta": {
+      "title": "切换任意"
+    }
+  },
+  "536": {
+    "inputs": {
+      "boolean": [
+        "610",
+        0
+      ],
+      "on_true": [
+        "539",
+        0
+      ],
+      "on_false": [
+        "538",
+        0
+      ]
+    },
+    "class_type": "Switch any [Crystools]",
+    "_meta": {
+      "title": "切换任意"
+    }
+  },
+  "538": {
+    "inputs": {
+      "value": 0
+    },
+    "class_type": "ImpactInt",
+    "_meta": {
+      "title": "整数"
+    }
+  },
+  "539": {
+    "inputs": {
+      "value": 80
+    },
+    "class_type": "ImpactInt",
+    "_meta": {
+      "title": "整数"
+    }
+  },
+  "540": {
+    "inputs": {
+      "boolean": [
+        "531",
+        0
+      ],
+      "on_true": [
+        "542",
+        0
+      ],
+      "on_false": [
+        "541",
+        0
+      ]
+    },
+    "class_type": "Switch any [Crystools]",
+    "_meta": {
+      "title": "切换任意"
+    }
+  },
+  "541": {
+    "inputs": {
+      "value": 0
+    },
+    "class_type": "ImpactInt",
+    "_meta": {
+      "title": "整数"
+    }
+  },
+  "542": {
+    "inputs": {
+      "value": 20
+    },
+    "class_type": "ImpactInt",
+    "_meta": {
+      "title": "整数"
+    }
+  },
+  "543": {
+    "inputs": {
+      "boolean": [
+        "531",
+        0
+      ],
+      "on_true": [
+        "544",
+        0
+      ],
+      "on_false": [
+        "545",
+        0
+      ]
+    },
+    "class_type": "Switch any [Crystools]",
+    "_meta": {
+      "title": "切换任意"
+    }
+  },
+  "544": {
+    "inputs": {
+      "value": 80
+    },
+    "class_type": "ImpactInt",
+    "_meta": {
+      "title": "整数"
+    }
+  },
+  "545": {
+    "inputs": {
+      "value": 90
+    },
+    "class_type": "ImpactInt",
+    "_meta": {
+      "title": "整数"
+    }
+  },
+  "546": {
+    "inputs": {
+      "expand": -1,
+      "incremental_expandrate": 0,
+      "tapered_corners": false,
+      "flip_input": false,
+      "blur_radius": 0,
+      "lerp_alpha": 1,
+      "decay_factor": 1,
+      "fill_holes": false,
+      "mask": [
+        "502",
+        0
+      ]
+    },
+    "class_type": "GrowMaskWithBlur",
+    "_meta": {
+      "title": "遮罩模糊生长"
+    }
+  },
+  "575": {
+    "inputs": {
+      "opacity": [
+        "593",
+        0
+      ],
+      "image": [
+        "658",
+        0
+      ],
+      "color_ref_image": [
+        "577",
+        0
+      ]
+    },
+    "class_type": "LayerColor: ColorAdapter",
+    "_meta": {
+      "title": "颜色适配"
+    }
+  },
+  "577": {
+    "inputs": {
+      "size": "custom",
+      "custom_width": 512,
+      "custom_height": 512,
+      "color": "#ffffff",
+      "size_as": [
+        "658",
+        0
+      ]
+    },
+    "class_type": "LayerUtility: ColorImage V2",
+    "_meta": {
+      "title": "纯色图像_V2"
+    }
+  },
+  "578": {
+    "inputs": {
+      "brightness": 1,
+      "contrast": 1,
+      "saturation": 0,
+      "image": [
+        "575",
+        0
+      ]
+    },
+    "class_type": "LayerColor: Brightness & Contrast",
+    "_meta": {
+      "title": "亮度/对比度"
+    }
+  },
+  "581": {
+    "inputs": {
+      "images": [
+        "578",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "预览图像"
+    }
+  },
+  "582": {
+    "inputs": {
+      "images": [
+        "408",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "预览图像"
+    }
+  },
+  "589": {
+    "inputs": {
+      "image": [
+        "658",
+        0
+      ]
+    },
+    "class_type": "Get resolution [Crystools]",
+    "_meta": {
+      "title": "获取分辨率"
+    }
+  },
+  "592": {
+    "inputs": {
+      "value": "1.5-(a/300+0.5)",
+      "a": [
+        "524",
+        0
+      ]
+    },
+    "class_type": "SimpleMath+",
+    "_meta": {
+      "title": "简易运算"
+    }
+  },
+  "593": {
+    "inputs": {
+      "value": "70-a*0.3",
+      "a": [
+        "524",
+        0
+      ]
+    },
+    "class_type": "SimpleMath+",
+    "_meta": {
+      "title": "简易运算"
+    }
+  },
+  "602": {
+    "inputs": {
+      "width": 256,
+      "height": 256,
+      "position": "center",
+      "x_offset": 0,
+      "y_offset": 0,
+      "image": [
+        "408",
+        0
+      ]
+    },
+    "class_type": "ImageCrop+",
+    "_meta": {
+      "title": "图像裁剪"
+    }
+  },
+  "603": {
+    "inputs": {
+      "brightness": 1,
+      "contrast": 1,
+      "saturation": 0,
+      "image": [
+        "602",
+        0
+      ]
+    },
+    "class_type": "LayerColor: Brightness & Contrast",
+    "_meta": {
+      "title": "亮度/对比度"
+    }
+  },
+  "604": {
+    "inputs": {
+      "blur": 100,
+      "image": [
+        "603",
+        0
+      ]
+    },
+    "class_type": "LayerFilter: GaussianBlur",
+    "_meta": {
+      "title": "高斯模糊"
+    }
+  },
+  "605": {
+    "inputs": {
+      "mode": "main_color",
+      "color_of": "subject",
+      "remove_bkgd_method": "none",
+      "invert_mask": false,
+      "mask_grow": 0,
+      "image": [
+        "604",
+        0
+      ]
+    },
+    "class_type": "LayerUtility: GetColorToneV2",
+    "_meta": {
+      "title": "获取色调_V2"
+    }
+  },
+  "606": {
+    "inputs": {
+      "index": 2,
+      "any": [
+        "605",
+        2
+      ]
+    },
+    "class_type": "easy indexAnything",
+    "_meta": {
+      "title": "任何索引"
+    }
+  },
+  "607": {
+    "inputs": {
+      "images": [
+        "605",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "预览图像"
+    }
+  },
+  "609": {
+    "inputs": {
+      "text_0": "319",
+      "text": [
+        "606",
+        0
+      ]
+    },
+    "class_type": "ShowText|pysssss",
+    "_meta": {
+      "title": "展示文本"
+    }
+  },
+  "610": {
+    "inputs": {
+      "cmp": "a < b",
+      "a": [
+        "606",
+        0
+      ],
+      "b": [
+        "611",
+        0
+      ]
+    },
+    "class_type": "ImpactCompare",
+    "_meta": {
+      "title": "比较"
+    }
+  },
+  "611": {
+    "inputs": {
+      "value": 280
+    },
+    "class_type": "ImpactInt",
+    "_meta": {
+      "title": "整数"
+    }
+  },
+  "613": {
+    "inputs": {
+      "boolean": [
+        "531",
+        0
+      ],
+      "on_true": [
+        "619",
+        0
+      ],
+      "on_false": [
+        "620",
+        0
+      ]
+    },
+    "class_type": "Switch any [Crystools]",
+    "_meta": {
+      "title": "切换任意"
+    }
+  },
+  "619": {
+    "inputs": {
+      "value": 1.2
+    },
+    "class_type": "easy float",
+    "_meta": {
+      "title": "浮点数"
+    }
+  },
+  "620": {
+    "inputs": {
+      "value": 1
+    },
+    "class_type": "easy float",
+    "_meta": {
+      "title": "浮点数"
+    }
+  },
+  "622": {
+    "inputs": {
+      "strength": [
+        "536",
+        0
+      ],
+      "saturation": -255,
+      "image": [
+        "403",
+        0
+      ],
+      "mask": [
+        "403",
+        1
+      ]
+    },
+    "class_type": "LayerColor: AutoBrightness",
+    "_meta": {
+      "title": "自动亮度"
+    }
+  },
+  "623": {
+    "inputs": {
+      "images": [
+        "622",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "预览图像"
+    }
+  },
+  "625": {
+    "inputs": {
+      "clip_l": [
+        "626",
+        0
+      ],
+      "t5xxl": [
+        "626",
+        0
+      ],
+      "guidance": 3.5,
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "clip": [
+        "471",
+        0
+      ]
+    },
+    "class_type": "CLIPTextEncodeFlux",
+    "_meta": {
+      "title": "CLIP文本编码Flux"
+    }
+  },
+  "626": {
+    "inputs": {
+      "text": "(masterpiece, best quality, ultra detailed, high resolution:1.2), studio photography, professional photography, clean minimalist white background.extremely detailed texture, sharp focus, crisp edges, perfect stitching, flawless fabric, premium material.dramatic high key lighting, strong hard light from camera left/right, subtle fill light, reflecting light source visible on fabric sheen, soft shadows, high dynamic range, shallow depth of field (focus solely on the garment), rim light highlighting silhouette,macro details:  individual threads discernible, immaculate condition, no wrinkles or creases (or controlled artistic drape), fashion photography look, editorial style, lookbook quality, vogue magazine aesthetic,",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      }
+    },
+    "class_type": "CR Text",
+    "_meta": {
+      "title": "文本"
+    }
+  },
+  "629": {
+    "inputs": {
+      "text": "-0.046666666666666634",
+      "anything": [
+        "592",
+        1
+      ]
+    },
+    "class_type": "easy showAnything",
+    "_meta": {
+      "title": "展示任何"
+    }
+  },
+  "630": {
+    "inputs": {
+      "brightness": [
+        "641",
+        1
+      ],
+      "contrast": 1,
+      "saturation": 1,
+      "image": [
+        "445",
+        0
+      ]
+    },
+    "class_type": "LayerColor: Brightness & Contrast",
+    "_meta": {
+      "title": "亮度/对比度"
+    }
+  },
+  "631": {
+    "inputs": {
+      "images": [
+        "644",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "预览图像"
+    }
+  },
+  "632": {
+    "inputs": {
+      "brightness": 1,
+      "contrast": 1,
+      "saturation": 0,
+      "image": [
+        "640",
+        0
+      ]
+    },
+    "class_type": "LayerColor: Brightness & Contrast",
+    "_meta": {
+      "title": "亮度/对比度"
+    }
+  },
+  "633": {
+    "inputs": {
+      "blur": 100,
+      "image": [
+        "632",
+        0
+      ]
+    },
+    "class_type": "LayerFilter: GaussianBlur",
+    "_meta": {
+      "title": "高斯模糊"
+    }
+  },
+  "634": {
+    "inputs": {
+      "mode": "main_color",
+      "color_of": "subject",
+      "remove_bkgd_method": "none",
+      "invert_mask": false,
+      "mask_grow": 0,
+      "image": [
+        "633",
+        0
+      ]
+    },
+    "class_type": "LayerUtility: GetColorToneV2",
+    "_meta": {
+      "title": "获取色调_V2"
+    }
+  },
+  "635": {
+    "inputs": {
+      "value": 200
+    },
+    "class_type": "ImpactInt",
+    "_meta": {
+      "title": "整数"
+    }
+  },
+  "636": {
+    "inputs": {
+      "images": [
+        "634",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "预览图像"
+    }
+  },
+  "637": {
+    "inputs": {
+      "index": 2,
+      "any": [
+        "634",
+        2
+      ]
+    },
+    "class_type": "easy indexAnything",
+    "_meta": {
+      "title": "任何索引"
+    }
+  },
+  "638": {
+    "inputs": {
+      "text_0": "319",
+      "text": [
+        "637",
+        0
+      ]
+    },
+    "class_type": "ShowText|pysssss",
+    "_meta": {
+      "title": "展示文本"
+    }
+  },
+  "639": {
+    "inputs": {
+      "cmp": "a < b",
+      "a": [
+        "637",
+        0
+      ],
+      "b": [
+        "635",
+        0
+      ]
+    },
+    "class_type": "ImpactCompare",
+    "_meta": {
+      "title": "比较"
+    }
+  },
+  "640": {
+    "inputs": {
+      "width": 256,
+      "height": 256,
+      "position": "center",
+      "x_offset": 0,
+      "y_offset": 0,
+      "image": [
+        "445",
+        0
+      ]
+    },
+    "class_type": "ImageCrop+",
+    "_meta": {
+      "title": "图像裁剪"
+    }
+  },
+  "641": {
+    "inputs": {
+      "value": "1+(1-a/380)",
+      "a": [
+        "637",
+        0
+      ]
+    },
+    "class_type": "SimpleMath+",
+    "_meta": {
+      "title": "简易运算"
+    }
+  },
+  "642": {
+    "inputs": {
+      "text": "1.1605263157894736",
+      "anything": [
+        "641",
+        1
+      ]
+    },
+    "class_type": "easy showAnything",
+    "_meta": {
+      "title": "展示任何"
+    }
+  },
+  "644": {
+    "inputs": {
+      "boolean": [
+        "639",
+        0
+      ],
+      "on_true": [
+        "630",
+        0
+      ],
+      "on_false": [
+        "445",
+        0
+      ]
+    },
+    "class_type": "Switch any [Crystools]",
+    "_meta": {
+      "title": "切换任意"
+    }
+  },
+  "653": {
+    "inputs": {
+      "boolean": [
+        "531",
+        0
+      ],
+      "on_true": [
+        "592",
+        1
+      ],
+      "on_false": [
+        "654",
+        0
+      ]
+    },
+    "class_type": "Switch any [Crystools]",
+    "_meta": {
+      "title": "切换任意"
+    }
+  },
+  "654": {
+    "inputs": {
+      "value": 1
+    },
+    "class_type": "easy float",
+    "_meta": {
+      "title": "浮点数"
+    }
+  },
+  "658": {
+    "inputs": {
+      "upscale_method": "lanczos",
+      "width": [
+        "241",
+        0
+      ],
+      "height": [
+        "242",
+        0
+      ],
+      "crop": "disabled",
+      "image": [
+        "660",
+        0
+      ]
+    },
+    "class_type": "ImageScale",
+    "_meta": {
+      "title": "图像缩放"
+    }
+  },
+  "660": {
+    "inputs": {
+      "width": [
+        "250",
+        0
+      ],
+      "height": [
+        "250",
+        0
+      ],
+      "interpolation": "lanczos",
+      "method": "keep proportion",
+      "condition": "always",
+      "multiple_of": 0,
+      "image": [
+        "783",
+        0
+      ]
+    },
+    "class_type": "ImageResize+",
+    "_meta": {
+      "title": "图像缩放"
+    }
+  },
+  "662": {
+    "inputs": {
+      "fit": "letterbox",
+      "method": "lanczos",
+      "scale_as": [
+        "658",
+        0
+      ],
+      "image": [
+        "497",
+        0
+      ]
+    },
+    "class_type": "LayerUtility: ImageMaskScaleAs",
+    "_meta": {
+      "title": "参考缩放"
+    }
+  },
+  "663": {
+    "inputs": {
+      "width": [
+        "441",
+        0
+      ],
+      "height": [
+        "441",
+        0
+      ],
+      "interpolation": "lanczos",
+      "method": "keep proportion",
+      "condition": "always",
+      "multiple_of": 0,
+      "image": [
+        "151",
+        0
+      ]
+    },
+    "class_type": "ImageResize+",
+    "_meta": {
+      "title": "图像缩放"
+    }
+  },
+  "664": {
+    "inputs": {
+      "invert_mask": false,
+      "detect": "mask_area",
+      "top_reserve": 20,
+      "bottom_reserve": 20,
+      "left_reserve": 20,
+      "right_reserve": 20,
+      "round_to_multiple": "8",
+      "image": [
+        "658",
+        0
+      ],
+      "mask": [
+        "499",
+        0
+      ]
+    },
+    "class_type": "LayerUtility: CropByMask V2",
+    "_meta": {
+      "title": "遮罩裁剪_V2"
+    }
+  },
+  "666": {
+    "inputs": {
+      "invert_mask": true,
+      "blend_mode": "normal",
+      "opacity": [
+        "683",
+        0
+      ],
+      "x_percent": 50,
+      "y_percent": 50,
+      "mirror": "None",
+      "scale": 1,
+      "aspect_ratio": 1,
+      "rotate": 0,
+      "transform_method": "lanczos",
+      "anti_aliasing": 0,
+      "background_image": [
+        "664",
+        0
+      ],
+      "layer_image": [
+        "679",
+        0
+      ],
+      "layer_mask": [
+        "669",
+        0
+      ]
+    },
+    "class_type": "LayerUtility: ImageBlendAdvance",
+    "_meta": {
+      "title": "混合(高级)"
+    }
+  },
+  "667": {
+    "inputs": {
+      "mask": [
+        "738",
+        0
+      ]
+    },
+    "class_type": "MaskToImage",
+    "_meta": {
+      "title": "遮罩到图像"
+    }
+  },
+  "668": {
+    "inputs": {
+      "fit": "fill",
+      "method": "lanczos",
+      "scale_as": [
+        "679",
+        0
+      ],
+      "image": [
+        "667",
+        0
+      ]
+    },
+    "class_type": "LayerUtility: ImageMaskScaleAs",
+    "_meta": {
+      "title": "参考缩放"
+    }
+  },
+  "669": {
+    "inputs": {
+      "channel": "red",
+      "image": [
+        "668",
+        0
+      ]
+    },
+    "class_type": "ImageToMask",
+    "_meta": {
+      "title": "图像到遮罩"
+    }
+  },
+  "673": {
+    "inputs": {
+      "width": [
+        "449",
+        0
+      ],
+      "height": [
+        "449",
+        0
+      ],
+      "interpolation": "lanczos",
+      "method": "fill / crop",
+      "condition": "always",
+      "multiple_of": 0,
+      "image": [
+        "663",
+        0
+      ]
+    },
+    "class_type": "ImageResize+",
+    "_meta": {
+      "title": "图像缩放"
+    }
+  },
+  "676": {
+    "inputs": {
+      "image": [
+        "664",
+        0
+      ]
+    },
+    "class_type": "Get resolution [Crystools]",
+    "_meta": {
+      "title": "获取分辨率"
+    }
+  },
+  "677": {
+    "inputs": {
+      "cmp": "a < b",
+      "a": [
+        "676",
+        0
+      ],
+      "b": [
+        "676",
+        1
+      ]
+    },
+    "class_type": "ImpactCompare",
+    "_meta": {
+      "title": "比较"
+    }
+  },
+  "678": {
+    "inputs": {
+      "boolean": [
+        "677",
+        0
+      ],
+      "on_true": [
+        "676",
+        0
+      ],
+      "on_false": [
+        "676",
+        1
+      ]
+    },
+    "class_type": "Switch any [Crystools]",
+    "_meta": {
+      "title": "切换任意"
+    }
+  },
+  "679": {
+    "inputs": {
+      "width": [
+        "678",
+        0
+      ],
+      "height": [
+        "678",
+        0
+      ],
+      "interpolation": "lanczos",
+      "method": "keep proportion",
+      "condition": "always",
+      "multiple_of": 0,
+      "image": [
+        "663",
+        0
+      ]
+    },
+    "class_type": "ImageResize+",
+    "_meta": {
+      "title": "图像缩放"
+    }
+  },
+  "680": {
+    "inputs": {
+      "invert_mask": false,
+      "background_image": [
+        "658",
+        0
+      ],
+      "croped_image": [
+        "709",
+        0
+      ],
+      "crop_box": [
+        "664",
+        2
+      ],
+      "croped_mask": [
+        "709",
+        1
+      ]
+    },
+    "class_type": "LayerUtility: RestoreCropBox",
+    "_meta": {
+      "title": "裁剪恢复"
+    }
+  },
+  "682": {
+    "inputs": {
+      "boolean": [
+        "531",
+        0
+      ],
+      "on_true": [
+        "687",
+        0
+      ],
+      "on_false": [
+        "688",
+        0
+      ]
+    },
+    "class_type": "Switch any [Crystools]",
+    "_meta": {
+      "title": "切换任意"
+    }
+  },
+  "683": {
+    "inputs": {
+      "boolean": [
+        "531",
+        0
+      ],
+      "on_true": [
+        "689",
+        0
+      ],
+      "on_false": [
+        "690",
+        0
+      ]
+    },
+    "class_type": "Switch any [Crystools]",
+    "_meta": {
+      "title": "切换任意"
+    }
+  },
+  "687": {
+    "inputs": {
+      "text": "add",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      }
+    },
+    "class_type": "CR Text",
+    "_meta": {
+      "title": "文本"
+    }
+  },
+  "688": {
+    "inputs": {
+      "text": "multply",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      }
+    },
+    "class_type": "CR Text",
+    "_meta": {
+      "title": "文本"
+    }
+  },
+  "689": {
+    "inputs": {
+      "value": 95
+    },
+    "class_type": "ImpactInt",
+    "_meta": {
+      "title": "整数"
+    }
+  },
+  "690": {
+    "inputs": {
+      "value": 95
+    },
+    "class_type": "ImpactInt",
+    "_meta": {
+      "title": "整数"
+    }
+  },
+  "691": {
+    "inputs": {
+      "value": [
+        "788",
+        0
+      ]
+    },
+    "class_type": "easy boolean",
+    "_meta": {
+      "title": "布尔"
+    }
+  },
+  "693": {
+    "inputs": {
+      "boolean": [
+        "691",
+        0
+      ],
+      "on_true": [
+        "680",
+        0
+      ],
+      "on_false": [
+        "492",
+        0
+      ]
+    },
+    "class_type": "Switch any [Crystools]",
+    "_meta": {
+      "title": "切换任意"
+    }
+  },
+  "695": {
+    "inputs": {
+      "boolean": [
+        "691",
+        0
+      ],
+      "on_true": [
+        "696",
+        0
+      ],
+      "on_false": [
+        "540",
+        0
+      ]
+    },
+    "class_type": "Switch any [Crystools]",
+    "_meta": {
+      "title": "切换任意"
+    }
+  },
+  "696": {
+    "inputs": {
+      "value": 0
+    },
+    "class_type": "ImpactInt",
+    "_meta": {
+      "title": "整数"
+    }
+  },
+  "698": {
+    "inputs": {
+      "boolean": [
+        "691",
+        0
+      ],
+      "on_true": [
+        "699",
+        0
+      ],
+      "on_false": [
+        "165",
+        0
+      ]
+    },
+    "class_type": "Switch any [Crystools]",
+    "_meta": {
+      "title": "切换任意"
+    }
+  },
+  "699": {
+    "inputs": {
+      "value": 1
+    },
+    "class_type": "ImpactInt",
+    "_meta": {
+      "title": "整数"
+    }
+  },
+  "702": {
+    "inputs": {
+      "boolean": [
+        "691",
+        0
+      ],
+      "on_true": [
+        "680",
+        0
+      ],
+      "on_false": [
+        "506",
+        0
+      ]
+    },
+    "class_type": "Switch any [Crystools]",
+    "_meta": {
+      "title": "切换任意"
+    }
+  },
+  "705": {
+    "inputs": {
+      "brightness": 3,
+      "contrast": 3,
+      "saturation": 1,
+      "image": [
+        "664",
+        0
+      ]
+    },
+    "class_type": "LayerColor: Brightness & Contrast",
+    "_meta": {
+      "title": "亮度/对比度"
+    }
+  },
+  "708": {
+    "inputs": {
+      "images": [
+        "679",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "预览图像"
+    }
+  },
+  "709": {
+    "inputs": {
+      "invert_mask": false,
+      "blend_mode": "multply",
+      "opacity": [
+        "728",
+        0
+      ],
+      "x_percent": 50,
+      "y_percent": 50,
+      "mirror": "None",
+      "scale": 1,
+      "aspect_ratio": 1,
+      "rotate": 0,
+      "transform_method": "lanczos",
+      "anti_aliasing": 0,
+      "background_image": [
+        "666",
+        0
+      ],
+      "layer_image": [
+        "705",
+        0
+      ],
+      "layer_mask": [
+        "666",
+        1
+      ]
+    },
+    "class_type": "LayerUtility: ImageBlendAdvance",
+    "_meta": {
+      "title": "混合(高级)"
+    }
+  },
+  "710": {
+    "inputs": {
+      "images": [
+        "705",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "预览图像"
+    }
+  },
+  "714": {
+    "inputs": {
+      "boolean": [
+        "691",
+        0
+      ],
+      "on_true": [
+        "717",
+        0
+      ],
+      "on_false": [
+        "716",
+        0
+      ]
+    },
+    "class_type": "Switch any [Crystools]",
+    "_meta": {
+      "title": "切换任意"
+    }
+  },
+  "716": {
+    "inputs": {
+      "value": 20
+    },
+    "class_type": "ImpactInt",
+    "_meta": {
+      "title": "整数"
+    }
+  },
+  "717": {
+    "inputs": {
+      "value": 0
+    },
+    "class_type": "ImpactInt",
+    "_meta": {
+      "title": "整数"
+    }
+  },
+  "720": {
+    "inputs": {
+      "size": "custom",
+      "custom_width": 512,
+      "custom_height": 512,
+      "color": "#ffffff",
+      "size_as": [
+        "787",
+        0
+      ]
+    },
+    "class_type": "LayerUtility: ColorImage V2",
+    "_meta": {
+      "title": "纯色图像_V2"
+    }
+  },
+  "721": {
+    "inputs": {
+      "invert_mask": true,
+      "blend_mode": "normal",
+      "opacity": 100,
+      "background_image": [
+        "720",
+        0
+      ],
+      "layer_image": [
+        "787",
+        0
+      ],
+      "layer_mask": [
+        "787",
+        1
+      ]
+    },
+    "class_type": "LayerUtility: ImageBlend",
+    "_meta": {
+      "title": "混合"
+    }
+  },
+  "723": {
+    "inputs": {
+      "blur": 50,
+      "image": [
+        "721",
+        0
+      ]
+    },
+    "class_type": "LayerFilter: GaussianBlur",
+    "_meta": {
+      "title": "高斯模糊"
+    }
+  },
+  "728": {
+    "inputs": {
+      "boolean": [
+        "531",
+        0
+      ],
+      "on_true": [
+        "730",
+        0
+      ],
+      "on_false": [
+        "729",
+        0
+      ]
+    },
+    "class_type": "Switch any [Crystools]",
+    "_meta": {
+      "title": "切换任意"
+    }
+  },
+  "729": {
+    "inputs": {
+      "value": 100
+    },
+    "class_type": "ImpactInt",
+    "_meta": {
+      "title": "整数"
+    }
+  },
+  "730": {
+    "inputs": {
+      "value": 30
+    },
+    "class_type": "ImpactInt",
+    "_meta": {
+      "title": "整数"
+    }
+  },
+  "732": {
+    "inputs": {
+      "size": "custom",
+      "custom_width": 512,
+      "custom_height": 512,
+      "color": "#000000",
+      "size_as": [
+        "787",
+        0
+      ]
+    },
+    "class_type": "LayerUtility: ColorImage V2",
+    "_meta": {
+      "title": "纯色图像_V2"
+    }
+  },
+  "733": {
+    "inputs": {
+      "invert_mask": true,
+      "blend_mode": "normal",
+      "opacity": 100,
+      "x_percent": 50,
+      "y_percent": 50,
+      "mirror": "None",
+      "scale": 1,
+      "aspect_ratio": 1,
+      "rotate": 0,
+      "transform_method": "lanczos",
+      "anti_aliasing": 0,
+      "background_image": [
+        "732",
+        0
+      ],
+      "layer_image": [
+        "787",
+        0
+      ]
+    },
+    "class_type": "LayerUtility: ImageBlendAdvance",
+    "_meta": {
+      "title": "混合(高级)"
+    }
+  },
+  "736": {
+    "inputs": {
+      "rem_mode": "RMBG-1.4",
+      "image_output": "Preview",
+      "save_prefix": "ComfyUI",
+      "torchscript_jit": false,
+      "add_background": "none",
+      "refine_foreground": false,
+      "images": [
+        "733",
+        0
+      ]
+    },
+    "class_type": "easy imageRemBg",
+    "_meta": {
+      "title": "图像背景移除"
+    }
+  },
+  "737": {
+    "inputs": {
+      "mask": [
+        "787",
+        1
+      ]
+    },
+    "class_type": "easy isMaskEmpty",
+    "_meta": {
+      "title": "遮罩是否为空"
+    }
+  },
+  "738": {
+    "inputs": {
+      "boolean": [
+        "737",
+        0
+      ],
+      "on_true": [
+        "780",
+        0
+      ],
+      "on_false": [
+        "787",
+        1
+      ]
+    },
+    "class_type": "Switch any [Crystools]",
+    "_meta": {
+      "title": "切换任意"
+    }
+  },
+  "739": {
+    "inputs": {
+      "mask": [
+        "736",
+        1
+      ]
+    },
+    "class_type": "InvertMask (segment anything)",
+    "_meta": {
+      "title": "反转遮罩"
+    }
+  },
+  "753": {
+    "inputs": {
+      "images": [
+        "658",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "预览图像"
+    }
+  },
+  "754": {
+    "inputs": {
+      "mask": [
+        "784",
+        0
+      ]
+    },
+    "class_type": "easy isMaskEmpty",
+    "_meta": {
+      "title": "遮罩是否为空"
+    }
+  },
+  "755": {
+    "inputs": {
+      "boolean": [
+        "754",
+        0
+      ],
+      "on_true": [
+        "758",
+        0
+      ],
+      "on_false": [
+        "784",
+        0
+      ]
+    },
+    "class_type": "Switch any [Crystools]",
+    "_meta": {
+      "title": "切换任意"
+    }
+  },
+  "756": {
+    "inputs": {
+      "size": "custom",
+      "custom_width": 512,
+      "custom_height": 512,
+      "color": "#ffffff",
+      "size_as": [
+        "783",
+        0
+      ]
+    },
+    "class_type": "LayerUtility: ColorImage V2",
+    "_meta": {
+      "title": "纯色图像_V2"
+    }
+  },
+  "758": {
+    "inputs": {
+      "channel": "red",
+      "image": [
+        "756",
+        0
+      ]
+    },
+    "class_type": "ImageToMask",
+    "_meta": {
+      "title": "图像到遮罩"
+    }
+  },
+  "763": {
+    "inputs": {
+      "images": [
+        "673",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "预览图像"
+    }
+  },
+  "764": {
+    "inputs": {
+      "invert_mask": true,
+      "blend_mode": "normal",
+      "opacity": 100,
+      "x_percent": 50,
+      "y_percent": 50,
+      "mirror": "None",
+      "scale": 1.0000000000000002,
+      "aspect_ratio": 1,
+      "rotate": 0,
+      "transform_method": "lanczos",
+      "anti_aliasing": 0,
+      "background_image": [
+        "723",
+        0
+      ],
+      "layer_image": [
+        "721",
+        0
+      ],
+      "layer_mask": [
+        "738",
+        0
+      ]
+    },
+    "class_type": "LayerUtility: ImageBlendAdvance",
+    "_meta": {
+      "title": "混合(高级)"
+    }
+  },
+  "777": {
+    "inputs": {
+      "images": [
+        "667",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "预览图像"
+    }
+  },
+  "780": {
+    "inputs": {
+      "boolean": [
+        "691",
+        0
+      ],
+      "on_true": [
+        "739",
+        0
+      ],
+      "on_false": [
+        "782",
+        0
+      ]
+    },
+    "class_type": "Switch any [Crystools]",
+    "_meta": {
+      "title": "切换任意"
+    }
+  },
+  "781": {
+    "inputs": {
+      "size": "custom",
+      "custom_width": 512,
+      "custom_height": 512,
+      "color": "#000000",
+      "size_as": [
+        "736",
+        0
+      ]
+    },
+    "class_type": "LayerUtility: ColorImage V2",
+    "_meta": {
+      "title": "纯色图像_V2"
+    }
+  },
+  "782": {
+    "inputs": {
+      "channel": "red",
+      "image": [
+        "781",
+        0
+      ]
+    },
+    "class_type": "ImageToMask",
+    "_meta": {
+      "title": "图像到遮罩"
+    }
+  },
+  "783": {
+    "inputs": {},
+    "class_type": "ETN_KritaCanvas",
+    "_meta": {
+      "title": "Krita Canvas"
+    }
+  },
+  "784": {
+    "inputs": {},
+    "class_type": "ETN_KritaSelection",
+    "_meta": {
+      "title": "Krita Selection"
+    }
+  },
+  "785": {
+    "inputs": {
+      "images": [
+        "786",
+        0
+      ]
+    },
+    "class_type": "ETN_KritaOutput",
+    "_meta": {
+      "title": "Krita Output"
+    }
+  },
+  "786": {
+    "inputs": {
+      "width": [
+        "783",
+        1
+      ],
+      "height": [
+        "783",
+        2
+      ],
+      "crop": "disabled",
+      "upscale_method": "nearest-exact",
+      "lock_aspect_ratio": true,
+      "image": [
+        "702",
+        0
+      ]
+    },
+    "class_type": "EG_TX_SFBLS",
+    "_meta": {
+      "title": "2🐕Image scaling lock"
+    }
+  },
+  "787": {
+    "inputs": {
+      "name": "1. 选择印花（tips:请选择印花图片）"
+    },
+    "class_type": "ETN_KritaImageLayer",
+    "_meta": {
+      "title": "Krita Image Layer"
+    }
+  },
+  "788": {
+    "inputs": {
+      "name": "2. (局部印花)（tips:开启后将在选区中生成印花）",
+      "type": "toggle",
+      "default": true
+    },
+    "class_type": "ETN_Parameter",
+    "_meta": {
+      "title": "Parameter"
+    }
+  },
+  "789": {
+    "inputs": {
+      "seed": 0
+    },
+    "class_type": "easy seed",
+    "_meta": {
+      "title": "随机种"
+    }
+  },
+  "790": {
+    "inputs": {
+      "seed": 0
+    },
+    "class_type": "easy seed",
+    "_meta": {
+      "title": "随机种"
+    }
+  }
+}

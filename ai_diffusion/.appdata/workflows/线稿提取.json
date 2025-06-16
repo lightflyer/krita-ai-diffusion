@@ -1,0 +1,180 @@
+{
+  "94": {
+    "inputs": {
+      "model": "black-forest-labs/flux-kontext-max",
+      "prompt": [
+        "107",
+        0
+      ],
+      "aspect_ratio": "match_input_image",
+      "safety_tolerance": 5,
+      "output_format": "png",
+      "seed": 1045,
+      "is_upload_image": true,
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "input_image": [
+        "98",
+        0
+      ]
+    },
+    "class_type": "FluxKontextProNode",
+    "_meta": {
+      "title": "Flux Kontext Pro Generator"
+    }
+  },
+  "95": {
+    "inputs": {
+      "prompt": "将图片变为卡通风格平面图，根据原图颜色上色，必须保持线稿风格，去掉背景，改成白色背景。",
+      "model": "qwen-plus",
+      "system_message": "将我输入的内容翻译成英文，只需要输出翻译后的内容，不需要解释",
+      "temperature": 0.7000000000000001,
+      "max_tokens": 1024,
+      "detail": "auto",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      }
+    },
+    "class_type": "LLMNodeFull",
+    "_meta": {
+      "title": "LLM高级节点"
+    }
+  },
+  "97": {
+    "inputs": {
+      "name": "1. 提取颜色（tips:开启后将提取颜色）",
+      "type": "toggle",
+      "default": false,
+      "min": 0,
+      "max": 0
+    },
+    "class_type": "ETN_Parameter",
+    "_meta": {
+      "title": "Parameter"
+    }
+  },
+  "98": {
+    "inputs": {},
+    "class_type": "ETN_KritaCanvas",
+    "_meta": {
+      "title": "Krita Canvas"
+    }
+  },
+  "100": {
+    "inputs": {
+      "width": [
+        "98",
+        1
+      ],
+      "height": [
+        "98",
+        2
+      ],
+      "crop": "disabled",
+      "upscale_method": "nearest-exact",
+      "lock_aspect_ratio": true,
+      "image": [
+        "94",
+        0
+      ]
+    },
+    "class_type": "EG_TX_SFBLS",
+    "_meta": {
+      "title": "2🐕Image scaling lock"
+    }
+  },
+  "102": {
+    "inputs": {
+      "image1": [
+        "100",
+        0
+      ],
+      "image2": [
+        "105",
+        0
+      ]
+    },
+    "class_type": "ImageOverlayNode",
+    "_meta": {
+      "title": "Image Overlay (Fit & Center)"
+    }
+  },
+  "105": {
+    "inputs": {
+      "width": [
+        "98",
+        1
+      ],
+      "height": [
+        "98",
+        2
+      ],
+      "red": 255,
+      "green": 255,
+      "blue": 255
+    },
+    "class_type": "Image Blank",
+    "_meta": {
+      "title": "空图像"
+    }
+  },
+  "106": {
+    "inputs": {
+      "images": [
+        "102",
+        0
+      ]
+    },
+    "class_type": "ETN_KritaOutput",
+    "_meta": {
+      "title": "Krita Output"
+    }
+  },
+  "107": {
+    "inputs": {
+      "boolean": [
+        "97",
+        0
+      ],
+      "on_true": [
+        "95",
+        0
+      ],
+      "on_false": [
+        "108",
+        0
+      ]
+    },
+    "class_type": "easy ifElse",
+    "_meta": {
+      "title": "是否判断"
+    }
+  },
+  "108": {
+    "inputs": {
+      "prompt": "将图片变为手绘涂鸦线稿，去掉背景，改成白色背景，线稿线条要粗",
+      "model": "qwen-plus",
+      "system_message": "将我输入的内容翻译成英文，只需要输出翻译后的内容，不需要解释",
+      "temperature": 0.7000000000000001,
+      "max_tokens": 1024,
+      "detail": "auto",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      }
+    },
+    "class_type": "LLMNodeFull",
+    "_meta": {
+      "title": "LLM高级节点"
+    }
+  }
+}

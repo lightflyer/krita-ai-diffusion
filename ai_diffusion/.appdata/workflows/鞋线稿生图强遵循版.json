@@ -1,0 +1,176 @@
+{
+  "122": {
+    "inputs": {
+      "prompt": [
+        "125",
+        0
+      ],
+      "model": "qwen-plus",
+      "system_message": "将我输入的内容翻译成英文，只需要输出翻译后的内容，不需要解释",
+      "temperature": 0.7000000000000001,
+      "max_tokens": 1024,
+      "detail": "auto",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      }
+    },
+    "class_type": "LLMNodeFull",
+    "_meta": {
+      "title": "LLM高级节点"
+    }
+  },
+  "124": {
+    "inputs": {
+      "prompt": "请将他转变为对鞋子设计的描述,描述记得只输出配色和纹理布局，用json形式输出，不要解释，只输出json。",
+      "model": "qwen-vl-max",
+      "system_message": "You are a helpful assistant.",
+      "temperature": 0.7000000000000001,
+      "max_tokens": 1024,
+      "detail": "auto",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "image": [
+        "127",
+        0
+      ]
+    },
+    "class_type": "LLMNodeFull",
+    "_meta": {
+      "title": "LLM高级节点"
+    }
+  },
+  "125": {
+    "inputs": {
+      "action": "append",
+      "tidy_tags": "no",
+      "text_a": "（将它变成真实的运动鞋），(配色不变:1.5)，纹理线条造型和原图保持一致，严格按照线稿生成",
+      "text_b": [
+        "124",
+        0
+      ],
+      "text_c": "",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      }
+    },
+    "class_type": "StringFunction|pysssss",
+    "_meta": {
+      "title": "字符串操作"
+    }
+  },
+  "126": {
+    "inputs": {
+      "model": "black-forest-labs/flux-kontext-pro",
+      "prompt": [
+        "122",
+        0
+      ],
+      "aspect_ratio": "match_input_image",
+      "safety_tolerance": 5,
+      "output_format": "png",
+      "seed": 827,
+      "is_upload_image": true,
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "input_image": [
+        "127",
+        0
+      ]
+    },
+    "class_type": "FluxKontextProNode",
+    "_meta": {
+      "title": "Flux Kontext Pro Generator"
+    }
+  },
+  "127": {
+    "inputs": {},
+    "class_type": "ETN_KritaCanvas",
+    "_meta": {
+      "title": "Krita Canvas"
+    }
+  },
+  "128": {
+    "inputs": {
+      "width": [
+        "127",
+        1
+      ],
+      "height": [
+        "127",
+        2
+      ],
+      "crop": "disabled",
+      "upscale_method": "nearest-exact",
+      "lock_aspect_ratio": true,
+      "image": [
+        "126",
+        0
+      ]
+    },
+    "class_type": "EG_TX_SFBLS",
+    "_meta": {
+      "title": "2🐕Image scaling lock"
+    }
+  },
+  "129": {
+    "inputs": {
+      "images": [
+        "130",
+        0
+      ]
+    },
+    "class_type": "ETN_KritaOutput",
+    "_meta": {
+      "title": "Krita Output"
+    }
+  },
+  "130": {
+    "inputs": {
+      "image1": [
+        "128",
+        0
+      ],
+      "image2": [
+        "131",
+        0
+      ]
+    },
+    "class_type": "ImageOverlayNode",
+    "_meta": {
+      "title": "Image Overlay (Fit & Center)"
+    }
+  },
+  "131": {
+    "inputs": {
+      "width": [
+        "127",
+        1
+      ],
+      "height": [
+        "127",
+        2
+      ],
+      "red": 255,
+      "green": 255,
+      "blue": 255
+    },
+    "class_type": "Image Blank",
+    "_meta": {
+      "title": "空图像"
+    }
+  }
+}

@@ -1,6 +1,6 @@
 """Generative AI plugin for Krita"""
 
-__version__ = "1.32.12"
+__version__ = "1.32.13"
 
 import importlib.util
 
