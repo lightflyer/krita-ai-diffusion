@@ -91,9 +91,7 @@
     "inputs": {
       "name": "1. 选择提取物品类型（tips:目前支持鞋子、服装、背包）",
       "type": "choice",
-      "default": "鞋子",
-      "min": 0,
-      "max": 0
+      "default": "鞋子"
     },
     "class_type": "ETN_Parameter",
     "_meta": {
@@ -209,9 +207,7 @@
     "inputs": {
       "name": "2. 提取目标（tips:请输入要提取的目标，如：鞋子、背包、蓝色上衣）",
       "type": "text",
-      "default": "背包",
-      "min": 0,
-      "max": 0
+      "default": "背包"
     },
     "class_type": "ETN_Parameter",
     "_meta": {
@@ -262,9 +258,7 @@
     "inputs": {
       "name": "3. 开启红框引导提取（tips:开启后，请在页面上用红色框框选需要提取的物品）",
       "type": "toggle",
-      "default": true,
-      "min": 0,
-      "max": 0
+      "default": false
     },
     "class_type": "ETN_Parameter",
     "_meta": {
