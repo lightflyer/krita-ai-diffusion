@@ -10,6 +10,7 @@ from .model import Workspace
 from .ui import actions
 from .ui.diffusion import ImageDiffusionWidget
 from .ui.settings import SettingsDialog
+from .ui.login import check_token
 from .root import root
 from .util import client_logger as log
 
@@ -37,6 +38,7 @@ class AIToolsExtension(Extension):
         settings.load()
         settings.pre_load_server()
         root.init()
+        root.login_successful = check_token()
         self._settings_dialog = SettingsDialog(root.server)
 
         notifier = Krita.instance().notifier()

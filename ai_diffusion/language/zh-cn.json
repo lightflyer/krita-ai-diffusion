@@ -479,6 +479,17 @@
     "Layer group + mask": null,
     "Action to take when an image generation job finishes": null,
     "Modify active layer": null,
-    "Always": null
+    "Always": null,
+    "Username:": "工号:",
+    "Password:": "密码:",
+    "Username and Password cannot be empty.": "工号和密码不能为空。",
+    "Logging in...": "正在登录...",
+    "Please enter": "请输入",
+    "Login successful!": "登录成功！",
+    "Login successful, but no token found in response.": "登录成功，但响应中未找到Token。",
+    "Login failed, code: {api_code}": "登录失败，代码: {api_code}",
+    "Network error": "网络错误",
+    "Login network error": "登录网络错误",
+    "User Token": "用户Token"
   }
 }

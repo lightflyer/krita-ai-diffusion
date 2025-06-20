@@ -80,7 +80,7 @@ class QueuePopup(QMenu):
         batch_layout = QHBoxLayout()
         self._batch_slider = QSlider(Qt.Orientation.Horizontal, self)
         self._batch_slider.setMinimum(1)
-        self._batch_slider.setMaximum(4)
+        self._batch_slider.setMaximum(10)
         self._batch_slider.setSingleStep(1)
         self._batch_slider.setPageStep(1)
         self._batch_slider.setVisible(supports_batch)

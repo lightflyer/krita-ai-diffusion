@@ -18,6 +18,7 @@ from .custom_workflow import CustomWorkflowWidget, CustomWorkflowPlaceholder
 from .upscale import UpscaleWidget
 from .live import LiveWidget
 from .animation import AnimationWidget
+from .login import LoginWidget
 
 
 class AutoUpdateWidget(QWidget):
@@ -211,6 +212,7 @@ class ImageDiffusionWidget(DockWidget):
     def __init__(self):
         super().__init__()
         self.setWindowTitle(_("AI Image Generation"))
+        self._login = LoginWidget(self)
         self._welcome = WelcomeWidget(root.server)
         self._generation = GenerationWidget()
         self._upscaling = UpscaleWidget()
@@ -219,6 +221,12 @@ class ImageDiffusionWidget(DockWidget):
         self._custom = CustomWorkflowWidget()
         self._custom_placeholder = CustomWorkflowPlaceholder()
         self._frame = QStackedWidget(self)
+
+        if not root.login_successful:
+            self._frame.addWidget(self._login)
+            self._login.login_success.connect(self._on_login_success)
+
+        self._frame.addWidget(self._login)
         self._frame.addWidget(self._welcome)
         self._frame.addWidget(self._generation)
         self._frame.addWidget(self._upscaling)
@@ -226,11 +234,18 @@ class ImageDiffusionWidget(DockWidget):
         self._frame.addWidget(self._animation)
         self._frame.addWidget(self._custom)
         self._frame.addWidget(self._custom_placeholder)
+        
         self.setWidget(self._frame)
 
         root.connection.state_changed.connect(self.update_content)
         root.auto_update.state_changed.connect(self.update_content)
         root.model_created.connect(self.register_model)
+
+
+    def _on_login_success(self):
+        """Called when the login widget reports a successful login."""
+        root.login_successful = True
+        self.update_content()
 
     def canvasChanged(self, canvas: krita.Canvas):
         if canvas is not None and canvas.view() is not None:
@@ -241,6 +256,10 @@ class ImageDiffusionWidget(DockWidget):
         self.update_content()
 
     def update_content(self):
+        if not root.login_successful:
+            self._frame.setCurrentWidget(self._login)
+            return
+
         model = root.model_for_active_document()
         connection = root.connection
         requires_update = self._welcome.requires_update

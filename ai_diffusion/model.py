@@ -280,7 +280,7 @@ class Model(QObject, ObservableProperties):
             job = self.jobs.add(kind, copy(params))
             if client and client.__class__.__name__ == "ComfyClient" and hasattr(client, "queued_count"):
                 queue_length = client.queued_count
-                if queue_length > 5:
+                if queue_length > 20:
                     self.report_error(_("Job queue is too long, please wait for the previous job to finish."))
                     break
             await self._enqueue_job(job, input)
