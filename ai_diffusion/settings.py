@@ -128,6 +128,19 @@ class Settings(QObject):
     access_token: str
     _access_token = Setting(_("Cloud Access Token"), "")
 
+    user_token: str
+    _user_token = Setting(_("User Token"), "")
+
+    user_id: str
+    _user_id = Setting(_("User ID"), "")
+
+    token_expiration: int
+    _token_expiration = Setting(
+        _("Token Expiration Timestamp"),
+        0,
+        _("Timestamp for when the auth token expires"),
+    )
+
     server_path: str
     _server_path = Setting(
         _("Server Path"),

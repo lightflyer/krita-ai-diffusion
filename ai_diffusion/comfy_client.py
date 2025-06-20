@@ -91,7 +91,7 @@ class ComfyClient(Client):
         self.url = url
         self.models = ClientModels()
         self._requests = RequestManager()
-        self._id = str(uuid.uuid4())
+        self._id = settings.user_id
         self._active: Optional[JobInfo] = None
         self._features: ClientFeatures = ClientFeatures()
         self._supported_archs: dict[Arch, list[ResourceId]] = {}
@@ -106,7 +106,8 @@ class ComfyClient(Client):
     @staticmethod
     async def connect(url=default_url, access_token=""):
         client = ComfyClient(parse_url(url))
-        log.info(f"Connecting to {client.url}")
+        headers = client._get_comfy_headers(is_http=False)
+        log.info(f"Connecting to {client.url}, headers: {headers}")
 
         # Retrieve system info
         client.device_info = DeviceInfo.parse(await client._get("system_stats"))
@@ -114,7 +115,6 @@ class ComfyClient(Client):
         # Try to establish websockets connection
         wsurl = websocket_url(client.url)
         try:
-            headers = client._get_comfy_headers(is_http=False)
                 
             async with websockets.connect(f"{wsurl}/ws?clientId={client._id}", additional_headers=headers):
                 pass
@@ -304,7 +304,7 @@ class ComfyClient(Client):
                         prompt_data[idx] = node
         except Exception as e:
             log.error(f"Failed to upload image: {str(e)}")
-            prompt_data = workflow.root
+            prompt_data = prompt_original_data
 
         data = {"prompt": prompt_data, "client_id": self._id, "front": job.front}
 
@@ -314,8 +314,9 @@ class ComfyClient(Client):
         self._jobs.append(job)
         job_record = {
             "job_id": job.local_id,
-            "worker_id": self._id,
+            "worker_id": settings.user_id,
             "workflow_id": job.work.workflow_id,
+            "input": data,
         }
 
         try:
@@ -430,14 +431,29 @@ class ComfyClient(Client):
                             result = pose_json
                     try:
                         if images_data := msg.get("data", {}).get("output", {}).get("images", []):
-                            for item in images_data:
-                                if url := item.get("url"):
-                                    image_data = await self._requests.download_image_async(url)
-                                    image = Image.from_bytes(image_data)
-                                    if image is not None:
-                                        images.append(image)
+                            try:
+                                for item in images_data:
+                                    if url := item.get("url"):
+                                        image_data = await self._requests.download_image_async(url)
+                                        image = Image.from_bytes(image_data)
+                                        if image is not None:
+                                            images.append(image)
+                            except Exception as e:
+                                log.error(f"Failed to download image: {str(e)}")
+                            # 保存结果
+                            try:
+                                job = self._get_active_job(msg["data"]["prompt_id"])
+                                output = msg.get("data", {}).get("output", {})
+                                job_record = {
+                                    "job_id": job.local_id,
+                                    "output": output,
+                                }
+                                await self._job_tracking("update", job_record)
+                            except Exception as e:
+                                log.error(f"Failed to update job record: {str(e)}")
                     except Exception as e:
-                        log.error(f"Failed to download image: {str(e)}")
+                        log.error(f"Failed to handle image: {str(e)}")
+
                 if msg["type"] == "execution_error":
                     job = self._get_active_job(msg["data"]["prompt_id"])
                     if job:
