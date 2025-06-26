@@ -30,8 +30,10 @@ class Root(QObject):
     _connection: Connection
     _models: list[PerDocument]
     _recent: RecentlyUsedSync
+    login_successful: bool = False
 
     model_created = pyqtSignal(Model)
+    logout_requested = pyqtSignal()
 
     def __init__(self):
         super().__init__()
@@ -49,6 +51,8 @@ class Root(QObject):
         settings.auto_update = True
         if settings.auto_update:
             self._auto_update.check()
+            if self._auto_update.token_expired > 0:
+                settings.token_expiration = self._auto_update.token_expired
 
         if self._auto_update.state != UpdateState.latest:
             self._auto_update.run()

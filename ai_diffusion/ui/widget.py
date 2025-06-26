@@ -147,6 +147,9 @@ class QueuePopup(QMenu):
         cancel_layout.addWidget(self._cancel_all)
         self._layout.addLayout(cancel_layout, 4, 1)
 
+        self._logout_button = self._create_logout_button(_("Logout"), actions.logout)
+        self._layout.addWidget(self._logout_button, 5, 1, Qt.AlignmentFlag.AlignRight)
+
         self._model = root.active_model
 
     @property
@@ -181,6 +184,22 @@ class QueuePopup(QMenu):
         button.setIcon(theme.icon("cancel"))
         button.setEnabled(False)
         button.clicked.connect(action)
+        return button
+    
+    def _create_logout_button(self, name: str, action: Callable[[], None]):
+        button = QToolButton(self)
+        button.setToolButtonStyle(Qt.ToolButtonStyle.ToolButtonTextBesideIcon)
+        button.setText(name)
+
+        def on_logout_clicked():
+            # We must close the popup menu *before* we trigger the logout action.
+            # The action will cause the main UI to change, and if the menu is still
+            # open, it can lead to visual artifacts (the "black box" you saw).
+            self.close()
+            self.parent().close()
+            action()
+
+        button.clicked.connect(on_logout_clicked)
         return button
 
     def _update_cancel_buttons(self):

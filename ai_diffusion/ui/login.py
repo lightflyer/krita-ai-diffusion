@@ -125,24 +125,29 @@ class LoginWidget(QWidget):
 
     def save_token(self, token, worker_id):
         # Store token for  day
-        expiration_time = int(time.time()) + (24 * 60 * 60)
         settings.user_token = token
-        settings.token_expiration = expiration_time
         settings.user_id = worker_id
+        settings.last_login_time = int(time.time())
         settings.save()
         log.info("New auth token saved to settings file.")
 
+    def reset(self):
+        self.username_input.clear()
+        self.password_input.clear()
+        self.status_label.setText("")
+        self.login_button.setEnabled(True)
 
 def check_token() -> bool:
     """Check for a valid, non-expired token from the main settings."""
     token = settings.user_token
     expiration = settings.token_expiration
+    last_login_time = settings.last_login_time
 
-    if not token or not expiration or expiration == 0:
+    if not token or not last_login_time or last_login_time == 0:
         log.info("No auth token found in settings.")
         return False
 
-    if int(time.time()) > int(expiration):
+    if int(time.time()) > int(last_login_time) + expiration:
         log.info("Auth token has expired.")
         settings.user_token = ""
         settings.token_expiration = 0

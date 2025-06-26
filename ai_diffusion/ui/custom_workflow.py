@@ -756,14 +756,14 @@ class CustomWorkflowWidget(QWidget):
         self._mode_button.clicked.connect(self._show_generate_menu)
         menu = QMenu(self)
         menu.addAction(self._mk_action(CustomGenerationMode.regular, _("Generate"), "generate"))
-        menu.addAction(
-            self._mk_action(CustomGenerationMode.live, _("Generate Live"), "workspace-live")
-        )
-        menu.addAction(
-            self._mk_action(
-                CustomGenerationMode.animation, _("Generate Animation"), "workspace-animation"
-            )
-        )
+        # menu.addAction(
+        #     self._mk_action(CustomGenerationMode.live, _("Generate Live"), "workspace-live")
+        # )
+        # menu.addAction(
+        #     self._mk_action(
+        #         CustomGenerationMode.animation, _("Generate Animation"), "workspace-animation"
+        #     )
+        # )
         self._generate_menu = menu
 
         self._queue_button = QueueButton(parent=self._bottom)

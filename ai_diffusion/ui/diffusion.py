@@ -19,6 +19,7 @@ from .upscale import UpscaleWidget
 from .live import LiveWidget
 from .animation import AnimationWidget
 from .login import LoginWidget
+from ..util import client_logger as log
 
 
 class AutoUpdateWidget(QWidget):
@@ -222,10 +223,6 @@ class ImageDiffusionWidget(DockWidget):
         self._custom_placeholder = CustomWorkflowPlaceholder()
         self._frame = QStackedWidget(self)
 
-        if not root.login_successful:
-            self._frame.addWidget(self._login)
-            self._login.login_success.connect(self._on_login_success)
-
         self._frame.addWidget(self._login)
         self._frame.addWidget(self._welcome)
         self._frame.addWidget(self._generation)
@@ -237,15 +234,30 @@ class ImageDiffusionWidget(DockWidget):
         
         self.setWidget(self._frame)
 
+        self._login.login_success.connect(self._on_login_success)
+        root.logout_requested.connect(self._on_logout)
+
         root.connection.state_changed.connect(self.update_content)
         root.auto_update.state_changed.connect(self.update_content)
         root.model_created.connect(self.register_model)
 
-
     def _on_login_success(self):
         """Called when the login widget reports a successful login."""
-        root.login_successful = True
-        self.update_content()
+        try:
+            root.login_successful = True
+            self.update_content()
+        except Exception as e:
+            log.error(f"ImageDiffusionWidget : _on_login_success : Error updating content: {e}")
+            root.login_successful = False
+
+    def _on_logout(self):
+        """Called when a logout is requested."""
+        try:
+            root.login_successful = False
+            self._login.reset()
+            self.update_content()
+        except Exception as e:
+            log.error(f"ImageDiffusionWidget : _on_logout : Error updating content: {e}")
 
     def canvasChanged(self, canvas: krita.Canvas):
         if canvas is not None and canvas.view() is not None:
@@ -256,31 +268,33 @@ class ImageDiffusionWidget(DockWidget):
         self.update_content()
 
     def update_content(self):
-        if not root.login_successful:
-            self._frame.setCurrentWidget(self._login)
-            return
-
-        model = root.model_for_active_document()
-        connection = root.connection
-        requires_update = self._welcome.requires_update
-        is_cloud = settings.server_mode is ServerMode.cloud
-        if model is None or connection.state is not ConnectionState.connected or requires_update:
-            self._frame.setCurrentWidget(self._welcome)
-        elif model.workspace is Workspace.generation:
-            self._generation.model = model
-            self._frame.setCurrentWidget(self._generation)
-        elif model.workspace is Workspace.upscaling:
-            self._upscaling.model = model
-            self._frame.setCurrentWidget(self._upscaling)
-        elif model.workspace is Workspace.live:
-            self._live.model = model
-            self._frame.setCurrentWidget(self._live)
-        elif model.workspace is Workspace.animation:
-            self._animation.model = model
-            self._frame.setCurrentWidget(self._animation)
-        elif model.workspace is Workspace.custom and is_cloud:
-            self._custom_placeholder.model = model
-            self._frame.setCurrentWidget(self._custom_placeholder)
-        elif model.workspace is Workspace.custom:
-            self._custom.model = model
-            self._frame.setCurrentWidget(self._custom)
+        try:
+            model = root.model_for_active_document()
+            connection = root.connection
+            requires_update = self._welcome.requires_update
+            is_cloud = settings.server_mode is ServerMode.cloud 
+            if not root.login_successful:
+                self._frame.setCurrentWidget(self._login)
+              
+            elif model is None or connection.state is not ConnectionState.connected or requires_update:
+                self._frame.setCurrentWidget(self._welcome)
+            elif model.workspace is Workspace.generation:
+                self._generation.model = model
+                self._frame.setCurrentWidget(self._generation)
+            elif model.workspace is Workspace.upscaling:
+                self._upscaling.model = model
+                self._frame.setCurrentWidget(self._upscaling)
+            elif model.workspace is Workspace.live:
+                self._live.model = model
+                self._frame.setCurrentWidget(self._live)
+            elif model.workspace is Workspace.animation:
+                self._animation.model = model
+                self._frame.setCurrentWidget(self._animation)
+            elif model.workspace is Workspace.custom and is_cloud:
+                self._custom_placeholder.model = model
+                self._frame.setCurrentWidget(self._custom_placeholder)
+            elif model.workspace is Workspace.custom:
+                self._custom.model = model
+                self._frame.setCurrentWidget(self._custom)
+        except Exception as e:
+            log.error(f"ImageDiffusionWidget : update_content : Error updating content: {e}")

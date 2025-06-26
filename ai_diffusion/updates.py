@@ -59,11 +59,14 @@ class AutoUpdate(QObject, ObservableProperties):
         self._temp_dir: TemporaryDirectory | None = None
         self._request_manager: RequestManager | None = None
 
+        # token过期时间
+        self.token_expired = 0
+
     def check(self):
         import asyncio
         return asyncio.run(
             self._handle_errors(
-                self._check, UpdateState.failed_check, "Failed to check for new plugin version"
+                self. _check, UpdateState.failed_check, "Failed to check for new plugin version"
             )
         )
 
@@ -82,6 +85,14 @@ class AutoUpdate(QObject, ObservableProperties):
         result = json.load(urllib.request.urlopen("https://antaai.oss-cn-hangzhou.aliyuncs.com/comfyui/krita/result.json"))
         if result['url'] == "":
             result['url'] = "https://antaai.oss-cn-hangzhou.aliyuncs.com/comfyui/krita/ai-diffusion-latest.zip"
+        try:
+            if (expired := result.get("expired")) and isinstance(expired, int):
+                self.token_expired = expired
+            else:
+                self.token_expired = 0
+        except Exception as e:
+            log.error(f"Error getting token expired: {e}")
+            self.token_expired = 0
 
         self.latest_version = result.get("version")
         if not self.latest_version:

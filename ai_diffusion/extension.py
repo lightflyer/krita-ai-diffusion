@@ -76,7 +76,6 @@ class AIToolsExtension(Extension):
         self._create_action(window, "switch_workspace_live", actions.set_workspace(Workspace.live))
         self._create_action(window, "toggle_workspace", actions.toggle_workspace)
 
-
 Krita.instance().addExtension(AIToolsExtension(Krita.instance()))
 Krita.instance().addDockWidgetFactory(
     DockWidgetFactory("imageDiffusion", DockWidgetFactoryBase.DockRight, ImageDiffusionWidget)  # type: ignore

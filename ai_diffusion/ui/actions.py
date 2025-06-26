@@ -1,5 +1,6 @@
 from ..model import Workspace
 from ..root import root
+from ..settings import settings
 
 
 def generate():
@@ -30,6 +31,13 @@ def cancel_all():
     if model := root.model_for_active_document():
         model.cancel(active=True, queued=True)
 
+
+def logout():
+    settings.user_token = ""
+    settings.user_id = ""
+    settings.last_login_time = 0
+    settings.save()
+    root.logout_requested.emit()
 
 def toggle_preview():
     if model := root.model_for_active_document():

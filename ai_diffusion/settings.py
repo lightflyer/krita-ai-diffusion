@@ -134,11 +134,20 @@ class Settings(QObject):
     user_id: str
     _user_id = Setting(_("User ID"), "")
 
+    # token 过期时间
     token_expiration: int
     _token_expiration = Setting(
         _("Token Expiration Timestamp"),
         0,
-        _("Timestamp for when the auth token expires"),
+        _("Timestamp for auth token expires"),
+    )
+
+    # 上次登录时间, + token 过期时间 = 下次登录时间
+    last_login_time: int
+    _last_login_time = Setting(
+        _("Last Login Time"),
+        0,
+        _("Timestamp for last login"),
     )
 
     server_path: str
