@@ -9,6 +9,7 @@ from PyQt5.QtWidgets import (
 )
 from PyQt5.QtCore import QUrl, QUrlQuery, pyqtSignal
 from PyQt5.QtNetwork import QNetworkAccessManager, QNetworkRequest, QNetworkReply
+from urllib.parse import urlencode
 
 from ..util import client_logger as log
 from ..settings import settings
@@ -73,11 +74,13 @@ class LoginWidget(QWidget):
         self.status_label.setText("正在登录...")
         self.login_button.setEnabled(False)
         
-        url = QUrl("https://xai.anta.com/aimodels-server/public/users/login")
-        query = QUrlQuery()
-        query.addQueryItem("username", username)
-        query.addQueryItem("password", password)
-        url.setQuery(query)
+        base_url = "https://xai.anta.com/aimodels-server/public/users/login"
+        params = {
+            "username": username,
+            "password": password,
+        }
+        url_str = f"{base_url}?{urlencode(params)}"
+        url = QUrl(url_str)
         
         request = QNetworkRequest(url)
         request.setHeader(QNetworkRequest.KnownHeaders.ContentTypeHeader, "application/json")
